@@ -1,8 +1,8 @@
-# [YourCompanyName] - AI & Automation B2B Showcase Website
+# [AutoMind] - AI & Automation B2B Showcase Website
 
 ## Description
 
-This repository contains the frontend code for the [YourCompanyName] website. The primary goal of this website is to serve as a global gateway, effectively showcasing a diverse and complex portfolio of AI and automation services to B2B clients, particularly in the European Union (EU) and Southeast Asian (SEA) markets.
+This repository contains the frontend code for the [AutoMind] website. The primary goal of this website is to serve as a global gateway, effectively showcasing a diverse and complex portfolio of AI and automation services to B2B clients, particularly in the European Union (EU) and Southeast Asian (SEA) markets.
 
 The site aims to facilitate market entry, generate qualified leads, and establish credibility by clearly articulating the value proposition of our services, which include:
 
@@ -75,7 +75,7 @@ Currently, contributions are managed internally. Please contact [Your Contact Em
 *(Choose one option or modify)*
 
 **Option 1 (Proprietary):**
-Copyright © [Year] [YourCompanyName]. All Rights Reserved.
+Copyright © [Year] [AutoMind]. All Rights Reserved.
 
 **Option 2 (MIT License - Example):**
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details. *(You would need to create a LICENSE.md file with the MIT license text if you choose this)*

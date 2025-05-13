@@ -4,96 +4,714 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Your Global Partner for AI and Automation Solutions in EU & SEA. Unlock efficiency and innovation with our n8n, AI, RAG, and automation expertise.">
-    <meta name="keywords" content="AI solutions, automation services, n8n consulting, RAG technology, AI agents, EU B2B, SEA B2B">
-    <title>YourCompanyName - AI & Automation Solutions for EU/SEA</title>
-    <link rel="stylesheet" href="/css/style.css"> </head>
-    </head>
+    <meta name="keywords" content="AI solutions, automation services, n8n consulting, RAG technology, AI agents, EU B2B, SEA B2B, robotics">
+    <title>AutoMind - AI & Automation Solutions for EU/SEA</title>
+    <style>
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            background: var(--gradient);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            background: url('/api/placeholder/1200/800') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        .section-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 18px;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+            color: var(--primary);
+        }
+        
+        .service-link {
+            margin-top: 15px;
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .service-link::after {
+            content: "→";
+            margin-left: 5px;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+        
+        .service-link:hover::after {
+            transform: translateX(5px);
+        }
+        
+        .view-all {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .about {
+            background-color: #f8f9fa;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            margin-bottom: 25px;
+        }
+        
+        .cta {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-light {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .global-presence {
+            padding: 100px 0;
+        }
+        
+        .map-container {
+            height: 400px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .map-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .map-marker::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 0, 110, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+        
+        .locations {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .location-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 250px;
+            text-align: center;
+        }
+        
+        .location-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #343a40;
+            color: #adb5bd;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #343a40;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
 <body>
     <header>
-        <nav>
-            <a href="index.html"><h1>YourCompanyName</h1></a>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services/index.html">Services</a></li>
-                <li><a href="solutions/index.html">Solutions</a></li>
-                <li><a href="resources/index.html">Resources</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Your<span>CompanyName</span></a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services/index.html">Services</a>
+                    <a href="solutions/index.html">Solutions</a>
+                    <a href="resources/index.html">Resources</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <a href="contact.html#consultation" class="btn">Request a Consultation</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section id="hero">
-            <h2>Transform Your Business with Intelligent Automation & AI</h2>
-            <p>We provide cutting-edge AI and automation services, including n8n expertise, RAG, and AI agents, tailored for B2B clients in the EU and Southeast Asia.</p>
-            <a href="contact.html#consultation" class="cta-button">Request a Consultation</a>
-        </section>
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Business with Intelligent Automation & AI</h1>
+                <p>We provide cutting-edge AI and automation services, including n8n expertise, RAG, and AI agents, tailored for B2B clients in the EU and Southeast Asia.</p>
+                <a href="contact.html#consultation" class="btn">Request a Consultation</a>
+            </div>
+        </div>
+    </section>
 
-        <section id="overview-services">
-            <h3>Our Core Services (Our Toolkit)</h3>
-            <p>Discover the powerful technologies we leverage to build your solutions.</p>
-            <div>
-                <article>
-                    <h4>n8n Expertise</h4>
-                    <p>Rapidly build and scale complex workflows with no-code/low-code flexibility and powerful code integration.</p>
-                    <a href="services/n8n-expertise.html">Learn about n8n</a>
-                </article>
-                <article>
-                    <h4>AI Services</h4>
-                    <p>Harness the power of General AI, Machine Learning, and more to drive innovation.</p>
-                    <a href="services/ai-services.html">Explore AI Services</a>
-                </article>
-                <article>
-                    <h4>Retrieval Augmented Generation (RAG)</h4>
-                    <p>Enhance LLM accuracy with secure access to your private data for real-time insights.</p>
-                    <a href="services/rag.html">Understand RAG</a>
-                </article>
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Services</h2>
+            </div>
+            <p class="section-intro">Discover the powerful technologies we leverage to build your solutions.</p>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/300/200" alt="n8n Expertise">
+                    </div>
+                    <div class="service-content">
+                        <h3>n8n Expertise</h3>
+                        <p>Rapidly build and scale complex workflows with no-code/low-code flexibility and powerful code integration.</p>
+                        <a href="services/n8n-expertise.html" class="service-link">Learn about n8n</a>
+                    </div>
                 </div>
-            <a href="services/index.html">View All Services</a>
-        </section>
-
-        <section id="overview-solutions">
-            <h3>Applied Expertise (Your Success Stories)</h3>
-            <p>See how we translate our technological capabilities into tangible business outcomes for industries like yours.</p>
-            <div>
-                <article>
-                    <h4>Intelligent Manufacturing</h4>
-                    <p>Automate quality control and streamline supply chains in light industry.</p>
-                    <a href="solutions/manufacturing-qc.html">Manufacturing Solutions</a>
-                </article>
-                <article>
-                    <h4>Healthcare Innovation (EU)</h4>
-                    <p>Optimize processes with GDPR-compliant AI solutions.</p>
-                    <a href="solutions/healthcare-automation.html">Healthcare Solutions</a>
-                </article>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/300/200" alt="AI Services">
+                    </div>
+                    <div class="service-content">
+                        <h3>AI Services</h3>
+                        <p>Harness the power of General AI, Machine Learning, and more to drive innovation and transform your business processes.</p>
+                        <a href="services/ai-services.html" class="service-link">Explore AI Services</a>
+                    </div>
                 </div>
-            <a href="solutions/index.html">Discover Our Solutions</a>
-        </section>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/300/200" alt="RAG Systems">
+                    </div>
+                    <div class="service-content">
+                        <h3>Retrieval Augmented Generation (RAG)</h3>
+                        <p>Enhance LLM accuracy with secure access to your private data for real-time insights and intelligent decision-making.</p>
+                        <a href="services/rag.html" class="service-link">Understand RAG</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/300/200" alt="Advanced Robotics">
+                    </div>
+                    <div class="service-content">
+                        <h3>Advanced Robotics</h3>
+                        <p>Implement intelligent robotic solutions that automate complex tasks across various industries for increased efficiency.</p>
+                        <a href="services/robotics.html" class="service-link">Explore Robotics</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/300/200" alt="General Automation">
+                    </div>
+                    <div class="service-content">
+                        <h3>General Automation</h3>
+                        <p>Design and implement comprehensive automation strategies that optimize your business operations and reduce manual effort.</p>
+                        <a href="services/automation.html" class="service-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/300/200" alt="AI Agent Services">
+                    </div>
+                    <div class="service-content">
+                        <h3>AI Agent Services</h3>
+                        <p>Deploy intelligent AI agents that can perform complex tasks, learn from interactions, and continuously improve your services.</p>
+                        <a href="services/ai-agents.html" class="service-link">Discover AI Agents</a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="services/index.html" class="btn">View All Services</a>
+            </div>
+        </div>
+    </section>
 
-        <section id="why-us">
-            <h3>Your Strategic Partner in EU & SEA</h3>
-            <p>With deep expertise and a focus on your market needs, we help you navigate complexity and achieve results.</p>
-            </section>
+    <section id="solutions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Applied Expertise</h2>
+            </div>
+            <p class="section-intro">See how we translate our technological capabilities into tangible business outcomes for industries like yours.</p>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/300/200" alt="Intelligent Manufacturing">
+                    </div>
+                    <div class="service-content">
+                        <h3>Intelligent Manufacturing</h3>
+                        <p>Automate quality control and streamline supply chains in light industry with AI-powered solutions.</p>
+                        <a href="solutions/manufacturing-qc.html" class="service-link">Manufacturing Solutions</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/300/200" alt="Healthcare Innovation">
+                    </div>
+                    <div class="service-content">
+                        <h3>Healthcare Innovation (EU)</h3>
+                        <p>Optimize healthcare processes with GDPR-compliant AI solutions that enhance patient care while maintaining data security.</p>
+                        <a href="solutions/healthcare-automation.html" class="service-link">Healthcare Solutions</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/api/placeholder/300/200" alt="Retail Intelligence">
+                    </div>
+                    <div class="service-content">
+                        <h3>Retail Intelligence</h3>
+                        <p>Transform customer experiences and optimize inventory management with predictive analytics and automation.</p>
+                        <a href="solutions/retail-intelligence.html" class="service-link">Retail Solutions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="solutions/index.html" class="btn">Discover Our Solutions</a>
+            </div>
+        </div>
+    </section>
 
-        <section id="cta-bottom">
+    <section class="about" id="why-us">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img">
+                    <img src="/api/placeholder/600/400" alt="About Your Company">
+                </div>
+                <div class="about-content">
+                    <h2>Your Strategic Partner in EU & SEA</h2>
+                    <p>With deep expertise in AI, automation, and regional business practices, we help you navigate complexity and achieve measurable results.</p>
+                    <p>Our team of specialists combines technical knowledge with business acumen to deliver solutions that are not just technologically advanced but also aligned with your strategic objectives.</p>
+                    <p>Whether you're looking to optimize operations, enhance customer experiences, or develop new digital capabilities, we provide the expertise and support you need to succeed in today's competitive landscape.</p>
+                    <a href="about.html" class="btn">Learn More About Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="global-presence" id="global">
+        <div class="container">
+            <div class="section-title">
+                <h2>Global Presence</h2>
+                <p>Serving clients across Europe and Southeast Asia</p>
+            </div>
+            <div class="map-container">
+                <img src="/api/placeholder/1200/400" alt="Global Map">
+                <!-- Europe Markers -->
+                <div class="map-marker" style="top: 30%; left: 48%;"></div> <!-- Berlin -->
+                <div class="map-marker" style="top: 35%; left: 45%;"></div> <!-- Paris -->
+                <div class="map-marker" style="top: 40%; left: 47%;"></div> <!-- Milan -->
+                
+                <!-- Southeast Asia Markers -->
+                <div class="map-marker" style="top: 60%; left: 73%;"></div> <!-- Singapore -->
+                <div class="map-marker" style="top: 55%; left: 75%;"></div> <!-- Bangkok -->
+                <div class="map-marker" style="top: 65%; left: 78%;"></div> <!-- Jakarta -->
+            </div>
+            <div class="locations">
+                <div class="location-card">
+                    <h3>European Headquarters</h3>
+                    <p>Berlin, Germany</p>
+                    <p>Serving all EU countries with localized support</p>
+                </div>
+                <div class="location-card">
+                    <h3>Southeast Asia Hub</h3>
+                    <p>Singapore</p>
+                    <p>Coordinating operations across ASEAN region</p>
+                </div>
+                <div class="location-card">
+                    <h3>R&D Center</h3>
+                    <p>Amsterdam, Netherlands</p>
+                    <p>Innovation lab for emerging technologies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="cta-bottom">
+        <div class="container">
             <h2>Ready to start your automation journey?</h2>
-            <a href="contact.html#demo" class="cta-button">Book a Demo</a>
-        </section>
-    </main>
+            <p>Get in touch with our experts to discuss how our AI and automation solutions can help your business grow and thrive in the digital age.</p>
+            <a href="contact.html#demo" class="btn btn-light">Book a Demo</a>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; <span id="currentYear"></span> YourCompanyName. All rights reserved.</p>
-        <ul>
-            <li><a href="privacy-policy.html">Privacy Policy (GDPR & SEA Compliance)</a></li>
-            <li><a href="terms-of-service.html">Terms of Service</a></li>
-            <li><a href="trust-security.html">Trust & Security</a></li>
-            <li><a href="sitemap.html">Sitemap</a></li>
-        </ul>
-        </footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>AutoMind</h3>
+                    <p>Advanced AI & Automation Solutions for the Future of Business</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services/n8n-expertise.html">n8n Expertise</a></li>
+                        <li><a href="services/ai-services.html">AI Services</a></li>
+                        <li><a href="services/rag.html">RAG Systems</a></li>
+                        <li><a href="services/robotics.html">Advanced Robotics</a></li>
+                        <li><a href="services/automation.html">General Automation</a></li>
+                        <li><a href="services/ai-agents.html">AI Agent Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html#team">Our Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="resources/blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="resources/case-studies.html">Case Studies</a></li>
+                        <li><a href="resources/whitepapers.html">Whitepapers</a></li>
+                        <li><a href="resources/webinars.html">Webinars</a></li>
+                        <li><a href="resources/documentation.html">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> AutoMind. All rights reserved.</p>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy (GDPR & SEA Compliance)</a></li>
+                    <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    <li><a href="trust-security.html">Trust & Security</a></li>
+                    <li><a href="sitemap.html">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
-    <script src="/js/script.js"></script>
 </body>
 </html>
