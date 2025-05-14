@@ -14,6 +14,7 @@
             --light: #f8f9fa;
             --dark: #212529;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --image-placeholder-bg: #f0f0f0;
         }
         
         * {
@@ -299,20 +300,37 @@
         }
         
         .map-container {
-            height: 400px;
+            height: 400px; /* Keep this fixed height */
+            /* max-width: 100%; /* Ensure it doesn't overflow its parent if the parent is narrower */
             background-color: #f1f1f1;
             border-radius: 10px;
-            overflow: hidden;
-            position: relative;
+            overflow: hidden; /* Important */
+            position: relative; /* Essential for absolute positioning of markers */
+            margin: 0 auto; /* If you want to center it if it's narrower than .container */
+        }
+
+        /* Style for the actual map image inside the container */
+        .map-container img.map-image { /* Added class for clarity */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Stretches image to fill, maintains aspect ratio, crops if necessary.
+                                  This is usually the best for background-like maps.
+                                  Alternatively, use 'contain' if the entire map must be visible,
+                                  but then marker positioning with percentages becomes less reliable
+                                  if the image doesn't fill the container. */
+            display: block;
+            border-radius: 10px; /* To match the container's rounding if object-fit:cover is used */
         }
         
         .map-marker {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 15px; /* Slightly smaller for a more "delicate" point */
+            height: 15px;
             background: var(--accent);
             border-radius: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); /* Centers the marker on its coordinates */
+            box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Optional: adds a bit of depth */
+            z-index: 10; /* Ensure markers are above the map image */
         }
         
         .map-marker::after {
@@ -320,23 +338,63 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
+            /* transform: translate(-50%, -50%); /* This is already on the parent for centering the pulse */
+            width: 30px; /* Adjust pulse size */
+            height: 30px;
             background: rgba(255, 0, 110, 0.3);
             border-radius: 50%;
-            animation: pulse 2s infinite;
+            animation: pulse 1.8s infinite ease-out; /* Adjusted animation */
+            transform-origin: center; /* Ensure scaling is from the center */
         }
         
         @keyframes pulse {
             0% {
-                transform: translate(-50%, -50%) scale(0.5);
-                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.3);
+                opacity: 0.8;
+            }
+            70% { /* Let it expand and start fading */
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0.2;
             }
             100% {
                 transform: translate(-50%, -50%) scale(2);
                 opacity: 0;
             }
+        }
+
+        /* Individual Marker Positioning - THESE ARE ESTIMATES AND NEED FINE-TUNING */
+        /* You MUST adjust these percentages based on your actual 'images/globalmap.png' */
+        /* View your page, inspect element, and tweak these live in dev tools. */
+
+        /* Europe Markers */
+        .map-marker.berlin { top: 10%; left: 53%; } /* Example: Adjust for Berlin */
+        .map-marker.paris  { top: 13%; left: 50%; } /* Example: Adjust for Paris */
+        .map-marker.milan  { top: 17%; left: 52.5%; } /* Example: Adjust for Milan */
+        
+        /* Southeast Asia Markers */
+        .map-marker.singapore { top: 58%; left: 88%; }  /* Example: Adjust for Singapore */
+        .map-marker.bangkok   { top: 52%; left: 87%; }  /* Example: Adjust for Bangkok */
+        .map-marker.jakarta   { top: 63%; left: 90%; }  /* Example: Adjust for Jakarta */
+
+        /* Responsive Adjustments for Markers (Optional, if simple percentages aren't enough) */
+        /* You might need this if the map's visual center shifts significantly at smaller screen sizes
+           due to the .map-container's width changing more than its height. */
+        @media (max-width: 768px) {
+            .map-container {
+                height: 300px; /* Example: map container might be smaller on mobile */
+            }
+            /* You MIGHT need to slightly adjust marker percentages here if they drift too much */
+            /* .map-marker.berlin { top: 34%; left: 47%; } */
+            /* .map-marker.singapore { top: 57%; left: 77.5%; } */
+        }
+
+        @media (max-width: 480px) {
+            .map-container {
+                height: 250px;
+            }
+            .map-marker { width: 12px; height: 12px; } /* Smaller markers on small screens */
+            .map-marker::after { width: 24px; height: 24px; }
+            /* Further adjustments if needed */
         }
         
         .locations {
@@ -628,34 +686,18 @@
                 <p>Serving clients across Europe and Southeast Asia</p>
             </div>
             <div class="map-container">
-                <img src="/api/placeholder/1200/400" alt="Global Map">
-                <!-- Europe Markers -->
-                <div class="map-marker" style="top: 30%; left: 48%;"></div> <!-- Berlin -->
-                <div class="map-marker" style="top: 35%; left: 45%;"></div> <!-- Paris -->
-                <div class="map-marker" style="top: 40%; left: 47%;"></div> <!-- Milan -->
+                <img src="images/globalmap.png" alt="World map showing AutoMind's presence in Europe and Southeast Asia" class="map-image" loading="lazy">
                 
-                <!-- Southeast Asia Markers -->
-                <div class="map-marker" style="top: 60%; left: 73%;"></div> <!-- Singapore -->
-                <div class="map-marker" style="top: 55%; left: 75%;"></div> <!-- Bangkok -->
-                <div class="map-marker" style="top: 65%; left: 78%;"></div> <!-- Jakarta -->
+                <div class="map-marker berlin" aria-label="Berlin Office Location"></div>
+                <div class="map-marker paris"  aria-label="Paris Office Location"></div>
+                <div class="map-marker milan"  aria-label="Milan Office Location"></div>
+                
+                <div class="map-marker singapore" aria-label="Singapore Office Location"></div>
+                <div class="map-marker bangkok"   aria-label="Bangkok Office Location"></div>
+                <div class="map-marker jakarta"   aria-label="Jakarta Office Location"></div>
             </div>
             <div class="locations">
-                <div class="location-card">
-                    <h3>European Headquarters</h3>
-                    <p>Berlin, Germany</p>
-                    <p>Serving all EU countries with localized support</p>
                 </div>
-                <div class="location-card">
-                    <h3>Southeast Asia Hub</h3>
-                    <p>Singapore</p>
-                    <p>Coordinating operations across ASEAN region</p>
-                </div>
-                <div class="location-card">
-                    <h3>R&D Center</h3>
-                    <p>Amsterdam, Netherlands</p>
-                    <p>Innovation lab for emerging technologies</p>
-                </div>
-            </div>
         </div>
     </section>
 
