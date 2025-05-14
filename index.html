@@ -190,9 +190,23 @@
         
         .service-img {
             height: 220px;
-            width: 400px;
-            overflow: hidden;
+            width: 400px; /* Your original fixed dimensions */
+            overflow: hidden; /* Crucial to contain the image */
+            background-color: var(--image-placeholder-bg); /* Placeholder shown while image loads or if missing */
+            position: relative; /* Useful if you ever add overlays or icons on the image */
         }
+
+        /* Add this new rule to style the images within .service-img */
+        .service-img img {
+            width: 100%; /* Makes the image fill the width of .service-img */
+            height: 100%; /* Makes the image fill the height of .service-img */
+            object-fit: cover; /* This is key:
+                                  - Scales the image to maintain its aspect ratio while filling the element's entire content box.
+                                  - If the image's aspect ratio does not match the aspect ratio of its box, then the object will be clipped to fit.
+                                  - This ensures no distortion and a full container. */
+            display: block; /* Removes any extra space below the image (often due to line-height) */
+        }
+
         
         .service-content {
             padding: 25px;
@@ -481,7 +495,7 @@
           <div class="service-grid">
             <div class="service-card">
               <div class="service-img">
-                <img src="images/n8n.png" alt="n8n Workflow Engineering" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="images/n8n.png" alt="n8n Workflow Engineering" loading="lazy">
               </div>
               <div class="service-content">
                 <h3>n8n Workflow Engineering & Consultation</h3>
@@ -491,7 +505,7 @@
             </div>
             <div class="service-card">
               <div class="service-img">
-                <img src="images/aipowered.png" alt="AI Process Optimization" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="images/aipowered.png" alt="AI Process Optimization" loading="lazy">
               </div>
               <div class="service-content">
                 <h3>AI-Powered Process Optimization</h3>
@@ -501,7 +515,7 @@
             </div>
             <div class="service-card">
               <div class="service-img">
-                <img src="images/robotics.png" alt="Robotics & Automation Integration" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="images/robotics.png" alt="Robotics & Automation Integration" loading="lazy">
               </div>
               <div class="service-content">
                 <h3>Robotics & Automation Integration</h3>
@@ -511,7 +525,7 @@
             </div>
             <div class="service-card">
               <div class="service-img">
-                <img src="images/digital.png" alt="Digital Manufacturing Solutions" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="images/digital.png" alt="Digital Manufacturing Solutions" loading="lazy">
               </div>
               <div class="service-content">
                 <h3>Digital Solutions for Intelligent Light Manufacture</h3>
@@ -521,7 +535,7 @@
             </div>
             <div class="service-card">
               <div class="service-img">
-                <img src="images/toolchain.png" alt="SaaS Toolchains" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="images/toolchain.png" alt="SaaS Toolchains" loading="lazy">
               </div>
               <div class="service-content">
                 <h3>Custom SaaS Toolchains & Integration-as-a-Service</h3>
@@ -531,7 +545,7 @@
             </div>
             <div class="service-card">
               <div class="service-img">
-                <img src="images/b2b.png" alt="Digital Strategy Onboarding" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="images/b2b.png" alt="Digital Strategy Onboarding" loading="lazy">
               </div>
               <div class="service-content">
                 <h3>B2B Digital Strategy & Technical Onboarding</h3>
@@ -555,7 +569,7 @@
             <div class="service-grid">
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="images/manufacture.png" alt="Intelligent Manufacturing">
+                        <img src="images/manufacture.png" alt="Intelligent Manufacturing" loading="lazy">
                     </div>
                     <div class="service-content">
                         <h3>Intelligent Manufacturing</h3>
@@ -565,7 +579,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="images/healthcare.png" alt="Healthcare Innovation">
+                        <img src="images/healthcare.png" alt="Healthcare Innovation" loading="lazy">
                     </div>
                     <div class="service-content">
                         <h3>Healthcare Innovation (EU)</h3>
@@ -575,7 +589,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="images/management.png" alt="Retail Intelligence">
+                        <img src="images/management.png" alt="Retail Intelligence" loading="lazy">
                     </div>
                     <div class="service-content">
                         <h3>Retail Intelligence</h3>
