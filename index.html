@@ -6,588 +6,36 @@
     <meta name="description" content="Your Global Partner for AI and Automation Solutions in EU & SEA. Unlock efficiency and innovation with our n8n, AI, RAG, and automation expertise.">
     <meta name="keywords" content="AI solutions, automation services, n8n consulting, RAG technology, AI agents, EU B2B, SEA B2B, robotics">
     <title>AutoMind - AI & Automation Solutions for EU/SEA</title>
-    <style>
-        :root {
-            --primary: #3a86ff;
-            --secondary: #8338ec;
-            --accent: #ff006e;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --image-placeholder-bg: #f0f0f0;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--dark);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px; /* Space between logo image and text */
-        }
-        
-        .logo-img {
-            height: 40px; /* Adjust height as needed */
-            width: auto; /* Maintains aspect ratio */
-            object-fit: contain; /* Ensures logo isn't distorted */
-        }
-        
-        .logo svg {
-            height: 40px;
-            width: auto;
-        }
-        
-        .logo-text {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo span {
-            color: var(--primary);
-        }
-        
-        /* Alternative: Logo-only version (uncomment if you want just the image) */
-        /*
-        .logo-only {
-            height: 50px;
-            width: auto;
-            object-fit: contain;
-        }
-        */
-        
-        /* Footer logo styling */
-        .footer-logo {
-            height: 35px;
-            width: auto;
-            object-fit: contain;
-            margin-bottom: 15px;
-        }
-        
-        .footer-col svg {
-            height: 35px;
-            width: auto;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .btn {
-            background: var(--gradient);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .hero {
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            background: url('/api/placeholder/1200/800') no-repeat center center;
-            background-size: cover;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            max-width: 700px;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--gradient);
-        }
-        
-        .section-intro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            font-size: 18px;
-        }
-        
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .service-img {
-            height: 220px;
-            width: 400px;
-            overflow: hidden;
-            background-color: var(--image-placeholder-bg);
-            position: relative;
-        }
-
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            margin-bottom: 15px;
-            font-size: 22px;
-            color: var(--primary);
-        }
-        
-        .service-link {
-            margin-top: 15px;
-            display: inline-block;
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-            position: relative;
-        }
-        
-        .service-link::after {
-            content: "→";
-            margin-left: 5px;
-            transition: transform 0.3s;
-            display: inline-block;
-        }
-        
-        .service-link:hover::after {
-            transform: translateX(5px);
-        }
-        
-        .view-all {
-            text-align: center;
-            margin-top: 30px;
-        }
-        
-        .about {
-            background-color: #f8f9fa;
-        }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .about-content h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .about-content p {
-            margin-bottom: 25px;
-        }
-        
-        .cta {
-            padding: 100px 0;
-            background: var(--gradient);
-            color: white;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .cta p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .btn-light {
-            background: white;
-            color: var(--primary);
-        }
-        
-        .global-presence {
-            padding: 100px 0;
-        }
-        
-        .map-container {
-            height: 400px;
-            background-color: #f1f1f1;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .map-container img.map-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            border-radius: 10px;
-        }
-        
-        .map-marker {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: var(--accent);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-        
-        .map-marker::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 30px;
-            height: 30px;
-            background: rgba(255, 0, 110, 0.3);
-            border-radius: 50%;
-            animation: pulse 1.8s infinite ease-out;
-            transform-origin: center;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(0.3);
-                opacity: 0.8;
-            }
-            70% {
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 0.2;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(2);
-                opacity: 0;
-            }
-        }
-
-        .map-marker.berlin { top: 10%; left: 53%; }
-        .map-marker.paris  { top: 13%; left: 50%; }
-        .map-marker.milan  { top: 17%; left: 52.5%; }
-        
-        .map-marker.singapore { top: 58%; left: 88%; }
-        .map-marker.bangkok   { top: 52%; left: 87%; }
-        .map-marker.jakarta   { top: 63%; left: 90%; }
-
-        @media (max-width: 768px) {
-            /* Logo adjustments for mobile */
-            .logo {
-                font-size: 20px;
-                gap: 8px;
-            }
-            
-            .logo-img {
-                height: 32px;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .map-container {
-                height: 300px;
-            }
-            
-            .map-marker { 
-                width: 12px; 
-                height: 12px; 
-            }
-            
-            .map-marker::after { 
-                width: 24px; 
-                height: 24px; 
-            }
-        }
-
-        @media (max-width: 480px) {
-            .map-container {
-                height: 250px;
-            }
-        }
-        
-        .locations {
-            margin-top: 50px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .location-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            width: 250px;
-            text-align: center;
-        }
-        
-        .location-card h3 {
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 70px 0 30px;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-col h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h3::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 30px;
-            height: 2px;
-            background: var(--primary);
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-col ul li a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-col ul li a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #343a40;
-            color: #adb5bd;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: #343a40;
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <div class="container">
             <nav>
-                <!-- Logo with image and text -->
                 <a href="index.html" class="logo">
                     <svg class="logo-img" viewBox="0 0 400 300" alt="AutoMind Logo">
-                        <!-- Human head profile in purple -->
                         <path d="M50 250 Q30 200 40 150 Q45 100 80 70 Q120 40 160 45 Q200 50 220 80 Q240 110 235 150 Q230 190 210 220 Q190 240 170 245 Q150 250 130 245 Q110 240 90 230 Q70 220 60 200 L50 250 Z" fill="#8338ec"/>
                         
-                        <!-- Inner head space (white) -->
                         <path d="M70 220 Q60 180 65 140 Q70 110 90 90 Q115 75 145 78 Q175 80 190 100 Q205 120 200 150 Q195 180 180 200 Q165 210 150 212 Q135 215 120 210 Q105 205 90 195 Q80 185 75 170 L70 220 Z" fill="white"/>
                         
-                        <!-- AI circuit pattern in blue -->
                         <g fill="#3a86ff">
-                            <!-- Brain hemisphere representing AI -->
                             <path d="M200 80 Q240 85 270 110 Q290 135 285 165 Q280 195 260 215 Q240 230 215 225 Q190 220 175 200 Q165 180 170 155 Q175 130 190 110 Q200 95 200 80 Z" fill="#5bc0de"/>
                             
-                            <!-- Circuit lines -->
                             <circle cx="220" cy="120" r="8" fill="white"/>
                             <circle cx="240" cy="140" r="6" fill="white"/>
                             <circle cx="210" cy="160" r="7" fill="white"/>
                             <circle cx="250" cy="180" r="5" fill="white"/>
                             
-                            <!-- Connecting lines -->
                             <line x1="220" y1="120" x2="240" y2="140" stroke="white" stroke-width="3"/>
                             <line x1="240" y1="140" x2="210" y2="160" stroke="white" stroke-width="3"/>
                             <line x1="210" y1="160" x2="250" y2="180" stroke="white" stroke-width="3"/>
                             <line x1="220" y1="120" x2="210" y2="160" stroke="white" stroke-width="2"/>
                         </g>
                         
-                        <!-- .AI text -->
                         <text x="300" y="180" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="#8338ec">.AI</text>
                     </svg>
                     <div class="logo-text">Auto<span>Mind</span></div>
                 </a>
-                
-                <!-- Alternative: Logo image only (uncomment to use)
-                <a href="index.html" class="logo">
-                    <img src="images/logo.png" alt="AutoMind" class="logo-only">
-                </a>
-                -->
                 
                 <div class="nav-links">
                     <a href="index.html">Home</a>
@@ -781,33 +229,25 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <!-- Option: Add logo to footer as well -->
                     <svg class="footer-logo" viewBox="0 0 400 300" alt="AutoMind Logo">
-                        <!-- Human head profile in purple -->
                         <path d="M50 250 Q30 200 40 150 Q45 100 80 70 Q120 40 160 45 Q200 50 220 80 Q240 110 235 150 Q230 190 210 220 Q190 240 170 245 Q150 250 130 245 Q110 240 90 230 Q70 220 60 200 L50 250 Z" fill="#8338ec"/>
                         
-                        <!-- Inner head space (white) -->
                         <path d="M70 220 Q60 180 65 140 Q70 110 90 90 Q115 75 145 78 Q175 80 190 100 Q205 120 200 150 Q195 180 180 200 Q165 210 150 212 Q135 215 120 210 Q105 205 90 195 Q80 185 75 170 L70 220 Z" fill="white"/>
                         
-                        <!-- AI circuit pattern in blue -->
                         <g fill="#3a86ff">
-                            <!-- Brain hemisphere representing AI -->
                             <path d="M200 80 Q240 85 270 110 Q290 135 285 165 Q280 195 260 215 Q240 230 215 225 Q190 220 175 200 Q165 180 170 155 Q175 130 190 110 Q200 95 200 80 Z" fill="#5bc0de"/>
                             
-                            <!-- Circuit lines -->
                             <circle cx="220" cy="120" r="8" fill="white"/>
                             <circle cx="240" cy="140" r="6" fill="white"/>
                             <circle cx="210" cy="160" r="7" fill="white"/>
                             <circle cx="250" cy="180" r="5" fill="white"/>
                             
-                            <!-- Connecting lines -->
                             <line x1="220" y1="120" x2="240" y2="140" stroke="white" stroke-width="3"/>
                             <line x1="240" y1="140" x2="210" y2="160" stroke="white" stroke-width="3"/>
                             <line x1="210" y1="160" x2="250" y2="180" stroke="white" stroke-width="3"/>
                             <line x1="220" y1="120" x2="210" y2="160" stroke="white" stroke-width="2"/>
                         </g>
                         
-                        <!-- .AI text -->
                         <text x="300" y="180" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="#8338ec">.AI</text>
                     </svg>
                     <h3>AutoMind</h3>
@@ -861,8 +301,6 @@
         </div>
     </footer>
     
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

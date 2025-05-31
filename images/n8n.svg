@@ -1,5 +1,5 @@
 <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="220" rx="32" fill="#EAF1FE"/>
+  <rect width="400" height="220" rx="32" fill="#F8FAFF"/>
   <defs>
     <linearGradient id="workflow-grad" x1="0" y1="0.5" x2="1" y2="0.5">
       <stop stop-color="#A3C6F8"/>
