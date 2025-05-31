@@ -1,0 +1,14 @@
+<svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="220" rx="32" fill="#EAF1FE"/>
+  <defs>
+    <linearGradient id="workflow-grad" x1="0" y1="0.5" x2="1" y2="0.5">
+      <stop stop-color="#A3C6F8"/>
+      <stop offset="1" stop-color="#6F3AFC"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="110" r="14" fill="#fff" stroke="url(#workflow-grad)" stroke-width="8"/>
+  <path d="M94 110 H150 L180 80 H250 M150 110 L180 140 H250" stroke="#373C52" stroke-width="8" stroke-linecap="round"/>
+  <rect x="250" y="66" width="28" height="28" rx="6" fill="#fff" stroke="#A3C6F8" stroke-width="8"/>
+  <circle cx="250" cy="140" r="14" fill="#fff" stroke="#C2A7F8" stroke-width="8"/>
+  <path d="M150 110 L135 125 L120 110 L135 95 Z" fill="#fff" stroke="#373C52" stroke-width="8"/>
+</svg>
