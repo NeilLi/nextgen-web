@@ -6,524 +6,21 @@
     <meta name="description" content="Your Global Partner for AI and Automation Solutions in EU & SEA. Unlock efficiency and innovation with our n8n, AI, RAG, and automation expertise.">
     <meta name="keywords" content="AI solutions, automation services, n8n consulting, RAG technology, AI agents, EU B2B, SEA B2B, robotics">
     <title>AutoMind - AI & Automation Solutions for EU/SEA</title>
-    <style>
-        :root {
-            --primary: #3a86ff;
-            --secondary: #8338ec;
-            --accent: #ff006e;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --image-placeholder-bg: #f0f0f0;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--dark);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo span {
-            color: var(--primary);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .btn {
-            background: var(--gradient);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .hero {
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            background: url('/api/placeholder/1200/800') no-repeat center center;
-            background-size: cover;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            max-width: 700px;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--gradient);
-        }
-        
-        .section-intro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            font-size: 18px;
-        }
-        
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .service-img {
-            height: 220px;
-            width: 400px; /* Your original fixed dimensions */
-            overflow: hidden; /* Crucial to contain the image */
-            background-color: var(--image-placeholder-bg); /* Placeholder shown while image loads or if missing */
-            position: relative; /* Useful if you ever add overlays or icons on the image */
-        }
-
-        /* Add this new rule to style the images within .service-img */
-        .service-img img {
-            width: 100%; /* Makes the image fill the width of .service-img */
-            height: 100%; /* Makes the image fill the height of .service-img */
-            object-fit: cover; /* This is key:
-                                  - Scales the image to maintain its aspect ratio while filling the element's entire content box.
-                                  - If the image's aspect ratio does not match the aspect ratio of its box, then the object will be clipped to fit.
-                                  - This ensures no distortion and a full container. */
-            display: block; /* Removes any extra space below the image (often due to line-height) */
-        }
-
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            margin-bottom: 15px;
-            font-size: 22px;
-            color: var(--primary);
-        }
-        
-        .service-link {
-            margin-top: 15px;
-            display: inline-block;
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-            position: relative;
-        }
-        
-        .service-link::after {
-            content: "→";
-            margin-left: 5px;
-            transition: transform 0.3s;
-            display: inline-block;
-        }
-        
-        .service-link:hover::after {
-            transform: translateX(5px);
-        }
-        
-        .view-all {
-            text-align: center;
-            margin-top: 30px;
-        }
-        
-        .about {
-            background-color: #f8f9fa;
-        }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .about-content h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .about-content p {
-            margin-bottom: 25px;
-        }
-        
-        .cta {
-            padding: 100px 0;
-            background: var(--gradient);
-            color: white;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .cta p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .btn-light {
-            background: white;
-            color: var(--primary);
-        }
-        
-        .global-presence {
-            padding: 100px 0;
-        }
-        
-        .map-container {
-            height: 400px; /* Keep this fixed height */
-            /* max-width: 100%; /* Ensure it doesn't overflow its parent if the parent is narrower */
-            background-color: #f1f1f1;
-            border-radius: 10px;
-            overflow: hidden; /* Important */
-            position: relative; /* Essential for absolute positioning of markers */
-            margin: 0 auto; /* If you want to center it if it's narrower than .container */
-        }
-
-        /* Style for the actual map image inside the container */
-        .map-container img.map-image { /* Added class for clarity */
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Stretches image to fill, maintains aspect ratio, crops if necessary.
-                                  This is usually the best for background-like maps.
-                                  Alternatively, use 'contain' if the entire map must be visible,
-                                  but then marker positioning with percentages becomes less reliable
-                                  if the image doesn't fill the container. */
-            display: block;
-            border-radius: 10px; /* To match the container's rounding if object-fit:cover is used */
-        }
-        
-        .map-marker {
-            position: absolute;
-            width: 15px; /* Slightly smaller for a more "delicate" point */
-            height: 15px;
-            background: var(--accent);
-            border-radius: 50%;
-            transform: translate(-50%, -50%); /* Centers the marker on its coordinates */
-            box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Optional: adds a bit of depth */
-            z-index: 10; /* Ensure markers are above the map image */
-        }
-        
-        .map-marker::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            /* transform: translate(-50%, -50%); /* This is already on the parent for centering the pulse */
-            width: 30px; /* Adjust pulse size */
-            height: 30px;
-            background: rgba(255, 0, 110, 0.3);
-            border-radius: 50%;
-            animation: pulse 1.8s infinite ease-out; /* Adjusted animation */
-            transform-origin: center; /* Ensure scaling is from the center */
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(0.3);
-                opacity: 0.8;
-            }
-            70% { /* Let it expand and start fading */
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 0.2;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(2);
-                opacity: 0;
-            }
-        }
-
-        /* Individual Marker Positioning - THESE ARE ESTIMATES AND NEED FINE-TUNING */
-        /* You MUST adjust these percentages based on your actual 'images/globalmap.png' */
-        /* View your page, inspect element, and tweak these live in dev tools. */
-
-        /* Europe Markers */
-        .map-marker.berlin { top: 10%; left: 53%; } /* Example: Adjust for Berlin */
-        .map-marker.paris  { top: 13%; left: 50%; } /* Example: Adjust for Paris */
-        .map-marker.milan  { top: 17%; left: 52.5%; } /* Example: Adjust for Milan */
-        
-        /* Southeast Asia Markers */
-        .map-marker.singapore { top: 58%; left: 88%; }  /* Example: Adjust for Singapore */
-        .map-marker.bangkok   { top: 52%; left: 87%; }  /* Example: Adjust for Bangkok */
-        .map-marker.jakarta   { top: 63%; left: 90%; }  /* Example: Adjust for Jakarta */
-
-        /* Responsive Adjustments for Markers (Optional, if simple percentages aren't enough) */
-        /* You might need this if the map's visual center shifts significantly at smaller screen sizes
-           due to the .map-container's width changing more than its height. */
-        @media (max-width: 768px) {
-            .map-container {
-                height: 300px; /* Example: map container might be smaller on mobile */
-            }
-            /* You MIGHT need to slightly adjust marker percentages here if they drift too much */
-            /* .map-marker.berlin { top: 34%; left: 47%; } */
-            /* .map-marker.singapore { top: 57%; left: 77.5%; } */
-        }
-
-        @media (max-width: 480px) {
-            .map-container {
-                height: 250px;
-            }
-            .map-marker { width: 12px; height: 12px; } /* Smaller markers on small screens */
-            .map-marker::after { width: 24px; height: 24px; }
-            /* Further adjustments if needed */
-        }
-        
-        .locations {
-            margin-top: 50px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .location-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            width: 250px;
-            text-align: center;
-        }
-        
-        .location-card h3 {
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 70px 0 30px;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-col h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h3::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 30px;
-            height: 2px;
-            background: var(--primary);
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-col ul li a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-col ul li a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #343a40;
-            color: #adb5bd;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: #343a40;
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Removed style block -->
 </head>
 <body>
     <header>
         <div class="container">
             <nav>
-                <a href="index.html" class="logo">Intelli<span>AutoMind</span></a>
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="Project Logo">
+                    Intelli<span>AutoMind</span>
+                </a>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About Us</a>
+                    <a href="https://github.com/NeilLi/secure-onboarding" target="_blank">GitHub</a>
                     <a href="services/index.html">Services</a>
                     <a href="solutions/index.html">Solutions</a>
                     <a href="resources/index.html">Resources</a>
@@ -544,7 +41,183 @@
         </div>
     </section>
 
+    <section id="about-project">
+        <div class="container">
+            <div class="section-title">
+                <h2>About The Project</h2>
+            </div>
+            <div>
+                <h3>Automated New Account Onboarding & Secure Credential Management</h3>
+                <p>This project provides a robust platform for automating new account onboarding processes and ensuring secure credential management, particularly for SaaS platforms. It's designed with modern best practices for scalability, security, and maintainability.</p>
+
+                <h4>Overview</h4>
+                <p>The system intelligently processes onboarding requests, leverages AI for validation and decision-making, interacts securely with external services for account creation and credential storage, and aims for a high degree of automation and reliability. It serves as a central orchestration point, ensuring that all steps in the onboarding workflow are handled efficiently and securely.</p>
+
+                <h4>Core Features</h4>
+                <ul>
+                    <li><strong>Automated Onboarding Request Detection:</strong> Monitors sources like Gmail for new onboarding triggers.</li>
+                    <li><strong>AI-Assisted Processing & Validation:</strong> Utilizes CrewAI for agentic intelligence, enabling complex reasoning, data extraction from requests, and decision-making.</li>
+                    <li><strong>Secure Account Creation & Credential Handling:</strong> Integrates with platform APIs for account provisioning and ensures credentials are never exposed insecurely.</li>
+                    <li><strong>Centralized Secrets Management:</strong> Leverages HashiCorp Vault (or similar) for secure storage and retrieval of API keys, passwords, and other sensitive credentials.</li>
+                    <li><strong>Modular & Extensible Architecture:</strong> Built with a clear separation of concerns, making it easy to integrate new platforms, agents, or tools.</li>
+                    <li><strong>FastAPI Backend:</strong> A high-performance asynchronous API backend serves as the central orchestrator.</li>
+                    <li><strong>Model Context Protocol (MCP):</strong> Employs a standardized data structure (MCP) for consistent context passing between services and agents, enhancing traceability and interoperability.</li>
+                </ul>
+
+                <h4>Architecture Overview</h4>
+                <p>The system is architected around a central FastAPI backend that orchestrates workflows and interactions between various components:</p>
+                <pre>
+[ Client UI / CLI ]
+       |
+       v
+[  FastAPI Backend (Central Orchestrator) ]
+    |      |     |        |
+    v      v     v        v
+[Gmail] [Vault] [Platform APIs] [CrewAI Agent(s) via MCP]
+                </pre>
+                <p><strong>Client (UI/CLI):</strong> Initiates requests and interacts with the platform.</p>
+                <p><strong>FastAPI Backend:</strong> The core orchestrator handling business logic, API requests, security, and integration with all subsystems.</p>
+                <p><strong>CrewAI Layer:</strong> Provides agentic intelligence, performing tasks like analyzing requests, generating instructions, and making decisions using LLMs.</p>
+                <p><strong>Model Context Protocol (MCP):</strong> Acts as the standardized data "envelope" for passing context, inputs, and results between FastAPI and CrewAI, and among CrewAI agents.</p>
+                <p><strong>External Services:</strong></p>
+                <ul>
+                    <li><strong>Gmail:</strong> For detecting onboarding requests and sending notifications.</li>
+                    <li><strong>Vault/Secrets Manager:</strong> For secure storage and access to credentials.</li>
+                    <li><strong>Platform APIs:</strong> For performing actions like creating user accounts, assigning roles, etc.</li>
+                </ul>
+
+                <h4>Design Principles & Professional Standards</h4>
+                <p>This project is developed with the following professional standards and design principles, drawing from industry best practices:</p>
+                <h5>I. FastAPI Backend (Orchestrator)</h5>
+                <ul>
+                    <li>Scalability & Performance</li>
+                    <li>Robust Error Handling & Logging</li>
+                    <li>Advanced Security</li>
+                    <li>Comprehensive Testing</li>
+                    <li>Configuration Management</li>
+                </ul>
+                <h5>II. CrewAI (Agentic Intelligence Layer)</h5>
+                <ul>
+                    <li>Efficient Execution Management</li>
+                    <li>Tool Security</li>
+                    <li>LLM Call Monitoring</li>
+                    <li>Versioning</li>
+                    <li>Callback Handlers</li>
+                </ul>
+                <h5>III. MCP (Model Context Protocol)</h5>
+                <ul>
+                    <li>Rigorous Schema Definition</li>
+                    <li>Schema Versioning</li>
+                    <li>Data Security</li>
+                </ul>
+                <h5>IV. External Service Interaction</h5>
+                <ul>
+                    <li>Resilience</li>
+                    <li>Secure Vault Integration</li>
+                    <li>Rate Limit Awareness</li>
+                </ul>
+                <h5>V. Overall Professional Practices</h5>
+                <ul>
+                    <li>CI/CD Pipelines</li>
+                    <li>Monitoring & Observability</li>
+                    <li>Infrastructure as Code (IaC)</li>
+                    <li>Containerization (Docker)</li>
+                    <li>Comprehensive Documentation</li>
+                    <li>Idempotency for state-changing operations</li>
+                </ul>
+
+                <h4>Technology Stack (Key Components)</h4>
+                <ul>
+                    <li>Python 3.11+</li>
+                    <li>FastAPI</li>
+                    <li>Pydantic</li>
+                    <li>CrewAI</li>
+                    <li>LangChain (Tools)</li>
+                    <li>Uvicorn</li>
+                    <li>HashiCorp Vault (or similar)</li>
+                    <li>Celery / RQ / ARQ (Recommended)</li>
+                    <li>APScheduler (Alternative)</li>
+                    <li>Docker</li>
+                    <li>Requests / HTTPX</li>
+                    <li>Google API Client Libraries</li>
+                    <li>HVAC</li>
+                </ul>
+
+                <h4>Project Setup & Quickstart</h4>
+                <p>Follow these steps to get the project up and running:</p>
+                <ol>
+                    <li>Clone the Repository: <code>git clone &lt;your-repo-url&gt;</code></li>
+                    <li>Set Up Virtual Environment: <code>python3 -m venv venv && source venv/bin/activate</code></li>
+                    <li>Install Dependencies (Poetry recommended): <code>pip install poetry && poetry install</code> or <code>pip install -r requirements.txt</code></li>
+                    <li>Configure Environment Variables: Copy <code>.env.example</code> to <code>.env</code> and populate.</li>
+                    <li>(Optional) Set Up External Services (Redis, Vault).</li>
+                </ol>
+
+                <h4>Running the Application & Testing</h4>
+                <ol>
+                    <li>Start FastAPI Backend: <code>uvicorn app.main:app --reload --host 0.0.0.0 --port 8000</code></li>
+                    <li>(If using Celery) Start Celery Worker(s): <code>celery -A app.tasks.celery_app worker -l info -P eventlet</code></li>
+                    <li>(If using Celery Beat) Start Celery Beat: <code>celery -A app.tasks.celery_app beat -l info</code></li>
+                    <li>Test Onboarding API: <code>python scripts/trigger_onboarding_request.py ...</code></li>
+                    <li>Access API Docs: <a href="http://localhost:8000/api/v1/docs">Swagger UI</a>, <a href="http://localhost:8000/api/v1/redoc">ReDoc</a></li>
+                </ol>
+
+                <h4>Project Structure</h4>
+                <pre>
+secure-onboarding/
+│
+├── app/
+│   ├── api/
+│   ├── agents/
+│   ├── core/
+│   ├── schemas/
+│   ├── services/
+│   ├── tasks/
+│   ├── scheduler/
+│   ├── utils/
+│   └── main.py
+│
+├── config/
+├── tests/
+├── scripts/
+├── docs/
+├── .env.example
+├── .env
+├── .gitignore
+├── Dockerfile
+├── docker-compose.yml
+├── pyproject.toml
+├── README.md
+└── requirements.txt
+                </pre>
+
+                <h4>Notes</h4>
+                <ul>
+                    <li>Actively developed from MVP.</li>
+                    <li>Initial versions may use mocks; real integrations planned.</li>
+                    <li>Focus on secure, scalable, professional-grade platform.</li>
+                </ul>
+
+                <h4>Roadmap / Future Enhancements</h4>
+                <ul>
+                    <li>Full external API integrations.</li>
+                    <li>Comprehensive tracing and observability.</li>
+                    <li>Advanced alerting.</li>
+                    <li>Robust status tracking via API.</li>
+                    <li>UI for request submission/monitoring.</li>
+                    <li>Expanded CrewAI agent suite.</li>
+                    <li>Regular security audits.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <section id="services">
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
         <div class="container">
           <div class="section-title">
             <h2>Our Core Services</h2>
