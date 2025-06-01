@@ -3,82 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Access thought leadership, case studies, whitepapers, and eBooks on AI, automation, n8n, RAG, and industry trends for EU & SEA markets from AutoMind.">
-    <title>Resources - Insights & Expertise | AutoMind</title>
-    </head>
+    <title>Resources - AutoMind</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
+            opacity: 0.7;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1400px; 
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header & Navigation */
+        .main-header {
+            background: rgba(0,0,0,0.5);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .logo-text span {
+            color: #00fff0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #00fff0;
+            text-shadow: 0 0 5px #00fff0;
+        }
+        
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 40px;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 3.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .page-subtitle {
+            font-size: 1.3em;
+            color: #00fff0;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+        
+        /* Resources Grid */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjusted minmax for potentially more items */
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .resource-card {
+            background: linear-gradient(145deg, rgba(0, 200, 255, 0.1) 0%, rgba(150, 0, 255, 0.1) 100%); /* Unique gradient for resources */
+            border: 1px solid rgba(0, 220, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 220, 255, 0.2), 0 0 15px rgba(150, 0, 255, 0.2);
+            border-color: #00c8ff;
+        }
+        
+        .resource-card .card-icon {
+            font-size: 3em;
+            color: #00c8ff; 
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .resource-card h3 {
+            color: #00c8ff;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .resource-card p {
+            font-size: 1.05em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .view-resource-btn {
+            background: linear-gradient(135deg, #00c8ff 0%, #a000ff 100%);
+            border: none;
+            color: #fff; /* Changed to white for better contrast on this gradient */
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            align-self: center;
+        }
+        
+        .view-resource-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 200, 255, 0.4);
+        }
+
+        /* Footer */
+        .main-footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(0, 255, 240, 0.2);
+            margin-top: 40px;
+            background: rgba(0,0,0,0.3);
+        }
+        .main-footer p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        .footer-links a {
+            color: #00fff0;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: #ff00ff;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-header .container {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 15px;
+            }
+            .nav-links a {
+                margin: 0 10px;
+            }
+            .title { font-size: 2.8em; }
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.2em; }
+            .resources-grid { grid-template-columns: 1fr; }
+            .resource-card h3 { font-size: 1.6em; }
+        }
+    </style>
+</head>
 <body>
-    <header>
-        <nav>
-            <a href="../index.html"><h1>AutoMind</h1></a>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li><a href="../services/index.html">Services</a></li>
-                <li><a href="../solutions/index.html">Solutions</a></li>
-                <li><a href="index.html">Resources</a></li>
-                <li><a href="../contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo-container">
+                <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00fff0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="url(#logoGradient)" />
+                    <text x="50" y="62" font-family="Arial, sans-serif" font-size="30" fill="#000" text-anchor="middle" font-weight="bold">AM</text>
+                </svg>
+                <div class="logo-text">Auto<span>Mind</span></div>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About Us</a>
+                <a href="../services/index.html">Capabilities</a>
+                <a href="../solutions/index.html">Industry Solutions</a>
+                <a href="index.html" class="active">Resources</a>
+                <a href="../contact.html">Contact Us</a>
+            </nav>
+        </div>
     </header>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1 class="title">Knowledge Hub & Resources</h1>
+            <p class="page-subtitle">Explore our insights, research, and practical guides on AI, automation, and digital transformation. Stay informed and inspired.</p>
+        </div>
 
-    <main>
-        <section id="resources-intro">
-            <h2>Knowledge Hub: Insights, Expertise & Proof Points</h2>
-            <p>Dive deeper into the world of AI and automation. Explore our curated content designed to inform, educate, and demonstrate our capabilities in solving real-world B2B challenges in the EU and SEA.</p>
-        </section>
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                <h3>Case Studies</h3>
+                <p>Discover real-world examples of how AutoMind has helped businesses like yours achieve significant results through strategic automation and AI implementation. See the impact firsthand.</p>
+                <a href="case-studies.html" class="view-resource-btn">View Case Studies</a>
+            </div>
 
-        <section id="resource-categories">
-            <article>
-                <h3>Blog</h3>
-                <p>Stay updated with the latest trends in AI, automation best practices, n8n tips, and industry insights relevant to your market.</p>
-                <a href="blog.html">Read Our Blog</a>
-            </article>
-            <article>
-                <h3>Case Studies / Use Cases</h3>
-                <p>See how our services are applied in specific scenarios. We showcase both real-world successes and conceptual case studies to illustrate benefits and quantifiable outcomes.</p>
-                <a href="case-studies.html">Explore Case Studies</a>
-            </article>
-            <article>
-                <h3>Whitepapers</h3>
-                <p>In-depth analysis of specific business problems and detailed explanations of how our AI and automation solutions address them.</p>
-                <a href="whitepapers.html">Download Whitepapers</a>
-            </article>
-            <article>
-                <h3>eBooks</h3>
-                <p>Comprehensive guides on broader topics, such as "The B2B Guide to AI-Driven Automation" or "Navigating Data Sovereignty in SEA with n8n."</p>
-                <a href="#">Browse eBooks (Placeholder)</a>
-            </article>
-            <article>
-                <h3>Webinars & Demos</h3>
-                <p>Watch recorded webinars or request a live demo to see our solutions in action. (Tiered information delivery for executive and technical audiences)</p>
-                <a href="../contact.html#demo">Request a Demo / View Webinars</a>
-            </article>
-            <article>
-                <h3>FAQ</h3>
-                <p>Find answers to common questions about our services, technology, and approach.</p>
-                <a href="#">View FAQs (Placeholder)</a>
-            </article>
-        </section>
+            <div class="resource-card">
+                <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                <h3>Whitepapers & Reports</h3>
+                <p>Dive deep into complex topics with our comprehensive whitepapers and industry reports. Gain valuable insights into emerging trends, best practices, and the future of intelligent automation.</p>
+                <a href="whitepapers.html" class="view-resource-btn">Read Whitepapers</a>
+            </div>
 
-        <section id="featured-resource">
-            <h3>Featured Resource</h3>
-            <article>
-                <h4>Whitepaper: Leveraging RAG for Secure Enterprise AI in Finance (EU Focus)</h4>
-                <p>Discover how Retrieval Augmented Generation can transform financial services by providing secure, accurate, and real-time AI insights while adhering to GDPR.</p>
-                <a href="whitepapers.html#rag-finance-eu">Download Now</a>
-            </article>
-        </section>
-    </main>
+            <div class="resource-card">
+                <div class="card-icon"><i class="fas fa-blog"></i></div>
+                <h3>Our Blog</h3>
+                <p>Stay updated with the latest news, articles, and expert opinions from the AutoMind team. We share practical tips, tutorials (including n8n workflows), and thought leadership on AI and automation.</p>
+                <a href="blog.html" class="view-resource-btn">Visit Our Blog</a>
+            </div>
 
-    <footer>
-        <p>&copy; <span id="currentYear"></span> AutoMind. All rights reserved.</p>
-        <ul>
-            <li><a href="../privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="../terms-of-service.html">Terms of Service</a></li>
-        </ul>
+            <div class="resource-card">
+                <div class="card-icon"><i class="fas fa-video"></i></div>
+                <h3>Webinars & Events</h3>
+                <p>Join our live and on-demand webinars to learn from our experts, see live demos of our solutions, and participate in Q&A sessions. Find out about upcoming industry events we're attending.</p>
+                <a href="webinars.html" class="view-resource-btn">Access Webinars</a>
+            </div>
+             <div class="resource-card">
+                <div class="card-icon"><i class="fas fa-tools"></i></div>
+                <h3>n8n Workflow Templates</h3>
+                <p>Get started quickly with our curated collection of n8n workflow templates designed for common B2B automation tasks. Adapt and deploy them to accelerate your automation journey.</p>
+                <a href="n8n-templates.html" class="view-resource-btn">Explore Templates</a>
+            </div>
+             <div class="resource-card">
+                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Security Best Practices</h3>
+                <p>Learn about our approach to secure automation, data privacy in AI, and best practices for implementing solutions like self-hosted n8n and RAG for enhanced data sovereignty.</p>
+                <a href="../trust-security.html" class="view-resource-btn">View Security Guides</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear">2025</span> AutoMind. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms-of-service.html">Terms of Service</a>
+            </div>
+        </div>
     </footer>
+
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
+
 </body>
 </html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Strategy - Strategic Automation Consulting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
+            opacity: 0.7;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 3.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: #00fff0;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: #00fff0;
+            margin: 60px 0 20px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        /* Central Processing Flow */
+        .processing-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .flow-node {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #00fff0;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .flow-node h3 {
+            color: #00fff0;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        
+        .flow-node p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #00fff0;
+            animation: arrow-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes arrow-pulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+        
+        /* Card-based Sections */
+        .card-grid {
+            margin: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-card {
+            background: linear-gradient(135deg, rgba(0, 255, 240, 0.1) 0%, rgba(128, 0, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 255, 240, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 240, 0.2);
+        }
+        
+        .info-card h3 {
+            color: #00fff0;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .info-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: rgba(0, 255, 240, 0.05);
+            border: 2px solid rgba(0, 255, 240, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #00fff0 0%, #ff00ff 100%);
+            border: none;
+            color: #000;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 255, 240, 0.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .title { font-size: 2.5em; }
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.2em; }
+            .section-title { font-size: 2em; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Strategic Automation Consulting</h1>
+            <p class="subtitle">We build your digital transformation roadmap, aligning technology with business goals to ensure impactful and scalable automation.</p>
+        </div>
+        
+        <h2 class="section-title">Our Strategic Methodology</h2>
+        <div class="processing-section">
+            <div class="flow-diagram">
+                
+                <div class="flow-node">
+                    <span class="card-icon">🔍</span>
+                    <h3>1. Discovery & Analysis</h3>
+                    <p>We begin by diving deep into your current operations, workflows, and technology stack. Through stakeholder interviews and data analysis, we identify key pain points, inefficiencies, and opportunities for automation.</p>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-node">
+                    <span class="card-icon">🗺️</span>
+                    <h3>2. Strategy & Roadmap Design</h3>
+                    <p>Using the insights from the discovery phase, we co-create a strategic roadmap. This isn't just a document; it's a phased, actionable plan that prioritizes initiatives based on impact, feasibility, and ROI, ensuring alignment with your core business objectives.</p>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-node">
+                    <span class="card-icon">🛠️</span>
+                    <h3>3. Technology & Vendor Selection</h3>
+                    <p>As vendor-agnostic experts, we help you choose the right tools for the job. Whether it's leveraging low-code platforms like n8n, implementing advanced AI models, or integrating robotics, we ensure your technology choices are future-proof and scalable.</p>
+                </div>
+
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-node">
+                    <span class="card-icon">🚀</span>
+                    <h3>4. Implementation Governance & Scaling</h3>
+                    <p>Our partnership doesn't end with a plan. We provide oversight during implementation, establish governance frameworks, and define key metrics (KPIs) to measure success, ensuring your automation initiatives deliver lasting value and can scale with your growth.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <h2 class="section-title">What You Receive</h2>
+        <div class="card-grid">
+            <div class="info-card">
+                <span class="card-icon">📊</span>
+                <h3>Comprehensive Audit Report</h3>
+                <p>A detailed analysis of your current processes, systems, and capabilities, highlighting strengths, weaknesses, and a clear benchmark for improvement.</p>
+            </div>
+            
+            <div class="info-card">
+                <span class="card-icon">📜</span>
+                <h3>Phased Implementation Roadmap</h3>
+                <p>An actionable, timeline-based plan with prioritized initiatives, clear milestones, resource allocation, and dependency mapping for seamless execution.</p>
+            </div>
+            
+            <div class="info-card">
+                <span class="card-icon">💰</span>
+                <h3>ROI & Business Case Analysis</h3>
+                <p>A robust financial model for each proposed initiative, detailing expected costs, potential savings, efficiency gains, and long-term return on investment.</p>
+            </div>
+
+            <div class="info-card">
+                <span class="card-icon">🌐</span>
+                <h3>Governance & Scaling Framework</h3>
+                <p>A complete framework for managing your automation ecosystem, including best practices, security protocols, and a strategy for scaling successes across the organization.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="section-title" style="margin-top: 0;">Ready to Build Your Roadmap?</h2>
+            <p class="subtitle" style="font-size: 1.2em;">Let's transform your business with a strategy that connects today's challenges to tomorrow's opportunities. Contact us to begin your discovery process.</p>
+            <a href="mailto:contact@yourcompany.com" class="cta-button">Schedule a Strategy Session</a>
+        </div>
+    </div>
+</body>
+</html>

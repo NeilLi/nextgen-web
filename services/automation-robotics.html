@@ -1,9 +1,562 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Automation robotics</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Agent + Robotics Integration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
+            opacity: 0.7;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 3.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: #00fff0;
+            opacity: 0.8;
+        }
+        
+        /* Main visualization */
+        .main-viz {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+            align-items: start;
+        }
+        
+        /* Email Agent Section */
+        .email-section {
+            background: rgba(0, 128, 255, 0.1);
+            border: 2px solid #0080ff;
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .email-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 128, 255, 0.3) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Central Processing */
+        .processing-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .flow-node {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #00fff0;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .flow-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 240, 0.3);
+            border-color: #ff00ff;
+        }
+        
+        .flow-arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #00fff0;
+            animation: arrow-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes arrow-pulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+        
+        /* Robot Section */
+        .robot-section {
+            background: rgba(255, 0, 255, 0.1);
+            border: 2px solid #ff00ff;
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+        }
+        
+        .robot-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 0, 255, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .robot-card:hover {
+            background: rgba(255, 0, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .robot-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        /* Task Examples */
+        .task-examples {
+            margin: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .task-card {
+            background: linear-gradient(135deg, rgba(0, 255, 240, 0.1) 0%, rgba(128, 0, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 255, 240, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .task-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 240, 0.2);
+        }
+        
+        .task-card h3 {
+            color: #00fff0;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .task-flow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+        
+        .task-flow-icon {
+            font-size: 1.5em;
+        }
+        
+        /* Interactive Demo */
+        .demo-section {
+            background: rgba(0, 255, 240, 0.05);
+            border: 2px solid rgba(0, 255, 240, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .demo-button {
+            background: linear-gradient(135deg, #00fff0 0%, #ff00ff 100%);
+            border: none;
+            color: #000;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .demo-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 255, 240, 0.5);
+        }
+        
+        .demo-output {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            min-height: 100px;
+            display: none;
+            text-align: left;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .demo-output > div {
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Status indicators */
+        .status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: blink 2s infinite;
+        }
+        
+        .status.active {
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+        
+        .status.processing {
+            background: #ffff00;
+            box-shadow: 0 0 10px #ffff00;
+        }
+        
+        .status.idle {
+            background: #666;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-viz {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 2.5em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .task-examples {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+        }
+    </style>
 </head>
 <body>
-	<h1>Welcome to Automation robotics</h1>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🤖 Email Agent + Robotics Integration</h1>
+            <p class="subtitle">Bridging Digital Intelligence with Physical Automation</p>
+        </div>
+        
+        <div class="main-viz">
+            <div class="email-section">
+                <h2 style="color: #0080ff; margin-bottom: 20px;">📧 Email/Calendar Agent</h2>
+                <div class="flow-node" style="margin-bottom: 15px;">
+                    <span class="status active"></span>
+                    <strong>Email Monitor</strong>
+                    <p style="font-size: 0.9em; margin-top: 10px;">Scanning inbox...</p>
+                </div>
+                <div class="flow-node" style="margin-bottom: 15px;">
+                    <span class="status processing"></span>
+                    <strong>Calendar Sync</strong>
+                    <p style="font-size: 0.9em; margin-top: 10px;">Next: Board Meeting 10 AM</p>
+                </div>
+                <div class="flow-node">
+                    <span class="status active"></span>
+                    <strong>Vector Memory</strong>
+                    <p style="font-size: 0.9em; margin-top: 10px;">1,247 contexts stored</p>
+                </div>
+            </div>
+            
+            <div class="processing-section">
+                <h2 style="text-align: center; color: #00fff0; margin-bottom: 25px;">🧠 Intelligent Processing Pipeline</h2>
+                
+                <div class="flow-diagram">
+                    <div class="flow-node">
+                        <h3 style="color: #00fff0; margin: 0;">Email/Event Detection</h3>
+                        <p style="margin-top: 10px;">Natural language processing</p>
+                    </div>
+                    
+                    <div class="flow-arrow">↓</div>
+                    
+                    <div class="flow-node">
+                        <h3 style="color: #ff00ff; margin: 0;">Task Classification</h3>
+                        <p style="margin-top: 10px;">Physical action required?</p>
+                    </div>
+                    
+                    <div class="flow-arrow">↓</div>
+                    
+                    <div class="flow-node">
+                        <h3 style="color: #00ff00; margin: 0;">Robot Assignment</h3>
+                        <p style="margin-top: 10px;">Select optimal robot & plan</p>
+                    </div>
+                    
+                    <div class="flow-arrow">↓</div>
+                    
+                    <div class="flow-node">
+                        <h3 style="color: #ffff00; margin: 0;">Execution Monitor</h3>
+                        <p style="margin-top: 10px;">Real-time task tracking</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="robot-section">
+                <h2 style="color: #ff00ff; margin-bottom: 20px;">🤖 Robot Fleet</h2>
+                
+                <div class="robot-card">
+                    <div class="robot-icon">🦾</div>
+                    <strong>Isaac GR00T</strong>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Heavy lifting & navigation</p>
+                    <span class="status active"></span>
+                    <span style="font-size: 0.8em;">Available</span>
+                </div>
+                
+                <div class="robot-card">
+                    <div class="robot-icon">👁️</div>
+                    <strong>Gemini-ER</strong>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Precision & interaction</p>
+                    <span class="status processing"></span>
+                    <span style="font-size: 0.8em;">In Task</span>
+                </div>
+                
+                <div class="robot-card">
+                    <div class="robot-icon">🏃</div>
+                    <strong>Assistant Bot</strong>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Quick deliveries</p>
+                    <span class="status active"></span>
+                    <span style="font-size: 0.8em;">Standby</span>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="text-align: center; color: #00fff0; margin: 40px 0 20px;">📋 Task Automation Examples</h2>
+        
+        <div class="task-examples">
+            <div class="task-card">
+                <h3>📦 Package Delivery Automation</h3>
+                <div class="task-flow">
+                    <span class="task-flow-icon">📧</span>
+                    <span>Email: "Package delivered to lobby"</span>
+                </div>
+                <div class="task-flow">
+                    <span class="task-flow-icon">🤖</span>
+                    <span>Isaac GR00T dispatched</span>
+                </div>
+                <div class="task-flow">
+                    <span class="task-flow-icon">📍</span>
+                    <span>Navigate to lobby, retrieve package</span>
+                </div>
+                <div class="task-flow">
+                    <span class="task-flow-icon">✅</span>
+                    <span>Deliver to user's desk</span>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <h3>🏢 Meeting Room Preparation</h3>
+                <div class="task-flow">
+                    <span class="task-flow-icon">📅</span>
+                    <span>Calendar: "Board Meeting - 10 AM"</span>
+                </div>
+                <div class="task-flow">
+                    <span class="task-flow-icon">🤖</span>
+                    <span>Gemini-ER activated</span>
+                </div>
+                <div class="task-flow">
+                    <span class="task-flow-icon">🪑</span>
+                    <span>Arrange chairs, start projector</span>
+                </div>
+                <div class="task-flow">
+                    <span class="task-flow-icon">☕</span>
+                    <span>Prepare coffee service</span>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <h3>👋 Visitor Reception</h3>
+                <div class="task-flow">
+                    <span class="task-flow-icon">📧</span>
+                    <span>Email: "Client arriving at 2 PM"</span>
+                </div>
+                <div class="task-flow">
+                    <span class="task-flow-icon">🤖</span>
+                    <span>Assistant Bot to reception</span>
+                </div>
+                <div class="task-flow">
+                    <span class="task-flow-icon">👋</span>
+                    <span>Greet visitor by name</span>
+                </div>
+                <div class="task-flow">
+                    <span class="task-flow-icon">🚶</span>
+                    <span>Guide to meeting room</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2 style="color: #00fff0; margin-bottom: 20px;">🎮 Interactive Demo</h2>
+            <p style="margin-bottom: 20px;">Click to simulate email triggers and see robot responses</p>
+            
+            <button class="demo-button" onclick="simulatePackage()">📦 Simulate Package Email</button>
+            <button class="demo-button" onclick="simulateMeeting()">📅 Simulate Meeting Setup</button>
+            <button class="demo-button" onclick="simulateVisitor()">👥 Simulate Visitor Arrival</button>
+            
+            <div id="demo-output" class="demo-output"></div>
+        </div>
+    </div>
+    
+    <script>
+        const output = document.getElementById('demo-output');
+
+        function displayStep(steps, index = 0) {
+            if (index < steps.length) {
+                const newStep = document.createElement('div');
+                newStep.innerHTML = steps[index];
+                output.appendChild(newStep);
+                setTimeout(() => displayStep(steps, index + 1), 1500); // 1.5 second delay between steps
+            }
+        }
+
+        function startSimulation(steps) {
+            output.innerHTML = ''; // Clear previous output
+            output.style.display = 'block';
+            displayStep(steps);
+        }
+
+        function simulatePackage() {
+            const steps = [
+                '<div style="color: #0080ff;">📧 <strong>Email Received:</strong> "Your Amazon package has been delivered to the main lobby reception desk."</div>',
+                '<div style="color: #00fff0;">🔍 <strong>AI Analysis:</strong> Package delivery detected - Location: Main Lobby - Priority: Medium</div>',
+                '<div style="color: #ff00ff;">🤖 <strong>Robot Assignment:</strong> Isaac GR00T selected for package retrieval task.</div>',
+                '<div style="color: #00ff00;">🚀 <strong>Execution:</strong> Robot navigating to lobby... Package retrieved... Delivering to your desk.</div>',
+                '<div style="color: #ffff00;">✅ <strong>Complete:</strong> Package has been delivered to your desk.</div>'
+            ];
+            startSimulation(steps);
+        }
+
+        function simulateMeeting() {
+            const steps = [
+                '<div style="color: #0080ff;">📅 <strong>Calendar Event Detected:</strong> "Board Meeting - 10 AM"</div>',
+                '<div style="color: #00fff0;">🔍 <strong>AI Analysis:</strong> Meeting requires room preparation. Action items: arrange chairs, start projector, prepare coffee.</div>',
+                '<div style="color: #ff00ff;">🤖 <strong>Robot Assignment:</strong> Gemini-ER assigned to prepare Meeting Room 3.</div>',
+                '<div style="color: #00ff00;">🚀 <strong>Execution:</strong> Robot is arranging chairs... Starting projector... Preparing coffee service.</div>',
+                '<div style="color: #ffff00;">✅ <strong>Complete:</strong> Meeting Room 3 is ready for the 10 AM board meeting.</div>'
+            ];
+            startSimulation(steps);
+        }
+
+        function simulateVisitor() {
+            const steps = [
+                '<div style="color: #0080ff;">📧 <strong>Email Received:</strong> "Our client, Jane Doe from ACME Corp, will be arriving today at 2 PM."</div>',
+                '<div style="color: #00fff0;">🔍 <strong>AI Analysis:</strong> Visitor arrival detected. Action: Greet and guide to meeting room.</div>',
+                '<div style="color: #ff00ff;">🤖 <strong>Robot Assignment:</strong> Assistant Bot dispatched to reception.</div>',
+                '<div style="color: #00ff00;">🚀 <strong>Execution:</strong> Robot at reception... Greeting "Welcome, Jane Doe"... Guiding to Meeting Room 5.</div>',
+                '<div style="color: #ffff00;">✅ <strong>Complete:</strong> Jane Doe has been escorted to the meeting room.</div>'
+            ];
+            startSimulation(steps);
+        }
+    </script>
 </body>
 </html>

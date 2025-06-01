@@ -3,74 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore our comprehensive suite of AI and automation services, including n8n, RAG, AI Agents, and more. We provide the toolkit for your digital transformation.">
-    <title>Our Services - AI & Automation Toolkit | AutoMind</title>
-    </head>
+    <title>Our Core Capabilities - AutoMind</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
+            opacity: 0.7;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1400px; /* Slightly wider for card layouts */
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header & Navigation */
+        .main-header {
+            background: rgba(0,0,0,0.5);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-img { /* Placeholder for SVG or Image */
+            height: 40px;
+            width: auto;
+            margin-right: 10px;
+            /* Background for visibility if no image/svg is used */
+            /* background-color: #00fff0; 
+            border-radius: 50%; */
+        }
+        .logo-text {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .logo-text span {
+            color: #00fff0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #00fff0;
+            text-shadow: 0 0 5px #00fff0;
+        }
+        
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 40px;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 3.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .page-subtitle {
+            font-size: 1.3em;
+            color: #00fff0;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto 40px auto; /* Added bottom margin */
+        }
+        
+        /* Capabilities Grid */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .capability-card {
+            background: linear-gradient(145deg, rgba(0, 128, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 255, 240, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .capability-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 255, 240, 0.2), 0 0 15px rgba(255, 0, 255, 0.2);
+            border-color: #00fff0;
+        }
+        
+        .capability-card .card-icon {
+            font-size: 3em;
+            color: #00fff0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .capability-card h3 {
+            color: #00fff0;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .capability-card p {
+            font-size: 1.05em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Makes sure cards have same height if content differs */
+        }
+
+        .learn-more-btn {
+            background: linear-gradient(135deg, #00fff0 0%, #ff00ff 100%);
+            border: none;
+            color: #000;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            align-self: center; /* Centers button if card is flex column */
+        }
+        
+        .learn-more-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 240, 0.4);
+        }
+
+        /* Footer */
+        .main-footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(0, 255, 240, 0.2);
+            margin-top: 40px;
+            background: rgba(0,0,0,0.3);
+        }
+        .main-footer p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        .footer-links a {
+            color: #00fff0;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: #ff00ff;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-header .container {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 15px;
+            }
+            .nav-links a {
+                margin: 0 10px;
+            }
+            .title { font-size: 2.8em; }
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.2em; }
+            .capabilities-grid { grid-template-columns: 1fr; }
+            .capability-card h3 { font-size: 1.6em; }
+        }
+    </style>
+</head>
 <body>
-    <header>
-        <nav>
-            <a href="../index.html"><h1>AutoMind</h1></a>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li><a href="index.html">Services</a></li>
-                <li><a href="../solutions/index.html">Solutions</a></li>
-                <li><a href="../resources/index.html">Resources</a></li>
-                <li><a href="../contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo-container">
+                <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00fff0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="url(#logoGradient)" />
+                    <text x="50" y="62" font-family="Arial, sans-serif" font-size="30" fill="#000" text-anchor="middle" font-weight="bold">AM</text>
+                </svg>
+                <div class="logo-text">Auto<span>Mind</span></div>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About Us</a>
+                <a href="index.html" class="active">Capabilities</a>
+                <a href="../solutions/index.html">Industry Solutions</a>
+                <a href="../resources/index.html">Resources</a>
+                <a href="../contact.html">Contact Us</a>
+            </nav>
+        </div>
     </header>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1 class="title">Our Core Capabilities</h1>
+            <p class="page-subtitle">We architect and implement powerful, integrated systems by leveraging three core technological pillars to drive your business transformation.</p>
+        </div>
 
-    <main>
-        <section id="services-intro">
-            <h2>Our Toolkit: Foundational AI & Automation Services</h2>
-            <p>We offer a diverse range of cutting-edge technologies that serve as the building blocks for powerful, integrated solutions. Explore our capabilities:</p>
-        </section>
+        <div class="capabilities-grid">
+            <div class="capability-card">
+                <div class="card-icon"><i class="fas fa-brain"></i></div>
+                <h3>Intelligent Workflow Automation</h3>
+                <p>We harness the power of AI agents, Retrieval Augmented Generation (RAG), and leading low-code platforms like n8n to connect your disparate applications and automate complex digital processes. This enhances efficiency, reduces manual error, and unlocks new levels of productivity across your organization.</p>
+                <a href="workflows.html" class="learn-more-btn">Explore Workflow Automation</a>
+            </div>
 
-        <section id="service-categories">
-            <article>
-                <h3>n8n Expertise</h3>
-                <p>Unlock rapid workflow automation. Combine no-code/low-code speed with the power of code, robust AI integration, and self-hosting for data sovereignty.</p>
-                <a href="n8n-expertise.html">Learn More about n8n</a>
-            </article>
-            <article>
-                <h3>AI Services (General)</h3>
-                <p>Leverage our expertise in Machine Learning, Natural Language Processing, Computer Vision, and more to build intelligent applications.</p>
-                <a href="ai-services.html">Explore General AI Services</a>
-            </article>
-            <article>
-                <h3>Retrieval Augmented Generation (RAG)</h3>
-                <p>Improve LLM accuracy, enable secure access to private data, and get real-time updates for your AI models.</p>
-                <a href="rag.html">Discover RAG</a>
-            </article>
-            <article>
-                <h3>AI Agents</h3>
-                <p>Implement autonomous agents for personalized experiences and efficient task execution, aligning with the "agentic AI" trend, especially vital in SEA markets.</p>
-                <a href="ai-agents.html">Understand AI Agents</a>
-            </article>
-            <article>
-                <h3>Automation & Robotics</h3>
-                <p>From RPA to advanced robotics, we provide solutions to enhance efficiency, reduce costs, and minimize errors in your operations.</p>
-                <a href="automation-robotics.html">See Automation Capabilities</a>
-            </article>
-        </section>
+            <div class="capability-card">
+                <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                <h3>Robotics & Manufacturing Systems</h3>
+                <p>Our expertise extends to the physical realm, where we integrate intelligent robotics and advanced digital manufacturing solutions. We help you automate physical operations, enhance precision on the factory floor, optimize supply chains, and build smarter manufacturing ecosystems.</p>
+                <a href="robotics-manufacturing.html" class="learn-more-btn">Discover Robotics Solutions</a>
+            </div>
 
-        <section id="how-services-become-solutions">
-            <h2>From Toolkit to Triumph: See Our Services in Action</h2>
-            <p>Our services are powerful on their own, but their true potential is unlocked when combined to solve specific business challenges. Explore how these 'ingredients' create impactful 'recipes' in our Solutions section.</p>
-            <a href="../solutions/index.html" class="cta-button">View Our Solutions</a>
-        </section>
-    </main>
+            <div class="capability-card">
+                <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Strategic Automation Consulting</h3>
+                <p>Beyond technology implementation, we provide expert strategic guidance. We partner with you to build a comprehensive digital transformation roadmap, ensuring your automation initiatives are perfectly aligned with your core business objectives, delivering measurable impact and scalable, future-proof solutions.</p>
+                <a href="strategy.html" class="learn-more-btn">Plan Your Strategy</a>
+            </div>
+        </div>
+    </div>
 
-    <footer>
-        <p>&copy; <span id="currentYear"></span> AutoMind. All rights reserved.</p>
-        <ul>
-            <li><a href="../privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="../terms-of-service.html">Terms of Service</a></li>
-        </ul>
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear">2025</span> AutoMind. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms-of-service.html">Terms of Service</a>
+            </div>
+        </div>
     </footer>
+
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
+
 </body>
 </html>
