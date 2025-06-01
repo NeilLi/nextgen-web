@@ -1,8 +1,61 @@
 <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="400" height="220" rx="32" fill="#F8FAFF"/>
-  <path d="M120 170 C80 170,70 110,120 90 C140 80,160 60,200 60 C240 60,260 80,280 90 C330 110,320 170,280 170 H120Z" fill="#D3E1FA" stroke="#373C52" stroke-width="8"/>
-  <path d="M200 110 V70 L220 90 M200 70 L180 90" stroke="#6F3AFC" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M150 150 L180 130 L200 140 L220 120 L250 110" stroke="#6F3AFC" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="150" cy="150" r="6" fill="#6F3AFC"/>
-  <circle cx="250" cy="110" r="6" fill="#6F3AFC"/>
+
+  <defs>
+    <radialGradient id="brainGrad" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#88B2FF" />
+      <stop offset="100%" stop-color="#284B8F" />
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- AI Brain centered -->
+  <g transform="translate(200,110)">
+    <!-- Brain shape with futuristic gradient and glow -->
+    <path d="M0 -55 C-35 -55 -65 -30 -65 5 C-65 18 -62 30 -56 40 C-62 48 -62 58 -53 63 C-43 69 -32 68 -23 63 C-15 68 -7 71 0 71 C7 71 15 68 23 63 C32 68 43 69 53 63 C62 58 62 48 56 40 C62 30 65 18 65 5 C65 -30 35 -55 0 -55 Z" 
+          fill="url(#brainGrad)" stroke="#4FA8FF" stroke-width="2" filter="url(#glow)"/>
+
+    <!-- Center dividing line -->
+    <line x1="0" y1="-55" x2="0" y2="71" stroke="#4FA8FF" stroke-width="1.5" stroke-dasharray="4 2"/>
+
+    <!-- Neural pathways -->
+    <g fill="none" stroke="#A8CFFF" stroke-width="1.5">
+      <!-- Left hemisphere circuits -->
+      <path d="M-23 -30 Q-35 -20 -30 -8 T-35 15"/>
+      <path d="M-17 -40 Q-28 -30 -22 -17 T-28 6"/>
+      <path d="M-25 35 Q-35 45 -25 55"/>
+      
+      <!-- Right hemisphere circuits -->  
+      <path d="M23 -30 Q35 -20 30 -8 T35 15"/>
+      <path d="M17 -40 Q28 -30 22 -17 T28 6"/>
+      <path d="M25 35 Q35 45 25 55"/>
+    </g>
+
+    <!-- Workflow nodes with futuristic aesthetics -->
+    <g>
+      <!-- n8n node -->
+      <circle cx="-30" cy="-17" r="7" fill="#FF3B3B" filter="url(#glow)"/>
+      <text x="-30" y="-14" text-anchor="middle" font-size="9" fill="white" font-weight="bold">n</text>
+
+      <!-- RAG node -->
+      <circle cx="30" cy="-17" r="7" fill="#00FFC1" filter="url(#glow)"/>
+      <text x="30" y="-14" text-anchor="middle" font-size="9" fill="white" font-weight="bold">R</text>
+
+      <!-- AI node -->
+      <circle cx="0" cy="25" r="7" fill="#8C52FF" filter="url(#glow)"/>
+      <text x="0" y="28" text-anchor="middle" font-size="9" fill="white" font-weight="bold">AI</text>
+
+      <!-- Additional connection nodes -->
+      <circle cx="-35" cy="20" r="4" fill="#4FA8FF"/>
+      <circle cx="35" cy="20" r="4" fill="#4FA8FF"/>
+      <circle cx="-25" cy="52" r="3" fill="#4FA8FF"/>
+      <circle cx="25" cy="52" r="3" fill="#4FA8FF"/>
+    </g>
+  </g>
 </svg>
