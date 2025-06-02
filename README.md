@@ -8,7 +8,7 @@ The site aims to facilitate market entry, generate qualified leads, and establis
 
 * n8n Expertise & Workflow Automation
 * General AI Services (Machine Learning, NLP, Computer Vision)
-* Retrieval Augmented Generation (RAG) for enhanced AI accuracy with private data
+* Retrieval Augmented Generation (GraphRAG) for enhanced AI accuracy with private data
 * AI Agents for autonomous task execution
 * Broader Automation & Robotics solutions
 
@@ -25,13 +25,13 @@ The website architecture follows a dual-pathway approach:
 ## Technologies Used
 
 * **Frontend:** HTML5, CSS3, JavaScript (ES6+)
-* **Core Concepts Showcased:** n8n, AI, RAG, AI Agents, Automation, Robotics
+* **Core Concepts Showcased:** n8n, AI, GraphRAG, AI Agents, Automation, Robotics
 
 ## Features
 
 * **Homepage:** Overview of services, value proposition, and CTAs.
 * **About Us:** Company mission, vision, team expertise, and commitment to security/compliance (GDPR, SEA regulations).
-* **Services (Toolkit):** Detailed pages for each core technology offering (n8n, AI, RAG, Agents, Automation). Content focuses on capabilities, benefits, features, and technical aspects like n8n self-hosting and RAG security.
+* **Services (Toolkit):** Detailed pages for each core technology offering (n8n, AI, GraphRAG, Agents, Automation). Content focuses on capabilities, benefits, features, and technical aspects like n8n self-hosting and GraphRAG security.
 * **Solutions (Applied Value):** Problem/solution-oriented pages demonstrating how services combine to address specific B2B challenges, organized by:
     * Industry (e.g., Manufacturing, Healthcare, Finance - tailored for EU/SEA)
     * Business Function/Challenge (e.g., Supply Chain Optimization, Customer Experience, Quality Control).

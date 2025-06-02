@@ -22,7 +22,7 @@ def create_website_structure():
 
     # Files to create within subdirectories
     subdirectory_files = {
-        "services": ["index.html", "n8n-expertise.html", "ai-services.html", "rag.html", "ai-agents.html", "automation-robotics.html"],
+        "services": ["index.html", "n8n-expertise.html", "ai-services.html", "GraphRAG.html", "ai-agents.html", "automation-robotics.html"],
         "solutions": ["index.html", "manufacturing-qc.html", "supply-chain-optimization.html", "healthcare-automation.html"],
         "resources": ["index.html", "blog.html", "case-studies.html", "whitepapers.html"],
         "css": ["style.css"],

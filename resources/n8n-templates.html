@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robotics & Manufacturing Systems - AutoMind</title>
+    <title>n8n Workflow Templates - AutoMind</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Futuristic Dark Theme Styles */
+        /* Futuristic Dark Theme Styles (Consistent with previous pages) */
         * {
             margin: 0;
             padding: 0;
@@ -131,7 +131,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(0,4,40,0.5), rgba(0,78,146,0.5));
+            background: linear-gradient(rgba(0,4,40,0.6), rgba(0,78,146,0.6));
             z-index: 0;
             border-radius: 0 0 30px 30px; 
         }
@@ -185,66 +185,56 @@
             background: linear-gradient(90deg, #00fff0, #ff00ff); 
         }
         
-        .content-section { margin-bottom: 40px; }
-        .content-section h3 { 
-            font-size: 2em; 
-            color: #00c6ff; 
-            margin-bottom: 20px; 
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
-        }
-        .content-section p, .content-section ul { 
-            font-size: 1.1em; 
-            margin-bottom: 20px; 
-            color: #ccc; 
-        }
-        .content-section ul { list-style: none; padding-left: 0; }
-        .content-section ul li { 
-            padding-left: 30px; 
-            position: relative; 
-            margin-bottom: 12px; 
-        }
-        .content-section ul li::before { 
-            content: "\f00c"; 
-            font-family: "Font Awesome 6 Free"; 
-            font-weight: 900; 
-            position: absolute; 
-            left: 0; 
-            color: #00fff0; 
-            font-size: 1.1em; 
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
-        .benefits-grid, .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .benefit-card, .feature-card { 
-            background: rgba(255, 255, 255, 0.05); 
-            padding: 30px; 
-            border-radius: 15px; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2); 
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(0, 255, 240, 0.2); 
+        .template-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 240, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .benefit-card:hover, .feature-card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 12px 35px rgba(0, 255, 240, 0.2); 
+        .template-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 255, 240, 0.15);
         }
-        .benefit-card .card-icon, .feature-card .card-icon { 
-            font-size: 2.8em; 
-            color: #00fff0; 
-            margin-bottom: 20px; 
-            text-align: center; 
-            display: block; 
+        .template-card .card-icon {
+            font-size: 2.5em; /* Icon for template type */
+            color: #00fff0;
+            margin-bottom: 15px;
         }
-        .benefit-card h4, .feature-card h4 { 
-            font-size: 1.4em; 
-            margin-bottom: 12px; 
-            color: #00c6ff; 
-            text-align: center; 
+        .template-card h3 {
+            font-size: 1.5em;
+            color: #00c6ff;
+            margin-bottom: 10px;
         }
-        .feature-card p, .benefit-card p {
-            text-align: center; 
-            color: #bbb; 
+        .template-card p {
+            font-size: 1em;
+            color: #bbb;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
-        
+        .template-card .tags {
+            margin-bottom: 15px;
+        }
+        .template-card .tags .tag {
+            display: inline-block;
+            background-color: rgba(0, 255, 240, 0.1);
+            color: #00fff0;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+
         .cta-section { 
             text-align: center; 
             padding: 60px 20px; 
@@ -311,8 +301,8 @@
         @media (max-width: 768px) {
             .page-hero h1 { font-size: 2.5em; } 
             .page-hero p { font-size: 1.1em; } 
-            .content-section h3 { font-size: 1.8em; } 
             .section-title-center h2 { font-size: 2.2em; } 
+            .template-grid { grid-template-columns: 1fr; }
             .cta-section h2 { font-size: 1.8em; } 
             .footer-grid { grid-template-columns: 1fr; text-align: center;}
             .footer-col h3::after { left: 50%; transform: translateX(-50%);}
@@ -337,10 +327,10 @@
                 <div class="nav-links">
                     <a href="../index.html">Home</a>
                     <a href="../about.html">About Us</a>
-                    <a href="index.html" class="active">Capabilities</a>
+                    <a href="../services/index.html">Capabilities</a>
                     <a href="../solutions/index.html">Solutions</a>
-                    <a href="../resources/index.html">Resources</a>
-                    <a href="../contact.html">Contact</a>
+                    <a href="index.html" class="active">Resources</a>
+                    <a href="../contact.html">Contact Us</a>
                 </div>
                 <a href="../contact.html#consultation" class="btn">Request a Consultation</a>
             </nav>
@@ -349,94 +339,92 @@
 
     <section class="page-hero">
         <div class="container">
-            <h1>Robotics & Manufacturing Systems</h1>
-            <p>Bridge the Physical and Digital Worlds with Intelligent Robotics and Advanced Manufacturing Automation for Peak Performance.</p>
+            <h1>n8n Workflow Templates</h1>
+            <p>Accelerate your automation journey with our pre-built n8n workflow templates. Designed by experts for common B2B challenges and AI integrations.</p>
         </div>
     </section>
 
     <div class="container">
-        <section id="challenge">
+        <section id="templates-collection">
             <div class="section-title-center">
-                <h2>The Challenge: Modernizing Physical Operations</h2>
+                <h2><i class="fas fa-cogs"></i> Explore Our Templates</h2>
             </div>
-            <div class="content-section">
-                <p>Manufacturing and industrial sectors continually face pressures from labor shortages, the need for higher throughput, maintaining consistent quality, and ensuring workplace safety. Traditional manual processes can be bottlenecks, limiting scalability and exposing operations to inconsistencies. The drive towards 'lights-out' manufacturing and hyper-efficient production lines demands a new level of intelligent automation.</p>
-            </div>
-        </section>
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="card-icon"><i class="fas fa-share-alt"></i></div>
+                    <h3>Automated AI Powered Social Media Content Factory</h3>
+                    <p>Generates and prepares content for X, Facebook, Instagram, LinkedIn, TikTok, Threads, and YouTube Shorts, including an approval step.</p>
+                    <div class="tags">
+                        <span class="tag">Social Media</span><span class="tag">AI Content</span><span class="tag">Multi-platform</span><span class="tag">Approval Workflow</span>
+                    </div>
+                    <a href="#" class="btn" style="align-self: flex-start; margin-top: auto;">Download Template</a>
+                </div>
 
-        <section id="our-solution">
-            <div class="section-title-center">
-                <h2>Our Solution: Integrated Physical & Digital Automation</h2>
-            </div>
-            <div class="content-section">
-                <p>AutoMind delivers end-to-end robotics and manufacturing system solutions, intelligently connecting your physical assets with digital control and AI insights:</p>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="card-icon"><i class="fas fa-industry"></i></div>
-                        <h4>Robotics Integration</h4>
-                        <p>Design, deployment, and integration of robotic arms, Autonomous Mobile Robots (AMRs/AGVs), and collaborative robots for tasks like assembly, pick & place, welding, material handling, and inspection.</p>
+                <div class="template-card">
+                    <div class="card-icon"><i class="fas fa-book"></i></div>
+                    <h3>Notion AI Orchestrator & Assistant Generator</h3>
+                    <p>Input a Notion database URL to generate an AI Assistant chatbot workflow tailored to query that specific database schema.</p>
+                     <div class="tags">
+                        <span class="tag">Notion</span><span class="tag">AI Agent</span><span class="tag">Chatbot</span><span class="tag">Knowledge Base</span>
                     </div>
-                    <div class="feature-card">
-                        <div class="card-icon"><i class="fas fa-microchip"></i></div>
-                        <h4>AI for Robotics & QC</h4>
-                        <p>Enhancing robotic capabilities with AI vision systems for superior quality control, adaptive path planning, anomaly detection, and enabling safe human-robot collaboration.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-icon"><i class="fas fa-cubes"></i></div>
-                        <h4>Digital Twin & Simulation</h4>
-                        <p>Creating dynamic digital replicas of your manufacturing processes and systems for virtual commissioning, performance optimization, predictive maintenance, and 'what-if' scenario analysis.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-icon"><i class="fas fa-network-wired"></i></div>
-                        <h4>IIoT & n8n Integration</h4>
-                        <p>Connecting machinery, PLCs, and sensors through the Industrial Internet of Things (IIoT) for real-time data collection, process monitoring, and orchestrating factory-wide automation via n8n workflows.</p>
-                    </div>
+                    <a href="#" class="btn" style="align-self: flex-start; margin-top: auto;">Download Template</a>
                 </div>
-            </div>
-        </section>
 
-        <section id="key-benefits">
-            <div class="section-title-center">
-                <h2>Transform Your Production</h2>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-shipping-fast"></i></div>
-                    <h4>Increased Throughput</h4>
-                    <p>Boost production rates and reduce cycle times with continuous, automated operations.</p>
+                <div class="template-card">
+                    <div class="card-icon"><i class="fas fa-file-pdf"></i></div>
+                    <h3>Complete GraphRAG from PDF with Mistral OCR</h3>
+                    <p>Processes PDF documents using Mistral OCR, stores extracted text in Qdrant, and enables GraphRAG for answering questions based on the PDF content.</p>
+                    <div class="tags">
+                        <span class="tag">GraphRAG</span><span class="tag">PDF Processing</span><span class="tag">OCR</span><span class="tag">Vector DB</span><span class="tag">Mistral</span>
+                    </div>
+                    <a href="#" class="btn" style="align-self: flex-start; margin-top: auto;">Download Template</a>
                 </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-award"></i></div>
-                    <h4>Improved Quality</h4>
-                    <p>Achieve higher product consistency and reduce defect rates with AI-driven inspection and precision robotics.</p>
+
+                <div class="template-card">
+                    <div class="card-icon"><i class="fas fa-rss-square"></i></div>
+                    <h3>Personalized AI Tech Newsletter (RSS, OpenAI, Gmail)</h3>
+                    <p>Fetches news from RSS feeds, stores them in a vector database, and uses an AI agent to send a weekly personalized tech newsletter via Gmail.</p>
+                     <div class="tags">
+                        <span class="tag">Newsletter</span><span class="tag">RSS</span><span class="tag">AI Summarization</span><span class="tag">Personalization</span>
+                    </div>
+                    <a href="#" class="btn" style="align-self: flex-start; margin-top: auto;">Download Template</a>
                 </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-hard-hat"></i></div>
-                    <h4>Enhanced Safety</h4>
-                    <p>Automate hazardous or repetitive tasks, creating a safer working environment for your employees.</p>
+                
+                <div class="template-card">
+                    <div class="card-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Scrape & Summarize Webpages (Paul Graham Essays)</h3>
+                    <p>Fetches a list of essays from a webpage, scrapes the content of selected essays, and then summarizes them using an AI model.</p>
+                    <div class="tags">
+                        <span class="tag">Web Scraping</span><span class="tag">AI Summarization</span><span class="tag">Content Extraction</span>
+                    </div>
+                    <a href="#" class="btn" style="align-self: flex-start; margin-top: auto;">Download Template</a>
                 </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
-                    <h4>Reduced Costs</h4>
-                    <p>Lower operational expenses through optimized labor, reduced waste, and energy efficiency.</p>
+
+                <div class="template-card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Advanced AI Stock Analysis Agent</h3>
+                    <p>AI agent that analyzes stocks by combining technical chart data and news sentiment, generating detailed reports in Hebrew with investment recommendations.</p>
+                     <div class="tags">
+                        <span class="tag">Finance</span><span class="tag">Stock Market</span><span class="tag">AI Analysis</span><span class="tag">Sentiment Analysis</span>
+                    </div>
+                    <a href="#" class="btn" style="align-self: flex-start; margin-top: auto;">Download Template</a>
                 </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-sync-alt"></i></div>
-                    <h4>Greater Flexibility</h4>
-                    <p>Quickly adapt production lines to new products or changing demands with programmable robotic systems.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
-                    <h4>Real-time Monitoring</h4>
-                    <p>Gain actionable insights from comprehensive data collection across your manufacturing processes.</p>
+                 <div class="template-card">
+                    <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <h3>Simple Webhook to HTTP Request</h3>
+                    <p>A basic example demonstrating how to trigger a workflow with a webhook and then make an HTTP POST request to an external service.</p>
+                     <div class="tags">
+                        <span class="tag">Webhook</span><span class="tag">HTTP Request</span><span class="tag">Basic</span><span class="tag">Example</span>
+                    </div>
+                    <a href="#" class="btn" style="align-self: flex-start; margin-top: auto;">Download Template</a>
                 </div>
             </div>
         </section>
 
         <section class="cta-section">
-            <h2>Modernize Your Manufacturing Operations</h2>
-            <p>Partner with AutoMind to integrate intelligent robotics and create the smart factory of the future. Contact us to explore the possibilities.</p>
-            <a href="../contact.html#consultation" class="btn">Discuss Your Robotics Project</a>
+            <h2>Looking for a Custom Workflow?</h2>
+            <p>If you don't see a template that fits your exact needs, our team can design and build a bespoke n8n workflow tailored to your specific business processes and AI integration requirements.</p>
+            <a href="../contact.html" class="btn">Request Custom Template</a>
         </section>
     </div>
 
@@ -455,10 +443,10 @@
                 <div class="footer-col">
                     <h3>Capabilities</h3>
                     <ul>
-                        <li><a href="workflows.html">Intelligent Workflows</a></li>
-                        <li><a href="robotics-manufacturing.html">Robotics & Manufacturing</a></li>
-                        <li><a href="strategy.html">Strategic Consulting</a></li>
-                        <li><a href="index.html">All Capabilities</a></li>
+                        <li><a href="../services/workflows.html">Intelligent Workflows</a></li>
+                        <li><a href="../services/robotics-manufacturing.html">Robotics & Manufacturing</a></li>
+                        <li><a href="../services/strategy.html">Strategic Consulting</a></li>
+                        <li><a href="../services/index.html">All Capabilities</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -466,15 +454,17 @@
                     <ul>
                         <li><a href="../about.html">About Us</a></li>
                         <li><a href="../careers.html">Careers</a></li>
-                        <li><a href="../resources/blog.html">Blog</a></li>
+                        <li><a href="blog.html">Blog</a></li>
                     </ul>
                 </div>
                  <div class="footer-col">
                     <h3>Resources</h3>
                     <ul>
-                        <li><a href="../resources/case-studies.html">Case Studies</a></li>
-                        <li><a href="../resources/whitepapers.html">Whitepapers</a></li>
-                        <li><a href="../resources/index.html">All Resources</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="whitepapers.html">Whitepapers</a></li>
+                        <li><a href="webinars.html">Webinars</a></li>
+                        <li><a href="n8n-templates.html">n8n Templates</a></li>
+                        <li><a href="index.html">All Resources</a></li>
                     </ul>
                 </div>
             </div>
