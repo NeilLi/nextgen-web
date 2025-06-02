@@ -15,47 +15,39 @@
     </filter>
   </defs>
 
-  <!-- AI Brain centered -->
   <g transform="translate(200,110)">
-    <!-- Brain shape with futuristic gradient and glow -->
+  
     <path d="M0 -55 C-35 -55 -65 -30 -65 5 C-65 18 -62 30 -56 40 C-62 48 -62 58 -53 63 C-43 69 -32 68 -23 63 C-15 68 -7 71 0 71 C7 71 15 68 23 63 C32 68 43 69 53 63 C62 58 62 48 56 40 C62 30 65 18 65 5 C65 -30 35 -55 0 -55 Z" 
           fill="url(#brainGrad)" stroke="#4FA8FF" stroke-width="2" filter="url(#glow)"/>
 
-    <!-- Center dividing line -->
     <line x1="0" y1="-55" x2="0" y2="71" stroke="#4FA8FF" stroke-width="1.5" stroke-dasharray="4 2"/>
 
-    <!-- Neural pathways -->
-    <g fill="none" stroke="#A8CFFF" stroke-width="1.5">
-      <!-- Left hemisphere circuits -->
-      <path d="M-23 -30 Q-35 -20 -30 -8 T-35 15"/>
-      <path d="M-17 -40 Q-28 -30 -22 -17 T-28 6"/>
-      <path d="M-25 35 Q-35 45 -25 55"/>
-      
-      <!-- Right hemisphere circuits -->  
-      <path d="M23 -30 Q35 -20 30 -8 T35 15"/>
-      <path d="M17 -40 Q28 -30 22 -17 T28 6"/>
-      <path d="M25 35 Q35 45 25 55"/>
-    </g>
+    <path d="M -20 45 Q 0 55 20 45" 
+          stroke="#4FA8FF" stroke-width="2" stroke-linecap="round" fill="none"/>
 
-    <!-- Workflow nodes with futuristic aesthetics -->
+    <path d="M-23 -30 Q-35 -20 -30 -8 T-35 15 
+             M-17 -40 Q-28 -30 -22 -17 T-28 6 
+             M-25 35 Q-35 45 -25 55 
+             M23 -30 Q35 -20 30 -8 T35 15 
+             M17 -40 Q28 -30 22 -17 T28 6 
+             M25 35 Q35 45 25 55"
+          fill="none" stroke="#A8CFFF" stroke-width="1.5"/>
+
     <g>
-      <!-- n8n node -->
       <circle cx="-30" cy="-17" r="7" fill="#FF3B3B" filter="url(#glow)"/>
       <text x="-30" y="-14" text-anchor="middle" font-size="9" fill="white" font-weight="bold">n</text>
 
-      <!-- RAG node -->
       <circle cx="30" cy="-17" r="7" fill="#00FFC1" filter="url(#glow)"/>
       <text x="30" y="-14" text-anchor="middle" font-size="9" fill="white" font-weight="bold">R</text>
 
-      <!-- AI node -->
       <circle cx="0" cy="25" r="7" fill="#8C52FF" filter="url(#glow)"/>
       <text x="0" y="28" text-anchor="middle" font-size="9" fill="white" font-weight="bold">AI</text>
 
-      <!-- Additional connection nodes -->
       <circle cx="-35" cy="20" r="4" fill="#4FA8FF"/>
       <circle cx="35" cy="20" r="4" fill="#4FA8FF"/>
       <circle cx="-25" cy="52" r="3" fill="#4FA8FF"/>
       <circle cx="25" cy="52" r="3" fill="#4FA8FF"/>
     </g>
+
   </g>
 </svg>
