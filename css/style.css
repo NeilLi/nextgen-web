@@ -4,259 +4,349 @@
     --accent: #ff006e;
     --light: #f8f9fa;
     --dark: #212529;
+    --text-muted: #6c757d;
     --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-    --image-placeholder-bg: #f0f0f0;
+    --image-placeholder-bg: #e9ecef; /* Slightly softer placeholder bg */
+    --border-radius: 8px; /* Consistent border radius */
+    --transition-speed: 0.3s;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: var(--light);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff; /* Changed default body bg to white, sections can override */
     color: var(--dark);
-    line-height: 1.6;
+    line-height: 1.7; /* Slightly increased line height for readability */
+    font-size: 16px; /* Base font size */
+}
+
+body.no-scroll {
+    overflow: hidden;
 }
 
 .container {
+    width: 90%; /* Use percentage for better fluidity */
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px; /* Slightly reduced side padding for more content space */
 }
 
+/* Header & Navigation */
 header {
     background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000; /* Ensure header is above other content */
+    padding: 10px 0; /* Adjust header padding */
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    min-height: 60px; /* Ensure consistent header height */
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 22px; /* Slightly reduced for balance */
     font-weight: 700;
     color: var(--dark);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 12px; /* Space between logo image and text */
+    gap: 10px; /* Adjusted gap */
 }
 
-.logo-img {
-    height: 40px; /* Adjust height as needed */
-    width: auto; /* Maintains aspect ratio */
-    object-fit: contain; /* Ensures logo isn't distorted */
-}
-
-.logo svg {
-    height: 40px;
+.logo-img { /* Applied to the SVG directly */
+    height: 36px; /* Adjusted height */
     width: auto;
+    object-fit: contain;
 }
 
-.logo-text {
-    display: flex;
-    align-items: center;
-}
-
-.logo span {
+.logo-text span {
     color: var(--primary);
 }
 
-/* Alternative: Logo-only version (uncomment if you want just the image) */
-/*
-.logo-only {
-    height: 50px;
-    width: auto;
-    object-fit: contain;
-}
-*/
-
-/* Footer logo styling */
-.footer-logo {
-    height: 35px;
-    width: auto;
-    object-fit: contain;
-    margin-bottom: 15px;
-}
-
-.footer-col svg {
-    height: 35px;
-    width: auto;
+.nav-links-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Gap between nav links and button */
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 25px; /* Gap between individual links */
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--dark);
     font-weight: 500;
-    transition: color 0.3s;
+    padding: 8px 0; /* Add some padding for easier clicking */
+    position: relative;
+    transition: color var(--transition-speed);
 }
 
-.nav-links a:hover {
+.nav-links a::after { /* Underline effect on hover/active */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width var(--transition-speed) ease-out;
+}
+
+.nav-links a:hover,
+.nav-links a.active { /* Assuming an 'active' class for current page */
     color: var(--primary);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
 }
 
 .btn {
     background: var(--gradient);
     color: white;
-    padding: 10px 24px;
-    border-radius: 30px;
+    padding: 12px 28px; /* Slightly larger padding */
+    border-radius: 50px; /* More rounded */
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s;
+    transition: all var(--transition-speed);
     border: none;
     cursor: pointer;
     display: inline-block;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.btn:hover {
+.btn:hover, .btn:focus {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(var(--primary-rgb, 58, 134, 255), 0.3); /* Use RGB for primary for shadow */
+    /* Define --primary-rgb if not already done, e.g. --primary-rgb: 58, 134, 255; */
+}
+.btn-nav { /* Specific styling for nav button if needed, or can be same as .btn */
+    padding: 10px 20px;
 }
 
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none; /* Hidden by default, shown in media query */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Above nav wrapper */
+}
+
+.hamburger-icon {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--dark);
+    position: relative;
+    transition: background-color var(--transition-speed);
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dark);
+    transition: transform var(--transition-speed), top var(--transition-speed);
+}
+
+.hamburger-icon::before {
+    top: -7px;
+}
+
+.hamburger-icon::after {
+    top: 7px;
+}
+
+/* Active state for hamburger (when menu is open) */
+.mobile-menu-btn[aria-expanded="true"] .hamburger-icon {
+    background-color: transparent; /* Middle bar disappears */
+}
+.mobile-menu-btn[aria-expanded="true"] .hamburger-icon::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+.mobile-menu-btn[aria-expanded="true"] .hamburger-icon::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+
+/* Hero Section */
 .hero {
-    height: 80vh;
+    min-height: 85vh; /* Use min-height to ensure it's not too small on landscape */
     display: flex;
     align-items: center;
-    background: url('/api/placeholder/1200/800') no-repeat center center;
+    /* background: url('/api/placeholder/1200/800') no-repeat center center; */
+    /* Recommended: Use a real, optimized image */
+    background: url('images/hero-background.jpg') no-repeat center center; /* Replace with your image */
     background-size: cover;
     position: relative;
+    color: white; /* Text color for hero */
 }
 
-.hero::before {
+.hero::before { /* Dark overlay for text readability */
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)); /* Adjusted gradient */
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
-    color: white;
-    max-width: 700px;
+    max-width: 750px; /* Slightly increased max-width */
+    text-align: center; /* Center hero content for a common pattern */
+    margin: 0 auto; /* Center hero content block */
 }
 
 .hero h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    line-height: 1.2;
+    font-size: 44px; /* Adjusted for responsiveness */
+    font-weight: 700; /* Explicit font weight */
+    margin-bottom: 25px;
+    line-height: 1.25;
 }
 
 .hero p {
-    font-size: 18px;
-    margin-bottom: 30px;
+    font-size: 18px; /* Base size, can adjust in MQ */
+    margin-bottom: 35px;
+    line-height: 1.8;
 }
 
+/* General Section Styling */
 section {
-    padding: 80px 0;
+    padding: 70px 0; /* Standardized section padding */
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px; /* Consistent margin */
 }
 
 .section-title h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
+    font-size: 32px; /* Adjusted size */
+    margin-bottom: 15px; /* Space between title and underline */
     position: relative;
     display: inline-block;
+    font-weight: 600; /* Slightly less bold than h1 */
 }
 
 .section-title h2::after {
     content: "";
     position: absolute;
-    bottom: -10px;
+    bottom: -8px; /* Position underline correctly */
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
+    width: 70px; /* Slightly wider underline */
     height: 3px;
     background: var(--gradient);
+    border-radius: 2px; /* Rounded underline ends */
 }
 
 .section-intro {
     text-align: center;
-    max-width: 800px;
+    max-width: 750px; /* Consistent max-width */
     margin: 0 auto 40px;
-    font-size: 18px;
+    font-size: 17px; /* Slightly adjusted size */
+    color: var(--text-muted); /* Softer color for intro text */
 }
 
+/* Service Grid & Cards */
 .service-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 30px; /* Consistent gap */
     margin-bottom: 40px;
 }
 
 .service-card {
     background: white;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.07); /* Softer shadow */
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    display: flex; /* Using flex for better internal alignment */
+    flex-direction: column;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    transform: translateY(-8px); /* Slightly more lift */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .service-img {
-    height: 220px;
-    width: 400px;
+    height: 200px; /* Adjusted height */
+    width: 100%; /* Ensure it takes full card width */
     overflow: hidden;
     background-color: var(--image-placeholder-bg);
-    position: relative;
 }
 
 .service-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Ensures image covers the area well */
     display: block;
+    transition: transform 0.4s ease-out;
+}
+
+.service-card:hover .service-img img {
+    transform: scale(1.05); /* Subtle zoom on hover */
 }
 
 .service-content {
     padding: 25px;
+    flex-grow: 1; /* Allows content to take available space if cards have different text lengths */
+    display: flex;
+    flex-direction: column;
 }
 
 .service-content h3 {
     margin-bottom: 15px;
-    font-size: 22px;
+    font-size: 20px; /* Adjusted size */
     color: var(--primary);
+    font-weight: 600;
+}
+.service-content p {
+    margin-bottom: 20px; /* Space before link */
+    flex-grow: 1; /* Pushes link to bottom if card heights vary */
 }
 
+
 .service-link {
-    margin-top: 15px;
+    margin-top: auto; /* Pushes to bottom when content above varies */
     display: inline-block;
     color: var(--primary);
     font-weight: 600;
     text-decoration: none;
     position: relative;
+    align-self: flex-start; /* Align to start of flex container */
 }
 
 .service-link::after {
-    content: "→";
-    margin-left: 5px;
-    transition: transform 0.3s;
+    content: "→"; /* Consider using an SVG icon or pseudo-element for better arrow */
+    margin-left: 8px;
+    transition: transform var(--transition-speed);
     display: inline-block;
 }
 
@@ -266,216 +356,218 @@ section {
 
 .view-all {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px; /* Increased margin */
 }
 
+/* About Section */
 .about {
-    background-color: #f8f9fa;
+    background-color: var(--light); /* Use light variable */
 }
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    grid-template-columns: 1fr 1.2fr; /* Give slightly more space to content */
+    gap: 40px; /* Adjusted gap */
     align-items: center;
 }
 
-.about-img {
-    border-radius: 10px;
+.about-img-wrapper { /* Wrapper for image if needed for more complex styling */
+    border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.about-img-responsive {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--border-radius); /* If not using a wrapper */
 }
 
+
 .about-content h2 {
-    font-size: 36px;
+    font-size: 30px; /* Adjusted size */
+    font-weight: 600;
     margin-bottom: 20px;
+    color: var(--dark);
 }
 
 .about-content p {
-    margin-bottom: 25px;
+    margin-bottom: 20px; /* Consistent paragraph spacing */
+    color: var(--text-muted);
+}
+.about-content p:last-of-type {
+    margin-bottom: 30px; /* More space before button */
 }
 
+
+/* CTA Section */
 .cta {
-    padding: 100px 0;
+    padding: 80px 0; /* Adjusted padding */
     background: var(--gradient);
     color: white;
     text-align: center;
 }
 
 .cta h2 {
-    font-size: 36px;
+    font-size: 30px; /* Adjusted size */
+    font-weight: 600;
     margin-bottom: 20px;
 }
 
 .cta p {
-    font-size: 18px;
+    font-size: 17px; /* Adjusted size */
     margin-bottom: 30px;
-    max-width: 600px;
+    max-width: 650px; /* Consistent max-width */
     margin-left: auto;
     margin-right: auto;
+    opacity: 0.9; /* Slightly transparent for softer look */
 }
 
 .btn-light {
     background: white;
     color: var(--primary);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.btn-light:hover {
+    background: var(--light); /* Slight change on hover */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
+
+/* Global Presence Section */
 .global-presence {
-    padding: 100px 0;
+    padding: 70px 0;
+    background-color: #fff; /* White background */
 }
 
 .map-container {
-    height: 400px;
-    background-color: #f1f1f1;
-    border-radius: 10px;
+    height: 450px; /* Increased height */
+    background-color: var(--image-placeholder-bg); /* Placeholder bg */
+    border-radius: var(--border-radius);
     overflow: hidden;
     position: relative;
     margin: 0 auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
-.map-container img.map-image {
+.map-image { /* Class for the actual map image */
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 10px;
 }
 
 .map-marker {
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 14px; /* Slightly smaller base */
+    height: 14px;
     background: var(--accent);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    box-shadow: 0 0 8px rgba(var(--accent-rgb, 255,0,110), 0.5); /* Define --accent-rgb */
     z-index: 10;
+    cursor: pointer; /* Indicate interactivity */
 }
 
-.map-marker::after {
+.map-marker::after { /* Pulse animation */
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 30px;
-    height: 30px;
-    background: rgba(255, 0, 110, 0.3);
+    transform: translate(-50%, -50%); /* Ensure pulse is centered on marker */
+    width: 28px; /* Adjust pulse size relative to marker */
+    height: 28px;
+    background: rgba(var(--accent-rgb, 255,0,110), 0.25); /* Define --accent-rgb */
     border-radius: 50%;
     animation: pulse 1.8s infinite ease-out;
-    transform-origin: center;
+    transform-origin: center; /* Not needed with translate(-50%, -50%) */
 }
 
 @keyframes pulse {
     0% {
-        transform: translate(-50%, -50%) scale(0.3);
+        transform: translate(-50%, -50%) scale(0.5);
         opacity: 0.8;
     }
     70% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0.2;
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0.1;
     }
     100% {
-        transform: translate(-50%, -50%) scale(2);
+        transform: translate(-50%, -50%) scale(2.2);
         opacity: 0;
     }
 }
+/* Map Marker Positions (These are relative to map image. Adjust if your map image changes.) */
+.map-marker.berlin    { top: 32%; left: 53%; } /* Example: Adjusted for common world map projections */
+.map-marker.paris     { top: 35%; left: 49.5%; }
+.map-marker.milan     { top: 38%; left: 52%; }
 
-.map-marker.berlin { top: 10%; left: 53%; }
-.map-marker.paris  { top: 13%; left: 50%; }
-.map-marker.milan  { top: 17%; left: 52.5%; }
+.map-marker.singapore { top: 58%; left: 83%; }
+.map-marker.bangkok   { top: 50%; left: 82%; }
+.map-marker.jakarta   { top: 63%; left: 85%; }
 
-.map-marker.singapore { top: 58%; left: 88%; }
-.map-marker.bangkok   { top: 52%; left: 87%; }
-.map-marker.jakarta   { top: 63%; left: 90%; }
-
-@media (max-width: 768px) {
-    /* Logo adjustments for mobile */
-    .logo {
-        font-size: 20px;
-        gap: 8px;
-    }
-    
-    .logo-img {
-        height: 32px;
-    }
-    
-    .hero h1 {
-        font-size: 36px;
-    }
-    
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .nav-links {
-        display: none;
-    }
-    
-    .mobile-menu-btn {
-        display: block;
-    }
-    
-    .map-container {
-        height: 300px;
-    }
-    
-    .map-marker { 
-        width: 12px; 
-        height: 12px; 
-    }
-    
-    .map-marker::after { 
-        width: 24px; 
-        height: 24px; 
-    }
-}
-
-@media (max-width: 480px) {
-    .map-container {
-        height: 250px;
-    }
-}
-
-.locations {
-    margin-top: 50px;
+.locations { /* If you decide to add location cards below map */
+    margin-top: 40px;
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 25px;
     flex-wrap: wrap;
 }
 
 .location-card {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 25px;
+    border-radius: var(--border-radius);
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    width: 250px;
+    width: clamp(250px, 30%, 300px); /* Responsive width */
     text-align: center;
 }
 
 .location-card h3 {
     margin-bottom: 10px;
     color: var(--primary);
+    font-size: 18px;
+}
+.location-card p {
+    font-size: 14px;
+    color: var(--text-muted);
 }
 
+
+/* Footer */
 footer {
     background-color: var(--dark);
-    color: white;
-    padding: 70px 0 30px;
+    color: #e0e0e0; /* Lighter grey for better contrast on dark bg */
+    padding: 60px 0 20px; /* Adjusted padding */
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Min width for columns */
     gap: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
+.footer-col-main { /* For the logo/main column to potentially span more or have different styles */
+    grid-column: span 1; /* Default span */
+}
+.footer-col-main h3 { margin-top: 10px; }
+
+.footer-logo-link { display: inline-block; margin-bottom: 15px;}
+.footer-logo-img { /* Applied to the SVG directly */
+    height: 40px; /* Adjusted size */
+    width: auto;
+    object-fit: contain;
+    display: block; /* Prevents extra space below */
+}
+/* Old .footer-logo can be removed if .footer-logo-img is used on SVG */
 
 .footer-col h3 {
-    font-size: 18px;
+    font-size: 17px; /* Slightly smaller footer headings */
+    font-weight: 600;
     margin-bottom: 20px;
     position: relative;
     padding-bottom: 10px;
+    color: white; /* Ensure headings are white */
 }
 
 .footer-col h3::after {
@@ -483,7 +575,7 @@ footer {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 30px;
+    width: 35px; /* Slightly longer underline */
     height: 2px;
     background: var(--primary);
 }
@@ -493,29 +585,23 @@ footer {
 }
 
 .footer-col ul li {
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* Increased spacing */
 }
 
 .footer-col ul li a {
-    color: #adb5bd;
+    color: #adb5bd; /* Original muted color */
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color var(--transition-speed), padding-left var(--transition-speed); /* Added padding transition */
 }
 
 .footer-col ul li a:hover {
     color: white;
-}
-
-.copyright {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid #343a40;
-    color: #adb5bd;
+    padding-left: 5px; /* Indent on hover for visual feedback */
 }
 
 .social-links {
     display: flex;
-    gap: 15px;
+    gap: 12px; /* Adjusted gap */
     margin-top: 20px;
 }
 
@@ -523,15 +609,187 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: #343a40;
+    width: 38px; /* Slightly smaller icons */
+    height: 38px;
+    background: #343a40; /* Darker grey for icons */
     color: white;
     border-radius: 50%;
-    transition: all 0.3s;
+    text-decoration: none; /* Ensure no underline */
+    font-size: 16px; /* Icon size */
+    transition: all var(--transition-speed);
 }
 
 .social-links a:hover {
     background: var(--primary);
     transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid #343a40; /* Slightly darker border */
+    color: #adb5bd;
+    font-size: 14px; /* Smaller copyright text */
+}
+.copyright ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+.copyright ul li {
+    display: inline;
+    margin: 0 10px;
+}
+.copyright ul li a {
+    color: #adb5bd;
+    text-decoration: none;
+}
+.copyright ul li a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+
+/* Responsive Adjustments */
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .nav-links-wrapper {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Start off-screen */
+        width: 300px; /* Width of the mobile menu */
+        height: 100vh;
+        background-color: white;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 30px 30px; /* Padding for content inside */
+        transition: right 0.35s ease-in-out;
+        z-index: 999; /* Below header but above content */
+        overflow-y: auto; /* Scroll if content exceeds height */
+    }
+    .nav-links-wrapper.active {
+        right: 0; /* Slide in */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 20px; /* Spacing for vertical links */
+        width: 100%; /* Take full width of wrapper */
+    }
+    .nav-links a {
+        font-size: 18px; /* Larger font for mobile menu */
+        padding: 10px 0;
+    }
+    .btn-nav { /* Stack button below links */
+        margin-top: 30px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .mobile-menu-btn {
+        display: block; /* Show hamburger */
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+    .hero p {
+        font-size: 17px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr; /* Stack about content */
+        gap: 30px;
+    }
+    .about-img-wrapper {
+        max-width: 450px; /* Limit image size in stacked view */
+        margin: 0 auto; /* Center image */
+    }
+    .about-content {
+        text-align: center; /* Center text when stacked */
+    }
+    .about-content .btn {
+        margin: 0 auto; /* Center button */
+    }
+
+
+    .map-container {
+        height: 350px;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    body { font-size: 15px; } /* Slightly smaller base font */
+
+    .container { width: 95%; } /* More width for content */
+
+    header { padding: 5px 0; }
+    nav { min-height: 55px; }
+    .logo { font-size: 20px; }
+    .logo-img { height: 32px; }
+
+    .hero { min-height: 70vh; }
+    .hero h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    .hero p {
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+    .btn { padding: 10px 22px; font-size: 15px;}
+
+    section { padding: 50px 0; }
+    .section-title h2 { font-size: 28px; }
+    .section-intro { font-size: 16px; }
+
+    .service-grid {
+        grid-template-columns: 1fr; /* Single column for service cards */
+        gap: 25px;
+    }
+    .service-img { height: 180px; }
+    .service-content h3 { font-size: 19px; }
+
+    .about-content h2 { font-size: 26px; }
+
+    .cta h2 { font-size: 26px; }
+    .cta p { font-size: 16px; }
+
+    .map-container { height: 300px; }
+    .map-marker { width: 10px; height: 10px; }
+    .map-marker::after { width: 20px; height: 20px; }
+
+    .footer-grid {
+        grid-template-columns: 1fr; /* Stack footer columns */
+        text-align: center; /* Center footer content */
+    }
+    .footer-col h3::after {
+        left: 50%;
+        transform: translateX(-50%); /* Center underline */
+    }
+    .social-links { justify-content: center; }
+    .footer-col-main { text-align: center;} /* Ensure main footer column is centered */
+    .footer-logo-link { display: block; margin: 0 auto 15px; width: fit-content; }
+
+
+    .copyright ul li {
+        display: block;
+        margin: 8px 0;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .nav-links-wrapper { width: 85%; /* Mobile menu takes more width */ }
+
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15px; }
+
+    .section-title h2 { font-size: 24px; }
+    .section-title h2::after { width: 50px; }
+
+    .map-container { height: 250px; }
 }
