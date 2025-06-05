@@ -187,6 +187,9 @@
         
         .documentation-list {
             margin-top: 30px;
+            display: grid; /* Using grid for multiple cards */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Responsive grid */
+            gap: 30px; /* Space between cards */
         }
 
         .doc-card {
@@ -196,10 +199,13 @@
             padding: 30px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Align items to the start for a card layout */
+            align-items: flex-start; 
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            max-width: 700px; /* Constrain width for single item focus */
-            margin: 0 auto; /* Center the card */
+            /* max-width: 700px; Removed to allow grid items to fill space */
+            /* margin: 0 auto 30px auto; Changed from auto to allow grid flow, added bottom margin */
+        }
+        .doc-card:last-child {
+            margin-bottom: 0;
         }
         .doc-card:hover {
             transform: translateY(-8px);
@@ -214,6 +220,7 @@
             font-size: 1.8em;
             color: #00c6ff;
             margin-bottom: 10px;
+            line-height: 1.3;
         }
         .doc-card p {
             font-size: 1.1em;
@@ -228,6 +235,8 @@
         }
          .doc-card .doc-meta span {
             margin-right: 15px;
+            display: inline-block; /* Ensure spans don't break weirdly */
+            margin-bottom: 5px;
         }
         .doc-card .doc-meta i {
             margin-right: 5px;
@@ -302,6 +311,7 @@
             .page-hero h1 { font-size: 2.5em; } 
             .page-hero p { font-size: 1.1em; } 
             .section-title-center h2 { font-size: 2.2em; } 
+            .documentation-list { grid-template-columns: 1fr; } /* Stack cards on smaller screens */
             .cta-section h2 { font-size: 1.8em; } 
             .footer-grid { grid-template-columns: 1fr; text-align: center;}
             .footer-col h3::after { left: 50%; transform: translateX(-50%);}
@@ -316,7 +326,7 @@
     <header>
         <div class="container">
             <nav>
-                 <a href="../index.html" class="logo">
+                 <a href="../index.html" class="logo"> <!-- Path is from resources/documentation.html to root -->
                     <svg class="logo-img" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="50" height="50" rx="8" fill="#00fff0" fill-opacity="0.2"/>
                         <text x="25" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#00fff0" font-weight="bold">AM</text>
@@ -328,7 +338,7 @@
                     <a href="../about.html">About Us</a>
                     <a href="../services/index.html">Capabilities</a>
                     <a href="../solutions/index.html">Solutions</a>
-                    <a href="index.html" class="active">Resources</a>
+                    <a href="index.html" class="active">Resources</a> <!-- Path is from resources/documentation.html to resources/index.html -->
                     <a href="../contact.html">Contact Us</a>
                 </div>
                 <a href="../contact.html#consultation" class="btn">Request a Consultation</a>
@@ -346,21 +356,33 @@
     <div class="container">
         <section id="doc-collection">
             <div class="section-title-center">
-                <h2><i class="fas fa-book-reader"></i> Technical Documents</h2>
+                <h2><i class="fas fa-book-reader"></i> Technical Documents & Articles</h2>
             </div>
             <div class="documentation-list">
                 <div class="doc-card">
                     <div class="card-icon"><i class="fas fa-microscope"></i></div>
                     <h3>AutoGen Agent Research & Findings</h3>
-                    <p>This document provides an in-depth exploration of our research into Microsoft's AutoGen framework for creating conversational multi-agent systems. It covers experimental setups, observed capabilities, limitations, and potential applications in enterprise automation.</p>
+                    <p>An in-depth exploration of Microsoft's AutoGen framework for multi-agent systems, covering experiments, capabilities, and enterprise applications.</p>
                     <div class="doc-meta">
-                        <span><i class="fas fa-file-alt"></i> File: autogen-research.md</span>
-                        <span><i class="fas fa-code-branch"></i> Version: 1.0</span>
-                         <span><i class="fas fa-calendar-alt"></i> Last Updated: June 5, 2025</span>
+                        <span><i class="fas fa-file-alt"></i> Type: Research Summary</span>
+                        <span><i class="fas fa-tags"></i> Tags: AutoGen, AI Agents, Multi-Agent Systems</span>
+                         <span><i class="fas fa-calendar-alt"></i> Published: June 5, 2025</span>
                     </div>
-                    <a href="./documentation/autogen-research.html" class="btn" style="align-self: flex-start; margin-top: auto;" target="_blank" rel="noopener noreferrer">View Document <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                    <a href="./documentation/autogen-research.html" class="btn" style="align-self: flex-start; margin-top: auto;">Read More <i class="fas fa-arrow-right" style="font-size: 0.8em; margin-left: 5px;"></i></a>
                 </div>
-                <!-- Add more .doc-card elements here if you have more documents in the future -->
+                
+                <div class="doc-card">
+                    <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Hybrid AI Workflows: Unlocking the Next Generation of Automation</h3>
+                    <p>Exploring how combining traditional workflow engines like n8n with AI-powered agents (AutoGen, LangChain) creates flexible, intelligent, and resilient automation solutions.</p>
+                    <div class="doc-meta">
+                        <span><i class="fas fa-file-alt"></i> Type: Blog Article / Technical Deep-Dive</span>
+                        <span><i class="fas fa-tags"></i> Tags: Hybrid AI, Workflows, n8n, AutoGen, LLM Orchestration</span>
+                         <span><i class="fas fa-calendar-alt"></i> Published: June 5, 2025</span>
+                    </div>
+                    <a href="./documentation/hybrid-ai-workflow.html" class="btn" style="align-self: flex-start; margin-top: auto;">Read More <i class="fas fa-arrow-right" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                </div>
+                <!-- Add more .doc-card elements here as you create more documents -->
             </div>
         </section>
 
