@@ -1,9 +1,427 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Whitepapers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - AutoMind</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Futuristic Dark Theme Styles (Consistent with previous pages) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
+            opacity: 0.7;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            background: rgba(0,0,0,0.5);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
+        }
+
+        header .container nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.8em; 
+            font-weight: bold; 
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        .logo span { 
+            color: #00fff0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #00fff0;
+            text-shadow: 0 0 5px #00fff0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #00fff0 0%, #ff00ff 100%);
+            border: none;
+            color: #000;
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05); 
+            box-shadow: 0 10px 20px rgba(0, 255, 240, 0.3); 
+        }
+        
+        .page-hero {
+            padding: 80px 0;
+            text-align: center;
+            position: relative; 
+        }
+        .page-hero::before { 
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(0,4,40,0.6), rgba(0,78,146,0.6));
+            z-index: 0;
+            border-radius: 0 0 30px 30px; 
+        }
+
+        .page-hero .container { 
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 3.2em; 
+            font-weight: bold;
+            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px; 
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 3px #00fff0); }
+            50% { filter: brightness(1.2) drop-shadow(0 0 10px #00fff0) drop-shadow(0 0 5px #ff00ff); }
+        }
+
+        .page-hero p {
+            font-size: 1.2em; 
+            max-width: 750px; 
+            margin: 0 auto;
+            opacity: 0.9;
+            color: #e0e0e0; 
+        }
+
+        section { padding: 60px 0; } 
+        .section-title-center { text-align: center; margin-bottom: 50px; } 
+        .section-title-center h2 { 
+            font-size: 2.5em;  
+            margin-bottom: 15px; 
+            position: relative; 
+            display: inline-block;
+            color: #00fff0; 
+        }
+        .section-title-center h2::after { 
+            content: ""; 
+            position: absolute; 
+            bottom: -8px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 70px; 
+            height: 3px; 
+            background: linear-gradient(90deg, #00fff0, #ff00ff); 
+        }
+        
+        .documentation-list {
+            margin-top: 30px;
+        }
+
+        .doc-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 240, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the start for a card layout */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 700px; /* Constrain width for single item focus */
+            margin: 0 auto; /* Center the card */
+        }
+        .doc-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 255, 240, 0.15);
+        }
+        .doc-card .card-icon {
+            font-size: 2.8em; 
+            color: #00fff0;
+            margin-bottom: 20px;
+        }
+        .doc-card h3 {
+            font-size: 1.8em;
+            color: #00c6ff;
+            margin-bottom: 10px;
+        }
+        .doc-card p {
+            font-size: 1.1em;
+            color: #bbb;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+        .doc-card .doc-meta {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+        }
+         .doc-card .doc-meta span {
+            margin-right: 15px;
+        }
+        .doc-card .doc-meta i {
+            margin-right: 5px;
+        }
+
+
+        .cta-section { 
+            text-align: center; 
+            padding: 60px 20px; 
+            background: rgba(0, 128, 255, 0.1); 
+            border-radius: 15px; 
+            margin-top: 50px; 
+            border: 1px solid #0080ff;
+        }
+        .cta-section h2 { 
+            font-size: 2.2em; 
+            margin-bottom: 20px; 
+            color: #00fff0; 
+        }
+        .cta-section p { 
+            font-size: 1.1em; 
+            margin-bottom: 30px; 
+            max-width: 650px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            color: #ccc;
+        }
+
+        footer { 
+            background-color: #0a0a14; 
+            color: #adb5bd; 
+            padding: 70px 0 30px; 
+            border-top: 1px solid rgba(0, 255, 240, 0.1); 
+            margin-top: 60px;
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .footer-col h3 { 
+            font-size: 1.2em; 
+            margin-bottom: 20px; 
+            position: relative; 
+            padding-bottom: 10px; 
+            color: #00fff0; 
+        }
+        .footer-col h3::after { content: ""; position: absolute; bottom: 0; left: 0; width: 40px; height: 2px; background: #ff00ff; } 
+        .footer-col ul { list-style: none; padding:0; } .footer-col ul li { margin-bottom: 12px; } 
+        .footer-col ul li a { color: #adb5bd; text-decoration: none; transition: color 0.3s, padding-left 0.3s; }
+        .footer-col ul li a:hover { color: #00fff0; padding-left: 5px; }
+        .footer-logo { height: 40px; width: auto; object-fit: contain; margin-bottom: 15px; }
+        .footer-col p { color: #adb5bd; font-size: 0.95em; line-height: 1.7;}
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #1c1c2c;  color: #00fff0; border-radius: 50%; transition: all 0.3s; font-size: 1.2em; border: 1px solid #00fff0;}
+        .social-links a:hover { background: #00fff0; color: #000; transform: translateY(-3px) scale(1.1); box-shadow: 0 0 10px #00fff0;}
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: #888; } 
+        .copyright ul { list-style: none; padding: 0; margin-top:10px; } .copyright ul li { display: inline-block; margin: 0 10px; }
+        .copyright ul li a { color: #adb5bd; font-size: 0.9em; text-decoration: none; }
+        .copyright ul li a:hover { color: #00fff0; }
+
+        @media (max-width: 992px) { 
+            header .container nav {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-links a { margin: 5px 10px; }
+            .page-hero h1 { font-size: 2.8em; }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.5em; } 
+            .page-hero p { font-size: 1.1em; } 
+            .section-title-center h2 { font-size: 2.2em; } 
+            .cta-section h2 { font-size: 1.8em; } 
+            .footer-grid { grid-template-columns: 1fr; text-align: center;}
+            .footer-col h3::after { left: 50%; transform: translateX(-50%);}
+            .social-links { justify-content: center;}
+        }
+    </style>
 </head>
 <body>
-	<h1>Welcome to Documentation</h1>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                 <a href="../index.html" class="logo">
+                    <svg class="logo-img" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="50" height="50" rx="8" fill="#00fff0" fill-opacity="0.2"/>
+                        <text x="25" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#00fff0" font-weight="bold">AM</text>
+                    </svg>
+                    <div>Auto<span>Mind</span></div>
+                </a>
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About Us</a>
+                    <a href="../services/index.html">Capabilities</a>
+                    <a href="../solutions/index.html">Solutions</a>
+                    <a href="index.html" class="active">Resources</a>
+                    <a href="../contact.html">Contact Us</a>
+                </div>
+                <a href="../contact.html#consultation" class="btn">Request a Consultation</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Documentation</h1>
+            <p>Dive into technical details, architectural guides, and research findings from the AutoMind team. This is where we share in-depth knowledge to help you understand and leverage advanced automation.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="doc-collection">
+            <div class="section-title-center">
+                <h2><i class="fas fa-book-reader"></i> Technical Documents</h2>
+            </div>
+            <div class="documentation-list">
+                <div class="doc-card">
+                    <div class="card-icon"><i class="fas fa-microscope"></i></div>
+                    <h3>AutoGen Agent Research & Findings</h3>
+                    <p>This document provides an in-depth exploration of our research into Microsoft's AutoGen framework for creating conversational multi-agent systems. It covers experimental setups, observed capabilities, limitations, and potential applications in enterprise automation.</p>
+                    <div class="doc-meta">
+                        <span><i class="fas fa-file-alt"></i> File: autogen-research.md</span>
+                        <span><i class="fas fa-code-branch"></i> Version: 1.0</span>
+                         <span><i class="fas fa-calendar-alt"></i> Last Updated: June 5, 2025</span>
+                    </div>
+                    <a href="./documentation/autogen-research.html" class="btn" style="align-self: flex-start; margin-top: auto;" target="_blank" rel="noopener noreferrer">View Document <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                </div>
+                <!-- Add more .doc-card elements here if you have more documents in the future -->
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Need More Information?</h2>
+            <p>If you have specific questions about our documentation or require further technical details on our solutions and research, please don't hesitate to reach out.</p>
+            <a href="../contact.html" class="btn">Contact Our Technical Team</a>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <svg class="footer-logo" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="8" fill="#00fff0" fill-opacity="0.2"/><text x="25" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#00fff0" font-weight="bold">AM</text></svg>
+                    <h3>AutoMind</h3>
+                    <p>Advanced AI & Automation Solutions for the Future of Business.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Capabilities</h3>
+                    <ul>
+                        <li><a href="../services/workflows.html">Intelligent Workflows</a></li>
+                        <li><a href="../services/robotics-manufacturing.html">Robotics & Manufacturing</a></li>
+                        <li><a href="../services/strategy.html">Strategic Consulting</a></li>
+                        <li><a href="../services/index.html">All Capabilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="whitepapers.html">Whitepapers</a></li>
+                        <li><a href="webinars.html">Webinars</a></li>
+                        <li><a href="n8n-templates.html">n8n Templates</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="index.html">All Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> AutoMind. All rights reserved.</p>
+                <ul>
+                    <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="../terms-of-service.html">Terms of Service</a></li>
+                    <li><a href="../trust-security.html">Trust & Security</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
 </body>
 </html>
