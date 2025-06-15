@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Tech Knowledge Graph - AutoMind</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
+            opacity: 0.7;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .main-header {
+            background: rgba(0,0,0,0.5);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .logo-text span {
+            color: #00fff0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #00fff0;
+            text-shadow: 0 0 5px #00fff0;
+        }
+        
+        .page-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 3.2em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .page-subtitle {
+            font-size: 1.2em;
+            color: #00fff0;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+        
+        .content-section {
+            background: rgba(10, 25, 47, 0.6);
+            border: 1px solid rgba(0, 220, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .content-section h2 {
+            font-size: 2.2em;
+            color: #00c8ff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 220, 255, 0.3);
+        }
+        
+        .content-section h3 {
+            font-size: 1.5em;
+            color: #00c8ff;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .content-section p, .content-section ul, .content-section li {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .content-section ul {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+        
+        .content-section li {
+            margin-bottom: 10px;
+        }
+
+        .content-section strong {
+            color: #00fff0;
+            font-weight: 600;
+        }
+        
+        .content-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 1em;
+        }
+        
+        .content-section th, .content-section td {
+            border: 1px solid rgba(0, 220, 255, 0.3);
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        .content-section th {
+            background-color: rgba(0, 220, 255, 0.1);
+            color: #00c8ff;
+        }
+        
+        .content-section code {
+            background-color: rgba(0,0,0,0.5);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #f0f0f0;
+        }
+        
+        .tree ul {
+            position: relative;
+            list-style-type: none;
+            padding-left: 30px;
+        }
+        .tree ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 100%;
+            background-color: rgba(0, 220, 255, 0.3);
+        }
+        .tree li {
+            position: relative;
+        }
+        .tree li::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: -30px;
+            width: 30px;
+            height: 1px;
+            background-color: rgba(0, 220, 255, 0.3);
+        }
+
+        .main-footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(0, 255, 240, 0.2);
+            margin-top: 40px;
+            background: rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.5em; }
+            .content-section h2 { font-size: 1.8em; }
+            .content-section h3 { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo-container">
+                <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00fff0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="url(#logoGradient)" />
+                    <text x="50" y="62" font-family="Arial, sans-serif" font-size="30" fill="#000" text-anchor="middle" font-weight="bold">AM</text>
+                </svg>
+                <div class="logo-text">Auto<span>Mind</span></div>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="index.html" class="active">Resources</a>
+                <a href="../contact.html">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1 class="title">The Live Tech Knowledge Graph</h1>
+            <p class="page-subtitle">A Unified Framework. This system is more than a database—it’s a living, learning network that senses, maps, and forecasts the pulse of technological change.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Core Philosophy: Beyond a Static Map</h2>
+            <p>Our goal is to build a self-adaptive “tech brain” that:</p>
+            <ul>
+                <li><strong>Breathes:</strong> Continuously ingests multi-modal data—from papers, code, news, social, funding, and patents.</li>
+                <li><strong>Learns:</strong> Discerns influence, momentum, outliers, and cross-domain cascades.</li>
+                <li><strong>Predicts:</strong> Anticipates the birth of new fields, convergence points, and “weak signals” before they go mainstream.</li>
+                <li><strong>Adapts:</strong> Evolves its own schema, relationships, and coverage as the tech ecosystem shifts.</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2>Level 1: Atomic Entities (Dynamic Nodes)</h2>
+            <p>This is the “ground truth” layer—what is directly discoverable in the wild—enriched with real-time and predictive metadata.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Entity</th>
+                        <th>Description</th>
+                        <th>Example(s)</th>
+                        <th>Dynamic Attributes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Post</strong></td>
+                        <td>Social/blog/news/forum post</td>
+                        <td>arXiv preprint, @karpathy tweet</td>
+                        <td><code>velocity</code>, <code>virality</code>, <code>reach</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Event</strong></td>
+                        <td>Conference, hackathon, challenge, webinar</td>
+                        <td>NeurIPS 2025, Hugging Face Space</td>
+                        <td><code>attendance</code>, <code>trend_delta</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Researcher</strong></td>
+                        <td>Individual author/contributor</td>
+                        <td>Yann LeCun, Chelsea Finn</td>
+                        <td><code>influence_score</code>, <code>field_shift</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Institution</strong></td>
+                        <td>University, company, research org</td>
+                        <td>DeepMind, MIT, Stability AI</td>
+                        <td><code>innovation_rate</code>, <code>talent_influx</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Media Platform</strong></td>
+                        <td>Platform hosting content</td>
+                        <td>arXiv, Twitter, Hacker News</td>
+                        <td><code>activity_index</code>, <code>topic_heatmap</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Social Media</strong></td>
+                        <td>Specific accounts, communities, feeds</td>
+                        <td>@OpenAI, /r/MachineLearning</td>
+                        <td><code>engagement_delta</code>, <code>topic_momentum</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Blog</strong></td>
+                        <td>Tech or research blog</td>
+                        <td>Distill.pub, EleutherAI blog</td>
+                        <td><code>post_frequency</code>, <code>influence_trend</code></td>
+                    </tr>
+                     <tr>
+                        <td><strong>Patent</strong></td>
+                        <td>Registered patent</td>
+                        <td>US Patent 12345678</td>
+                        <td><code>citation_acceleration</code>, <code>category_evolution</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technology</strong></td>
+                        <td>Concept, model, tool, standard, method</td>
+                        <td>LoRA, Qiskit, RLHF</td>
+                        <td><code>maturity_stage</code>, <code>adoption_surge</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Funding Source</strong></td>
+                        <td>Org/fund/grant supporting work</td>
+                        <td>NSF, Horizon Europe, Schmidt Futures</td>
+                        <td><code>funding_flow</code>, <code>focus_shift</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Code Repository</strong></td>
+                        <td>Source code base or dataset repo</td>
+                        <td>github.com/openai/gpt-2, HF repo</td>
+                        <td><code>star_velocity</code>, <code>fork_trend</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section tree">
+            <h2>Level 2: Thematic Areas (Fields, Topics, Fusion Zones)</h2>
+            <p>This layer encodes the “macro” landscape—domain, subdomain, and emergent topic clusters. It’s hierarchical, extensible, and allows one entity to be linked to many topics.</p>
+            <h3>A. Established Domains</h3>
+            <ul>
+                <li>Artificial Intelligence
+                    <ul>
+                        <li>Foundation Models</li>
+                        <li>AI Safety & Alignment</li>
+                        <li>AI Agents & Automation</li>
+                        <li>Explainable AI</li>
+                        <li>Generative AI</li>
+                    </ul>
+                </li>
+                <li>Quantum Technologies
+                    <ul>
+                        <li>Quantum ML</li>
+                        <li>Quantum Hardware</li>
+                    </ul>
+                </li>
+                <li>Robotics
+                    <ul>
+                        <li>Swarm Robotics</li>
+                        <li>Embodied AI</li>
+                    </ul>
+                </li>
+                <li>Bioinformatics / Computational Biology</li>
+                <li>Edge Computing & AIoT</li>
+                <li>Smart Home / Smart Cities</li>
+            </ul>
+            <h3>B. Fusion Zones / Interdisciplinary Hotspots</h3>
+            <ul>
+                <li>AI + BioTech (Protein Design, Drug Discovery)</li>
+                <li>AI + Robotics (Foundation Models for Embodied AI)</li>
+                <li>AI + Security (Privacy, Federated Learning)</li>
+                <li>EnergyTech (AI for Energy Grids)</li>
+                <li>Brain-Computer Interfaces</li>
+                <li>Tech Policy & Governance</li>
+            </ul>
+            <h3>C. Weak Signals / Wildcards</h3>
+            <ul>
+                <li>Photonic AI Chips</li>
+                <li>Quantum Internet</li>
+                <li>Neuromorphic Computing</li>
+                <li>AI for Space Exploration</li>
+                <li>Synthetic Biology</li>
+            </ul>
+             <h3>D. Custom/Extended Topics</h3>
+             <p>New topics can be added dynamically as signals emerge (e.g., “Post-LLM Era AI”, “AI for Law”, etc.).</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>Level 3: Relationships (Dynamic Edges and Provenance)</h2>
+            <p>Defines both classic and dynamic links—allowing the graph to capture not just structure but evolution, causality, and prediction.</p>
+            <h3>Semantic (“Structural”) Edges</h3>
+            <ul>
+                <li>(Researcher)-[:AUTHORED]->(Post/Publication)</li>
+                <li>(Researcher)-[:WORKS_AT]->(Institution)</li>
+                <li>(Work)-[:HOSTED_ON]->(Platform)</li>
+                <li>(Technology)-[:CATEGORIZED_AS]->(Thematic Area)</li>
+                <li>(Patent)-[:ASSOCIATED_WITH]->(Technology)</li>
+                <li>(Code Repository)-[:MENTIONS]->(Technology)</li>
+                <li>(Event)-[:FOCUSES_ON]->(Topic)</li>
+            </ul>
+            <h3>Dynamic & Temporal Edges</h3>
+            <ul>
+                <li>(Researcher)-[:COLLABORATES_WITH {since, intensity}]->(Researcher)</li>
+                <li>(Technology)-[:DERIVED_FROM]->(Technology)</li>
+                <li>(Event)-[:TRIGGERS]->(Post)</li>
+                <li>(Field)-[:CONVERGING_WITH {probability, signals}]->(Field)</li>
+                <li>(Patent)-[:CITED_BY]->(Post/Publication)</li>
+                <li>(Funding Source)-[:FUNDS]->(Institution/Work)</li>
+            </ul>
+             <h3>Predictive/Influence Edges</h3>
+            <ul>
+                <li>(TechA)-[:LIKELY_TO_IMPACT {confidence:0.9, timescale:12mo}]->(TechB)</li>
+                <li>(Person)-[:EMERGING_IN]->(Topic)</li>
+                <li>(Topic)-[:PREDICTED_TO_MERGE_WITH {prob:0.85}]->(Topic)</li>
+            </ul>
+            <h3>Provenance/Discovery Edges</h3>
+            <ul>
+                <li>(Node)-[:DISCOVERED_BY {agent, date, method, signal_strength}]->(DiscoveryAgent)</li>
+                <li>(Node)-[:ENRICHED_BY]->(LLMAgent)</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2>Automated Graph Enrichment & Evolution</h2>
+            <ul>
+                <li><strong>Pulse Monitoring:</strong> Scheduled jobs or event-driven agents scan new data (arXiv, GitHub, Twitter, Crunchbase, etc.) to enrich entities and create new nodes/edges.</li>
+                <li><strong>Anomaly & Signal Detection:</strong> Graph analytics/ML/LLMs highlight sudden changes, outliers, or emerging clusters for human or agentic review.</li>
+                <li><strong>Trend and Convergence Prediction:</strong> Agentic or LLM-powered modules analyze graph patterns to recommend new topics, flag rising stars, or forecast likely convergences.</li>
+                <li><strong>Self-Organization:</strong> Includes automatic topic/tag assignment for new entities, dynamic subgraph creation for newly identified fusion zones, and schema evolution as new entity/relationship types appear.</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Sample Query Types Enabled by the Framework</h2>
+            <ul>
+                <li><strong>Static:</strong> “List all code repositories for Quantum Machine Learning trending in the last 6 months.”</li>
+                <li><strong>Temporal:</strong> “Show top 10 institutions by innovation_velocity in Edge AI over the last year.”</li>
+                <li><strong>Predictive:</strong> “Which fusion zones are most likely to spawn new conferences within 2 years?”</li>
+                <li><strong>Cascade:</strong> “Trace the influence network from the LoRA paper to current open-source projects and patents.”</li>
+                <li><strong>Gap Analysis:</strong> “What subtopics in AI Safety have low publication_density but rising funding_flow?”</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2>Visualization and Interaction</h2>
+             <ul>
+                <li><strong>Multi-level graph exploration:</strong> Users/agents can zoom from macro (domain) to micro (entity) with dynamic overlays for velocity, novelty, influence, and prediction.</li>
+                <li><strong>Time sliders:</strong> Watch topics/entities “rise and fall” in the graph over time.</li>
+                <li><strong>Alerting:</strong> Notify when certain signals (velocity, emergence) cross user-defined thresholds.</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Summary Table: Framework Features</h2>
+             <table>
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Description</th>
+                        <th>Enrichment/Automation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Entities (L1)</strong></td>
+                        <td>Concrete, time-aware nodes</td>
+                        <td>Real-time update, signal analysis, auto-tag</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Topics (L2)</strong></td>
+                        <td>Flexible, hierarchical macro structure</td>
+                        <td>Dynamic topic assignment, clustering, fusion</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relationships (L3)</strong></td>
+                        <td>Static, dynamic, predictive, provenance</td>
+                        <td>Auto-link, causal inference, LLM enrichment</td>
+                    </tr>
+                     <tr>
+                        <td><strong>Intelligence</strong></td>
+                        <td>Agents for pulse, anomaly, prediction</td>
+                        <td>Active, scheduled, or event-driven updates</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer class="main-footer">
+        <div class="container" style="max-width: 1400px;">
+            <p>&copy; <span id="currentYear">2025</span> AutoMind. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms-of-service.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
