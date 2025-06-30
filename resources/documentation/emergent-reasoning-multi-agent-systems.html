@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergent Reasoning in Multi-Agent Systems - AutoMind</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
+            opacity: 0.7;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .main-header {
+            background: rgba(0,0,0,0.5);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .logo-text span {
+            color: #00fff0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #00fff0;
+            text-shadow: 0 0 5px #00fff0;
+        }
+        
+        .page-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 3.2em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .page-subtitle {
+            font-size: 1.2em;
+            color: #00fff0;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+        
+        .content-section {
+            background: rgba(10, 25, 47, 0.6);
+            border: 1px solid rgba(0, 220, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .content-section h2 {
+            font-size: 2.2em;
+            color: #00c8ff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 220, 255, 0.3);
+        }
+        
+        .content-section h3 {
+            font-size: 1.5em;
+            color: #00c8ff;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .content-section h4 {
+            font-size: 1.2em;
+            color: #00fff0;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .content-section p, .content-section ul, .content-section li {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .content-section ul {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+        
+        .content-section li {
+            margin-bottom: 10px;
+        }
+
+        .content-section strong {
+            color: #00fff0;
+            font-weight: 600;
+        }
+        
+        .content-section code {
+            background-color: rgba(0,0,0,0.5);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #f0f0f0;
+        }
+        
+        .content-section pre {
+            background-color: rgba(0,0,0,0.7);
+            border: 1px solid rgba(0, 220, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #e0e0e0;
+            font-size: 1em;
+        }
+
+        .main-footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(0, 255, 240, 0.2);
+            margin-top: 40px;
+            background: rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.5em; }
+            .content-section h2 { font-size: 1.8em; }
+            .content-section h3 { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo-container">
+                <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00fff0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="url(#logoGradient)" />
+                    <text x="50" y="62" font-family="Arial, sans-serif" font-size="30" fill="#000" text-anchor="middle" font-weight="bold">AM</text>
+                </svg>
+                <div class="logo-text">Auto<span>Mind</span></div>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="index.html" class="active">Resources</a>
+                <a href="../contact.html">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1 class="title">Engineering Emergent Reasoning in Multi-Agent Systems</h1>
+            <p class="page-subtitle">A Bio-Inspired Approach to Distributed Intelligence. This framework bridges the gap between swarm intelligence and cognitive reasoning by explicitly engineering higher-order thinking patterns into the collective behavior of agent swarms.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Introduction</h2>
+            <p>Traditional multi-agent systems excel at coordination and task allocation but struggle with complex, structured reasoning that requires decomposition, pattern recognition, and iterative refinement. The core innovation of this framework lies in combining three complementary approaches:</p>
+            <ul>
+                <li>Bio-inspired swarm algorithms for foundational coordination.</li>
+                <li>Graph Neural Networks for active orchestration and reasoning.</li>
+                <li>Multi-objective loss functions that explicitly enforce cognitive patterns.</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2>The Three-Layer Architecture</h2>
+            <h3>Layer 1: Swarm Intelligence Substrate</h3>
+            <p>The foundation rests on three integrated swarm paradigms, each serving a distinct organizational function:</p>
+            <h4>Artificial Bee Colony (ABC) - Macroscopic Role Management</h4>
+            <p>Dynamically assigns agents to three roles: <strong>Employed</strong> (exploitation), <strong>Onlooker</strong> (selective exploration), and <strong>Scout</strong> (random exploration). This maintains exploration-exploitation balance across the entire system.</p>
+            <h4>Particle Swarm Optimization (PSO) - Mesoscopic Team Formation</h4>
+            <p>Organizes agents into dynamic sub-swarms focused on specific sub-problems using Dynamic Multi-Swarm PSO (DMSPSO) for concurrent problem solving.</p>
+            <h4>Ant Colony Optimization (ACO) - Microscopic Exploration</h4>
+            <p>Creates persistent, collective memory through digital pheromone trails, enabling decentralized pathfinding and solution evaluation.</p>
+
+            <h3>Layer 2: Graph Neural Network Coordination</h3>
+            <p>The GNN layer transforms reactive swarms into reasoning entities through several key innovations:</p>
+            <ul>
+                <li><strong>Dynamic Heterogeneous Graph Representation:</strong> Nodes represent agents with role-dependent attributes, and edges capture multiple relationship types. The graph structure evolves dynamically as agents join/leave.</li>
+                <li><strong>Graph Attention Network Architecture:</strong> Self-attention mechanisms allow context-dependent information weighting, and inductive capabilities enable generalization to varying agent numbers.</li>
+                <li><strong>Higher-Order Relationship Modeling:</strong> Group-Aware Coordination Graphs capture team-level dynamics using virtual group nodes, enabling reasoning about collective behaviors.</li>
+            </ul>
+
+            <h3>Layer 3: Structured Reasoning Through Loss Function Engineering</h3>
+            <p>The breakthrough insight is that complex reasoning patterns can be explicitly engineered through carefully designed loss functions.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>The Five Cognitive Patterns</h2>
+            <h4>1. Self-Assembly (SA)</h4>
+            <p><strong>Goal:</strong> Autonomous formation of optimal topological structures (e.g., assembly lines, hierarchies).<br>
+            <strong>Implementation:</strong> A graph prediction head outputs a target adjacency matrix, and the loss function <code>Lsa = ReconstructionLoss(GNNhead(Gcurrent), Atarget)</code> rewards agents for actions that move the graph structure toward this optimal configuration.</p>
+
+            <h4>2. Optimal Substructure (OST)</h4>
+            <p><strong>Goal:</strong> Identify and reuse recurring solution patterns to eliminate redundant computation.<br>
+            <strong>Implementation:</strong> A Reinforcement Walk Exploration Subgraph Neural Network (RWE-SGNN) module maximizes mutual information with the loss function <code>Lost = -I(Y; Gsub)</code>, cataloging effective partial solutions.</p>
+
+            <h4>3. Chain of Thought (CoT)</h4>
+            <p><strong>Goal:</strong> Generate transparent, step-by-step reasoning processes for auditable decision-making.<br>
+            <strong>Implementation:</strong> A Recurrent GNN architecture (GRU/LSTM) unrolls reasoning over time, guided by <code>Lcot = SequenceLoss(GNNseq(G), Pathtarget)</code>.</p>
+
+            <h4>4. Divide and Conquer (DC)</h4>
+            <p><strong>Goal:</strong> Recursive problem decomposition and solution merging for hierarchical problem-solving.<br>
+            <strong>Implementation:</strong> A Split Module partitions the problem graph, and a Merge Module combines sub-solutions. The loss function <code>Ldc = -E[R(Yfinal)]</code> uses policy gradients.</p>
+
+            <h4>5. Step-by-Step Refinement and Reasoning (SRR)</h4>
+            <p><strong>Goal:</strong> Iterative solution improvement through integrated reasoning.<br>
+            <strong>Implementation:</strong> This is an emergent property arising from the dynamic interplay of the other four patterns, creating continuous loops of decomposition, assembly, pattern recognition, and refinement.</p>
+            
+            <h3>The Composite Loss Function</h3>
+            <p>The total loss function elegantly balances task performance with reasoning structure, allowing the system's "cognitive style" to be tuned:</p>
+            <pre><code>Ltotal = w_task·L_task + w_sa·L_sa + w_ost·L_ost + w_cot·L_cot + w_dc·L_dc</code></pre>
+        </div>
+        
+        <div class="content-section">
+            <h2>Coordination Mechanisms in Action</h2>
+            <p>The system creates a dual-channel information architecture, with an <strong>active channel</strong> for real-time GNN message passing and a <strong>passive channel</strong> of ACO pheromone trails for historical wisdom. Agents fluidly transition between roles based on system needs, and natural organizational hierarchies emerge without explicit programming.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Implementation Considerations & Results</h2>
+            <p>The framework is designed for scalability, robustness, and adaptability. The inductive GNN architecture handles dynamic agent populations, multi-layer redundancy provides fault tolerance, and meta-learning capabilities allow for continuous strategy refinement.</p>
+            <p>This approach represents a significant advance by:</p>
+            <ul>
+                <li>Bridging levels of abstraction from low-level swarm coordination to high-level reasoning.</li>
+                <li>Making reasoning patterns first-class design objectives through cognitive engineering.</li>
+                <li>Achieving sophisticated emergent behaviors through simple, composable mechanisms.</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Future Directions</h2>
+            <p>Key areas for further development include formal analysis of convergence properties, large-scale empirical validation, integration with symbolic reasoning, and interfaces for human-AI collaboration. This work suggests a new paradigm where intelligence emerges not from individual cognitive agents, but from the structured interactions of specialized, coordinated collectives.</p>
+        </div>
+
+    </div>
+
+    <footer class="main-footer">
+        <div class="container" style="max-width: 1400px;">
+            <p>&copy; <span id="currentYear">2025</span> AutoMind. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms-of-service.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+
