@@ -3,251 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Industry Solutions - AutoMind</title>
+    <title>Industry Solutions - Seedcore</title>
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        /* Animated background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
-            opacity: 0.7;
-        }
-        
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            animation: grid-move 20s linear infinite;
-        }
-        
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        .container {
-            max-width: 1400px; 
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Header & Navigation */
-        .main-header {
-            background: rgba(0,0,0,0.5);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; line-height: 1.6; }
+        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, #000428 0%, #004e92 100%); opacity: 0.7; }
+        .grid-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px); background-size: 50px 50px; z-index: -1; animation: grid-move 20s linear infinite; }
+        @keyframes grid-move { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* Override header styles for dark theme */
+        .main-header { background: rgba(0,0,0,0.5); padding: 15px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(0, 255, 240, 0.2); }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo-container { display: flex; align-items: center; text-decoration: none; color: #fff; }
+        .logo-img { height: 40px; width: auto; margin-right: 10px; }
+        .logo-text { font-size: 1.8em; font-weight: bold; }
+        .logo-text span { color: #00fff0; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 25px; font-size: 1.1em; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: #00fff0; text-shadow: 0 0 5px #00fff0; }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #fff;
-        }
+        .page-header { text-align: center; padding: 60px 0 40px; }
+        .title { font-size: 3.5em; font-weight: bold; background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; animation: glow 3s ease-in-out infinite; }
+        @keyframes glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.2); } }
+        .page-subtitle { font-size: 1.3em; color: #00fff0; opacity: 0.8; max-width: 800px; margin: 0 auto 40px auto; }
 
-        .logo-img {
-            height: 40px;
-            width: auto;
-            margin-right: 10px;
-        }
-        .logo-text {
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-        .logo-text span {
-            color: #00fff0;
-        }
+        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .solution-card { background: linear-gradient(145deg, rgba(0, 255, 128, 0.1) 0%, rgba(0, 128, 255, 0.1) 100%); border: 1px solid rgba(0, 220, 180, 0.3); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; transition: all 0.3s ease-in-out; }
+        .solution-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(0, 220, 180, 0.2), 0 0 15px rgba(0, 128, 255, 0.2); border-color: #00dcb4; }
+        .solution-card .card-icon { font-size: 3em; color: #00dcb4; margin-bottom: 20px; text-align: center; }
+        .solution-card h3 { color: #00dcb4; font-size: 1.8em; margin-bottom: 15px; text-align: center; }
+        .solution-card p { font-size: 1.05em; opacity: 0.9; margin-bottom: 20px; flex-grow: 1; }
+        .learn-more-btn { background: linear-gradient(135deg, #00dcb4 0%, #0080ff 100%); border: none; color: #000; padding: 12px 25px; font-size: 1em; font-weight: bold; border-radius: 30px; text-decoration: none; text-align: center; transition: all 0.3s ease; }
+        .learn-more-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0, 220, 180, 0.4); }
 
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: #00fff0;
-            text-shadow: 0 0 5px #00fff0;
-        }
-        
-        /* Page Header */
-        .page-header {
-            text-align: center;
-            padding: 60px 0 40px;
-            position: relative;
-        }
-        
-        .title {
-            font-size: 3.5em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            animation: glow 3s ease-in-out infinite;
-        }
-        
-        @keyframes glow {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.2); }
-        }
+        .main-footer { text-align: center; padding: 30px 0; border-top: 1px solid rgba(0, 255, 240, 0.2); margin-top: 40px; background: rgba(0,0,0,0.3); }
+        .main-footer p { margin-bottom: 10px; opacity: 0.8; }
+        .footer-links a { color: #00fff0; text-decoration: none; margin: 0 10px; transition: color 0.3s ease; }
+        .footer-links a:hover { text-decoration: underline; color: #ff00ff; }
 
-        .page-subtitle {
-            font-size: 1.3em;
-            color: #00fff0;
-            opacity: 0.8;
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-        }
-        
-        /* Solutions Grid */
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .solution-card {
-            background: linear-gradient(145deg, rgba(0, 255, 128, 0.1) 0%, rgba(0, 128, 255, 0.1) 100%); /* Different gradient for solutions */
-            border: 1px solid rgba(0, 220, 180, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .solution-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 220, 180, 0.2), 0 0 15px rgba(0, 128, 255, 0.2);
-            border-color: #00dcb4;
-        }
-        
-        .solution-card .card-icon {
-            font-size: 3em;
-            color: #00dcb4; /* Slightly different icon color */
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .solution-card h3 {
-            color: #00dcb4;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .solution-card p {
-            font-size: 1.05em;
-            opacity: 0.9;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .learn-more-btn {
-            background: linear-gradient(135deg, #00dcb4 0%, #0080ff 100%);
-            border: none;
-            color: #000;
-            padding: 12px 25px;
-            font-size: 1em;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            align-self: center;
-        }
-        
-        .learn-more-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 220, 180, 0.4);
-        }
-
-        /* Footer */
-        .main-footer {
-            text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid rgba(0, 255, 240, 0.2);
-            margin-top: 40px;
-            background: rgba(0,0,0,0.3);
-        }
-        .main-footer p {
-            margin-bottom: 10px;
-            opacity: 0.8;
-        }
-        .footer-links a {
-            color: #00fff0;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover {
-            text-decoration: underline;
-            color: #ff00ff;
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .main-header .container {
-                flex-direction: column;
-            }
-            .nav-links {
-                margin-top: 15px;
-            }
-            .nav-links a {
-                margin: 0 10px;
-            }
-            .title { font-size: 2.8em; }
-        }
-        
-        @media (max-width: 768px) {
-            .title { font-size: 2.2em; }
-            .solutions-grid { grid-template-columns: 1fr; }
-            .solution-card h3 { font-size: 1.6em; }
-        }
+        @media (max-width: 992px) { .main-header .container { flex-direction: column; } .nav-links { margin-top: 15px; } .title { font-size: 2.8em; } }
+        @media (max-width: 768px) { .title { font-size: 2.2em; } .solutions-grid { grid-template-columns: 1fr; } .solution-card h3 { font-size: 1.6em; } }
     </style>
 </head>
 <body>
@@ -256,63 +53,62 @@
 
     <header class="main-header">
         <div class="container">
-            <a href="../index.html" class="logo-container">
-                <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#00fff0;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="45" fill="url(#logoGradient)" />
-                    <text x="50" y="62" font-family="Arial, sans-serif" font-size="30" fill="#000" text-anchor="middle" font-weight="bold">AM</text>
-                </svg>
-                <div class="logo-text">Auto<span>Mind</span></div>
-            </a>
-            <nav class="nav-links">
-                <a href="../index.html">Home</a>
-                <a href="../about.html">About Us</a>
-                <a href="../services/index.html">Capabilities</a>
-                <a href="index.html" class="active">Industry Solutions</a>
-                <a href="../resources/index.html">Resources</a>
-                <a href="../contact.html">Contact Us</a>
+            <nav>
+                <a href="../index.html" class="logo" aria-label="Seedcore Home">
+                    <img src="../assets/seedcore-logo.svg" alt="Seedcore" class="logo-svg" style="height: 50px; width: auto;">
+                </a>
+                <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+                <div class="nav-links-wrapper">
+                    <div class="nav-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../about.html">About</a>
+                        <a href="../services/index.html">Services</a>
+                        <a href="index.html" class="active">Solutions</a>
+                        <a href="../resources/index.html">Resources</a>
+                        <a href="../contact.html">Contact</a>
+                    </div>
+                    <a href="../contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
+                    <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
+                        <img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;">
+                    </a>
+                </div>
             </nav>
         </div>
     </header>
-    
+
     <div class="container">
         <div class="page-header">
             <h1 class="title">Industry Solutions</h1>
-            <p class="page-subtitle">Discover how we apply our core automation capabilities to address specific challenges and unlock opportunities in your industry.</p>
+            <p class="page-subtitle">How Seedcore applies AI, robotics, and automation research to unlock real-world impact across industries.</p>
         </div>
 
         <div class="solutions-grid">
             <div class="solution-card">
                 <div class="card-icon"><i class="fas fa-industry"></i></div>
-                <h3>Intelligent Manufacturing</h3>
-                <p>We empower light industry and manufacturing sectors by automating quality control with AI vision systems, streamlining supply chains through intelligent workflow automation (n8n), and optimizing production lines with integrated robotics. Enhance throughput, reduce defects, and gain real-time operational insights.</p>
-                <a href="manufacturing-qc.html" class="learn-more-btn">Explore Manufacturing Solutions</a>
+                <h3>Manufacturing & Robotics</h3>
+                <p>Seedcore integrates robotics, AI vision, and automated workflows to enhance production, reduce defects, and enable adaptive manufacturing. We build closed-loop intelligent systems that optimize quality, throughput, and resilience for light and advanced industries.</p>
+                <a href="manufacturing-qc.html" class="learn-more-btn">Explore Manufacturing</a>
             </div>
 
             <div class="solution-card">
                 <div class="card-icon"><i class="fas fa-hospital-user"></i></div>
-                <h3>Healthcare Innovation (EU)</h3>
-                <p>Navigating the complexities of the EU healthcare sector, we deliver GDPR-compliant AI and automation solutions. From optimizing patient onboarding and administrative workflows with n8n to enabling secure data analysis with GraphRAG for clinical research, we help enhance patient care while maintaining stringent data security and privacy.</p>
-                <a href="healthcare-automation.html" class="learn-more-btn">Discover Healthcare Solutions</a>
+                <h3>Healthcare & Life Sciences</h3>
+                <p>We design GDPR- and PDPO-compliant AI systems for secure healthcare automation. From patient onboarding to biomedical data analysis, Seedcore platforms ensure privacy-preserving intelligence, supporting clinical research and operational efficiency.</p>
+                <a href="healthcare-automation.html" class="learn-more-btn">Discover Healthcare</a>
             </div>
 
             <div class="solution-card">
                 <div class="card-icon"><i class="fas fa-store"></i></div>
-                <h3>Retail Intelligence</h3>
-                <p>Transform customer experiences and optimize operations in the retail sector. We implement AI-powered predictive analytics for inventory management and demand forecasting, automate customer service interactions with intelligent agents, and personalize marketing campaigns through data-driven workflow automation, boosting sales and customer loyalty.</p>
-                <a href="retail-intelligence.html" class="learn-more-btn">Explore Retail Solutions</a>
+                <h3>Retail & Customer Intelligence</h3>
+                <p>Our AI agents power demand forecasting, inventory optimization, and customer interaction systems. Seedcore helps retailers deliver personalized experiences, streamline operations, and increase loyalty through predictive insights and autonomous workflows.</p>
+                <a href="retail-intelligence.html" class="learn-more-btn">Explore Retail</a>
             </div>
         </div>
     </div>
 
     <footer class="main-footer">
         <div class="container">
-            <p>&copy; <span id="currentYear">2025</span> AutoMind. All rights reserved.</p>
+            <p>&copy; <span id="currentYear">2025</span> Seed Core Limited. All rights reserved.</p>
             <div class="footer-links">
                 <a href="../privacy-policy.html">Privacy Policy</a>
                 <a href="../terms-of-service.html">Terms of Service</a>
@@ -320,9 +116,6 @@
         </div>
     </footer>
 
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
-
+    <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
 </body>
 </html>

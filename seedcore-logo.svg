@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" aria-labelledby="title desc" role="img">
+  <title>Seedcore Logo</title>
+  <desc>Minimal seed-with-core mark and wordmark for Seedcore</desc>
+
+  <defs>
+    <linearGradient id="seedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6F3BF5"/>
+      <stop offset="100%" stop-color="#4C2BD9"/>
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#30D5FF"/>
+      <stop offset="100%" stop-color="#0FB3E6"/>
+    </linearGradient>
+    <clipPath id="seedClip">
+      <!-- Seed silhouette -->
+      <path d="M115,30
+               C65,35 30,70 30,115
+               C30,155 60,180 100,180
+               C155,180 205,135 205,95
+               C205,60 170,30 115,30Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Seed outline -->
+  <path d="M115,30
+           C65,35 30,70 30,115
+           C30,155 60,180 100,180
+           C155,180 205,135 205,95
+           C205,60 170,30 115,30Z"
+        fill="url(#seedGrad)" stroke="#3A1FBF" stroke-width="2.5" />
+
+  <!-- Inner core -->
+  <g clip-path="url(#seedClip)">
+    <circle cx="130" cy="95" r="38" fill="url(#coreGrad)" stroke="#0EA5CF" stroke-width="2"/>
+    <!-- simple circuits -->
+    <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.95">
+      <line x1="130" y1="95" x2="160" y2="80"/>
+      <line x1="130" y1="95" x2="145" y2="120"/>
+      <line x1="130" y1="95" x2="110" y2="70"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="160" cy="80" r="5"/>
+      <circle cx="145" cy="120" r="5"/>
+      <circle cx="110" cy="70" r="5"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(240, 135)">
+    <text x="0" y="0" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+          font-size="64" font-weight="700" letter-spacing="1.5" fill="#2B2B2B">
+      SEEDCORE
+    </text>
+    <text x="505" y="-30" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+          font-size="40" font-weight="800" letter-spacing="0.5" fill="#6F3BF5">.AI</text>
+  </g>
+
+</svg>

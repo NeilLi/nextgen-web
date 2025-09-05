@@ -1,331 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Core Capabilities - AutoMind</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        /* Animated background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
-            opacity: 0.7;
-        }
-        
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            animation: grid-move 20s linear infinite;
-        }
-        
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        .container {
-            max-width: 1400px; /* Slightly wider for card layouts */
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Header & Navigation */
-        .main-header {
-            background: rgba(0,0,0,0.5);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
-        }
-
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #fff;
-        }
-
-        .logo-img { /* Placeholder for SVG or Image */
-            height: 40px;
-            width: auto;
-            margin-right: 10px;
-            /* Background for visibility if no image/svg is used */
-            /* background-color: #00fff0; 
-            border-radius: 50%; */
-        }
-        .logo-text {
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-        .logo-text span {
-            color: #00fff0;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: #00fff0;
-            text-shadow: 0 0 5px #00fff0;
-        }
-        
-        /* Page Header */
-        .page-header {
-            text-align: center;
-            padding: 60px 0 40px;
-            position: relative;
-        }
-        
-        .title {
-            font-size: 3.5em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            animation: glow 3s ease-in-out infinite;
-        }
-        
-        @keyframes glow {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.2); }
-        }
-
-        .page-subtitle {
-            font-size: 1.3em;
-            color: #00fff0;
-            opacity: 0.8;
-            max-width: 800px;
-            margin: 0 auto 40px auto; /* Added bottom margin */
-        }
-        
-        /* Capabilities Grid */
-        .capabilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .capability-card {
-            background: linear-gradient(145deg, rgba(0, 128, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
-            border: 1px solid rgba(0, 255, 240, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .capability-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 255, 240, 0.2), 0 0 15px rgba(255, 0, 255, 0.2);
-            border-color: #00fff0;
-        }
-        
-        .capability-card .card-icon {
-            font-size: 3em;
-            color: #00fff0;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .capability-card h3 {
-            color: #00fff0;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .capability-card p {
-            font-size: 1.05em;
-            opacity: 0.9;
-            margin-bottom: 20px;
-            flex-grow: 1; /* Makes sure cards have same height if content differs */
-        }
-
-        .learn-more-btn {
-            background: linear-gradient(135deg, #00fff0 0%, #ff00ff 100%);
-            border: none;
-            color: #000;
-            padding: 12px 25px;
-            font-size: 1em;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            align-self: center; /* Centers button if card is flex column */
-        }
-        
-        .learn-more-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 255, 240, 0.4);
-        }
-
-        /* Footer */
-        .main-footer {
-            text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid rgba(0, 255, 240, 0.2);
-            margin-top: 40px;
-            background: rgba(0,0,0,0.3);
-        }
-        .main-footer p {
-            margin-bottom: 10px;
-            opacity: 0.8;
-        }
-        .footer-links a {
-            color: #00fff0;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover {
-            text-decoration: underline;
-            color: #ff00ff;
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .main-header .container {
-                flex-direction: column;
-            }
-            .nav-links {
-                margin-top: 15px;
-            }
-            .nav-links a {
-                margin: 0 10px;
-            }
-            .title { font-size: 2.8em; }
-        }
-        
-        @media (max-width: 768px) {
-            .title { font-size: 2.2em; }
-            .capabilities-grid { grid-template-columns: 1fr; }
-            .capability-card h3 { font-size: 1.6em; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Core Capabilities - Seedcore</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { margin:0; background:#000; color:#fff; font-family:system-ui, sans-serif; line-height:1.6; }
+    .bg { position:fixed; inset:0; background:linear-gradient(45deg,#000428,#004e92); opacity:.7; z-index:-2; }
+    .grid { position:fixed; inset:0; background-image:linear-gradient(rgba(0,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.08) 1px,transparent 1px); background-size:50px 50px; animation:grid-move 20s linear infinite; z-index:-1; }
+    @keyframes grid-move { to{transform:translate(50px,50px);} }
+    header { background:rgba(0,0,0,.5); border-bottom:1px solid rgba(0,255,240,.2); position:sticky; top:0; }
+    header .container { max-width:1200px; margin:0 auto; padding:15px 20px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:700; font-size:1.2rem; }
+    .logo span { color:#00fff0; }
+    nav a { color:#fff; text-decoration:none; margin-left:20px; }
+    nav a:hover { color:#00fff0; text-shadow:0 0 5px #00fff0; }
+    .page-header { text-align:center; padding:60px 20px 40px; }
+    .page-header h1 { font-size:2.6rem; font-weight:700; background:linear-gradient(135deg,#00fff0,#0080ff,#ff00ff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:glow 3s ease-in-out infinite; margin-bottom:15px; }
+    @keyframes glow { 50%{filter:brightness(1.2);} }
+    .page-subtitle { font-size:1.2rem; color:#00fff0; opacity:.85; max-width:800px; margin:0 auto 40px; }
+    .capabilities-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; }
+    .capability-card { background:linear-gradient(145deg,rgba(0,128,255,.1),rgba(255,0,255,.1)); border:1px solid rgba(0,255,240,.3); border-radius:16px; padding:25px; transition:.3s; display:flex; flex-direction:column; }
+    .capability-card:hover { transform:translateY(-6px); border-color:#00fff0; box-shadow:0 15px 30px rgba(0,255,240,.15); }
+    .card-icon { font-size:2.6rem; text-align:center; margin-bottom:15px; color:#00fff0; }
+    .capability-card h3 { text-align:center; font-size:1.5rem; color:#00fff0; margin-bottom:15px; }
+    .capability-card p { flex-grow:1; color:#ccc; margin-bottom:20px; }
+    .learn-more-btn { align-self:center; background:linear-gradient(135deg,#00fff0,#ff00ff); color:#000; padding:10px 22px; border-radius:24px; text-decoration:none; font-weight:600; }
+    .learn-more-btn:hover { box-shadow:0 0 10px #00fff0; }
+    footer { background:#0a0a14; border-top:1px solid rgba(0,255,240,.15); text-align:center; padding:30px 20px; margin-top:50px; color:#999; font-size:.9rem; }
+  </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    <div class="grid-overlay"></div>
-
-    <header class="main-header">
-        <div class="container">
-            <a href="../index.html" class="logo-container">
-                <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#00fff0;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="45" fill="url(#logoGradient)" />
-                    <text x="50" y="62" font-family="Arial, sans-serif" font-size="30" fill="#000" text-anchor="middle" font-weight="bold">AM</text>
-                </svg>
-                <div class="logo-text">Auto<span>Mind</span></div>
-            </a>
-            <nav class="nav-links">
-                <a href="../index.html">Home</a>
-                <a href="../about.html">About Us</a>
-                <a href="index.html" class="active">Capabilities</a>
-                <a href="../solutions/index.html">Industry Solutions</a>
-                <a href="../resources/index.html">Resources</a>
-                <a href="../contact.html">Contact Us</a>
-            </nav>
-        </div>
-    </header>
-    
+  <div class="bg"></div><div class="grid"></div>
+  <header>
     <div class="container">
-        <div class="page-header">
-            <h1 class="title">Our Core Capabilities</h1>
-            <p class="page-subtitle">We architect and implement powerful, integrated systems by leveGraphRAGing three core technological pillars to drive your business transformation.</p>
+      <nav>
+        <a href="../index.html" class="logo" aria-label="Seedcore Home">
+          <img src="../assets/seedcore-logo.svg" alt="Seedcore" class="logo-svg" style="height: 50px; width: auto;">
+        </a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="index.html" class="active">Services</a>
+            <a href="../solutions/index.html">Solutions</a>
+            <a href="../resources/index.html">Resources</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
+            <img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;">
+          </a>
         </div>
+      </nav>
+    </div>
+  </header>
 
-        <div class="capabilities-grid">
-            <div class="capability-card">
-                <div class="card-icon"><i class="fas fa-brain"></i></div>
-                <h3>Intelligent Workflow Automation</h3>
-                <p>We harness the power of AI agents, Retrieval Augmented Generation (GraphRAG), and leading low-code platforms like n8n to connect your disparate applications and automate complex digital processes. This enhances efficiency, reduces manual error, and unlocks new levels of productivity across your organization.</p>
-                <a href="workflows.html" class="learn-more-btn">Explore Workflow Automation</a>
-            </div>
-
-            <div class="capability-card">
-                <div class="card-icon"><i class="fas fa-cogs"></i></div>
-                <h3>Robotics & Manufacturing Systems</h3>
-                <p>Our expertise extends to the physical realm, where we integrate intelligent robotics and advanced digital manufacturing solutions. We help you automate physical operations, enhance precision on the factory floor, optimize supply chains, and build smarter manufacturing ecosystems.</p>
-                <a href="robotics-manufacturing.html" class="learn-more-btn">Discover Robotics Solutions</a>
-            </div>
-
-            <div class="capability-card">
-                <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
-                <h3>Strategic Automation Consulting</h3>
-                <p>Beyond technology implementation, we provide expert strategic guidance. We partner with you to build a comprehensive digital transformation roadmap, ensuring your automation initiatives are perfectly aligned with your core business objectives, delivering measurable impact and scalable, future-proof solutions.</p>
-                <a href="strategy.html" class="learn-more-btn">Plan Your Strategy</a>
-            </div>
-        </div>
+  <main class="container">
+    <div class="page-header">
+      <h1>Our Core Capabilities</h1>
+      <p class="page-subtitle">Seedcore builds intelligent platforms for autonomous systems, AI agents, and advanced manufacturing — uniting software and hardware in secure, open-source driven ecosystems.</p>
     </div>
 
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; <span id="currentYear">2025</span> AutoMind. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="../privacy-policy.html">Privacy Policy</a>
-                <a href="../terms-of-service.html">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
+    <div class="capabilities-grid">
+      <div class="capability-card">
+        <div class="card-icon"><i class="fas fa-brain"></i></div>
+        <h3>AI Agent Workflows</h3>
+        <p>We design and deploy secure, research-driven multi-agent systems. Leveraging knowledge graphs, vector databases, and contractive orchestration, we deliver adaptive workflows aligned with enterprise goals.</p>
+        <a href="ai-agents.html" class="learn-more-btn">Explore Workflows</a>
+      </div>
 
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
+      <div class="capability-card">
+        <div class="card-icon"><i class="fas fa-industry"></i></div>
+        <h3>Robotics & Manufacturing</h3>
+        <p>From autonomous assembly to supply-chain optimization, Seedcore integrates robotics and AI for precise, efficient, and scalable manufacturing ecosystems built on open standards.</p>
+        <a href="automation-robotics.html" class="learn-more-btn">Discover Robotics</a>
+      </div>
 
+      <div class="capability-card">
+        <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+        <h3>Strategic Consulting</h3>
+        <p>We partner with organizations to build transformation roadmaps. Our consulting aligns automation, compliance, and governance with long-term strategic impact across industries.</p>
+        <a href="strategy.html" class="learn-more-btn">Plan Your Strategy</a>
+      </div>
+
+      <div class="capability-card">
+        <div class="card-icon"><i class="fas fa-cogs"></i></div>
+        <h3>AI Services & Integration</h3>
+        <p>Comprehensive AI service delivery including custom model development, API integration, and seamless deployment of intelligent systems across your existing infrastructure.</p>
+        <a href="ai-services.html" class="learn-more-btn">Explore AI Services</a>
+      </div>
+
+      <div class="capability-card">
+        <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
+        <h3>n8n Workflow Expertise</h3>
+        <p>Specialized n8n workflow design and implementation services. We create powerful automation workflows that connect your systems and streamline business processes.</p>
+        <a href="n8n-expertise.html" class="learn-more-btn">Discover n8n Solutions</a>
+      </div>
+
+      <div class="capability-card">
+        <div class="card-icon"><i class="fas fa-search"></i></div>
+        <h3>Retrieval-Augmented Generation (RAG)</h3>
+        <p>Advanced RAG systems that combine knowledge retrieval with generative AI to provide accurate, context-aware responses from your enterprise data.</p>
+        <a href="rag.html" class="learn-more-btn">Learn About RAG</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Seed Core Limited. All rights reserved.
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>

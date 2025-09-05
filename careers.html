@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careers at Seedcore</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { margin:0; background:#000; color:#fff; font-family:system-ui, sans-serif; line-height:1.6; }
+    .bg { position:fixed; inset:0; background:linear-gradient(45deg,#000428,#004e92); opacity:.7; z-index:-2; }
+    .grid { position:fixed; inset:0; background-image:linear-gradient(rgba(0,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.08) 1px,transparent 1px); background-size:50px 50px; animation:grid-move 20s linear infinite; z-index:-1; }
+    @keyframes grid-move { to{transform:translate(50px,50px);} }
+    header { background:rgba(0,0,0,.6); border-bottom:1px solid rgba(0,255,240,.2); position:sticky; top:0; }
+    header .container { max-width:1100px; margin:0 auto; padding:15px 20px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:700; font-size:1.2rem; }
+    .logo span { color:#00fff0; }
+    nav a { color:#fff; text-decoration:none; margin-left:18px; }
+    nav a:hover { color:#00fff0; text-shadow:0 0 5px #00fff0; }
+    .container { max-width:900px; margin:0 auto; padding:20px; }
+    h1 { text-align:center; font-size:2.2rem; margin:50px 0 20px; background:linear-gradient(135deg,#00fff0,#0080ff,#ff00ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    p.lead { text-align:center; color:#ccc; max-width:650px; margin:0 auto 40px; }
+    .job-card { background:rgba(255,255,255,.05); border:1px solid rgba(0,255,240,.2); border-radius:12px; padding:20px; margin-bottom:25px; }
+    .job-card h2 { color:#00fff0; margin-bottom:10px; font-size:1.3rem; }
+    .job-card p { color:#ddd; margin-bottom:12px; }
+    .btn { display:inline-block; background:linear-gradient(135deg,#00fff0,#ff00ff); color:#000; padding:8px 16px; border-radius:20px; font-weight:600; text-decoration:none; }
+    .btn:hover { box-shadow:0 0 10px #00fff0; }
+    footer { background:#0a0a14; border-top:1px solid rgba(0,255,240,.15); text-align:center; padding:30px 20px; margin-top:40px; color:#999; font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <div class="bg"></div><div class="grid"></div>
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo"><img src="assets/seedcore-logo.svg" alt="logo" height="28"/>Seed<span>core</span></a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="resources/index.html">Resources</a>
+        <a href="careers.html" class="active">Careers</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Careers at Seedcore</h1>
+    <p class="lead">Join us in building trusted AI agents and autonomous manufacturing systems. At Seedcore, we combine rigorous research with real-world impact.</p>
+
+    <div class="job-card">
+      <h2>AI Research Engineer</h2>
+      <p>Work on agent architectures, graph databases, and memory systems. Collaborate with our research team to push the boundaries of contractive AI design.</p>
+      <a href="mailto:hr@seedcore.ai?subject=Application%20AI%20Research%20Engineer" class="btn">Apply Now</a>
+    </div>
+
+    <div class="job-card">
+      <h2>Automation Systems Engineer</h2>
+      <p>Design and deploy robotics-integrated workflows and autonomous manufacturing systems. Experience with Ray, Kubernetes, or industrial robotics is a plus.</p>
+      <a href="mailto:hr@seedcore.ai?subject=Application%20Automation%20Engineer" class="btn">Apply Now</a>
+    </div>
+
+    <div class="job-card">
+      <h2>Full‑Stack Developer</h2>
+      <p>Develop dashboards, APIs, and integration layers for our AI agent platform. Looking for experience in TypeScript, React, and cloud-native microservices.</p>
+      <a href="mailto:hr@seedcore.ai?subject=Application%20Full‑Stack%20Developer" class="btn">Apply Now</a>
+    </div>
+
+    <div class="job-card">
+      <h2>Open Source Contributor</h2>
+      <p>Collaborate on our GitHub project <a href="https://github.com/NeilLi/seedcore" style="color:#00fff0;">Seedcore</a>. Flexible roles for researchers, developers, and community builders.</p>
+      <a href="https://github.com/NeilLi/seedcore" class="btn">Contribute</a>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Seed Core Limited. All rights reserved.
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
+
