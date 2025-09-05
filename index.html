@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Seedcore.ai — Trusted AI Agents & Autonomous Manufacturing</title>
-  <meta name="description" content="Seed Core Limited builds provably-safe AI agents and autonomous manufacturing systems. EU/GDPR + HK PDPO aligned. Research-backed, production-ready." />
-  <meta name="keywords" content="AI agents, autonomous manufacturing, workflow automation, knowledge graphs, retrieval, safety, governance, privacy" />
+  <title>Seedcore.ai — Agentic AI & Heterogeneous Model Architecture</title>
+  <meta name="description" content="Seed Core Limited builds production-ready agentic AI systems using heterogeneous SLM/LLM architectures. Cost-efficient, reliable, and scalable automation for enterprises. EU/GDPR + HK PDPO aligned." />
+  <meta name="keywords" content="agentic AI, small language models, SLM, heterogeneous AI, autonomous manufacturing, workflow automation, cost efficiency, enterprise automation" />
   <link rel="canonical" href="https://seedcore.ai/" />
   <link rel="stylesheet" href="css/style.css" />
-  <meta property="og:title" content="Seedcore.ai — Trusted AI Agents & Autonomous Manufacturing" />
-  <meta property="og:description" content="Provably-safe AI agents and automation for industry. EU/GDPR + HK PDPO aligned." />
+  <meta property="og:title" content="Seedcore.ai — Agentic AI & Heterogeneous Model Architecture" />
+  <meta property="og:description" content="Production-ready agentic AI systems using cost-efficient SLM/LLM hybrid architectures. Enterprise automation with 10-30x cost savings." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://seedcore.ai/" />
   <meta property="og:image" content="/images/og-seedcore.jpg" />
+  <meta property="og:image:alt" content="Seedcore.ai — Agentic AI" />
+  <link rel="icon" href="/assets/favicon.ico" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -22,7 +24,16 @@
     "logo": "https://seedcore.ai/assets/seedcore-logo.svg",
     "legalName": "Seed Core Limited",
     "foundingLocation": "Hong Kong",
-    "sameAs": []
+    "foundingDate": "2024",
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "Neil Li"
+      }
+    ],
+    "sameAs": [
+      "https://github.com/NeilLi/seedcore"
+    ]
   }
   </script>
   <style>
@@ -31,8 +42,107 @@
     .btn-small { padding: .6rem 1rem; border-radius: 12px; display: inline-block; }
     .notice { font-size: .9rem; opacity: .8; }
     .legal { font-size: .85rem; line-height: 1.4; }
-    .cookie-banner { position: fixed; z-index: 9999; left: 0; right: 0; bottom: 0; background: #111; color: #fff; padding: 12px 16px; display: none; }
+    .cookie-banner { position: fixed; z-index: 9999; left: 0; right: 0; bottom: 0; background: #111; color: #fff; padding: 12px 16px; display: none; align-items: center; justify-content: center; }
     .cookie-banner button { margin-left: 12px; }
+    
+    /* SLM Advantages Section Styles */
+    .slm-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .slm-advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+    
+    .advantage-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 20px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    }
+    
+    .advantage-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .advantage-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--gradient);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    
+    .advantage-content h3 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .advantage-content p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    .slm-footnote {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background: var(--light);
+      border-radius: var(--border-radius);
+    }
+    
+    .slm-footnote p {
+      margin: 0;
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 15px;
+    }
+    
+    /* Responsive adjustments for SLM section */
+    @media (max-width: 767.98px) {
+      .slm-advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin: 30px 0;
+      }
+      
+      .advantage-item {
+        padding: 15px;
+      }
+      
+      .advantage-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+      }
+      
+      .advantage-content h3 {
+        font-size: 16px;
+      }
+      
+      .advantage-content p {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -54,7 +164,7 @@
           </div>
           <a href="contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
           <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
-            <img src="images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;">
+            <img src="images/github.svg" alt="GitHub repository" style="height:22px;width:auto;margin-left:12px;">
           </a>
         </div>
       </nav>
@@ -64,8 +174,8 @@
   <section class="hero" id="home">
     <div class="container">
       <div class="hero-content">
-        <h1>Trusted AI Agents & Autonomous Manufacturing</h1>
-        <p>We design and deploy research-backed, production-safe agents that automate digital workflows and physical processes. No vendor lock‑in, open standards, and privacy by design.</p>
+        <h1>Agentic AI with Heterogeneous Model Architecture</h1>
+        <p>We build production-ready agentic AI systems using specialized Small Language Models (SLMs) for core operations, with Large Language Models (LLMs) reserved for complex reasoning tasks. Achieve 10-30x cost savings while maintaining reliability and performance.</p>
         <a href="contact.html#consultation" class="btn">Start a Project</a>
       </div>
     </div>
@@ -73,29 +183,29 @@
 
   <section id="capabilities">
     <div class="container">
-      <div class="section-title"><h2>Core Capabilities</h2></div>
+      <div class="section-title"><h2>Heterogeneous AI Architecture</h2></div>
       <div class="service-grid">
         <div class="service-card">
           <div class="service-img"><img src="images/aipowered.svg" alt="Intelligent Workflow Automation" loading="lazy"></div>
           <div class="service-content">
-            <h3>Intelligent Workflow Automation</h3>
-            <p>Agentic orchestration for data processing, knowledge retrieval, document understanding, and human‑in‑the‑loop approvals. Built with portable, open components.</p>
+            <h3>SLM-Powered Workflow Automation</h3>
+            <p>Specialized Small Language Models handle repetitive tasks like parsing, JSON generation, and summarization with 10-30x cost efficiency. LLMs reserved for complex reasoning and open-ended dialogue.</p>
             <a class="service-link" href="services/ai-services.html">Automate Digital Workflows</a>
           </div>
         </div>
         <div class="service-card">
           <div class="service-img"><img src="images/robotics.svg" alt="Robotics & Manufacturing" loading="lazy"></div>
           <div class="service-content">
-            <h3>Robotics & Manufacturing</h3>
-            <p>Closed‑loop control, vision‑based inspection, and MES/PLC integration. From proof‑of‑concept to factory rollout with safety and governance.</p>
+            <h3>Edge-Deployed Manufacturing AI</h3>
+            <p>Fine-tuned SLMs running locally on consumer-grade GPUs for real-time control, vision inspection, and MES/PLC integration. Privacy-preserving, low-latency inference without cloud dependencies.</p>
             <a class="service-link" href="services/automation-robotics.html">Automate Physical Operations</a>
           </div>
         </div>
         <div class="service-card">
           <div class="service-img"><img src="images/b2b.svg" alt="Strategy & Governance" loading="lazy"></div>
           <div class="service-content">
-            <h3>Strategy & Governance</h3>
-            <p>Roadmapping, risk assessments, evaluation pipelines, and model governance aligned to GDPR and Hong Kong PDPO principles.</p>
+            <h3>Heterogeneous Model Strategy</h3>
+            <p>Strategic deployment of SLM/LLM hybrid architectures with cost optimization, performance monitoring, and governance frameworks aligned to GDPR and Hong Kong PDPO principles.</p>
             <a class="service-link" href="services/strategy.html">Plan Your Strategy</a>
           </div>
         </div>
@@ -109,8 +219,8 @@
       <div class="about-grid">
         <div class="about-img-wrapper"><img class="about-img-responsive" src="images/company.png" alt="Seedcore Research"></div>
         <div class="about-content">
-          <h2>Research‑Backed Architecture</h2>
-          <p>Our systems operationalize a contractive, safety‑first multi‑agent architecture that keeps 90% of traffic on a fast path and escalates only the hard 10% to deep reasoning, while maintaining sub‑100ms latency and strict safety filters.</p>
+          <h2>Heterogeneous AI Architecture</h2>
+          <p>Our research demonstrates that Small Language Models (SLMs) outperform Large Language Models (LLMs) for most agentic tasks while delivering 10-30x cost savings. We deploy specialized SLMs for routine operations—parsing, tool calling, summarization—while reserving LLMs for complex reasoning and open-ended dialogue.</p>
           <div style="margin: 16px 0;">
             <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">
               <img src="https://img.shields.io/github/stars/NeilLi/seedcore?style=social" alt="GitHub stars" style="margin-right: 8px;">
@@ -122,7 +232,7 @@
               <img src="https://img.shields.io/github/last-commit/NeilLi/seedcore" alt="Last commit">
             </a>
           </div>
-          <p class="notice">See our core research whitepaper for the theory and benchmarks.</p>
+          <p class="notice">Our position paper "Small Language Models are the Future of Agentic AI" outlines the technical and economic advantages of heterogeneous model architectures.</p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <a class="btn" href="resources/whitepapers.html">Read the Papers</a>
             <a class="btn" href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">View Source on GitHub</a>
@@ -132,10 +242,69 @@
     </div>
   </section>
 
+  <section id="slm-advantages" class="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why SLMs Excel at Agentic AI Tasks</h2>
+      </div>
+      <div class="slm-content">
+        <p class="section-intro">
+          Small Language Models (SLMs) are ideal for agentic systems because each step uses only a
+          narrow slice of LLM capability—parsing commands, producing structured JSON, or summarizing
+          context—tasks perfectly suited to compact, specialized models.
+        </p>
+        <div class="slm-advantages-grid">
+          <div class="advantage-item">
+            <div class="advantage-icon">✓</div>
+            <div class="advantage-content">
+              <h3>Cost Efficiency</h3>
+              <p>10–30× cheaper than comparable LLM calls</p>
+            </div>
+          </div>
+          <div class="advantage-item">
+            <div class="advantage-icon">✓</div>
+            <div class="advantage-content">
+              <h3>Reliability</h3>
+              <p>Less hallucination, more consistent outputs</p>
+            </div>
+          </div>
+          <div class="advantage-item">
+            <div class="advantage-icon">✓</div>
+            <div class="advantage-content">
+              <h3>Speed</h3>
+              <p>Real-time responses without heavy parallelism</p>
+            </div>
+          </div>
+          <div class="advantage-item">
+            <div class="advantage-icon">✓</div>
+            <div class="advantage-content">
+              <h3>Edge Deployment</h3>
+              <p>Run on consumer GPUs for privacy & low latency</p>
+            </div>
+          </div>
+          <div class="advantage-item">
+            <div class="advantage-icon">✓</div>
+            <div class="advantage-content">
+              <h3>Fine-tuning Agility</h3>
+              <p>Add new skills in hours, not weeks</p>
+            </div>
+          </div>
+        </div>
+        <div class="slm-footnote">
+          <p>
+            Modern SLMs can match or exceed larger models on targeted benchmarks while delivering ~6× higher throughput
+            and lower memory use for agent tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
   <section class="cta" id="cta-bottom">
     <div class="container">
-      <h2>Ready to build responsibly autonomous systems?</h2>
-      <p>Speak with our team about pilots in manufacturing, logistics, and enterprise automation.</p>
+      <h2>Ready to implement heterogeneous agentic AI?</h2>
+      <p>Speak with our team about deploying cost-efficient SLM/LLM hybrid architectures for your enterprise automation needs.</p>
       <a href="contact.html#consultation" class="btn btn-light">Book a Demo</a>
     </div>
   </section>
@@ -148,13 +317,13 @@
             <img src="assets/seedcore-logo.svg" alt="Seedcore logo" style="height:54px;width:auto"/>
           </a>
           <h3>Seedcore</h3>
-          <p>Trusted AI agents and autonomous manufacturing. Secure, scalable, and governed.</p>
+          <p>Agentic AI with heterogeneous model architecture. Cost-efficient, reliable, and enterprise-ready.</p>
         </div>
         <div class="footer-col">
           <h3>Company</h3>
           <ul>
             <li><a href="about.html">About</a></li>
-            <li><a href="resources/unified-energy-vecitors.html">Research Insights</a></li>
+            <li><a href="resources/unified-energy-vectors.html">Research Insights</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -173,7 +342,7 @@
           <h3>Legal</h3>
           <ul class="legal">
             <li>Seed Core Limited (Hong Kong) — Company No. 78729896</li>
-            <li><strong>Registered office:</strong> [update address]</li>
+            <li><strong>Registered office:</strong> Hong Kong</li>
             <li><a href="privacy-policy.html">Privacy Policy (GDPR & HK PDPO)</a></li>
             <li><a href="terms-of-service.html">Terms of Service</a></li>
             <li><a href="trust-security.html">Trust, Safety & Governance</a></li>
