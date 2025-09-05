@@ -343,6 +343,18 @@
         <div class="page-header">
             <h1 class="title">Get in Touch</h1>
             <p class="page-subtitle">We're excited to hear about your automation challenges and strategic goals. Reach out to us to start a conversation or request a consultation.</p>
+            
+            <!-- Notification Banner -->
+            <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%); border: 1px solid #ff4757; border-radius: 15px; padding: 20px; margin: 30px auto; max-width: 600px; text-align: center; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);">
+                <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.3em;">
+                    <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+                    Service Notice
+                </h3>
+                <p style="color: #fff; margin: 0; font-size: 1.1em; line-height: 1.5;">
+                    We're currently preparing our services and will be ready to assist you soon. 
+                    Please feel free to reach out with your inquiries, and we'll get back to you as soon as we're fully operational.
+                </p>
+            </div>
         </div>
 
         <div class="contact-layout">
@@ -391,11 +403,11 @@
                 </div>
                 <div class="contact-info-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>EU Office: Future Street 1, Berlin, Germany</span>
+                    <span style="filter: blur(4px); user-select: none; cursor: default;">EU Office: Future Street 1, Berlin, Germany</span>
                 </div>
                 <div class="contact-info-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>SEA Hub: Tech Avenue 101, Singapore</span>
+                    <span style="filter: blur(4px); user-select: none; cursor: default;">SEA Hub: Tech Avenue 101, Singapore</span>
                 </div>
 
                 <h2>Office Hours</h2>
@@ -430,7 +442,7 @@
             contactForm.addEventListener('submit', function(event) {
                 event.preventDefault();
                 // Here you would typically send the data to a backend or n8n webhook
-                alert('Thank you for your message! We will get back to you soon.');
+                alert('Thank you for your message! We\'re currently preparing our services and will get back to you as soon as we\'re fully operational.');
                 contactForm.reset();
             });
         }
