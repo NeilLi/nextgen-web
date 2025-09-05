@@ -436,5 +436,25 @@
         }
     </script>
 
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+      <span>We use cookies for essential functionality and anonymous analytics. See our <a href="privacy-policy.html" style="color:#fff;text-decoration:underline">Privacy Policy</a>.</span>
+      <button id="cookieAccept" class="btn-small">OK</button>
+    </div>
+
+    <script>
+      (function() {
+        const key = 'seedcore_cookie_ok';
+        const ok = localStorage.getItem(key);
+        const banner = document.getElementById('cookieBanner');
+        const btn = document.getElementById('cookieAccept');
+        if (!ok) banner.style.display = 'flex';
+        btn.addEventListener('click', function(){
+          localStorage.setItem(key, '1');
+          banner.style.display = 'none';
+        });
+      })();
+    </script>
+
 </body>
 </html>
