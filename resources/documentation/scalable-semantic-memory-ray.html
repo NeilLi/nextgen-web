@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Scalable, Semantic Memory Manager in Ray - Seedcore</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
+            opacity: 0.7;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1000px; 
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Override header styles for dark theme */
+        .main-header {
+            background: rgba(0,0,0,0.5);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .logo-text span {
+            color: #00fff0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #00fff0;
+            text-shadow: 0 0 5px #00fff0;
+        }
+        
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 40px;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 3.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .page-subtitle {
+            font-size: 1.3em;
+            color: #00fff0;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+        
+        /* Content styling */
+        .content {
+            background: linear-gradient(145deg, rgba(0, 200, 255, 0.1) 0%, rgba(150, 0, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 220, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1, h2, h3 {
+            color: #00c8ff;
+            border-bottom: 2px solid rgba(0, 200, 255, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            color: #00fff0;
+        }
+        h3 {
+            font-size: 1.5rem;
+            border-bottom: none;
+            margin-top: 2rem;
+            color: #00c8ff;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+        
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            background-color: rgba(0, 200, 255, 0.2);
+            color: #00fff0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+        }
+        pre {
+            background-color: #1a1a1a;
+            color: #f1f1f1;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 0.85em;
+            border: none;
+            color: #f1f1f1;
+        }
+        strong {
+            color: #00fff0;
+        }
+        blockquote {
+            border-left: 4px solid #00c8ff;
+            padding-left: 1.5rem;
+            margin: 20px 0;
+            font-style: italic;
+            color: #00fff0;
+            background: rgba(0, 200, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .summary {
+            background: linear-gradient(145deg, rgba(0, 200, 255, 0.15) 0%, rgba(150, 0, 255, 0.15) 100%);
+            border-left: 5px solid #00c8ff;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+        }
+        .summary strong {
+            color: #00fff0;
+            font-size: 1.1em;
+        }
+        hr {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00c8ff, transparent);
+            margin: 3rem 0;
+        }
+        
+        /* Footer */
+        .main-footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(0, 255, 240, 0.2);
+            margin-top: 40px;
+            background: rgba(0,0,0,0.3);
+        }
+        .main-footer p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        .footer-links a {
+            color: #00fff0;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: #ff00ff;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-header .container {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 15px;
+            }
+            .nav-links a {
+                margin: 0 10px;
+            }
+            .title { font-size: 2.8em; }
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.2em; }
+            .content { padding: 20px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+    
+    <header class="main-header">
+        <div class="container">
+            <nav>
+                <a href="../../index.html" class="logo" aria-label="Seedcore Home">
+                    <img src="../../assets/seedcore-logo.svg" alt="Seedcore" class="logo-svg" style="height: 50px; width: auto;">
+                </a>
+                <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+                <div class="nav-links-wrapper">
+                    <div class="nav-links">
+                        <a href="../../index.html">Home</a>
+                        <a href="../../about.html">About</a>
+                        <a href="../../services/index.html">Services</a>
+                        <a href="../../solutions/index.html">Solutions</a>
+                        <a href="../index.html" class="active">Resources</a>
+                        <a href="../../contact.html">Contact</a>
+                    </div>
+                    <a href="../../contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
+                    <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
+                        <img src="../../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;">
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1 class="title">Building a Scalable, Semantic Memory Manager in Ray</h1>
+            <p class="page-subtitle">From Single Actor to Hybrid Cache - A journey through designing a cluster-wide memory layer that's robust, lightning-fast, and intelligent enough for modern AI agents.</p>
+        </div>
+        
+        <div class="content">
+
+    <hr>
+
+    <section>
+        <h2>The Starting Point: A Robust Central Manager</h2>
+        <p>
+            Any distributed system needs a way to share state. Our initial design, `MwManager`, was created to provide robust, namespaced access to two shared Ray actors across a cluster: `MwStore` (for frequency counting and miss tracking) and `SharedCache` (a simple key/value store).
+        </p>
+        <div class="summary">
+            <strong>High-Level Goal:</strong> Create a cluster-safe coordination layer for cache and usage statistics, so multiple agents (we call them "organs") can share knowledge without collisions or race conditions.
+        </div>
+        <p>Key features of this initial version included:</p>
+        <ul>
+            <li><strong>Robust Ray Bootstrap:</strong> Ensured Ray was initialized safely with the correct namespace.</li>
+            <li><strong>Resilient Actor Management:</strong> Handled actor lookups with retries and exponential backoff, and even allowed for auto-creation of missing actors.</li>
+            <li><strong>Async Compatibility:</strong> Used a threadpool to prevent `ray.get()` from blocking asynchronous functions.</li>
+            <li><strong>Centralized Logic:</strong> `MwStore` tracked both item frequency and misses, eliminating the need for a separate `MissTracker`.</li>
+        </ul>
+        <p>
+            In plain English, this was a smart, fault-tolerant cluster memory layer. It was a solid foundation, but as we looked towards massive scale—from 1,000 to 1,000,000 nodes—a critical bottleneck became obvious.
+        </p>
+    </section>
+    
+    <hr>
+    
+    <section>
+        <h2>The Scaling Bottleneck: The Hotspot Problem</h2>
+        <p>
+            A single, named `SharedCache` actor will inevitably become a performance hotspot long before you reach 1,000 nodes, let alone a million. Every agent in the cluster trying to read from or write to the same actor creates a massive queue. The Global Cluster Service (GCS) would melt under the pressure of lookups, and the actor itself would be overwhelmed.
+        </p>
+        <blockquote>
+            The challenge wasn't just about storing data; it was about distributing the *load* of accessing that data.
+        </blockquote>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>A Battle-Tested Architecture for Massive Scale</h2>
+        <p>To solve the hotspot problem, we redesigned the cache with a battle-tested, hierarchical, and sharded approach. The core principle is simple: <strong>no single point of failure or contention.</strong></p>
+
+        <h3>1. Hierarchical Caching (L0, L1, L2)</h3>
+        <p>We introduced multiple layers of caching to serve requests as close to the client as possible:</p>
+        <ul>
+            <li><strong>L0 (Process):</strong> The existing in-memory dictionary (`MwManager._cache`) for the fastest possible access within a single process.</li>
+            <li><strong>L1 (Per-Node):</strong> A new `NodeCache` actor pinned to each Ray node using `NodeAffinitySchedulingStrategy`. This intercepts requests on the local node, avoiding network hops for frequently accessed data.</li>
+            <li><strong>L2 (Global, Sharded):</strong> The single `SharedCache` is replaced by an array of `SharedCacheShard` actors. There is no central router; clients determine the correct shard directly.</li>
+        </ul>
+
+        <h3>2. Client-Side Sharding with Consistent Hashing</h3>
+        <p>To avoid a router bottleneck, the client is responsible for choosing the correct L2 shard. We use a consistent hashing ring (`_HashRing`) to map a given key to a specific shard actor. This distributes keys evenly and allows for dynamic scaling of the shard pool.</p>
+        <pre><code class="language-python">
+# Client determines the correct shard handle directly
+# This avoids any central routing bottleneck.
+
+_RING, _SHARDS = _get_shard_handles()
+
+def _shard_for(key:str):
+    nm = _RING.node_for(key)
+    return _SHARDS[nm]
+
+# Usage in a write operation:
+def set_global_item(self, item_id:str, value:Any):
+    ref = ray.put(value)
+    shard = _shard_for(item_id) # Client-side hashing
+    shard.set_ref.remote(self._global_key(item_id), ref)
+        </code></pre>
+
+        <h3>3. High-Concurrency Async Actors and ObjectRefs</h3>
+        <p>
+            The cache actors (`NodeCache`, `SharedCacheShard`) are designed to be highly concurrent and non-blocking.
+        </p>
+        <ul>
+            <li><strong>Async Methods:</strong> All actor methods like `get` and `set` are `async def`.</li>
+            <li><strong>High Concurrency:</strong> Actors are decorated with `@ray.remote(max_concurrency=2000)` to handle thousands of parallel requests.</li>
+            <li><strong>Storing ObjectRefs:</strong> Instead of serializing large data blobs into the cache, we `ray.put(value)` and store the resulting `ObjectRef`. This allows callers to fetch the data via Ray's zero-copy read paths, dramatically reducing serialization overhead.</li>
+        </ul>
+        <pre><code class="language-python">
+@ray.remote(num_cpus=0, max_concurrency=2000)
+class SharedCacheShard:
+    def __init__(self, max_bytes:int=2_000_000_000, default_ttl_s:int=3600):
+        self._map = {}  # key -> (ObjectRef, expire_ts, size)
+        self._lru = OrderedDict()
+        self._bytes = 0
+        self._max_bytes = max_bytes
+        # ... LRU and TTL eviction logic ...
+
+    async def get(self, key:str):
+        rec = self._map.get(key)
+        if not rec: return None
+        ref, exp, size = rec
+        # ... TTL check ...
+        return ref # Return the ObjectRef, not the value
+
+    async def set_ref(self, key:str, ref, ttl_s:int=None, size:int=None):
+        # ... Store the ObjectRef with metadata ...
+        self._map[key] = (ref, exp, size or 0)
+        await self._evict_if_needed()
+        </code></pre>
+
+        <h3>4. Observability is Key</h3>
+        <p>At scale, you can't fly blind. This architecture is designed for observability with metrics for hits/misses, latency, memory usage per shard, and error rates, all exportable to Prometheus.</p>
+    </section>
+
+    <hr>
+    
+    <section>
+        <h2>The Next Frontier: Semantic Caching</h2>
+        <p>Our sharded cache is now incredibly fast and scalable for literal key lookups. But what if the keys aren't identical, but mean the same thing?</p>
+        <blockquote>
+            An agent setting a key "I would like a cup of ice/hot coffee" should create a cache hit for another agent looking up "I would like a cup of coffee."
+        </blockquote>
+        <p>This requires a <strong>semantic layer</strong>. Instead of matching strings, we need to match intent. The standard approach is to use vector embeddings. Each string is converted into a vector, and lookups are performed via an Approximate Nearest Neighbor (ANN) search to find semantically similar entries.</p>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>The Final Architecture: A Hybrid Approach</h2>
+        <p>We faced a classic "build vs. buy" decision. Do we build our own ANN indexing inside each cache shard, or integrate a specialized tool? We decided on a hybrid approach that leverages the best of both worlds.</p>
+        
+        <h3>Build the Infrastructure, Integrate the Intelligence</h3>
+        <p>
+            The optimal solution is to use our custom, high-performance Ray cache for what it does best—scale and speed—while integrating a dedicated AI memory service like <strong>Mem0</strong> for semantic understanding.
+        </p>
+
+        <div class="summary">
+            <strong>The Hybrid Recommendation:</strong>
+            <ol>
+                <li><strong>Cluster Cache (Our Ray Actors):</strong> The L0/L1/L2 hierarchical cache remains the fast path for all exact-match lookups. It's optimized for massive scale, low latency, and efficient Ray integration.</li>
+                <li><strong>Semantic Memory (Mem0):</strong> Mem0 acts as the intelligent, persistent memory layer. It handles embedding generation, semantic retrieval, memory consolidation, and reasoning.</li>
+                <li><strong>The Glue:</strong> When a request flows through our cache and results in a final L2 miss, we make a fallback call to Mem0's semantic search API. If a relevant memory is found, we populate it back into our L2 cache for fast, repeated access.</li>
+            </ol>
+        </div>
+
+        <p>This layered model gives us:</p>
+        <ul>
+            <li><strong>Ray-Native Performance:</strong> The vast majority of hits are served by our hyper-optimized, distributed cache.</li>
+            <li><strong>Rich Semantic Intelligence:</strong> We get powerful semantic matching and memory persistence from Mem0 without having to reinvent the wheel.</li>
+            <li><strong>Clean Separation of Concerns:</strong> Our infrastructure team focuses on scaling Ray, while the agent logic team leverages a powerful memory API.</li>
+        </ul>
+
+        <h3>Final Takeaway</h3>
+        <p>
+            Building a memory system for a million-node AI platform is a journey. It starts with a robust but centralized manager, evolves into a decentralized, sharded system to handle load, and finally incorporates a specialized semantic layer to provide true intelligence. By building a high-performance cache in Ray and integrating it with a service like Mem0, you get the best of both worlds: unparalleled scale and sophisticated semantic understanding.
+        </p>
+    </section>
+        </div>
+    </div>
+    
+    <footer class="main-footer">
+        <div class="container">
+            <p>© <span id="currentYear">2025</span> Seed Core Limited. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../../privacy-policy.html">Privacy Policy</a>
+                <a href="../../terms-of-service.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
