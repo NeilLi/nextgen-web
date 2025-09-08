@@ -117,6 +117,33 @@
       font-size: 15px;
     }
     
+    /* Research content styling */
+    .research-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .research-content h3 {
+      color: var(--primary);
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    
+    .research-content p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .research-content ul {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+    
+    .research-content li {
+      margin: 8px 0;
+    }
+
     /* Responsive adjustments for SLM section */
     @media (max-width: 767.98px) {
       .slm-advantages-grid {
@@ -214,29 +241,61 @@
     </div>
   </section>
 
-  <section id="research" class="about">
+  <section id="research">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-img-wrapper"><img class="about-img-responsive" src="images/company.png" alt="Seedcore Research"></div>
-        <div class="about-content">
-          <h2>Heterogeneous AI Architecture</h2>
-          <p>Our research demonstrates that Small Language Models (SLMs) outperform Large Language Models (LLMs) for most agentic tasks while delivering 10-30x cost savings. We deploy specialized SLMs for routine operations—parsing, tool calling, summarization—while reserving LLMs for complex reasoning and open-ended dialogue.</p>
-          <div style="margin: 16px 0;">
-            <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">
-              <img src="https://img.shields.io/github/stars/NeilLi/seedcore?style=social" alt="GitHub stars" style="margin-right: 8px;">
-            </a>
-            <a href="https://github.com/NeilLi/seedcore/releases" target="_blank" rel="noopener">
-              <img src="https://img.shields.io/github/v/release/NeilLi/seedcore" alt="Latest release" style="margin-right: 8px;">
-            </a>
-            <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">
-              <img src="https://img.shields.io/github/last-commit/NeilLi/seedcore" alt="Last commit">
-            </a>
+      <div class="section-title"><h2>Distributed Intelligent Organism Architecture</h2></div>
+      <div class="research-content">
+        <p>SeedCore implements a revolutionary distributed, intelligent organism architecture using Ray Serve for service orchestration and Ray Actors for distributed computation. Our system is designed to be scalable, fault-tolerant, and capable of handling complex cognitive workloads through a sophisticated microservices pattern.</p>
+        
+        <h3>Core Architecture Components</h3>
+        <div style="margin: 20px 0;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary);">
+              <h4 style="margin: 0 0 8px 0; color: var(--primary); font-size: 16px;">ML Service</h4>
+              <p style="margin: 0; font-size: 14px; color: var(--text-muted);">Dedicated ML inference service for model serving</p>
+            </div>
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary);">
+              <h4 style="margin: 0 0 8px 0; color: var(--primary); font-size: 16px;">Cognitive Service</h4>
+              <p style="margin: 0; font-size: 14px; color: var(--text-muted);">Parallel workers for reasoning and planning tasks</p>
+            </div>
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary);">
+              <h4 style="margin: 0 0 8px 0; color: var(--primary); font-size: 16px;">Coordinator</h4>
+              <p style="margin: 0; font-size: 14px; color: var(--text-muted);">Global coordination, task routing, and escalation</p>
+            </div>
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary);">
+              <h4 style="margin: 0 0 8px 0; color: var(--primary); font-size: 16px;">Organism Manager</h4>
+              <p style="margin: 0; font-size: 14px; color: var(--text-muted);">Local organ management, agent distribution, and direct task execution</p>
+            </div>
           </div>
-          <p class="notice">Our position paper "Small Language Models are the Future of Agentic AI" outlines the technical and economic advantages of heterogeneous model architectures.</p>
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <a class="btn" href="resources/whitepapers.html">Read the Papers</a>
-            <a class="btn" href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">View Source on GitHub</a>
-          </div>
+        </div>
+
+        <h3>Multi-Tier Memory Architecture</h3>
+        <p>Our system implements a sophisticated multi-tier memory architecture that supports both real-time processing and long-term knowledge retention:</p>
+        <ul style="margin: 15px 0; padding-left: 20px;">
+          <li><strong>Working Memory (Mw):</strong> Fast, volatile cache for recent information and active tasks</li>
+          <li><strong>Long-Term Memory (Mlt):</strong> Durable storage for persistent knowledge and learned patterns</li>
+          <li><strong>Flashbulb Memory (Mfb):</strong> Storage for rare, high-salience events and critical incidents</li>
+          <li><strong>Agent Private Memory (Ma):</strong> 128-dimensional embedding vector for agent state representation</li>
+        </ul>
+
+        <h3>Performance & Energy Optimization</h3>
+        <p>The system continuously tracks performance metrics including task success rates (>95%), response times (<1000ms SLO), memory hit rates (>80%), and energy efficiency. Our EWMA-based capability scoring ensures optimal agent selection and load balancing across the distributed architecture.</p>
+
+        <div style="margin: 16px 0;">
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">
+            <img src="https://img.shields.io/github/stars/NeilLi/seedcore?style=social" alt="GitHub stars" style="margin-right: 8px;">
+          </a>
+          <a href="https://github.com/NeilLi/seedcore/releases" target="_blank" rel="noopener">
+            <img src="https://img.shields.io/github/v/release/NeilLi/seedcore" alt="Latest release" style="margin-right: 8px;">
+          </a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">
+            <img src="https://img.shields.io/github/last-commit/NeilLi/seedcore" alt="Last commit">
+          </a>
+        </div>
+        <p class="notice">Our comprehensive architecture documentation details the technical implementation of distributed intelligent organisms with advanced memory management and performance optimization.</p>
+        <div class="view-all" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+          <a class="btn" href="resources/seedcore-architecture.html">Read Architecture Docs</a>
+          <a class="btn" href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">View Source on GitHub</a>
         </div>
       </div>
     </div>
@@ -323,7 +382,7 @@
           <h3>Company</h3>
           <ul>
             <li><a href="about.html">About</a></li>
-            <li><a href="resources/unified-energy-vectors.html">Research Insights</a></li>
+            <li><a href="resources/seedcore-architecture.html">Research Insights</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>

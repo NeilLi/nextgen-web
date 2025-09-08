@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SeedCore Architecture — Distributed Intelligent Organism</title>
+  <meta name="description" content="Comprehensive overview of SeedCore's distributed intelligent organism architecture using Ray Serve and Ray Actors for scalable, fault-tolerant AI systems." />
+  <link rel="canonical" href="https://seedcore.ai/resources/seedcore-architecture.html" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .architecture-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    
+    .architecture-content h1 {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    
+    .architecture-content h2 {
+      color: var(--primary);
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--primary);
+      padding-left: 15px;
+    }
+    
+    .architecture-content h3 {
+      color: var(--text);
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    
+    .architecture-content h4 {
+      color: var(--text);
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .architecture-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .architecture-content th {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .architecture-content td {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .architecture-content tr:hover {
+      background: #f8f9fa;
+    }
+    
+    .architecture-content ul, .architecture-content ol {
+      margin: 15px 0;
+      padding-left: 25px;
+    }
+    
+    .architecture-content li {
+      margin: 8px 0;
+    }
+    
+    .architecture-content code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 14px;
+    }
+    
+    .architecture-content pre {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      border-left: 4px solid var(--primary);
+      margin: 20px 0;
+    }
+    
+    .architecture-content pre code {
+      background: none;
+      padding: 0;
+    }
+    
+    .architecture-content blockquote {
+      border-left: 4px solid var(--primary);
+      margin: 20px 0;
+      padding: 15px 20px;
+      background: #f8f9fa;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .architecture-content .toc {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .architecture-content .toc ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    
+    .architecture-content .toc a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .architecture-content .toc a:hover {
+      text-decoration: underline;
+    }
+    
+    .architecture-content .highlight-box {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #dee2e6;
+      margin: 20px 0;
+    }
+    
+    .architecture-content .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .architecture-content .component-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--primary);
+    }
+    
+    .architecture-content .component-card h4 {
+      margin: 0 0 10px 0;
+      color: var(--primary);
+    }
+    
+    .architecture-content .component-card p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+    
+    .architecture-content .workflow-diagram {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+    
+    @media (max-width: 768px) {
+      .architecture-content {
+        padding: 20px 15px;
+      }
+      
+      .architecture-content .component-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .architecture-content table {
+        font-size: 14px;
+      }
+      
+      .architecture-content th,
+      .architecture-content td {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="../index.html" class="logo" aria-label="Seedcore Home">
+          <img src="../assets/seedcore-logo.svg" alt="Seedcore" class="logo-svg" style="height: 50px; width: auto;">
+        </a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../services/index.html">Services</a>
+            <a href="../solutions/index.html">Solutions</a>
+            <a href="index.html">Resources</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
+            <img src="../images/github.svg" alt="GitHub repository" style="height:22px;width:auto;margin-left:12px;">
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="architecture-content">
+    <h1>Serve ↔ Actor Architecture Overview</h1>
+    
+    <p>This document provides a comprehensive overview of the SeedCore system architecture, specifically focusing on the mapping between Ray Serve applications and Ray Actors, and how they work together to form a distributed, intelligent organism.</p>
+
+    <div class="toc">
+      <h3>Table of Contents</h3>
+      <ul>
+        <li><a href="#system-overview">System Overview</a></li>
+        <li><a href="#serve-applications">Serve Applications (Logical Apps)</a></li>
+        <li><a href="#serve-deployments">Serve Deployments → Ray Actors</a></li>
+        <li><a href="#control-plane-actors">Control Plane Actors</a></li>
+        <li><a href="#system-relationships">System Relationships</a></li>
+        <li><a href="#architecture-diagram">Architecture Diagram</a></li>
+        <li><a href="#health-indicators">Health Indicators</a></li>
+        <li><a href="#memory-architecture">Memory Architecture</a></li>
+        <li><a href="#performance-tracking">Performance and Energy Tracking</a></li>
+        <li><a href="#scaling-distribution">Scaling and Distribution</a></li>
+      </ul>
+    </div>
+
+    <section id="system-overview">
+      <h2>System Overview</h2>
+      
+      <p>SeedCore implements a distributed, intelligent organism architecture using Ray Serve for service orchestration and Ray Actors for distributed computation. The system is designed to be scalable, fault-tolerant, and capable of handling complex cognitive workloads.</p>
+      
+      <p>The architecture follows a <strong>microservices pattern</strong> where each logical service is deployed as a Ray Serve application, which in turn spawns one or more Ray Actors to handle the actual computation and state management.</p>
+    </section>
+
+    <section id="serve-applications">
+      <h2>Serve Applications (Logical Apps)</h2>
+      
+      <p>From <code>serve status</code>, the system runs 6 main applications:</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Application</th>
+            <th>Purpose</th>
+            <th>Status</th>
+            <th>Replicas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ml_service</strong></td>
+            <td>ML inference and model serving</td>
+            <td>Running</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><strong>cognitive</strong></td>
+            <td>Reasoning, planning, and cognitive tasks</td>
+            <td>Running</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td><strong>coordinator</strong></td>
+            <td>Global coordination, routing, and escalation</td>
+            <td>Running</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><strong>state</strong></td>
+            <td>Centralized state aggregation and memory management</td>
+            <td>Running</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><strong>energy</strong></td>
+            <td>Energy tracking and performance metrics</td>
+            <td>Running</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><strong>organism</strong></td>
+            <td>Local organ management and task execution</td>
+            <td>Running</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <p>Each application represents a logical service namespace that can contain multiple deployments and replicas. The <strong>cognitive</strong> service runs with 2 replicas for distributed reasoning capabilities, while the <strong>coordinator</strong> handles global task routing and escalation decisions.</p>
+    </section>
+
+    <section id="serve-deployments">
+      <h2>Serve Deployments → Ray Actors</h2>
+      
+      <p>Every deployment spawns one or more <strong>ServeReplica actors</strong>, plus global actors for control and proxying:</p>
+      
+      <div class="component-grid">
+        <div class="component-card">
+          <h4>1. ML Service → MLService</h4>
+          <p><strong>ServeDeployment:</strong> MLService<br>
+          <strong>Actor:</strong> ServeReplica:ml_service:MLService<br>
+          <strong>Replicas:</strong> 1 RUNNING<br>
+          <strong>Ray Actor ID:</strong> Actor 2<br>
+          <strong>Purpose:</strong> Dedicated ML inference service for model serving</p>
+        </div>
+        
+        <div class="component-card">
+          <h4>2. Cognitive → CognitiveService</h4>
+          <p><strong>ServeDeployment:</strong> CognitiveService<br>
+          <strong>Actors:</strong> ServeReplica:cognitive:CognitiveService<br>
+          <strong>Replicas:</strong> 2 RUNNING<br>
+          <strong>Ray Actor IDs:</strong> Actor 1 and Actor 4<br>
+          <strong>Purpose:</strong> Parallel workers for reasoning and planning tasks<br>
+          <strong>Distribution:</strong> Replicas are distributed across different Ray nodes for redundancy</p>
+        </div>
+        
+        <div class="component-card">
+          <h4>3. Coordinator → Coordinator</h4>
+          <p><strong>ServeDeployment:</strong> Coordinator<br>
+          <strong>Replicas:</strong> 1 RUNNING<br>
+          <strong>Ray Actor ID:</strong> Actor 5<br>
+          <strong>Purpose:</strong> Global coordination, task routing, OCPS valve, and HGNN escalation<br>
+          <strong>Route Prefix:</strong> /pipeline</p>
+        </div>
+        
+        <div class="component-card">
+          <h4>4. State → StateService</h4>
+          <p><strong>ServeDeployment:</strong> StateService<br>
+          <strong>Replicas:</strong> 1 RUNNING<br>
+          <strong>Ray Actor ID:</strong> Actor 9<br>
+          <strong>Purpose:</strong> Centralized state aggregation and memory management<br>
+          <strong>Memory:</strong> 1GB allocated for state collection and caching</p>
+        </div>
+        
+        <div class="component-card">
+          <h4>5. Energy → EnergyService</h4>
+          <p><strong>ServeDeployment:</strong> EnergyService<br>
+          <strong>Replicas:</strong> 1 RUNNING<br>
+          <strong>Ray Actor ID:</strong> Actor 10<br>
+          <strong>Purpose:</strong> Energy tracking and performance metrics collection<br>
+          <strong>Memory:</strong> 1GB allocated for energy state management</p>
+        </div>
+        
+        <div class="component-card">
+          <h4>6. Organism → OrganismManager</h4>
+          <p><strong>ServeDeployment:</strong> OrganismManager<br>
+          <strong>Replicas:</strong> 1 RUNNING<br>
+          <strong>Ray Actor ID:</strong> Actor 8<br>
+          <strong>Purpose:</strong> Local organ management, agent distribution, and direct task execution<br>
+          <strong>Memory:</strong> 2GB allocated for organism state management<br>
+          <strong>Route Prefix:</strong> /organism</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="control-plane-actors">
+      <h2>Control Plane Actors</h2>
+      
+      <p>Besides service replicas, Serve maintains several control plane actors:</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Actor</th>
+            <th>Purpose</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ServeController (Actor 3)</strong></td>
+            <td>Central brain of Serve, manages deployments and replicas</td>
+            <td>Running</td>
+          </tr>
+          <tr>
+            <td><strong>ProxyActors (Actor 6 & 7)</strong></td>
+            <td>Handle HTTP/GRPC ingress, route to correct deployment</td>
+            <td>Running</td>
+          </tr>
+          <tr>
+            <td><strong>StatusActor (Actor 0)</strong></td>
+            <td>Ray Dashboard integration, tracks job/actor status</td>
+            <td>Running</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="system-relationships">
+      <h2>System Relationships</h2>
+      
+      <h3>1. Serve → Actors Mapping</h3>
+      <ul>
+        <li>Each Serve deployment represents <strong>one logical service</strong></li>
+        <li>It owns <strong>N ServeReplica actors</strong> (workers), distributed across Ray nodes</li>
+        <li>Scale is reflected in <code>replica_states.RUNNING</code></li>
+        <li>Replicas can be scaled independently based on workload requirements</li>
+      </ul>
+      
+      <h3>2. Actors → Nodes Distribution</h3>
+      <ul>
+        <li>Replicas are distributed between nodes for fault tolerance</li>
+        <li>Example: CognitiveService has 2 replicas on different nodes:
+          <ul>
+            <li>Actor 1 on node <code>f7d...</code></li>
+            <li>Actor 4 on node <code>34d...</code></li>
+          </ul>
+        </li>
+        <li>This provides redundancy and parallelism</li>
+      </ul>
+      
+      <h3>3. Core Service Interactions</h3>
+      
+      <h4>Coordinator & OrganismManager</h4>
+      <ul>
+        <li><strong>Coordinator</strong> (Actor 5) handles global task routing and coordination</li>
+        <li>Uses OCPS valve for drift detection and escalation decisions</li>
+        <li>Routes tasks to <strong>OrganismManager</strong> for local execution</li>
+        <li><strong>OrganismManager</strong> (Actor 8) manages organ lifecycle and agent distribution</li>
+      </ul>
+      
+      <h4>CognitiveService Integration</h4>
+      <ul>
+        <li><strong>CognitiveService</strong> (Actors 1 & 4) provides reasoning and planning capabilities</li>
+        <li>Called by <strong>Coordinator</strong> for HGNN decomposition and escalation</li>
+        <li>Serves as the "Cognitive organ" for complex task planning</li>
+      </ul>
+    </section>
+
+    <section id="architecture-diagram">
+      <h2>Architecture Diagram</h2>
+      
+      <div class="workflow-diagram">
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              Ray Cluster                                       │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐            │
+│  │   Serve Proxy   │    │   Serve Proxy   │    │ ServeController │            │
+│  │   (Actor 6)     │    │   (Actor 7)     │    │   (Actor 3)     │            │
+│  └─────────────────┘    └─────────────────┘    └─────────────────┘            │
+│           │                       │                       │                    │
+│           └───────────────────────┼───────────────────────┘                    │
+│                                   │                                            │
+│  ┌─────────────────────────────────────────────────────────────────────────┐   │
+│  │                        Serve Applications                               │   │
+│  │                                                                         │   │
+│  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ │   │
+│  │  │ml_service│ │cognitive│ │coordinator│ │  state  │ │ energy  │ │organism │ │   │
+│  │  │         │ │         │ │         │ │         │ │         │ │         │ │   │
+│  │  │MLService│ │Cognitive│ │Coordinator│ │StateSvc │ │EnergySvc│ │OrganismMgr│ │   │
+│  │  │(Actor 2)│ │(Actor 1,4)│ │(Actor 5)│ │(Actor 9)│ │(Actor 10)│ │(Actor 8)│ │   │
+│  │  └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘ │   │
+│  └─────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                 │
+│  ┌─────────────────────────────────────────────────────────────────────────┐   │
+│  │                          Ray Actors                                     │   │
+│  │                                                                         │   │
+│  │  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐     │   │
+│  │  │A 0  │ │A 1  │ │A 2  │ │A 3  │ │A 4  │ │A 5  │ │A 6  │ │A 7  │     │   │
+│  │  │Status│ │Cogn │ │ML   │ │Ctrl │ │Cogn │ │Coord│ │Proxy│ │Proxy│     │   │
+│  │  └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘     │   │
+│  │                                                                         │   │
+│  │  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐                                     │   │
+│  │  │A 8  │ │A 9  │ │A 10 │ │A 11 │                                     │   │
+│  │  │Org  │ │State│ │Energy│ │Tier0│                                     │   │
+│  │  │Mgr  │ │Svc  │ │Svc  │ │Mem  │                                     │   │
+│  │  └─────┘ └─────┘ └─────┘ └─────┘                                     │   │
+│  └─────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                 │
+│  ┌─────────────────────────────────────────────────────────────────────────┐   │
+│  │                    Memory Architecture                                  │   │
+│  │                                                                         │   │
+│  │  ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐              │   │
+│  │  │   Mw    │    │   Mlt   │    │   Mfb   │    │   Ma    │              │   │
+│  │  │ Working │    │Long-Term│    │Flashbulb│    │Private  │              │   │
+│  │  │ Memory  │    │ Memory  │    │ Memory  │    │ Memory  │              │   │
+│  │  │(Volatile)│    │(Persistent)│ │(Rare)  │    │(128-D)  │              │   │
+│  │  └─────────┘    └─────────┘    └─────────┘    └─────────┘              │   │
+│  └─────────────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────────┘
+      </div>
+    </section>
+
+    <section id="health-indicators">
+      <h2>Health Indicators</h2>
+      
+      <div class="highlight-box">
+        <p>The current system shows <strong>healthy</strong> status across all components:</p>
+        <ul>
+          <li>✅ <strong>All deployments are RUNNING</strong></li>
+          <li>✅ <strong>Cognitive has 2 replicas</strong> for distributed reasoning</li>
+          <li>✅ <strong>OrganismManager is alive</strong> and ready to manage organs</li>
+          <li>✅ <strong>No DEAD actors</strong> left hanging</li>
+          <li>✅ <strong>Proper replica distribution</strong> across nodes</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="memory-architecture">
+      <h2>Memory Architecture</h2>
+      
+      <p>The SeedCore system implements a sophisticated multi-tier memory architecture that supports both real-time processing and long-term knowledge retention. This architecture is designed to optimize performance while maintaining system efficiency.</p>
+      
+      <h3>Memory Tiers Overview</h3>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Purpose</th>
+            <th>Characteristics</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mw</strong></td>
+            <td>Working Memory</td>
+            <td>Volatile</td>
+            <td>Fast access to recent information</td>
+            <td>High-speed cache, limited capacity</td>
+          </tr>
+          <tr>
+            <td><strong>Mlt</strong></td>
+            <td>Long-Term Memory</td>
+            <td>Persistent</td>
+            <td>Durable knowledge storage</td>
+            <td>Large capacity, slower access</td>
+          </tr>
+          <tr>
+            <td><strong>Mfb</strong></td>
+            <td>Flashbulb Memory</td>
+            <td>Persistent</td>
+            <td>High-salience events</td>
+            <td>Rare, critical events only</td>
+          </tr>
+          <tr>
+            <td><strong>Ma</strong></td>
+            <td>Agent Private Memory</td>
+            <td>Volatile</td>
+            <td>Agent state representation</td>
+            <td>128-D embedding vector</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>Memory Access Flow</h3>
+      
+      <div class="workflow-diagram">
+Task Query
+    ↓
+1. Check Mw (Working Memory) - Fast lookup
+    ↓ (cache miss)
+2. Query Mlt (Long-Term Memory) - Persistent storage
+    ↓ (success)
+3. Cache result back to Mw for future access
+    ↓ (high-salience event)
+4. Optionally log to Mfb (Flashbulb Memory)
+      </div>
+    </section>
+
+    <section id="performance-tracking">
+      <h2>Performance and Energy Tracking</h2>
+      
+      <h3>Core Performance Indicators</h3>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Description</th>
+            <th>Measurement</th>
+            <th>Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Task Success Rate</strong></td>
+            <td>Percentage of successfully completed tasks</td>
+            <td>EWMA over time window</td>
+            <td>>95%</td>
+          </tr>
+          <tr>
+            <td><strong>Response Time</strong></td>
+            <td>End-to-end task execution latency</td>
+            <td>P50, P95, P99 percentiles</td>
+            <td><1000ms (SLO)</td>
+          </tr>
+          <tr>
+            <td><strong>Memory Hit Rate</strong></td>
+            <td>Cache hit ratio in working memory</td>
+            <td>Hit/(Hit+Miss) ratio</td>
+            <td>>80%</td>
+          </tr>
+          <tr>
+            <td><strong>Throughput</strong></td>
+            <td>Tasks processed per unit time</td>
+            <td>Tasks/second</td>
+            <td>Variable by service</td>
+          </tr>
+          <tr>
+            <td><strong>Resource Utilization</strong></td>
+            <td>CPU, memory, energy consumption</td>
+            <td>Percentage of allocated resources</td>
+            <td><80%</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>Energy Management System</h3>
+      
+      <div class="component-grid">
+        <div class="component-card">
+          <h4>Expected Contribution</h4>
+          <p>Predicted value based on capabilities for load balancing and scheduling</p>
+        </div>
+        
+        <div class="component-card">
+          <h4>Entropy</h4>
+          <p>Measure of uncertainty and learning potential for learning and adaptation</p>
+        </div>
+        
+        <div class="component-card">
+          <h4>Consumption</h4>
+          <p>Actual resource usage for cost optimization</p>
+        </div>
+        
+        <div class="component-card">
+          <h4>Balance</h4>
+          <p>System-wide energy distribution for fair resource allocation</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="scaling-distribution">
+      <h2>Scaling and Distribution</h2>
+      
+      <h3>Horizontal Scaling</h3>
+      <ul>
+        <li><strong>CognitiveService:</strong> Currently 2 replicas, can scale based on reasoning workload</li>
+        <li><strong>Other services:</strong> Single replica, can be scaled as needed</li>
+        <li><strong>Load balancing:</strong> Automatic across replicas via Serve proxy</li>
+      </ul>
+      
+      <h3>Fault Tolerance</h3>
+      <ul>
+        <li><strong>Multi-node distribution:</strong> Replicas spread across different Ray nodes</li>
+        <li><strong>Automatic failover:</strong> Serve handles replica failures and restarts</li>
+        <li><strong>State management:</strong> Actor state preserved across failures</li>
+      </ul>
+      
+      <h3>Performance Characteristics</h3>
+      <ul>
+        <li><strong>Parallel processing:</strong> Multiple CognitiveService replicas handle concurrent reasoning tasks</li>
+        <li><strong>Low latency:</strong> Direct actor-to-actor communication within Ray cluster</li>
+        <li><strong>High throughput:</strong> Distributed processing across multiple nodes</li>
+      </ul>
+    </section>
+
+    <div class="highlight-box">
+      <p><strong>Note:</strong> This document provides a comprehensive overview of the SeedCore architecture. For detailed implementation specifics, refer to the individual component documentation in the <code>docs/architecture/components/</code> directory.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-col-main">
+          <a class="footer-logo-link" href="../index.html" aria-label="Seedcore Home">
+            <img src="../assets/seedcore-logo.svg" alt="Seedcore logo" style="height:54px;width:auto"/>
+          </a>
+          <h3>Seedcore</h3>
+          <p>Agentic AI with heterogeneous model architecture. Cost-efficient, reliable, and enterprise-ready.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="seedcore-architecture.html">Research Insights</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="whitepapers.html">Whitepapers</a></li>
+            <li><a href="documentation.html">Documentation</a></li>
+            <li><a href="open-source.html">Open‑Source & Attributions</a></li>
+            <li><a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a></li>
+            <li><a href="whitepapers.html">Research Papers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul class="legal">
+            <li>Seed Core Limited (Hong Kong) — Company No. 78729896</li>
+            <li><strong>Registered office:</strong> Hong Kong</li>
+            <li><a href="../privacy-policy.html">Privacy Policy (GDPR & HK PDPO)</a></li>
+            <li><a href="../terms-of-service.html">Terms of Service</a></li>
+            <li><a href="../trust-security.html">Trust, Safety & Governance</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
