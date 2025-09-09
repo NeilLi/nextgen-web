@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeedCore: Provably Stable Agentic AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0f1f;
+            --text-color: #e0e0e0;
+            --primary-color: #00d4ff;
+            --secondary-color: #00ff95;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4vw;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            transform: scale(0.98);
+            background-image: radial-gradient(circle at 1% 1%, rgba(0, 212, 255, 0.1), transparent 20%),
+                              radial-gradient(circle at 99% 99%, rgba(0, 255, 149, 0.1), transparent 25%);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        h1, h2, h3 {
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 4.5vw;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5vw;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        /* Force slide titles to be visible */
+        .slide h2 {
+            color: #00d4ff !important;
+            font-size: 2.5vw !important;
+            font-weight: 600 !important;
+            margin-bottom: 2rem !important;
+            text-align: center !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+            background: none !important;
+            -webkit-text-fill-color: #00d4ff !important;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3) !important;
+        }
+        
+        h3 {
+            font-size: 1.8vw;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        p {
+            font-size: 1.2vw;
+            line-height: 1.6;
+            max-width: 80ch;
+            text-align: center;
+            color: #b0c0d0;
+        }
+
+        .subtitle {
+            font-size: 1.5vw;
+            color: #a0b0c0;
+            margin-bottom: 2rem;
+        }
+
+        .tagline {
+            font-size: 1.8vw;
+            color: var(--secondary-color);
+            font-weight: 500;
+            border: 1px solid var(--secondary-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin-top: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3vw;
+            width: 100%;
+            max-width: 1600px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5vw;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2vw;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 3vw;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5vw;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 1vw;
+            color: #b0c0d0;
+        }
+
+        .grid-4 .card h3 {
+            color: var(--secondary-color);
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3vw;
+            width: 100%;
+            max-width: 1600px;
+            align-items: flex-start;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background-color: var(--card-bg);
+            color: white;
+            border: 1px solid var(--border-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .nav-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .slide-counter {
+             position: fixed;
+             bottom: 30px;
+             left: 30px;
+             font-size: 16px;
+             color: #a0b0c0;
+             background-color: var(--card-bg);
+             padding: 10px 15px;
+             border-radius: 20px;
+             border: 1px solid var(--border-color);
+             z-index: 1000;
+        }
+
+        .diagram-container {
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .diagram-container svg {
+            max-width: 100%;
+            max-height: 100%;
+            overflow: visible;
+        }
+        
+        .svg-text { font-family: 'Inter', sans-serif; fill: var(--text-color); }
+        .svg-text-bold { font-weight: 600; fill: white; }
+        .svg-text-primary { fill: var(--primary-color); }
+        .svg-text-secondary { fill: var(--secondary-color); }
+        
+        .flow-line { stroke: var(--border-color); stroke-width: 2; fill: none; }
+        .flow-line-fast { stroke: var(--secondary-color); }
+        .flow-line-escalate { stroke: #ff4757; }
+
+        .svg-node { fill: var(--card-bg); stroke: var(--border-color); stroke-width: 1; }
+        .svg-node-primary { stroke: var(--primary-color); }
+        .svg-node-secondary { stroke: var(--secondary-color); }
+
+        .flow-arrow-head { fill: var(--border-color); }
+        .flow-arrow-head-fast { fill: var(--secondary-color); }
+        .flow-arrow-head-escalate { fill: #ff4757; }
+
+        /* Animation for diagram */
+        @keyframes dash {
+            to { stroke-dashoffset: -1000; }
+        }
+        .animated-flow {
+            stroke-dasharray: 10, 5;
+            animation: dash 30s linear infinite;
+        }
+
+        .list {
+            text-align: left;
+            max-width: 70ch;
+        }
+        .list li {
+            font-size: 1.1vw;
+            margin-bottom: 1rem;
+            color: #b0c0d0;
+        }
+        .list li strong {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 3vh;
+            font-size: 1vw;
+            color: #607080;
+        }
+        
+        /* Security diagram styles */
+        .security-layer { transition: opacity 0.3s; }
+        .security-layer:hover { opacity: 0.8; }
+        .security-text { pointer-events: none; }
+        
+        /* Ensure slide titles are always visible */
+        .slide h2 {
+            color: #00d4ff !important;
+            font-size: 2.5vw !important;
+            font-weight: 600 !important;
+            margin-bottom: 2rem !important;
+            text-align: center !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+            background: none !important;
+            -webkit-text-fill-color: #00d4ff !important;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3) !important;
+            position: relative !important;
+            z-index: 10 !important;
+        }
+
+        /* Make slide 4 cards bigger (referencing slide 6 sizing) */
+        .slide:nth-child(4) .grid-4 {
+            max-width: 1200px !important;
+            gap: 2vw !important;
+        }
+
+        .slide:nth-child(4) .card {
+            padding: 2.5vw !important;
+        }
+
+        .slide:nth-child(4) .card-icon {
+            font-size: 3.5vw !important;
+        }
+
+        .slide:nth-child(4) .card h3 {
+            font-size: 1.8vw !important;
+        }
+
+        .slide:nth-child(4) .card p {
+            font-size: 1.2vw !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>SeedCore</h1>
+            <h2 style="font-size: 3vw; margin-bottom: 1rem;">Provably Stable Agentic AI for a Distributed World</h2>
+            <p class="subtitle">Whitepaper, September 2025</p>
+            <div class="tagline">
+                A new class of self-evolving AI organisms.
+            </div>
+        </div>
+
+        <!-- Slide 2: Executive Summary -->
+        <div class="slide">
+            <h2>Executive Summary</h2>
+            <p>SeedCore introduces a new class of self-evolving AI organisms that are provably stable, enterprise-ready, and designed for a distributed future. By leveraging specialized Small Language Models (SLMs) for routine operations and reserving Large Language Models (LLMs) for complex reasoning, SeedCore achieves <strong>10–30× cost savings</strong> while sustaining peak reliability and performance.</p>
+        </div>
+
+        <!-- Slide 3: The Problem -->
+        <div class="slide">
+            <h2>The Problem: AI Agents on a Flawed Foundation</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">🏛️</div>
+                    <h3>Architecturally Shallow</h3>
+                    <p>Current frameworks lack integrated memory, planning, and learning structures required for sophisticated, real-world tasks.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📉</div>
+                    <h3>Fundamentally Unreliable</h3>
+                    <p>Plagued by hallucinations and unstable coordination, they remain unfit for mission-critical applications where trust is non-negotiable.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧱</div>
+                    <h3>Built for a Monolithic Past</h3>
+                    <p>Inflexible, monolithic designs cannot orchestrate workloads across the coming explosion of diverse AI models and intelligent devices.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: The Solution -->
+        <div class="slide">
+             <h2>The SeedCore Solution: An Organism, Not a Framework</h2>
+             <div class="grid-4">
+                 <div class="card">
+                     <div class="card-icon">🌱</div>
+                     <h3>Self-Evolving</h3>
+                     <p>Detects anomalies, reasons about failures, and triggers "mutations" like retraining to continuously adapt and improve.</p>
+                 </div>
+                 <div class="card">
+                     <div class="card-icon">🛡️</div>
+                     <h3>Provably Stable</h3>
+                     <p>Anchored in the Fidelity principle, a canonical energy model ensures stability and prevents chaotic behavior.</p>
+                 </div>
+                 <div class="card">
+                     <div class="card-icon">🧠</div>
+                     <h3>Smart & Efficient</h3>
+                     <p>Handles 90% of tasks on a sub-80ms fast path, reserving costly deep reasoning for when it's truly required.</p>
+                 </div>
+                 <div class="card">
+                     <div class="card-icon">🌐</div>
+                     <h3>Distributed Native</h3>
+                     <p>Built for the modern world of cloud data centers, industrial fleets, and swarms of intelligent robots.</p>
+                 </div>
+             </div>
+        </div>
+        
+        <!-- Slide 5: Architecture Diagram -->
+        <div class="slide">
+            <h2>Figure 1: SeedCore Organism Architecture</h2>
+            <div class="diagram-container">
+                <svg viewBox="0 0 1000 600">
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" class="flow-arrow-head" />
+                        </marker>
+                        <marker id="arrow-fast" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" class="flow-arrow-head-fast" />
+                        </marker>
+                        <marker id="arrow-escalate" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" class="flow-arrow-head-escalate" />
+                        </marker>
+                    </defs>
+
+                    <!-- Nodes -->
+                    <rect x="50" y="275" width="150" height="50" rx="10" class="svg-node svg-node-primary"/>
+                    <text x="125" y="305" class="svg-text svg-text-bold" text-anchor="middle">Task Arrival</text>
+
+                    <rect x="280" y="275" width="180" height="80" rx="10" class="svg-node svg-node-primary"/>
+                    <text x="370" y="305" class="svg-text svg-text-bold" text-anchor="middle">Coordinator</text>
+                    <text x="370" y="330" class="svg-text svg-text-primary" text-anchor="middle">(OCPS Valve)</text>
+                    
+                    <rect x="550" y="100" width="200" height="80" rx="10" class="svg-node"/>
+                    <text x="650" y="130" class="svg-text svg-text-bold" text-anchor="middle">Cognitive Core</text>
+                    <text x="650" y="155" class="svg-text" text-anchor="middle">(HGNN Planning)</text>
+                    
+                    <rect x="550" y="420" width="200" height="50" rx="10" class="svg-node svg-node-secondary"/>
+                    <text x="650" y="450" class="svg-text svg-text-bold" text-anchor="middle">Organism Manager</text>
+
+                    <rect x="830" y="275" width="140" height="120" rx="10" class="svg-node"/>
+                    <text x="900" y="300" class="svg-text svg-text-bold" text-anchor="middle">Memory</text>
+                    <text x="900" y="330" class="svg-text" text-anchor="middle">Mw (Working)</text>
+                    <text x="900" y="355" class="svg-text" text-anchor="middle">Mlt (Long-Term)</text>
+                    <text x="900" y="380" class="svg-text" text-anchor="middle">Mfb (Flashbulb)</text>
+                    
+                    <!-- Feedback Loops -->
+                     <path d="M 650 180 Q 500 220 370 270" class="flow-line animated-flow" stroke-dasharray="5,5" marker-end="url(#arrow)" />
+                     <text x="490" y="230" class="svg-text" font-size="14">HGNN Plan</text>
+
+                     <path d="M 540 445 C 400 550, 200 500, 290 350" class="flow-line animated-flow" stroke-dasharray="5,5" marker-end="url(#arrow)" />
+                     <text x="350" y="480" class="svg-text" font-size="14">Feedback (ΔE Mutations)</text>
+
+                    <!-- Flow Lines -->
+                    <path d="M 200 300 H 280" class="flow-line" marker-end="url(#arrow)"/>
+                    <!-- Escalation Path -->
+                    <path d="M 370 275 V 140 H 550" class="flow-line flow-line-escalate animated-flow" marker-end="url(#arrow-escalate)"/>
+                    <text x="450" y="125" class="svg-text" fill="#ff4757">Escalation Path</text>
+                    <!-- Fast Path -->
+                    <path d="M 460 315 H 550 V 420" class="flow-line flow-line-fast animated-flow" marker-end="url(#arrow-fast)"/>
+                    <text x="500" y="360" class="svg-text svg-text-secondary">Fast Path (>90%)</text>
+                    
+                    <path d="M 750 445 H 800 Q 830 445, 830 410" class="flow-line" marker-end="url(#arrow)"/>
+                    <path d="M 830 275 Q 830 150, 750 150" class="flow-line" marker-end="url(#arrow)"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Slide 6: Core Principles -->
+        <div class="slide">
+            <h2>Core Principles: The Foundation of Trust, Performance & Safety</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Fidelity</h3>
+                    <p>Every control signal is a projection of the organism’s canonical energy state. This ensures decisions are grounded, auditable, and mathematically stable.</p>
+                </div>
+                <div class="card">
+                    <h3>Performance</h3>
+                    <p>Fast path ensures sub-second trust; the flywheel compounds knowledge off-path for continual growth.</p>
+                </div>
+                <div class="card">
+                    <h3>Safety & Cost</h3>
+                    <p>A multi-layered defense with configurable guardrails, resource budgets, and an auditable lifecycle ensures mutations are always beneficial and bounded.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Deep Dive Principles -->
+        <div class="slide">
+            <h2>Principle Deep Dive</h2>
+             <div class="grid-3">
+                <div class="card">
+                    <h3 style="color:var(--primary-color)">Fidelity</h3>
+                    <ul class="list">
+                        <li><strong>s_drift:</strong> A canonical novelty score that gates fast vs. deep reasoning.</li>
+                        <li><strong>ΔE:</strong> Mutations (retrain, tune) only occur when the expected energy benefit exceeds the cost.</li>
+                        <li><strong>Predicate Routing:</strong> Simple YAML-based rules are tied directly to the canonical system state.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--primary-color)">Performance</h3>
+                    <ul class="list">
+                       <li><strong>Fast Path:</strong> Ensures sub-second trust with multi-tier caches (L0/L1/L2) and single-flight guards to prevent stampedes.</li>
+                       <li><strong>Knowledge Flywheel:</strong> Compounds knowledge off-path for continual growth through memory synthesis, model tuning, and telemetry.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--primary-color)">Safety & Cost</h3>
+                     <ul class="list">
+                        <li><strong>Predicate Router:</strong> A configurable guardrail that gates all high-cost actions based on declarative policies.</li>
+                        <li><strong>GPU Guard:</strong> Enforces hard concurrency limits and daily GPU budgets to control spend.</li>
+                        <li><strong>Auditable Lifecycle:</strong> Tracks ΔE_est → E_before → ΔE_realized → cost for every mutation.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Advanced Capabilities -->
+        <div class="slide">
+            <h2>Advanced Capabilities & Future Vision</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Meta-Controller via Reinforcement Learning</h3>
+                    <p>The Coordinator can evolve into an RL agent—optimizing its own routing and mutation policies against a long-term reward signal that balances task success, latency, and energy gain.</p>
+                </div>
+                 <div class="card">
+                    <h3>Defense-in-Depth Security</h3>
+                    <p>A multi-layered security architecture provides comprehensive protection, from blocking anomalous inputs at the edge to executing high-stakes tasks in cryptographically secured environments.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Security Diagram -->
+        <div class="slide">
+            <h2>Defense-in-Depth Security Architecture</h2>
+            <div class="diagram-container">
+                 <svg viewBox="0 0 600 400">
+                    <g id="security-diagram" class="security-text" font-size="14" text-anchor="middle">
+                        <title>Defense-in-Depth Layers</title>
+                        <g class="security-layer">
+                            <circle cx="300" cy="200" r="180" fill="#00d4ff" fill-opacity="0.1" stroke="#00d4ff" stroke-width="2"/>
+                            <text x="300" y="45" font-weight="bold">Layer 1: OCPS Input Validation</text>
+                        </g>
+                        <g class="security-layer">
+                            <circle cx="300" cy="200" r="150" fill="#00ff95" fill-opacity="0.1" stroke="#00ff95" stroke-width="2"/>
+                            <text x="300" y="75" font-weight="bold">Layer 2: GraphMask Filtering</text>
+                        </g>
+                        <g class="security-layer">
+                            <circle cx="300" cy="200" r="120" fill="#00d4ff" fill-opacity="0.2" stroke="#00d4ff" stroke-width="2"/>
+                             <text x="300" y="105" font-weight="bold">Layer 3: Organ Sandboxes</text>
+                        </g>
+                        <g class="security-layer">
+                            <circle cx="300" cy="200" r="90" fill="#00ff95" fill-opacity="0.2" stroke="#00ff95" stroke-width="2"/>
+                            <text x="300" y="135" font-weight="bold">Layer 4: System Monitoring</text>
+                        </g>
+                        <g class="security-layer">
+                            <circle cx="300" cy="200" r="60" fill="#00d4ff" fill-opacity="0.3" stroke="#00d4ff" stroke-width="2"/>
+                             <text x="300" y="190">Layer 5/6:</text>
+                             <text x="300" y="210">High-Assurance</text>
+                             <text x="300" y="230">(zk-SNARKs & TEEs)</text>
+                        </g>
+                        <text x="300" y="300" font-size="18" fill="white">Core Task</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Slide 10: Conclusion -->
+        <div class="slide">
+            <h2>The Dawn of Organism-Grade AI</h2>
+            <p>SeedCore moves beyond fragile frameworks to deliver a new architectural paradigm: a self-evolving, provably stable, and economically sound foundation for the next generation of intelligent systems.</p>
+            <div class="tagline" style="margin-top: 3rem;">
+                Built for Trust. Designed for the Future.
+            </div>
+        </div>
+
+        <!-- Slide 11: Contact -->
+        <div class="slide">
+             <h1>SeedCore</h1>
+             <p>The foundation for trustworthy, autonomous AI.</p>
+             <div class="footer">
+                SeedCore Contributors, 2025.
+             </div>
+        </div>
+
+    </div>
+
+    <div class="slide-counter">1 / 11</div>
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn">‹</button>
+        <button class="nav-btn" id="nextBtn">›</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const slideCounter = document.querySelector('.slide-counter');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            const next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            const prev = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(prev);
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextBtn.click();
+            } else if (e.key === 'ArrowLeft') {
+                prevBtn.click();
+            }
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>
+

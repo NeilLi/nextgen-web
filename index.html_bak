@@ -119,7 +119,7 @@
     
     /* Research content styling */
     .research-content {
-      max-width: 1200px;
+      max-width: 900px;
       margin: 0 auto;
     }
     
@@ -170,102 +170,6 @@
         font-size: 14px;
       }
     }
-    
-    /* OPTIMIZED ARCHITECTURE SECTION */
-    #capabilities {
-        --card-bg: #ffffff;
-        --card-border: #e0e0e0;
-        --card-shadow: rgba(0, 0, 0, 0.05);
-        --icon-bg: var(--primary);
-        padding-top: 80px;
-        padding-bottom: 80px;
-    }
-     .architecture-grid {
-         display: grid;
-         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-         gap: 30px;
-         margin-top: 40px;
-         max-width: 1200px;
-         margin-left: auto;
-         margin-right: auto;
-     }
-    .architecture-card {
-        background: var(--card-bg);
-        border: 1px solid var(--card-border);
-        border-radius: 12px;
-        padding: 30px;
-        text-align: left;
-        box-shadow: 0 4px 15px var(--card-shadow);
-        transition: transform 0.3s, box-shadow 0.3s;
-        display: flex;
-        flex-direction: column;
-    }
-    .architecture-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-    .architecture-card-header {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        margin-bottom: 20px;
-    }
-    .architecture-icon {
-        flex-shrink: 0;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--icon-bg);
-        color: white;
-    }
-    .architecture-icon svg {
-        width: 24px;
-        height: 24px;
-    }
-    .architecture-card h3 {
-        font-size: 20px;
-        font-weight: 600;
-        color: var(--primary);
-        margin: 0;
-    }
-    .architecture-card p {
-        font-size: 16px;
-        line-height: 1.6;
-        color: var(--text-muted);
-        margin-bottom: 20px;
-        flex-grow: 1;
-    }
-    .architecture-card .service-link {
-        font-weight: 600;
-        color: var(--primary);
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-    .architecture-card .service-link:hover {
-        color: var(--primary-dark);
-        text-decoration: underline;
-    }
-    .section-subtitle {
-        text-align: center;
-        max-width: 1000px;
-        margin: 0 auto;
-        color: var(--text-muted);
-    }
-    
-    /* Consistent section content width */
-    .section-content {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    
-    /* CTA section consistency */
-    .cta .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
   </style>
 </head>
 <body>
@@ -306,49 +210,34 @@
 
   <section id="capabilities">
     <div class="container">
-      <div class="section-title">
-        <h2>The Heterogeneous AI Advantage</h2>
-      </div>
-      <p class="section-subtitle">Our architecture intelligently delegates tasks to the right model for the job, blending the efficiency of specialized SLMs with the power of LLMs. This hybrid approach delivers unparalleled cost-performance, privacy, and strategic flexibility.</p>
-      
-      <div class="architecture-grid">
-        <!-- Card 1: SLM Workflow Automation -->
-        <div class="architecture-card">
-          <div class="architecture-card-header">
-            <div class="architecture-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.5A4.5 4.5 0 0 0 17.5 5c-.58 0-1.13.1-1.64.29a2 2 0 0 1-1.9 2.21c-.48 0-.93-.16-1.3-.44a2 2 0 0 0-2.32 0c-.37.28-.82.44-1.3.44a2 2 0 0 1-1.9-2.21A4.52 4.52 0 0 0 6.5 5 4.5 4.5 0 0 0 2 9.5c0 4.5 3 12.5 6 12.5 1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
-            </div>
-            <h3>Cost-Efficient Automation</h3>
+      <div class="section-title"><h2>Heterogeneous AI Architecture</h2></div>
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="service-img"><img src="images/aipowered.svg" alt="Intelligent Workflow Automation" loading="lazy"></div>
+          <div class="service-content">
+            <h3>SLM-Powered Workflow Automation</h3>
+            <p>Specialized Small Language Models handle repetitive tasks like parsing, JSON generation, and summarization with 10-30x cost efficiency. LLMs reserved for complex reasoning and open-ended dialogue.</p>
+            <a class="service-link" href="services/ai-services.html">Automate Digital Workflows</a>
           </div>
-           <p>We use fine-tuned SLMs to handle 90% of routine digital work—like data extraction, parsing, and structured JSON generation—at <strong>10-30x lower cost</strong> than LLMs. This reserves your budget for complex, high-value reasoning tasks where LLMs truly shine.</p>
-          <a class="service-link" href="services/ai-services.html">Automate Digital Workflows →</a>
         </div>
-        
-        <!-- Card 2: Edge AI -->
-        <div class="architecture-card">
-          <div class="architecture-card-header">
-            <div class="architecture-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M7 21h10"/><path d="M12 17v4"/></svg>
-            </div>
-            <h3>Private On-Premise AI</h3>
+        <div class="service-card">
+          <div class="service-img"><img src="images/robotics.svg" alt="Robotics & Manufacturing" loading="lazy"></div>
+          <div class="service-content">
+            <h3>Edge-Deployed Manufacturing AI</h3>
+            <p>Fine-tuned SLMs running locally on consumer-grade GPUs for real-time control, vision inspection, and MES/PLC integration. Privacy-preserving, low-latency inference without cloud dependencies.</p>
+            <a class="service-link" href="services/automation-robotics.html">Automate Physical Operations</a>
           </div>
-          <p>Deploy specialized SLMs directly on your hardware, even consumer-grade GPUs. This enables real-time, low-latency applications like vision inspection and robotic control without cloud dependencies, ensuring your sensitive data never leaves your premises.</p>
-          <a class="service-link" href="services/automation-robotics.html">Automate Physical Operations →</a>
         </div>
-        
-        <!-- Card 3: Strategy -->
-        <div class="architecture-card">
-          <div class="architecture-card-header">
-            <div class="architecture-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <h3>Strategic Governance</h3>
+        <div class="service-card">
+          <div class="service-img"><img src="images/b2b.svg" alt="Strategy & Governance" loading="lazy"></div>
+          <div class="service-content">
+            <h3>Heterogeneous Model Strategy</h3>
+            <p>Strategic deployment of SLM/LLM hybrid architectures with cost optimization, performance monitoring, and governance frameworks aligned to GDPR and Hong Kong PDPO principles.</p>
+            <a class="service-link" href="services/strategy.html">Plan Your Strategy</a>
           </div>
-          <p>We help you design and implement a robust governance framework for your hybrid model architecture. This includes cost optimization, performance monitoring, and compliance policies aligned with GDPR and Hong Kong PDPO principles, ensuring your AI is both powerful and responsible.</p>
-          <a class="service-link" href="services/strategy.html">Plan Your AI Strategy →</a>
         </div>
       </div>
-      <div class="view-all" style="margin-top: 50px;"><a class="btn" href="services/index.html">Explore All Capabilities</a></div>
+      <div class="view-all"><a class="btn" href="services/index.html">Explore All Capabilities</a></div>
     </div>
   </section>
 
@@ -360,16 +249,16 @@
         
         <h3>Core Principles: The Foundation of Trust, Performance & Safety</h3>
         <div style="margin: 20px 0;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; max-width: 1200px; margin-left: auto; margin-right: auto;">
-            <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary);">
               <h4 style="margin: 0 0 10px 0; color: var(--primary); font-size: 18px;">Fidelity</h4>
               <p style="margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5;">Every control signal is a projection of the organism's canonical energy state. This ensures decisions are grounded, auditable, and mathematically stable.</p>
             </div>
-            <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary);">
               <h4 style="margin: 0 0 10px 0; color: var(--primary); font-size: 18px;">Performance</h4>
               <p style="margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5;">Fast path ensures sub-second trust; the flywheel compounds knowledge off-path for continual growth.</p>
             </div>
-            <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary);">
               <h4 style="margin: 0 0 10px 0; color: var(--primary); font-size: 18px;">Safety & Cost</h4>
               <p style="margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5;">A multi-layered defense with configurable guardrails, resource budgets, and an auditable lifecycle ensures mutations are always beneficial and bounded.</p>
             </div>
@@ -379,22 +268,22 @@
         <h3>SeedCore Solution: An Organism, Not a Framework</h3>
         <p>SeedCore moves beyond fragile frameworks to deliver a new architectural paradigm designed for the next generation of intelligent systems:</p>
         <div style="margin: 20px 0;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; max-width: 1200px; margin-left: auto; margin-right: auto;">
-            <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-              <h4 style="margin: 0 0 10px 0; color: var(--primary); font-size: 18px;">🌱 Self-Evolving</h4>
-              <p style="margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5;">Detects anomalies, reasons about failures, and triggers "mutations" like retraining to continuously adapt and improve.</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #00ff95;">
+              <h4 style="margin: 0 0 8px 0; color: #00ff95; font-size: 16px;">🌱 Self-Evolving</h4>
+              <p style="margin: 0; font-size: 14px; color: var(--text-muted);">Detects anomalies, reasons about failures, and triggers "mutations" like retraining to continuously adapt and improve.</p>
             </div>
-            <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-              <h4 style="margin: 0 0 10px 0; color: var(--primary); font-size: 18px;">🛡️ Provably Stable</h4>
-              <p style="margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5;">Anchored in the Fidelity principle, a canonical energy model ensures stability and prevents chaotic behavior.</p>
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #00ff95;">
+              <h4 style="margin: 0 0 8px 0; color: #00ff95; font-size: 16px;">🛡️ Provably Stable</h4>
+              <p style="margin: 0; font-size: 14px; color: var(--text-muted);">Anchored in the Fidelity principle, a canonical energy model ensures stability and prevents chaotic behavior.</p>
             </div>
-            <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-              <h4 style="margin: 0 0 10px 0; color: var(--primary); font-size: 18px;">🧠 Smart & Efficient</h4>
-              <p style="margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5;">Handles 90% of tasks on a sub-80ms fast path, reserving costly deep reasoning for when it's truly required.</p>
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #00ff95;">
+              <h4 style="margin: 0 0 8px 0; color: #00ff95; font-size: 16px;">🧠 Smart & Efficient</h4>
+              <p style="margin: 0; font-size: 14px; color: var(--text-muted);">Handles 90% of tasks on a sub-80ms fast path, reserving costly deep reasoning for when it's truly required.</p>
             </div>
-            <div style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-              <h4 style="margin: 0 0 10px 0; color: var(--primary); font-size: 18px;">🌐 Distributed Native</h4>
-              <p style="margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5;">Built for the modern world of cloud data centers, industrial fleets, and swarms of intelligent robots.</p>
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #00ff95;">
+              <h4 style="margin: 0 0 8px 0; color: #00ff95; font-size: 16px;">🌐 Distributed Native</h4>
+              <p style="margin: 0; font-size: 14px; color: var(--text-muted);">Built for the modern world of cloud data centers, industrial fleets, and swarms of intelligent robots.</p>
             </div>
           </div>
         </div>
