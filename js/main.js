@@ -50,6 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(() => {
             index = (index + 1) % videoIds.length;
             setVideo(index);
-        }, 30000); // 30s per video
+        }, 8000); // 8s per video
     }
 });
