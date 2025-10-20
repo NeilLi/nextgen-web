@@ -27,4 +27,29 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Video rotation (YouTube, privacy-enhanced mode)
+    const videoFrame = document.getElementById('videoFrame');
+    if (videoFrame) {
+        const videoIds = [
+            'DBUY6HMo_LU', // https://youtu.be/DBUY6HMo_LU
+            'fj4m0aDANtQ', // https://youtu.be/fj4m0aDANtQ
+            'H0BralkJzUM'  // https://youtu.be/H0BralkJzUM
+        ];
+        const base = 'https://www.youtube-nocookie.com/embed/';
+        let index = 0;
+
+        function setVideo(i) {
+            const id = videoIds[i % videoIds.length];
+            // autoplay muted for seamless rotation; modestbranding & rel for a cleaner UI
+            const params = '?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1';
+            videoFrame.src = base + id + params;
+        }
+
+        setVideo(index);
+        setInterval(() => {
+            index = (index + 1) % videoIds.length;
+            setVideo(index);
+        }, 30000); // 30s per video
+    }
 });
