@@ -32,9 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoFrame = document.getElementById('videoFrame');
     if (videoFrame) {
         const videoIds = [
-            'DBUY6HMo_LU', // https://youtu.be/DBUY6HMo_LU
-            'fj4m0aDANtQ', // https://youtu.be/fj4m0aDANtQ
-            'H0BralkJzUM'  // https://youtu.be/H0BralkJzUM
+            'CTUZdPQ6FtM'  // https://youtu.be/CTUZdPQ6FtM
         ];
         const base = 'https://www.youtube-nocookie.com/embed/';
         let index = 0;
