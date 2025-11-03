@@ -28,26 +28,71 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Video rotation (YouTube, privacy-enhanced mode)
+    // Video rotation (YouTube, privacy-enhanced mode with thumbnail)
     const videoFrame = document.getElementById('videoFrame');
-    if (videoFrame) {
+    const videoThumbnail = document.getElementById('videoThumbnail');
+    
+    if (videoFrame && videoThumbnail) {
         const videoIds = [
             'CTUZdPQ6FtM'  // https://youtu.be/CTUZdPQ6FtM
         ];
         const base = 'https://www.youtube-nocookie.com/embed/';
         let index = 0;
+        let isPlaying = false;
 
-        function setVideo(i) {
+        function setVideoThumbnail(i) {
             const id = videoIds[i % videoIds.length];
-            // autoplay muted for seamless rotation; modestbranding & rel for a cleaner UI
-            const params = '?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1';
-            videoFrame.src = base + id + params;
+            // Use maxresdefault for best quality, fallback to hqdefault
+            const maxresUrl = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+            const hqUrl = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+            
+            // Test if maxresdefault exists, otherwise use hqdefault
+            const testImg = new Image();
+            testImg.onload = function() {
+                videoThumbnail.style.backgroundImage = `url(${maxresUrl})`;
+            };
+            testImg.onerror = function() {
+                videoThumbnail.style.backgroundImage = `url(${hqUrl})`;
+            };
+            testImg.src = maxresUrl;
         }
 
-        setVideo(index);
-        setInterval(() => {
-            index = (index + 1) % videoIds.length;
-            setVideo(index);
+        function loadVideo(i) {
+            const id = videoIds[i % videoIds.length];
+            // Ensure controls are always enabled and autoplay is disabled
+            const params = '?controls=1&modestbranding=1&rel=0&playsinline=1';
+            videoFrame.src = base + id + params;
+            videoThumbnail.style.display = 'none';
+            videoFrame.style.display = 'block';
+            isPlaying = true;
+        }
+
+        // Show initial thumbnail
+        setVideoThumbnail(index);
+
+        let rotationInterval = null;
+
+        // Load video when thumbnail is clicked
+        videoThumbnail.addEventListener('click', function() {
+            if (!isPlaying) {
+                loadVideo(index);
+                // Stop rotation once video starts playing
+                if (rotationInterval) {
+                    clearInterval(rotationInterval);
+                    rotationInterval = null;
+                }
+            }
+        });
+
+        // Video rotation - only rotate thumbnails when not playing
+        rotationInterval = setInterval(() => {
+            if (!isPlaying) {
+                // Only rotate if not playing and there are multiple videos
+                if (videoIds.length > 1) {
+                    index = (index + 1) % videoIds.length;
+                    setVideoThumbnail(index);
+                }
+            }
         }, 8000); // 8s per video
     }
 });
