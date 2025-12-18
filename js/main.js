@@ -36,25 +36,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const videoIds = [
             'JT9XQl3Kd6I'  // https://youtu.be/JT9XQl3Kd6I
         ];
-        const base = 'https://www.youtube-nocookie.com/embed/';
+        const base = 'https://www.youtube.com/embed/';
         let index = 0;
         let isPlaying = false;
 
         function setVideoThumbnail(i) {
             const id = videoIds[i % videoIds.length];
-            // Use maxresdefault for best quality, fallback to hqdefault
-            const maxresUrl = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+        
             const hqUrl = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-            
-            // Test if maxresdefault exists, otherwise use hqdefault
-            const testImg = new Image();
-            testImg.onload = function() {
-                videoThumbnail.style.backgroundImage = `url(${maxresUrl})`;
+            const maxresUrl = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+        
+            // 1. Always set HQ first (guaranteed to exist)
+            videoThumbnail.style.backgroundImage = `url(${hqUrl})`;
+        
+            // 2. Try to upgrade to maxres only if it's a real image
+            const img = new Image();
+            img.onload = function () {
+                // YouTube maxres placeholders are exactly 120x90 or very small
+                if (img.naturalWidth > 300) {
+                    videoThumbnail.style.backgroundImage = `url(${maxresUrl})`;
+                }
             };
-            testImg.onerror = function() {
-                videoThumbnail.style.backgroundImage = `url(${hqUrl})`;
-            };
-            testImg.src = maxresUrl;
+            img.src = maxresUrl;
         }
 
         function loadVideo(i) {
@@ -72,15 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let rotationInterval = null;
 
-        // Load video when thumbnail is clicked
-        videoThumbnail.addEventListener('click', function() {
-            if (!isPlaying) {
-                loadVideo(index);
-                // Stop rotation once video starts playing
-                if (rotationInterval) {
-                    clearInterval(rotationInterval);
-                    rotationInterval = null;
-                }
+        // Click to play
+        videoThumbnail.addEventListener('click', () => {
+            loadVideo(index);
+            // Stop rotation once video starts playing
+            if (rotationInterval) {
+                clearInterval(rotationInterval);
+                rotationInterval = null;
             }
         });
 
