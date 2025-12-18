@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (videoFrame && videoThumbnail) {
         const videoIds = [
-            'CTUZdPQ6FtM'  // https://youtu.be/CTUZdPQ6FtM
+            'JT9XQl3Kd6I'  // https://youtu.be/JT9XQl3Kd6I
         ];
         const base = 'https://www.youtube-nocookie.com/embed/';
         let index = 0;
