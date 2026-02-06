@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (videoFrame && videoThumbnail) {
         const videoIds = [
-            'Ug5W_-lsnO0'  // https://youtu.be/Ug5W_-lsnO0
+            'CKJLHPeJrrk'  // https://youtu.be/CKJLHPeJrrk
         ];
         const base = 'https://www.youtube.com/embed/';
         let index = 0;
