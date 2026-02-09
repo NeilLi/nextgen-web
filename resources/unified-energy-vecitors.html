@@ -1,477 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>COA Unified State Vector → Unified Energy Flow</title>
-<style>
-  :root {
-    --bg: #0b0f14;
-    --panel: #111722;
-    --mute: #77809a;
-    --text: #e7eefc;
-    --accent: #6ee7ff;
-    --accent2: #a8ff8f;
-    --warn: #ff8f8f;
-    --ok: #87f5b2;
-    --line: #2a3345;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-  }
-  header {
-    padding: 18px 20px; border-bottom: 1px solid var(--line);
-    display: flex; gap: 18px; align-items: baseline; flex-wrap: wrap;
-  }
-  header h1 { font-size: 18px; margin: 0; font-weight: 700; }
-  header p { margin: 0; color: var(--mute); }
-  .app {
-    display: grid; gap: 16px; padding: 16px;
-    grid-template-columns: 320px minmax(480px,1fr) 360px;
-  }
-  .card {
-    background: var(--panel); border: 1px solid var(--line);
-    border-radius: 12px; padding: 14px;
-  }
-  .card h2 { margin: 0 0 8px 0; font-size: 14px; color: var(--accent); letter-spacing: .2px; }
-  .muted { color: var(--mute); }
-  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-  button {
-    background: #182134; border: 1px solid #26314a; color: var(--text);
-    padding: 8px 10px; border-radius: 9px; cursor: pointer; font-weight: 600;
-  }
-  button:hover { border-color: #39507b; }
-  button.primary { background: #163447; border-color: #1f5f7a; }
-  button.warn { background: #3b1a1a; border-color: #7a2e2e; }
-  small.code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; color: #b7c3df; }
-  .pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 4px 8px; border-radius: 999px; border: 1px solid var(--line);
-    background: #0f1420; margin: 2px 4px 2px 0;
-  }
-  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); }
-  .pill.dead .dot { background: var(--warn); }
-  /* Ledger table */
-  table { width: 100%; border-collapse: collapse; }
-  th, td { padding: 8px 6px; border-bottom: 1px dashed #26314a; text-align: right; }
-  th:first-child, td:first-child { text-align: left; }
-  .delta { font-variant-numeric: tabular-nums; }
-  .delta.up { color: var(--warn); }   /* energy ↑ is bad */
-  .delta.down { color: var(--ok); }   /* energy ↓ is good */
-  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
-  /* Diagram */
-  .diagram-wrap { position: relative; }
-  svg { width: 100%; height: 520px; display: block; }
-  .box { fill: #0f1624; stroke: #2a3345; stroke-width: 1.2; rx: 10; }
-  .box-title { font-size: 12px; fill: #9cc4ff; text-transform: uppercase; letter-spacing: .8px; }
-  .box-sub { font-size: 11px; fill: #a9b6d0; }
-  .core { fill: #132235; stroke: #2d4b6b; stroke-width: 1.6; }
-  .core-label { fill: #cce9ff; font-weight: 700; }
-  .arrow { stroke: #3a4b6a; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
-  .arrowLabel { fill: #9fb4d9; font-size: 12px; }
-  .arrow.thin { stroke-width: 1.3; opacity: .75; }
-  .pulse {
-    animation: pulse 0.9s ease-out 1;
-  }
-  @keyframes pulse {
-    0% { stroke: #89e3ff; stroke-width: 3.4; }
-    100% { stroke: #3a4b6a; stroke-width: 2.2; }
-  }
-  .legend { color: var(--mute); font-size: 12px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unified Energy Vectors | SeedCore</title>
+  <meta name="description" content="System dynamics and operational signal framing for stability-aware autonomous behavior." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/engine-site.css" />
 </head>
-<body>
-<header>
-  <h1>Unified State Vector → Unified Energy Function (COA)</h1>
-  <p>Interactive flow: archive an agent and watch Pair/Hyper/Entropy/Reg/Mem terms update in the ledger.</p>
-</header>
-
-<div class="app">
-
-  <!-- Left: Controls & State -->
-  <div class="card">
-    <h2>Controls</h2>
-    <div class="row" style="margin-bottom:10px">
-      <button id="btnArchive" class="warn">Archive Agent A2</button>
-      <button id="btnEvict" title="Simulate eviction of archived agent’s long-term memory">Evict A2’s Archived Memory</button>
-      <button id="btnInject" class="primary" title="Inject a fresh scout to restore diversity">Inject New Scout</button>
+<body class="engine-page">
+  <header>
+    <div class="container">
+      <nav>
+        <a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../services/index.html">Services</a>
+            <a href="../solutions/index.html">Solutions</a>
+            <a href="../resources/index.html">Resources</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
+        </div>
+      </nav>
     </div>
-    <div class="legend" style="margin-bottom:8px">Lifecycle: <small class="code">Scout → Employed → Specialist → Archived</small>. Archiving removes the agent from <em>agent</em> in the unified state vector, but memory survives in tiers until eviction.</div>
+  </header>
 
-    <h2>Agents</h2>
-    <div id="agentList" class="row"></div>
-
-    <h2 style="margin-top:12px">Organs</h2>
-    <div id="organList" class="legend"></div>
-
-    <h2 style="margin-top:12px">Memory tiers</h2>
-    <div id="memTiers" class="legend"></div>
-  </div>
-
-  <!-- Center: Diagram -->
-  <div class="card diagram-wrap">
-    <h2>Unified Flow Diagram</h2>
-    <svg viewBox="0 0 980 520" aria-label="Unified State Vector to Energy Flow Diagram">
-      <defs>
-        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#3a4b6a"></path>
-        </marker>
-      </defs>
-
-      <!-- Boxes -->
-      <!-- Agent -->
-      <rect class="box" x="60" y="70" width="280" height="120"></rect>
-      <text class="box-title" x="80" y="95">Agent-level</text>
-      <text class="box-sub" x="80" y="118">h (embedding), p (role dist), c (capability), mem_util</text>
-
-      <!-- Organ -->
-      <rect class="box" x="640" y="70" width="280" height="120"></rect>
-      <text class="box-title" x="660" y="95">Organ-level</text>
-      <text class="box-sub" x="660" y="118">P (agg role dist), metrics, g<tspan baseline-shift="sub">o</tspan> (health)</text>
-
-      <!-- Memory -->
-      <rect class="box" x="60" y="320" width="280" height="120"></rect>
-      <text class="box-title" x="80" y="345">Memory tiers</text>
-      <text class="box-sub" x="80" y="368">Ma (agent-local), Mw (organ-local), Mlt (long-term), Mfb (salient)</text>
-
-      <!-- System -->
-      <rect class="box" x="640" y="320" width="280" height="120"></rect>
-      <text class="box-title" x="660" y="345">System-level</text>
-      <text class="box-sub" x="660" y="368">h<tspan baseline-shift="sub">hgnn</tspan>, E patterns (hyperedges), mode weights</text>
-
-      <!-- Core energy -->
-      <circle id="core" class="core" cx="490" cy="280" r="64"></circle>
-      <text class="core-label" x="490" y="276" text-anchor="middle" font-size="13">E_core</text>
-      <text id="coreVal" class="core-label mono" x="490" y="296" text-anchor="middle" font-size="13">0.000</text>
-
-      <!-- Arrows to core -->
-      <path id="arrAgent" class="arrow" d="M340,130 C390,130 420,200 470,240"></path>
-      <text class="arrowLabel" x="385" y="150">Entropy −αH(p)</text>
-
-      <path id="arrOrgan" class="arrow" d="M640,130 C590,130 560,200 510,240"></path>
-      <text class="arrowLabel" x="590" y="150" text-anchor="end">Pairs + Hyper</text>
-
-      <path id="arrMemory" class="arrow" d="M340,380 C400,380 430,330 470,320"></path>
-      <text class="arrowLabel" x="395" y="402">Mem +β·CostVQ</text>
-
-      <path id="arrSystem" class="arrow" d="M640,380 C590,380 560,330 520,320"></path>
-      <text class="arrowLabel" x="585" y="402" text-anchor="end">Reg +λ‖s‖²</text>
-
-      <!-- Archive flow (Agent→Memory) -->
-      <path id="archiveFlow" class="arrow" d="M200,190 C200,240 200,280 200,320"></path>
-      <text class="arrowLabel" x="208" y="258" writing-mode="tb" glyph-orientation-vertical="0">Archive</text>
-    </svg>
-    <div class="legend" style="margin-top:8px">
-      Tip: click <strong>Archive Agent A2</strong>. Agent pairs involving A2 drop, affected organ health g<sub>o</sub> decreases slightly, hyperedges weaken, entropy may fall, reg shrinks a bit, and memory load shifts from Ma→Mlt.
+  <section class="engine-hero">
+    <div class="container">
+      <h1>Unified Energy Vectors</h1>
+      <p>System dynamics and operational signal framing for stability-aware autonomous behavior.</p>
+      <div class="engine-badges">
+        <span>AI-to-Physical-World Execution</span>
+        <span>Reasoning as Infrastructure</span>
+        <span>Policy-First Runtime</span>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Right: Energy ledger -->
-  <div class="card">
-    <h2>Energy Ledger</h2>
-    <table>
-      <thead><tr><th>Term</th><th>Value</th><th>Δ from baseline</th></tr></thead>
-      <tbody id="ledger">
-        <!-- rows injected -->
-      </tbody>
-      <tfoot>
-        <tr>
-          <th>Total E_core</th>
-          <th id="totalVal" class="mono" style="text-align:right">0.000</th>
-          <th id="totalDelta" class="delta mono">0.000</th>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-</div>
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <h2>Operational Focus</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Primary Objective</h3>
+            <p>Link runtime signals with structural control decisions for resilient orchestration.</p>
+          </article>
+          <article class="engine-card">
+            <h3>Execution Pattern</h3>
+            <ul class="engine-list">
+              <li>Intent capture and task graph decomposition</li>
+              <li>Policy Knowledge Graph authorization</li>
+              <li>PlanExecutor runtime execution with telemetry</li>
+              <li>Feedback-driven replanning and recovery</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
-<script>
-/**
- * COA Unified State Vector demo
- * - Agents, organs, system, memory tiers are represented in a minimal model
- * - Energy terms follow: E = -Σ_pairs w_ij·sim(h_i,h_j) - Σ_e w_e·Π g_o∈e - α H(p) + λ‖s‖² + β CostVQ(M)
- * - Actions: Archive agent A2, Evict archived memory, Inject new scout
- */
+      <section class="engine-section engine-media">
+        <h2>Showcase and Source Evidence</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>Showcase Video</h3>
+            <p>Demonstrates closed-loop behavior from reasoning to real-world execution.</p>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Proof Links</h3>
+            <div class="engine-actions">
+              <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="../resources/seedcore-architecture.html">Architecture</a>
+              <a href="../resources/documentation.html">Documentation</a>
+            </div>
+            <img src="../images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
+          </aside>
+        </div>
+      </section>
 
-const roles = ['Scout','Generalist','Specialist'];
+      <section class="engine-section">
+        <h2>Latest Docs Alignment (main/docs)</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Core References</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/README.md" target="_blank" rel="noopener">README: closed-loop model and planes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/architecture/overview/architecture.md" target="_blank" rel="noopener">Architecture overview</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task-payload-capabilities.md" target="_blank" rel="noopener">TaskPayload capabilities</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task_payload_router.md" target="_blank" rel="noopener">Task router reference</a></li>
+            </ul>
+          </article>
+          <article class="engine-card">
+            <h3>Design and Development Notes</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/design-notes.md" target="_blank" rel="noopener">Design notes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/agent_capability_skills_quick_reference.md" target="_blank" rel="noopener">Capability skills quick reference</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/vla_2026_optimizations.md" target="_blank" rel="noopener">VLA 2026 optimizations</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/tree/main/docs" target="_blank" rel="noopener">Browse all docs</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
 
-// --- Initial state (toy numbers for demonstration) ---
-const state = {
-  agents: {
-    A1: { name:'Scout-1',   h:[0.9,0.1,0.2], p:[0.70,0.20,0.10], c:0.60, mem_util:0.30, status:'Employed', archived:false },
-    A2: { name:'Specialist-2', h:[0.8,0.3,0.6], p:[0.10,0.10,0.80], c:0.85, mem_util:0.70, status:'Specialist', archived:false },
-    A3: { name:'Generalist-3', h:[0.5,0.7,0.2], p:[0.20,0.60,0.20], c:0.70, mem_util:0.50, status:'Employed', archived:false },
-  },
-  organs: {
-    O1: { name:'Perception', agents:['A1','A2'], g:0.90, P:null, metrics:{} },
-    O2: { name:'Planning',   agents:['A2','A3'], g:0.80, P:null, metrics:{} },
-  },
-  system: {
-    h_hgnn: [0.3,0.7,0.5],
-    mode_w: [0.4,0.6],
-    E_patterns: [ { orgs:['O1','O2'], w:0.70 } ], // one hyperedge joining two organs
-  },
-  memory: { Ma:3, Mw:1, Mlt:1, Mfb:0 }
-};
+  <footer>
+    <div class="container">
+      <div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div>
+    </div>
+  </footer>
 
-// Parameters
-const params = {
-  alpha: 1.0,       // entropy weight
-  lambda: 0.020,    // regularization
-  beta_mem: 0.50,   // memory cost weight
-  organLossPenalty: 0.10,  // g_o decreases when organ loses an agent
-  organGainBoost: 0.05     // g_o slight boost when new agent joins
-};
-
-// --- Math helpers ---
-const dot = (a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
-const norm = a=>Math.sqrt(dot(a,a));
-const cosine = (a,b)=> {
-  const na = norm(a), nb = norm(b);
-  if (na===0 || nb===0) return 0;
-  return dot(a,b)/(na*nb);
-};
-const entropy = (p)=>{
-  const eps = 1e-12;
-  return -p.reduce((s,pi)=> s + (pi>0? pi*Math.log(pi+eps):0), 0);
-};
-const clamp01 = (x)=> Math.max(0, Math.min(1, x));
-const sum = (arr)=> arr.reduce((a,b)=>a+b,0);
-
-// Active agent IDs
-function aliveAgents() {
-  return Object.entries(state.agents).filter(([,a])=>!a.archived).map(([id])=>id);
-}
-
-// Org pairwise similarity sum with organ weight g
-function pairSum() {
-  let S = 0;
-  for (const [oid, o] of Object.entries(state.organs)) {
-    const ids = o.agents.filter(id => !state.agents[id]?.archived);
-    for (let i=0;i<ids.length;i++){
-      for (let j=i+1;j<ids.length;j++){
-        const ai = state.agents[ids[i]], aj = state.agents[ids[j]];
-        S += o.g * cosine(ai.h, aj.h);
-      }
-    }
-  }
-  return S; // note: energy uses -S
-}
-
-// Hyperedge term Σ w_e · Π g_o in e
-function hyperSum() {
-  let S = 0;
-  for (const e of state.system.E_patterns) {
-    const prod = e.orgs.reduce((p, oid)=> p * (state.organs[oid]?.g ?? 0), 1);
-    S += e.w * prod;
-  }
-  return S; // energy uses -S
-}
-
-// Aggregated role distribution across alive agents
-function aggRoleDist() {
-  const ids = aliveAgents();
-  if (ids.length === 0) return roles.map(_=>0);
-  const acc = [0,0,0];
-  for (const id of ids) {
-    const p = state.agents[id].p;
-    for (let k=0;k<3;k++) acc[k] += p[k];
-  }
-  for (let k=0;k<3;k++) acc[k] /= ids.length;
-  return acc;
-}
-
-// Regularization proxy: treat state size as degrees of freedom
-function regTerm() {
-  const nAgents = aliveAgents().length;
-  const nOrg = Object.keys(state.organs).length;
-  const dims = state.system.h_hgnn.length + state.system.mode_w.length;
-  const s = (nAgents*1.0 + nOrg*0.5 + dims*0.2);
-  return params.lambda * (s*s);
-}
-
-// Memory cost proxy
-function memoryCost() {
-  const M = state.memory;
-  return 0.35*M.Ma + 0.25*M.Mlt + 0.20*M.Mw + 0.10*M.Mfb;
-}
-
-// Compute full energy breakdown
-function energy() {
-  const pair = pairSum();
-  const hyper = hyperSum();
-  const P = aggRoleDist();
-  const H = entropy(P);
-  const reg = regTerm();
-  const mem = params.beta_mem * memoryCost();
-
-  const pairTerm = -pair;
-  const hyperTerm = -hyper;
-  const entropyTerm = -params.alpha * H;
-  const total = pairTerm + hyperTerm + entropyTerm + reg + mem;
-
-  return {
-    pairSum: pair, hyperSum: hyper, entropyH: H,
-    pairTerm, hyperTerm, entropyTerm, regTerm: reg, memTerm: mem,
-    total
-  };
-}
-
-// --- Rendering ---
-const elAgentList = document.getElementById('agentList');
-const elOrganList = document.getElementById('organList');
-const elMemTiers = document.getElementById('memTiers');
-const elLedger = document.getElementById('ledger');
-const elCoreVal = document.getElementById('coreVal');
-const elTotalVal = document.getElementById('totalVal');
-const elTotalDelta = document.getElementById('totalDelta');
-
-let baseline = null;
-
-function renderAgents() {
-  elAgentList.innerHTML = '';
-  for (const [id,a] of Object.entries(state.agents)) {
-    const pill = document.createElement('div');
-    pill.className = 'pill' + (a.archived? ' dead':'');
-    pill.title = `${id} • ${a.name} • status: ${a.archived?'Archived':a.status}`;
-    pill.innerHTML = `<span class="dot"></span><strong>${id}</strong> <span class="muted">${a.name}</span>`;
-    elAgentList.appendChild(pill);
-  }
-}
-
-function renderOrgans() {
-  const lines = [];
-  for (const [oid,o] of Object.entries(state.organs)) {
-    const alive = o.agents.filter(id => !state.agents[id]?.archived);
-    lines.push(`<div><strong>${oid}</strong> <span class="muted">(${o.name})</span> — g<tspan baseline-shift="sub">o</tspan>=${o.g.toFixed(2)} — agents: <span class="mono">${alive.join(', ')||'—'}</span></div>`);
-  }
-  elOrganList.innerHTML = lines.join('');
-}
-
-function renderMemory() {
-  const m = state.memory;
-  elMemTiers.innerHTML = `Ma=${m.Ma} &nbsp; Mw=${m.Mw} &nbsp; Mlt=${m.Mlt} &nbsp; Mfb=${m.Mfb}`;
-}
-
-function setArrowThin(id, thin=true) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.classList.toggle('thin', thin);
-}
-
-function pulse(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.classList.remove('pulse');
-  // Force reflow to retrigger animation
-  void el.offsetWidth;
-  el.classList.add('pulse');
-}
-
-function renderLedger() {
-  const e = energy();
-  if (!baseline) baseline = e; // capture baseline on first render
-
-  function row(name, value, base, unit='') {
-    const delta = value - base;
-    const cls = delta > 1e-9 ? 'delta up' : delta < -1e-9 ? 'delta down' : 'delta';
-    return `<tr><td>${name}</td><td class="mono">${value.toFixed(3)}${unit}</td><td class="${cls} mono">${delta>=0?'+':''}${delta.toFixed(3)}</td></tr>`;
-  }
-
-  elLedger.innerHTML = [
-    row('Pair term (−Σ w·sim)', e.pairTerm, baseline.pairTerm),
-    row('Hyper term (−Σ w·Π g)', e.hyperTerm, baseline.hyperTerm),
-    row('Entropy term (−αH)', e.entropyTerm, baseline.entropyTerm),
-    row('Reg term (+λ‖s‖²)', e.regTerm, baseline.regTerm),
-    row('Mem term (+β·CostVQ)', e.memTerm, baseline.memTerm)
-  ].join('');
-
-  elCoreVal.textContent = e.total.toFixed(3);
-  elTotalVal.textContent = e.total.toFixed(3);
-  const d = e.total - baseline.total;
-  elTotalDelta.textContent = `${d>=0?'+':''}${d.toFixed(3)}`;
-  elTotalDelta.className = 'delta mono ' + (d>1e-9?'up':d<-1e-9?'down':'');
-}
-
-// --- Actions ---
-function archiveA2() {
-  const a2 = state.agents.A2;
-  if (!a2 || a2.archived) return;
-
-  // 1) Remove from agent active set
-  a2.archived = true;
-  a2.status = 'Archived';
-
-  // 2) Move memory Ma→Mlt
-  state.memory.Ma = Math.max(0, state.memory.Ma - 1);
-  state.memory.Mlt += 1;
-
-  // 3) Update organs that had A2
-  for (const o of Object.values(state.organs)) {
-    const before = o.agents.length;
-    o.agents = o.agents.filter(id => id !== 'A2');
-    const after = o.agents.length;
-    if (after < before) {
-      o.g = clamp01(o.g - params.organLossPenalty);
-    }
-  }
-
-  // Visual: pulse archive flow & thin affected arrows
-  pulse('archiveFlow');
-  setArrowThin('arrOrgan', true);  // pairs+hyper weakened
-  setArrowThin('arrAgent', true);  // entropy may drop
-  setArrowThin('arrSystem', false);
-  setArrowThin('arrMemory', false);
-
-  renderAgents(); renderOrgans(); renderMemory(); renderLedger();
-}
-
-function evictArchivedA2Memory() {
-  // Evict one long-term memory item (simulating rolling window eviction)
-  if (state.memory.Mlt > 0) {
-    state.memory.Mlt -= 1;
-  }
-  // Visual: memory arrow pulse
-  pulse('arrMemory');
-  renderMemory(); renderLedger();
-}
-
-let newIdCounter = 4;
-function injectScout() {
-  const id = 'A' + (newIdCounter++);
-  // A fresh scout: high scout role, randomish embedding
-  const p = [0.80, 0.15, 0.05];
-  const h = [0.85 + (Math.random()*0.1-0.05), 0.18 + (Math.random()*0.1-0.05), 0.15 + (Math.random()*0.1-0.05)];
-  state.agents[id] = { name:`Scout-${id}`, h, p, c:0.55+Math.random()*0.2, mem_util:0.3, status:'Scout', archived:false };
-
-  // Join the organ with fewer alive agents (simple heuristic)
-  const oEntries = Object.entries(state.organs).map(([oid,o]) => [oid, o.agents.filter(a=>!state.agents[a]?.archived).length]);
-  oEntries.sort((a,b)=>a[1]-b[1]);
-  const targetOid = oEntries[0][0];
-  state.organs[targetOid].agents.push(id);
-  state.organs[targetOid].g = clamp01(state.organs[targetOid].g + params.organGainBoost);
-
-  // Memory: Ma++
-  state.memory.Ma += 1;
-
-  // Visual: strengthen agent/organ arrows
-  pulse('arrAgent'); pulse('arrOrgan');
-
-  renderAgents(); renderOrgans(); renderMemory(); renderLedger();
-}
-
-// --- Wire up ---
-document.getElementById('btnArchive').addEventListener('click', archiveA2);
-document.getElementById('btnEvict').addEventListener('click', evictArchivedA2Memory);
-document.getElementById('btnInject').addEventListener('click', injectScout);
-
-// First paint
-renderAgents(); renderOrgans(); renderMemory();
-renderLedger(); // captures baseline
-
-</script>
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/main.js"></script>
 </body>
 </html>
-

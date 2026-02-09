@@ -1,487 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intelligent Workflow Automation - Seedcore</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Reverted to Futuristic Dark Theme Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
-            opacity: 0.7;
-        }
-        
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            animation: grid-move 20s linear infinite;
-        }
-        
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        .container {
-            max-width: 1200px; 
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        header { /* Changed from .main-header to header for simplicity */
-            background: rgba(0,0,0,0.5);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
-        }
-
-        header .container nav { /* Ensure nav is direct child for flex */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo { /* Combined .logo-container and .logo */
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.8em; /* from .logo-text */
-            font-weight: bold; /* from .logo-text */
-            gap: 10px;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            /* SVG will be used directly */
-        }
-        .logo span { /* from .logo-text span */
-            color: #00fff0;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: #00fff0;
-            text-shadow: 0 0 5px #00fff0;
-        }
-        
-        .btn {
-            background: linear-gradient(135deg, #00fff0 0%, #ff00ff 100%);
-            border: none;
-            color: #000;
-            padding: 10px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .btn:hover {
-            transform: translateY(-3px) scale(1.05); /* Added scale */
-            box-shadow: 0 10px 20px rgba(0, 255, 240, 0.3); /* Adjusted shadow */
-        }
-        
-        .page-hero {
-            padding: 80px 0;
-            text-align: center;
-            position: relative; /* For pseudo-elements if needed */
-        }
-        .page-hero::before { /* Optional: subtle overlay for depth */
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(0,4,40,0.5), rgba(0,78,146,0.5));
-            z-index: 0;
-            border-radius: 0 0 30px 30px; /* Optional: curve bottom edge */
-        }
-
-        .page-hero .container { /* Ensure content is above overlay */
-            position: relative;
-            z-index: 1;
-        }
-
-        .page-hero h1 {
-            font-size: 3.2em; /* Adjusted */
-            font-weight: bold;
-            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px; /* Increased margin */
-            animation: glow 3s ease-in-out infinite;
-        }
-        
-        @keyframes glow {
-            0%, 100% { filter: brightness(1) drop-shadow(0 0 3px #00fff0); }
-            50% { filter: brightness(1.2) drop-shadow(0 0 10px #00fff0) drop-shadow(0 0 5px #ff00ff); }
-        }
-
-        .page-hero p {
-            font-size: 1.2em; /* Adjusted */
-            max-width: 750px; /* Adjusted */
-            margin: 0 auto;
-            opacity: 0.9;
-            color: #e0e0e0; /* Lighter text for dark bg */
-        }
-
-        section { padding: 60px 0; } /* Adjusted padding */
-        .section-title-center { text-align: center; margin-bottom: 50px; } /* Adjusted margin */
-        .section-title-center h2 { 
-            font-size: 2.5em;  /* Adjusted */
-            margin-bottom: 15px; /* Adjusted */
-            position: relative; 
-            display: inline-block;
-            color: #00fff0; /* Title color */
-        }
-        .section-title-center h2::after { 
-            content: ""; 
-            position: absolute; 
-            bottom: -8px; /* Adjusted */
-            left: 50%; 
-            transform: translateX(-50%); 
-            width: 70px; /* Adjusted */
-            height: 3px; 
-            background: linear-gradient(90deg, #00fff0, #ff00ff); /* Gradient underline */
-        }
-        
-        .content-section { margin-bottom: 40px; }
-        .content-section h3 { 
-            font-size: 2em; /* Adjusted */
-            color: #00c6ff; /* Brighter heading color */
-            margin-bottom: 20px; /* Increased margin */
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
-        }
-        .content-section p, .content-section ul { 
-            font-size: 1.1em; 
-            margin-bottom: 20px; /* Increased margin */
-            color: #ccc; /* Lighter paGraphRAGraph text */
-        }
-        .content-section ul { list-style: none; padding-left: 0; }
-        .content-section ul li { 
-            padding-left: 30px; /* Increased padding */
-            position: relative; 
-            margin-bottom: 12px; /* Increased margin */
-        }
-        .content-section ul li::before { 
-            content: "\f00c"; /* FontAwesome check icon */
-            font-family: "Font Awesome 5 Free"; /* Corrected for FA6, use "Font Awesome 6 Free" or "Font Awesome 5 Free" */
-            font-weight: 900; /* Required for solid icons */
-            position: absolute; 
-            left: 0; 
-            color: #00fff0; /* Accent color for icon */
-            font-size: 1.1em; /* Icon size */
-        }
-
-        .benefits-grid, .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .benefit-card, .feature-card { 
-            background: rgba(255, 255, 255, 0.05); 
-            padding: 30px; 
-            border-radius: 15px; /* Softer radius */
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2); 
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(0, 255, 240, 0.2); /* Subtle border */
-        }
-        .benefit-card:hover, .feature-card:hover { 
-            transform: translateY(-8px); /* Slightly more lift */
-            box-shadow: 0 12px 35px rgba(0, 255, 240, 0.2); 
-        }
-        .benefit-card .card-icon, .feature-card .card-icon { 
-            font-size: 2.8em; /* Larger icon */
-            color: #00fff0; 
-            margin-bottom: 20px; /* Increased margin */
-            text-align: center; /* Center icon */
-            display: block; /* Ensure centering */
-        }
-        .benefit-card h4, .feature-card h4 { 
-            font-size: 1.4em; /* Slightly larger heading */
-            margin-bottom: 12px; 
-            color: #00c6ff; /* Brighter heading */
-            text-align: center; /* Center heading */
-        }
-        .feature-card p, .benefit-card p {
-            text-align: center; /* Center paGraphRAGraph text */
-            color: #bbb; /* Lighter paGraphRAGraph text */
-        }
-        
-        .cta-section { 
-            text-align: center; 
-            padding: 60px 20px; 
-            background: rgba(0, 128, 255, 0.1); /* Subtle background */
-            border-radius: 15px; 
-            margin-top: 50px; /* Increased margin */
-            border: 1px solid #0080ff;
-        }
-        .cta-section h2 { 
-            font-size: 2.2em; /* Adjusted */
-            margin-bottom: 20px; 
-            color: #00fff0; 
-        }
-        .cta-section p { 
-            font-size: 1.1em; /* Adjusted */
-            margin-bottom: 30px; 
-            max-width: 650px; /* Adjusted */
-            margin-left: auto; 
-            margin-right: auto; 
-            color: #ccc;
-        }
-
-        footer { 
-            background-color: #0a0a14; /* Darker footer */
-            color: #adb5bd; 
-            padding: 70px 0 30px; 
-            border-top: 1px solid rgba(0, 255, 240, 0.1); /* Subtle top border */
-        }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 50px; }
-        .footer-col h3 { 
-            font-size: 1.2em; /* Adjusted */
-            margin-bottom: 20px; 
-            position: relative; 
-            padding-bottom: 10px; 
-            color: #00fff0; /* Title color */
-        }
-        .footer-col h3::after { content: ""; position: absolute; bottom: 0; left: 0; width: 40px; height: 2px; background: #ff00ff; } /* Accent underline */
-        .footer-col ul { list-style: none; padding:0; } .footer-col ul li { margin-bottom: 12px; } /* Increased margin */
-        .footer-col ul li a { color: #adb5bd; text-decoration: none; transition: color 0.3s, padding-left 0.3s; }
-        .footer-col ul li a:hover { color: #00fff0; padding-left: 5px; }
-        .footer-logo { height: 40px; width: auto; object-fit: contain; margin-bottom: 15px; }
-        .footer-col p { color: #adb5bd; font-size: 0.95em; line-height: 1.7;}
-        .social-links { display: flex; gap: 15px; margin-top: 20px; }
-        .social-links a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #1c1c2c; /* Darker social bg */ color: #00fff0; border-radius: 50%; transition: all 0.3s; font-size: 1.2em; border: 1px solid #00fff0;}
-        .social-links a:hover { background: #00fff0; color: #000; transform: translateY(-3px) scale(1.1); box-shadow: 0 0 10px #00fff0;}
-        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: #888; } /* Lighter copyright text */
-        .copyright ul { list-style: none; padding: 0; margin-top:10px; } .copyright ul li { display: inline-block; margin: 0 10px; }
-        .copyright ul li a { color: #adb5bd; font-size: 0.9em; text-decoration: none; }
-        .copyright ul li a:hover { color: #00fff0; }
-
-        @media (max-width: 992px) { /* Added for nav */
-            header .container nav {
-                flex-direction: column;
-            }
-            .nav-links {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .nav-links a { margin: 5px 10px; }
-            .page-hero h1 { font-size: 2.8em; }
-        }
-
-        @media (max-width: 768px) {
-            /* .nav-links { display: none; } /* Simplistic: actual mobile nav needs JS */
-            .page-hero h1 { font-size: 2.5em; } /* Adjusted */
-            .page-hero p { font-size: 1.1em; } /* Adjusted */
-            .content-section h3 { font-size: 1.8em; } /* Adjusted */
-            .section-title-center h2 { font-size: 2.2em; } /* Adjusted */
-            .cta-section h2 { font-size: 1.8em; } /* Adjusted */
-            .footer-grid { grid-template-columns: 1fr; text-align: center;}
-            .footer-col h3::after { left: 50%; transform: translateX(-50%);}
-            .social-links { justify-content: center;}
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Services and Integration | SeedCore</title>
+  <meta name="description" content="End-to-end integration of reasoning models, execution pipelines, and enterprise systems." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/engine-site.css" />
 </head>
-<body>
-    <div class="bg-animation"></div>
-    <div class="grid-overlay"></div>
-
-    <header>
-        <div class="container">
-            <nav>
-                <a href="../index.html" class="logo">
-                    <svg class="logo-img" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="50" height="50" rx="8" fill="#00fff0" fill-opacity="0.2"/>
-                        <text x="25" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#00fff0" font-weight="bold">AM</text>
-                    </svg>
-                    <div>Auto<span>Mind</span></div>
-                </a>
-                <div class="nav-links">
-                    <a href="../index.html">Home</a>
-                    <a href="../about.html">About Us</a>
-                    <a href="index.html" class="active">Capabilities</a>
-                    <a href="../solutions/index.html">Solutions</a>
-                    <a href="../resources/index.html">Resources</a>
-                    <a href="../contact.html">Contact</a>
-                </div>
-                <a href="../contact.html#consultation" class="btn">Request Partnership</a>
-            </nav>
-        </div>
-    </header>
-
-    <section class="page-hero">
-        <div class="container">
-            <h1>Intelligent Workflow Automation</h1>
-            <p>Streamline Operations, Enhance Efficiency, and Unlock Data with AI-Powered Workflows Tailored to Your Business Needs.</p>
-        </div>
-    </section>
-
+<body class="engine-page">
+  <header>
     <div class="container">
-        <section id="challenge">
-            <div class="section-title-center">
-                <h2>The Challenge: Overcoming Operational Bottlenecks</h2>
-            </div>
-            <div class="content-section">
-                <p>In today's fast-paced digital landscape, businesses often grapple with disconnected systems, cumbersome manual data entry, repetitive administrative tasks, and a lack of clear visibility into their operational processes. These inefficiencies not only consume valuable employee time and resources but also lead to errors, delays, and missed opportunities for growth and innovation.</p>
-            </div>
-        </section>
-
-        <section id="our-solution">
-            <div class="section-title-center">
-                <h2>Our Solution: Seamless & Smart Automation</h2>
-            </div>
-            <div class="content-section">
-                <p>Seedcore empowers your business by designing and implementing bespoke Intelligent Workflow Automation solutions. We leveGraphRAGe a powerful combination of technologies to transform your digital operations:</p>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="card-icon"><i class="fas fa-cogs"></i></div>
-                        <h4>n8n Expertise</h4>
-                        <p>Custom workflow design and implementation using n8n for robust, scalable, and flexible automation that connects all your critical applications.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-icon"><i class="fas fa-robot"></i></div>
-                        <h4>AI Agent Integration</h4>
-                        <p>Embedding intelligent AI agents (e.g., CrewAI-based) into your workflows for advanced decision-making, data interpretation, and autonomous task execution.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-icon"><i class="fas fa-project-diagram"></i></div> <h4>Secure GraphGraphRAG Implementation</h4> <p>Connect workflows securely to your private knowledge bases and enterprise data. GraphGraphRAG understands relationships within your data, providing richer, more accurate context for AI responses and actions.</p> </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="key-benefits">
-            <div class="section-title-center">
-                <h2>Key Benefits for Your Business</h2>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    <h4>Increased Efficiency</h4>
-                    <p>Automate time-consuming tasks and streamline processes to significantly boost operational speed.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-check-circle"></i></div>
-                    <h4>Reduced Manual Errors</h4>
-                    <p>Minimize human error in data entry and repetitive tasks, leading to higher quality outcomes.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h4>Enhanced Data Accuracy</h4>
-                    <p>Ensure data consistency and accessibility across systems through automated synchronization.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-users-cog"></i></div>
-                    <h4>Improved Productivity</h4>
-                    <p>Free up your employees from mundane tasks to focus on strategic, high-value activities.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-expand-arrows-alt"></i></div>
-                    <h4>Scalable Solutions</h4>
-                    <p>Build automation frameworks that can grow and adapt with your evolving business needs.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h4>Actionable Insights</h4>
-                    <p>Gain better visibility into your processes and leveGraphRAGe automated data collection for informed decision-making.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2>Ready to Automate Your Digital Processes?</h2>
-            <p>Let Seedcore help you design intelligent workflows that drive efficiency and innovation. Contact us for a personalized consultation.</p>
-            <a href="../contact.html#consultation" class="btn">Discuss Your Workflow Needs</a>
-        </section>
-    </div>
-
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <svg class="footer-logo" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="8" fill="#00fff0" fill-opacity="0.2"/><text x="25" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#00fff0" font-weight="bold">AM</text></svg>
-                    <h3>Seedcore</h3>
-                    <p>Advanced AI & Automation Solutions for the Future of Business.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Capabilities</h3>
-                    <ul>
-                        <li><a href="workflows.html">Intelligent Workflows</a></li>
-                        <li><a href="robotics-manufacturing.html">Robotics & Manufacturing</a></li>
-                        <li><a href="strategy.html">Strategic Consulting</a></li>
-                        <li><a href="index.html">All Capabilities</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="../about.html">About Us</a></li>
-                        <li><a href="../careers.html">Careers</a></li>
-                        <li><a href="../resources/blog.html">Blog</a></li>
-                    </ul>
-                </div>
-                 <div class="footer-col">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="../resources/case-studies.html">Case Studies</a></li>
-                        <li><a href="../resources/whitepapers.html">Whitepapers</a></li>
-                        <li><a href="../resources/index.html">All Resources</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; <span id="currentYear"></span> Seedcore. All rights reserved.</p>
-                <ul>
-                    <li><a href="../privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="../terms-of-service.html">Terms of Service</a></li>
-                    <li><a href="../trust-security.html">Trust & Security</a></li>
-                </ul>
-            </div>
+      <nav>
+        <a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../services/index.html">Services</a>
+            <a href="../solutions/index.html">Solutions</a>
+            <a href="../resources/index.html">Resources</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
-    </footer>
-    <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+      </nav>
+    </div>
+  </header>
+
+  <section class="engine-hero">
+    <div class="container">
+      <h1>AI Services and Integration</h1>
+      <p>End-to-end integration of reasoning models, execution pipelines, and enterprise systems.</p>
+      <div class="engine-badges">
+        <span>AI-to-Physical-World Execution</span>
+        <span>Reasoning as Infrastructure</span>
+        <span>Policy-First Runtime</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <h2>Operational Focus</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Primary Objective</h3>
+            <p>Integrate SeedCore into existing data, API, and operations stacks with execution reliability.</p>
+          </article>
+          <article class="engine-card">
+            <h3>Execution Pattern</h3>
+            <ul class="engine-list">
+              <li>Intent capture and task graph decomposition</li>
+              <li>Policy Knowledge Graph authorization</li>
+              <li>PlanExecutor runtime execution with telemetry</li>
+              <li>Feedback-driven replanning and recovery</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="engine-section engine-media">
+        <h2>Showcase and Source Evidence</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>Showcase Video</h3>
+            <p>Demonstrates closed-loop behavior from reasoning to real-world execution.</p>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Proof Links</h3>
+            <div class="engine-actions">
+              <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="../resources/seedcore-architecture.html">Architecture</a>
+              <a href="../resources/documentation.html">Documentation</a>
+            </div>
+            <img src="../images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
+          </aside>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <h2>Latest Docs Alignment (main/docs)</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Core References</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/README.md" target="_blank" rel="noopener">README: closed-loop model and planes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/architecture/overview/architecture.md" target="_blank" rel="noopener">Architecture overview</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task-payload-capabilities.md" target="_blank" rel="noopener">TaskPayload capabilities</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task_payload_router.md" target="_blank" rel="noopener">Task router reference</a></li>
+            </ul>
+          </article>
+          <article class="engine-card">
+            <h3>Design and Development Notes</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/design-notes.md" target="_blank" rel="noopener">Design notes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/agent_capability_skills_quick_reference.md" target="_blank" rel="noopener">Capability skills quick reference</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/vla_2026_optimizations.md" target="_blank" rel="noopener">VLA 2026 optimizations</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/tree/main/docs" target="_blank" rel="noopener">Browse all docs</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

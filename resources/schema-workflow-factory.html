@@ -1,499 +1,122 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Autonomous Schema & Workflow Factory | An Interactive Report</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals (Stone, Slate) with a Dusty Blue accent -->
-    <!-- Application Structure Plan: A top-down, thematic single-page application. The structure begins with a high-level introduction, then allows users to explore the two core pillars (Schema and Workflow) through an interactive tabbed interface. This is followed by a filterable 'Ecosystem Explorer' for tools and platforms, and concludes with a section on challenges and future outlook. This non-linear, interactive structure was chosen over a direct report-to-page conversion to enhance user engagement, facilitate easier comparison between schema/workflow concepts, and allow users to explore topics based on their interest, making the dense information more digestible and accessible. -->
-    <!-- Visualization & Content Choices: The application uses a variety of methods to present the report's information. Goal: Inform/Hook -> Presentation: Large callout stats and a simple HTML/CSS convergence diagram in the intro. Interaction: Hover effects. Goal: Compare/Organize -> Presentation: A tabbed interface for Schema vs. Workflow, with bar charts (Chart.js) to visualize quantitative benefits (e.g., reduction in downtime, increase in productivity). Interaction: Tab switching and chart tooltips. Goal: Explore/Filter -> Presentation: A filterable grid of cards for the 'Ecosystem Explorer'. Interaction: Filter buttons to dynamically show/hide tools. Goal: Inform/Summarize -> Presentation: Multi-column layouts with summary cards for challenges and future trends. Justification: This multi-faceted approach transforms a static, text-heavy report into an interactive dashboard, making complex information easier to understand and retain by breaking it down into manageable, visually supported chunks. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f7f5;
-            color: #334155;
-        }
-        .nav-link {
-            position: relative;
-            transition: color 0.3s;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #3b82f6;
-            transition: width 0.3s;
-        }
-        .nav-link.active, .nav-link:hover {
-            color: #3b82f6;
-        }
-        .nav-link.active::after, .nav-link:hover::after {
-            width: 100%;
-        }
-        .tab-button.active {
-            background-color: #3b82f6;
-            color: #ffffff;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 320px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 400px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schema and Workflow Factory | SeedCore</title>
+  <meta name="description" content="Schema evolution and workflow generation patterns for scalable execution systems." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/engine-site.css" />
 </head>
-<body class="antialiased">
-
-    <header id="header" class="bg-stone-50/80 backdrop-blur-lg sticky top-0 z-50 transition-all duration-300">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="#home" class="text-xl font-bold text-slate-800">AI Factory</a>
-            <div id="nav-menu" class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                <a href="#concept" class="nav-link text-slate-600 font-medium">Concept</a>
-                <a href="#pillars" class="nav-link text-slate-600 font-medium">Pillars</a>
-                <a href="#ecosystem" class="nav-link text-slate-600 font-medium">Ecosystem</a>
-                <a href="#challenges" class="nav-link text-slate-600 font-medium">Outlook</a>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home" class="py-20 sm:py-28 bg-stone-100">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">The Autonomous Schema & Workflow Factory</h1>
-                <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-slate-600">An interactive exploration of the AI-driven paradigm shifting how we manage data and automate processes.</p>
-                <a href="#concept" class="mt-8 inline-block bg-blue-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-600 transition-transform transform hover:scale-105">Begin Exploration</a>
-            </div>
-        </section>
-
-        <section id="concept" class="py-16 sm:py-24">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">The Core Concept: A Convergence</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">The "factory" is not a physical place, but an integrated system where two powerful streams of automation merge. It's built on the understanding that data (schemas) and processes (workflows) are intrinsically linked and must evolve together.</p>
-                </div>
-                
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4">
-                    <div class="w-full md:w-2/5 text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
-                        <div class="text-5xl mb-4">⚙️</div>
-                        <h3 class="text-xl font-semibold text-slate-800">Autonomous Schema Management</h3>
-                        <p class="mt-2 text-slate-600">AI-driven generation, management, and evolution of data structures.</p>
-                    </div>
-
-                    <div class="text-4xl font-bold text-blue-500 mx-4 my-4 md:my-0 transform rotate-90 md:rotate-0">&rarr;</div>
-                    
-                    <div class="w-full md:w-2/5 text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
-                         <div class="text-5xl mb-4">⚡️</div>
-                        <h3 class="text-xl font-semibold text-slate-800">Autonomous Workflow Automation</h3>
-                        <p class="mt-2 text-slate-600">Intelligent creation, execution, and optimization of business processes.</p>
-                    </div>
-                </div>
-
-                <div class="mt-12 text-center">
-                    <h3 class="text-2xl font-bold text-slate-800">Resulting in Transformative Impact</h3>
-                    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="p-6 bg-blue-50 rounded-lg shadow">
-                            <p class="text-4xl font-bold text-blue-600">31%</p>
-                            <p class="mt-2 text-slate-700 font-medium">Decrease in Operational Expenses</p>
-                        </div>
-                        <div class="p-6 bg-green-50 rounded-lg shadow">
-                            <p class="text-4xl font-bold text-green-600">78%</p>
-                            <p class="mt-2 text-slate-700 font-medium">Reduction in Schema-Related Incidents</p>
-                        </div>
-                        <div class="p-6 bg-yellow-50 rounded-lg shadow">
-                            <p class="text-4xl font-bold text-yellow-600">>15%</p>
-                            <p class="mt-2 text-slate-700 font-medium">Increase in Employee Productivity</p>
-                        </div>
-                    </div>
-                     <p class="mt-6 text-sm text-slate-500">Metrics aggregated from sources [3, 11, 15] in the report.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="pillars" class="py-16 sm:py-24 bg-slate-50">
-             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">The Two Pillars of the Factory</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">Explore the foundational components that power an autonomous factory. Select a pillar to dive into its key technologies and benefits.</p>
-                </div>
-                
-                <div class="flex justify-center mb-8">
-                    <div class="flex space-x-2 bg-slate-200 p-1 rounded-lg">
-                        <button class="tab-button active py-2 px-6 rounded-md font-semibold transition-colors duration-300" data-tab="schema">⚙️ Schema Autonomy</button>
-                        <button class="tab-button py-2 px-6 rounded-md font-semibold transition-colors duration-300" data-tab="workflow">⚡️ Workflow Autonomy</button>
-                    </div>
-                </div>
-
-                <div id="schema-content" class="tab-content">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-800 mb-6">Key Technologies for Schema Management</h3>
-                            <div class="space-y-4">
-                                <div class="p-4 bg-white rounded-lg shadow border border-slate-200">
-                                    <h4 class="font-semibold text-slate-700">Intelligent Schema Inference (MCP)</h4>
-                                    <p class="text-sm text-slate-600 mt-1">AI dynamically interprets and standardizes schemas from diverse sources, creating a universal understanding.</p>
-                                </div>
-                                <div class="p-4 bg-white rounded-lg shadow border border-slate-200">
-                                    <h4 class="font-semibold text-slate-700">Semantic Schema Matching</h4>
-                                    <p class="text-sm text-slate-600 mt-1">Goes beyond name matching to understand the *meaning* of data, ensuring highly accurate integration.</p>
-                                </div>
-                                <div class="p-4 bg-white rounded-lg shadow border border-slate-200">
-                                    <h4 class="font-semibold text-slate-700">Dynamic Schema Evolution</h4>
-                                    <p class="text-sm text-slate-600 mt-1">Schemas adapt automatically to new requirements without manual intervention, preventing pipeline failures.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-800 mb-6 text-center">Quantified Benefits of Automation</h3>
-                            <div class="chart-container">
-                                <canvas id="schemaChart"></canvas>
-                            </div>
-                             <p class="mt-4 text-center text-sm text-slate-500">Source: World Journal of Advanced Research and Reviews [11]</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="workflow-content" class="tab-content hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-800 mb-6">Key Technologies for Workflow Automation</h3>
-                            <div class="space-y-4">
-                                <div class="p-4 bg-white rounded-lg shadow border border-slate-200">
-                                    <h4 class="font-semibold text-slate-700">Machine Learning (ML)</h4>
-                                    <p class="text-sm text-slate-600 mt-1">Optimizes task sequences, predicts outcomes, and enables continuous process improvement.</p>
-                                </div>
-                                <div class="p-4 bg-white rounded-lg shadow border border-slate-200">
-                                    <h4 class="font-semibold text-slate-700">Natural Language Processing (NLP)</h4>
-                                    <p class="text-sm text-slate-600 mt-1">Allows workflows to understand and interact using human language, from emails to voice commands.</p>
-                                 </div>
-                                <div class="p-4 bg-white rounded-lg shadow border border-slate-200">
-                                    <h4 class="font-semibold text-slate-700">Generative AI & AI Agents</h4>
-                                    <p class="text-sm text-slate-600 mt-1">AI agents autonomously execute complex tasks, while GenAI can create workflow components from simple text prompts.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                           <h3 class="text-2xl font-bold text-slate-800 mb-6 text-center">Quantified Benefits of Automation</h3>
-                           <div class="chart-container">
-                                <canvas id="workflowChart"></canvas>
-                           </div>
-                            <p class="mt-4 text-center text-sm text-slate-500">Sources: RBMSoft, Intalio, Pipefy [15, 3, 23]</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="ecosystem" class="py-16 sm:py-24">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">Ecosystem Explorer</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">Discover the tools and platforms building the future of autonomous systems. Filter by type and focus area to explore the landscape.</p>
-                </div>
-
-                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
-                    <button class="filter-btn-all active bg-blue-500 text-white py-2 px-4 rounded-full font-semibold">All</button>
-                    <button class="filter-btn bg-white text-slate-700 py-2 px-4 rounded-full font-semibold border border-slate-300 hover:bg-slate-100" data-filter-group="type" data-filter="commercial">Commercial</button>
-                    <button class="filter-btn bg-white text-slate-700 py-2 px-4 rounded-full font-semibold border border-slate-300 hover:bg-slate-100" data-filter-group="type" data-filter="open-source">Open-Source</button>
-                    <span class="border-l border-slate-300 mx-2"></span>
-                    <button class="filter-btn bg-white text-slate-700 py-2 px-4 rounded-full font-semibold border border-slate-300 hover:bg-slate-100" data-filter-group="focus" data-filter="workflow">Workflow</button>
-                    <button class="filter-btn bg-white text-slate-700 py-2 px-4 rounded-full font-semibold border border-slate-300 hover:bg-slate-100" data-filter-group="focus" data-filter="schema">Schema</button>
-                    <button class="filter-btn bg-white text-slate-700 py-2 px-4 rounded-full font-semibold border border-slate-300 hover:bg-slate-100" data-filter-group="focus" data-filter="mlops">MLOps</button>
-                </div>
-                
-                <div id="tool-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="tool-card p-6 bg-white rounded-xl shadow-md border border-slate-200 transition-all duration-300" data-type="commercial" data-focus="workflow">
-                        <h4 class="font-bold text-lg text-slate-800">Pega Platform</h4>
-                        <p class="text-sm mt-2 text-slate-600">AI-driven workflow orchestration with predictive analytics for task prioritization and resource allocation.</p>
-                    </div>
-                    <div class="tool-card p-6 bg-white rounded-xl shadow-md border border-slate-200 transition-all duration-300" data-type="commercial" data-focus="mlops">
-                        <h4 class="font-bold text-lg text-slate-800">Databricks</h4>
-                        <p class="text-sm mt-2 text-slate-600">Provides MLOps capabilities like inference tables to monitor, debug, and retrain AI models.</p>
-                    </div>
-                    <div class="tool-card p-6 bg-white rounded-xl shadow-md border border-slate-200 transition-all duration-300" data-type="commercial" data-focus="workflow">
-                        <h4 class="font-bold text-lg text-slate-800">IBM Watsonx</h4>
-                        <p class="text-sm mt-2 text-slate-600">Uses NLP and GenAI to understand requests and automate complex business processes.</p>
-                    </div>
-                    <div class="tool-card p-6 bg-white rounded-xl shadow-md border border-slate-200 transition-all duration-300" data-type="commercial" data-focus="workflow">
-                        <h4 class="font-bold text-lg text-slate-800">Pipefy</h4>
-                        <p class="text-sm mt-2 text-slate-600">Leverages AI agents to build processes from natural language and continuously optimize them.</p>
-                    </div>
-                     <div class="tool-card p-6 bg-white rounded-xl shadow-md border border-slate-200 transition-all duration-300" data-type="commercial" data-focus="schema">
-                        <h4 class="font-bold text-lg text-slate-800">Estuary Flow</h4>
-                        <p class="text-sm mt-2 text-slate-600">Real-time data integration platform with features for autonomous schema management during data transit.</p>
-                    </div>
-                    <div class="tool-card p-6 bg-white rounded-xl shadow-md border border-slate-200 transition-all duration-300" data-type="open-source" data-focus="mlops">
-                        <h4 class="font-bold text-lg text-slate-800">Kubeflow</h4>
-                        <p class="text-sm mt-2 text-slate-600">Open-source MLOps toolkit for Kubernetes, enabling distributed model training and serving.</p>
-                    </div>
-                    <div class="tool-card p-6 bg-white rounded-xl shadow-md border border-slate-200 transition-all duration-300" data-type="open-source" data-focus="workflow">
-                        <h4 class="font-bold text-lg text-slate-800">n8n.io</h4>
-                        <p class="text-sm mt-2 text-slate-600">A free and self-hostable workflow automation tool for connecting applications and services.</p>
-                    </div>
-                     <div class="tool-card p-6 bg-white rounded-xl shadow-md border border-slate-200 transition-all duration-300" data-type="open-source" data-focus="schema">
-                        <h4 class="font-bold text-lg text-slate-800">Apache Avro/Parquet</h4>
-                        <p class="text-sm mt-2 text-slate-600">Open-source schema-aware storage formats that are foundational for auto schema evolution.</p>
-                    </div>
-                     <div class="tool-card p-6 bg-white rounded-xl shadow-md border border-slate-200 transition-all duration-300" data-type="commercial" data-focus="workflow">
-                        <h4 class="font-bold text-lg text-slate-800">Cflow</h4>
-                        <p class="text-sm mt-2 text-slate-600">No-code workflow automation with an intuitive interface and AI-powered process optimization.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="challenges" class="py-16 sm:py-24 bg-slate-50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">Navigating the Future</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">The path to full autonomy is promising but filled with technical, organizational, and ethical challenges that require careful navigation.</p>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="p-6 bg-white rounded-xl shadow-md border border-slate-200">
-                        <h3 class="text-xl font-bold text-slate-800 mb-4">Key Challenges</h3>
-                        <ul class="space-y-3 text-slate-600 list-disc list-inside">
-                            <li><span class="font-semibold">Technical Complexity:</span> Integrating with legacy systems and handling real-world data messiness.</li>
-                            <li><span class="font-semibold">Data Governance:</span> Ensuring data quality, privacy, and security is paramount and difficult.</li>
-                            <li><span class="font-semibold">Human-AI Collaboration:</span> Building trust, managing change resistance, and closing the AI skills gap.</li>
-                        </ul>
-                    </div>
-                    <div class="p-6 bg-white rounded-xl shadow-md border border-slate-200">
-                        <h3 class="text-xl font-bold text-slate-800 mb-4">Ethical Imperatives</h3>
-                         <ul class="space-y-3 text-slate-600 list-disc list-inside">
-                            <li><span class="font-semibold">Mitigating Bias:</span> Preventing AI from learning and amplifying historical biases in data.</li>
-                            <li><span class="font-semibold">Ensuring Transparency (XAI):</span> Moving away from "black box" models to explainable AI.</li>
-                            <li><span class="font-semibold">Defining Accountability:</span> Establishing clear responsibility when autonomous systems err.</li>
-                        </ul>
-                    </div>
-                    <div class="p-6 bg-white rounded-xl shadow-md border border-slate-200">
-                        <h3 class="text-xl font-bold text-slate-800 mb-4">Future Capabilities</h3>
-                         <ul class="space-y-3 text-slate-600 list-disc list-inside">
-                            <li><span class="font-semibold">Hyper-Personalization:</span> Workflows and experiences tailored to individual users and contexts.</li>
-                            <li><span class="font-semibold">Edge AI:</span> Faster, more private decision-making by processing data locally.</li>
-                            <li><span class="font-semibold">Predictive Optimization:</span> Systems that anticipate and prevent disruptions before they happen.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-slate-800 text-slate-400 py-8">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>Interactive application designed based on the report "Autonomous Schema and Workflow Factories in the AI Era."</p>
-            <p class="text-sm mt-2">&copy; 2025 AI Factory Interactive. All rights reserved.</p>
+<body class="engine-page">
+  <header>
+    <div class="container">
+      <nav>
+        <a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../services/index.html">Services</a>
+            <a href="../solutions/index.html">Solutions</a>
+            <a href="../resources/index.html">Resources</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
-    </footer>
+      </nav>
+    </div>
+  </header>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                backgroundColor: '#334155',
-                titleColor: '#ffffff',
-                bodyColor: '#ffffff',
-                callbacks: {
-                    label: function(context) {
-                        return `${context.dataset.label}: ${context.raw}% Reduction`;
-                    }
-                }
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                max: 100,
-                ticks: {
-                    color: '#64748b',
-                    callback: function(value) {
-                        return value + '%';
-                    }
-                },
-                grid: {
-                    color: '#e2e8f0'
-                }
-            },
-            x: {
-                ticks: {
-                    color: '#64748b',
-                    maxRotation: 0,
-                    minRotation: 0,
-                    callback: function(value) {
-                        const label = this.getLabelForValue(value);
-                        if (label.length > 16) {
-                           return label.match(/.{1,16}/g);
-                        }
-                        return label;
-                    }
-                },
-                grid: {
-                    display: false
-                }
-            }
-        }
-    };
+  <section class="engine-hero">
+    <div class="container">
+      <h1>Schema and Workflow Factory</h1>
+      <p>Schema evolution and workflow generation patterns for scalable execution systems.</p>
+      <div class="engine-badges">
+        <span>AI-to-Physical-World Execution</span>
+        <span>Reasoning as Infrastructure</span>
+        <span>Policy-First Runtime</span>
+      </div>
+    </div>
+  </section>
 
-    const schemaChartCtx = document.getElementById('schemaChart').getContext('2d');
-    const schemaChart = new Chart(schemaChartCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Incidents', 'Downtime', 'Manual Time', 'Errors'],
-            datasets: [{
-                label: 'Benefit',
-                data: [78, 64, 73, 86],
-                backgroundColor: ['#60a5fa', '#34d399', '#facc15', '#f87171'],
-                borderColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'],
-                borderWidth: 1,
-                borderRadius: 4
-            }]
-        },
-        options: chartOptions
-    });
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <h2>Operational Focus</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Primary Objective</h3>
+            <p>Enable fast iteration while preserving stable contracts across cognitive and execution layers.</p>
+          </article>
+          <article class="engine-card">
+            <h3>Execution Pattern</h3>
+            <ul class="engine-list">
+              <li>Intent capture and task graph decomposition</li>
+              <li>Policy Knowledge Graph authorization</li>
+              <li>PlanExecutor runtime execution with telemetry</li>
+              <li>Feedback-driven replanning and recovery</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
-    const workflowChartCtx = document.getElementById('workflowChart').getContext('2d');
-    const workflowChart = new Chart(workflowChartCtx, {
-        type: 'bar',
-        data: {
-            labels: ['OpEx', 'Productivity', 'Cust. Service Cost', 'Manufacturing Error'],
-            datasets: [{
-                label: 'Improvement',
-                data: [31, 15, 30, 85],
-                backgroundColor: ['#60a5fa', '#34d399', '#facc15', '#f87171'],
-                borderColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'],
-                borderWidth: 1,
-                borderRadius: 4
-            }]
-        },
-        options: {
-            ...chartOptions,
-            plugins: { ...chartOptions.plugins,
-                tooltip: { ...chartOptions.plugins.tooltip,
-                    callbacks: {
-                        label: function(context) {
-                            if (context.dataIndex === 1) return `${context.dataset.label}: ${context.raw}% Increase`;
-                            return `${context.dataset.label}: ${context.raw}% Reduction`;
-                        }
-                    }
-                }
-            }
-        }
-    });
+      <section class="engine-section engine-media">
+        <h2>Showcase and Source Evidence</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>Showcase Video</h3>
+            <p>Demonstrates closed-loop behavior from reasoning to real-world execution.</p>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Proof Links</h3>
+            <div class="engine-actions">
+              <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="../resources/seedcore-architecture.html">Architecture</a>
+              <a href="../resources/documentation.html">Documentation</a>
+            </div>
+            <img src="../images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
+          </aside>
+        </div>
+      </section>
 
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            const tab = button.dataset.tab;
-            tabContents.forEach(content => {
-                if (content.id === `${tab}-content`) {
-                    content.classList.remove('hidden');
-                } else {
-                    content.classList.add('hidden');
-                }
-            });
-        });
-    });
+      <section class="engine-section">
+        <h2>Latest Docs Alignment (main/docs)</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Core References</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/README.md" target="_blank" rel="noopener">README: closed-loop model and planes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/architecture/overview/architecture.md" target="_blank" rel="noopener">Architecture overview</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task-payload-capabilities.md" target="_blank" rel="noopener">TaskPayload capabilities</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task_payload_router.md" target="_blank" rel="noopener">Task router reference</a></li>
+            </ul>
+          </article>
+          <article class="engine-card">
+            <h3>Design and Development Notes</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/design-notes.md" target="_blank" rel="noopener">Design notes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/agent_capability_skills_quick_reference.md" target="_blank" rel="noopener">Capability skills quick reference</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/vla_2026_optimizations.md" target="_blank" rel="noopener">VLA 2026 optimizations</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/tree/main/docs" target="_blank" rel="noopener">Browse all docs</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
 
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const filterBtnAll = document.querySelector('.filter-btn-all');
-    const toolCards = document.querySelectorAll('.tool-card');
-    let activeFilters = { type: 'all', focus: 'all' };
+  <footer>
+    <div class="container">
+      <div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div>
+    </div>
+  </footer>
 
-    function applyFilters() {
-        toolCards.forEach(card => {
-            const typeMatch = activeFilters.type === 'all' || card.dataset.type === activeFilters.type;
-            const focusMatch = activeFilters.focus === 'all' || card.dataset.focus === activeFilters.focus;
-            if (typeMatch && focusMatch) {
-                card.classList.remove('hidden', 'opacity-0', 'scale-90');
-            } else {
-                card.classList.add('hidden', 'opacity-0', 'scale-90');
-            }
-        });
-    }
-
-    filterBtnAll.addEventListener('click', () => {
-        activeFilters = { type: 'all', focus: 'all' };
-        filterBtnAll.classList.add('active', 'bg-blue-500', 'text-white');
-        filterBtns.forEach(btn => btn.classList.remove('active', 'bg-blue-500', 'text-white'));
-        applyFilters();
-    });
-
-    filterBtns.forEach(button => {
-        button.addEventListener('click', () => {
-            const filterGroup = button.dataset.filterGroup;
-            const filterValue = button.dataset.filter;
-
-            document.querySelectorAll(`.filter-btn[data-filter-group="${filterGroup}"]`).forEach(btn => {
-                btn.classList.remove('active', 'bg-blue-500', 'text-white');
-            });
-            
-            button.classList.add('active', 'bg-blue-500', 'text-white');
-            activeFilters[filterGroup] = filterValue;
-            
-            filterBtnAll.classList.remove('active', 'bg-blue-500', 'text-white');
-            applyFilters();
-        });
-    });
-
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
-    const header = document.getElementById('header');
-    let headerHeight = header.offsetHeight;
-    
-    window.addEventListener('resize', () => {
-        headerHeight = header.offsetHeight;
-    });
-
-    window.onscroll = () => {
-        let current = '';
-        if (window.scrollY > 50) {
-            header.classList.add('shadow-md');
-        } else {
-            header.classList.remove('shadow-md');
-        }
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - headerHeight - 50) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
-    };
-});
-</script>
-
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/main.js"></script>
 </body>
 </html>
-

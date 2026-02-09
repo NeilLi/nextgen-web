@@ -1,109 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intelligent Manufacturing & Quality Control - Seedcore</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Using the same established CSS from previous examples */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; position: relative; line-height: 1.6; }
-        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, #000428 0%, #004e92 100%); opacity: 0.7; }
-        .grid-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px); background-size: 50px 50px; z-index: -1; animation: grid-move 20s linear infinite; }
-        @keyframes grid-move { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
-        .main-header { background: rgba(0,0,0,0.5); padding: 15px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(0, 255, 240, 0.2); }
-        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo-container { display: flex; align-items: center; text-decoration: none; color: #fff; }
-        .logo-img { height: 40px; width: auto; margin-right: 10px; }
-        .logo-text { font-size: 1.8em; font-weight: bold; }
-        .logo-text span { color: #00fff0; }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 25px; font-size: 1.1em; transition: color 0.3s ease; }
-        .nav-links a:hover, .nav-links a.active { color: #00fff0; text-shadow: 0 0 5px #00fff0; }
-        .page-header { text-align: center; padding: 60px 0 40px; position: relative; }
-        .title { font-size: 3.5em; font-weight: bold; background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; animation: glow 3s ease-in-out infinite; }
-        @keyframes glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.2); } }
-        .page-subtitle { font-size: 1.3em; color: #00fff0; opacity: 0.8; max-width: 800px; margin: 0 auto; }
-        .section { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 255, 240, 0.2); border-radius: 20px; padding: 30px; margin-bottom: 40px; }
-        .section h2 { color: #00fff0; font-size: 2em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(0, 255, 240, 0.3); }
-        .section p { font-size: 1.1em; opacity: 0.9; }
-        .card-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .info-card { background: linear-gradient(135deg, rgba(0, 255, 240, 0.1) 0%, rgba(128, 0, 255, 0.1) 100%); border: 1px solid rgba(0, 255, 240, 0.3); border-radius: 15px; padding: 25px; }
-        .info-card h3 { color: #00fff0; margin-bottom: 10px; font-size: 1.4em; }
-        .info-card .card-icon { font-size: 2em; margin-bottom: 15px; color: #00fff0; }
-        .cta-section { text-align: center; padding: 40px 20px; }
-        .cta-button { background: linear-gradient(135deg, #00fff0 0%, #ff00ff 100%); border: none; color: #000; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 30px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
-        .cta-button:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(0, 255, 240, 0.5); }
-        .main-footer { text-align: center; padding: 30px 0; border-top: 1px solid rgba(0, 255, 240, 0.2); margin-top: 40px; }
-        .main-footer p { margin-bottom: 10px; opacity: 0.8; }
-        .footer-links a { color: #00fff0; text-decoration: none; margin: 0 10px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manufacturing and Quality Control | SeedCore</title>
+  <meta name="description" content="Closed-loop quality operations with adaptive reasoning and physical execution control." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/engine-site.css" />
 </head>
-<body>
-    <div class="bg-animation"></div>
-    <div class="grid-overlay"></div>
-
-    <header class="main-header">
-        <div class="container">
-            <nav class="nav-links">
-                <a href="../index.html">Home</a>
-                <a href="../about.html">About Us</a>
-                <a href="../services/index.html">Capabilities</a>
-                <a href="index.html" class="active">Industry Solutions</a>
-                <a href="../resources/index.html">Resources</a>
-                <a href="../contact.html">Contact Us</a>
-            </nav>
-        </div>
-    </header>
-    
+<body class="engine-page">
+  <header>
     <div class="container">
-        <div class="page-header">
-            <h1 class="title">Intelligent Manufacturing & QC</h1>
-            <p class="page-subtitle">Automate your factory floor with AI-powered quality control, integrated robotics, and streamlined operational workflows.</p>
+      <nav>
+        <a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../services/index.html">Services</a>
+            <a href="../solutions/index.html">Solutions</a>
+            <a href="../resources/index.html">Resources</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
-
-        <section class="section">
-            <h2>The Challenge: Precision and Speed at Scale</h2>
-            <p>In modern manufacturing, maintaining high quality while increasing production speed is a constant battle. Manual inspection is slow, subjective, and prone to human error, leading to defects and waste. Disconnected machinery and systems create data silos, making it impossible to get a real-time view of your operations and respond quickly to issues.</p>
-        </section>
-
-        <section class="section">
-            <h2>Our Solution: The Smart, Connected Factory</h2>
-            <p>We transform your production lines into intelligent, automated ecosystems. By combining our core capabilities, we deliver a comprehensive solution:</p>
-            <div class="card-grid">
-                <div class="info-card">
-                    <div class="card-icon"><i class="fas fa-camera"></i></div>
-                    <h3>AI Vision for Quality Control</h3>
-                    <p>We deploy high-speed cameras and computer vision models to inspect products in real-time, identifying microscopic defects, verifying assembly, and ensuring 100% compliance with quality standards.</p>
-                </div>
-                <div class="info-card">
-                    <div class="card-icon"><i class="fas fa-robot"></i></div>
-                    <h3>Integrated Robotics</h3>
-                    <p>Robotic arms are integrated directly with AI vision systems to automatically sort, reject, or rework defective parts. This creates a closed-loop system that reduces manual handling and boosts throughput.</p>
-                </div>
-                <div class="info-card">
-                    <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
-                    <h3>n8n Workflow Automation</h3>
-                    <p>We use n8n to connect your factory floor systems (MES, SCADA) with your business systems (ERP, WMS). This automates everything from inventory updates based on production counts to real-time quality reporting.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2 style="color: #00fff0; font-size: 2em; margin-bottom: 20px;">Ready to Automate Your Factory Floor?</h2>
-            <p class="page-subtitle" style="margin-bottom: 30px;">Let's discuss how our intelligent manufacturing solutions can reduce waste, improve quality, and increase your production efficiency.</p>
-            <a href="../contact.html" class="cta-button">Request Partnership</a>
-        </section>
-
+      </nav>
     </div>
+  </header>
 
-    <footer class="main-footer">
-        <p>&copy; 2025 Seedcore. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="../privacy-policy.html">Privacy Policy</a>
-            <a href="../terms-of-service.html">Terms of Service</a>
+  <section class="engine-hero">
+    <div class="container">
+      <h1>Manufacturing and Quality Control</h1>
+      <p>Closed-loop quality operations with adaptive reasoning and physical execution control.</p>
+      <div class="engine-badges">
+        <span>AI-to-Physical-World Execution</span>
+        <span>Reasoning as Infrastructure</span>
+        <span>Policy-First Runtime</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <h2>Operational Focus</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Primary Objective</h3>
+            <p>Improve throughput and quality by linking anomaly detection, policy gates, and runtime replanning.</p>
+          </article>
+          <article class="engine-card">
+            <h3>Execution Pattern</h3>
+            <ul class="engine-list">
+              <li>Intent capture and task graph decomposition</li>
+              <li>Policy Knowledge Graph authorization</li>
+              <li>PlanExecutor runtime execution with telemetry</li>
+              <li>Feedback-driven replanning and recovery</li>
+            </ul>
+          </article>
         </div>
-    </footer>
+      </section>
+
+      <section class="engine-section engine-media">
+        <h2>Showcase and Source Evidence</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>Showcase Video</h3>
+            <p>Demonstrates closed-loop behavior from reasoning to real-world execution.</p>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Proof Links</h3>
+            <div class="engine-actions">
+              <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="../resources/seedcore-architecture.html">Architecture</a>
+              <a href="../resources/documentation.html">Documentation</a>
+            </div>
+            <img src="../images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
+          </aside>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <h2>Latest Docs Alignment (main/docs)</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Core References</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/README.md" target="_blank" rel="noopener">README: closed-loop model and planes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/architecture/overview/architecture.md" target="_blank" rel="noopener">Architecture overview</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task-payload-capabilities.md" target="_blank" rel="noopener">TaskPayload capabilities</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task_payload_router.md" target="_blank" rel="noopener">Task router reference</a></li>
+            </ul>
+          </article>
+          <article class="engine-card">
+            <h3>Design and Development Notes</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/design-notes.md" target="_blank" rel="noopener">Design notes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/agent_capability_skills_quick_reference.md" target="_blank" rel="noopener">Capability skills quick reference</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/vla_2026_optimizations.md" target="_blank" rel="noopener">VLA 2026 optimizations</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/tree/main/docs" target="_blank" rel="noopener">Browse all docs</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

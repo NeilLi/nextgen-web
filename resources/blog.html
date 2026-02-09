@@ -1,191 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beyond Smarter AI: Why Execution-Focused Orchestration is Key to AI-Native Success</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Dark background */
-            color: #D1D5DB; /* Lighter gray for body text for better contrast */
-        }
-        .article-container {
-            max-width: 800px; /* Optimal width for readability */
-            margin: 0 auto;
-        }
-        h1 {
-            color: #F9FAFB; /* White for main title */
-            font-size: 2.5rem; /* 40px */
-            line-height: 1.2;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        h2 {
-            color: #E5E7EB; /* Light gray for subtitles */
-            font-size: 1.875rem; /* 30px */
-            line-height: 1.3;
-            font-weight: 600;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #374151; /* Subtle separator for H2 */
-        }
-        p {
-            font-size: 1.125rem; /* 18px */
-            line-height: 1.75;
-            margin-bottom: 1.5rem;
-        }
-        strong {
-            color: #60A5FA; /* Blue accent for emphasis */
-        }
-        ul {
-            list-style-position: outside;
-            margin-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        li {
-            font-size: 1.125rem; /* 18px */
-            line-height: 1.75;
-            padding-left: 0.5rem;
-            margin-bottom: 0.75rem;
-            position: relative;
-        }
-        li::before {
-            content: '→'; /* Arrow antd bullet */
-            color: #3B82F6; /* Blue for bullet */
-            position: absolute;
-            left: -1.25rem;
-            font-weight: bold;
-        }
-        .section-separator {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            border: 0;
-            border-top: 1px solid #4B5563; /* Slightly more visible separator */
-        }
-        .final-thought {
-            background-color: #1F2937; /* Slightly different background for emphasis */
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            border-left: 4px solid #3B82F6;
-        }
-        .icon-inline {
-            display: inline-block;
-            width: 1.25em;
-            height: 1.25em;
-            margin-right: 0.25em;
-            vertical-align: text-bottom;
-        }
-        .tag-style {
-            display: inline-block;
-            background-color: #374151;
-            color: #9CA3AF;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px; /* pill shape */
-            font-size: 0.875rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | SeedCore</title>
+  <meta name="description" content="Insights on reasoning infrastructure, execution safety, and AI physical-world systems." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/engine-site.css" />
 </head>
-<body class="antialiased py-8 md:py-12">
-
-    <article class="article-container px-4 sm:px-6 lg:px-8">
-        <header class="mb-8 md:mb-12 text-center">
-            <p class="text-sm text-blue-400 uppercase tracking-wider font-semibold mb-2">AI-Native Platforms • Future of AI</p>
-            <h1>Beyond Smarter AI: Why Execution-Focused Orchestration is Key to AI-Native Success</h1>
-            <p class="text-gray-400 text-lg mt-4">
-                Published on <time datetime="2025-06-05">June 5, 2025</time>
-            </p>
-        </header>
-
-        <p>As we build the next wave of AI-native platforms, a critical component is taking center stage: <strong>orchestration</strong>. It's the key to unlocking real-world impact.</p>
-
-        <p>While AI models can now generate content, predict trends, and make complex decisions, their ability to execute those decisions across systems—securely, reliably, and at scale—remains limited. This gap between “thinking” and “doing” is where orchestration becomes not just important, but essential.</p>
-
-        <hr class="section-separator">
-
-        <h2>
-            <svg class="icon-inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            From Intelligence to Action
-        </h2>
-
-        <p>Traditional software platforms were built on deterministic logic. AI-native platforms, in contrast, are probabilistic and adaptive. They don’t just follow rules—they interpret, learn, and predict.</p>
-
-        <p>But interpretation alone isn’t enough.</p>
-
-        <p>AI-native systems need a layer that takes their intentions and drives actions. That’s <strong>orchestration</strong>: the ability to reliably translate AI's intentions into concrete actions across all your systems—from cloud services and APIs to databases and IoT devices. Without this crucial layer, even the most advanced AI remains a powerful brain in a jar, full of potential but unable to interact meaningfully with the world.</p>
-
-        <hr class="section-separator">
-
-        <h2>
-            <svg class="icon-inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            Why AI Needs Orchestration
-        </h2>
-        <ul>
-            <li><strong>Turn Insights into Impact:</strong> AI's brilliance is wasted without action. Orchestration bridges the gap, transforming AI-generated insights into tangible business outcomes.</li>
-            <li><strong>Maintain Control & Compliance:</strong> AI-driven actions demand robust governance. Orchestration provides the framework for auditable, policy-compliant execution, ensuring human oversight where it matters most.</li>
-            <li><strong>Enable Seamless Teamwork for AI:</strong> The future is multi-agent. Orchestration provides the essential communication and coordination backbone, allowing diverse AI agents to work together effectively on complex tasks.</li>
-            <li><strong>Connect AI to Your Entire World:</strong> AI needs to speak the language of your existing infrastructure. Orchestration acts as the universal adapter, seamlessly connecting AI intent with legacy systems, modern cloud services, CRMs, and real-world sensors.</li>
-        </ul>
-
-        <hr class="section-separator">
-
-        <h2>
-            <svg class="icon-inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-            The Rise of Execution-First AI
-        </h2>
-        <p>We’re entering a new phase in the evolution of AI platforms:</p>
-        <ul>
-            <li>Yesterday’s AI was about <strong>modeling</strong>.</li>
-            <li>Today’s AI is about <strong>fine-tuning and alignment</strong>.</li>
-            <li>Tomorrow’s AI is about <strong>trusted orchestration and execution</strong>.</li>
-        </ul>
-        <p>Companies that master orchestration will dominate the next wave of innovation—not by just building smarter models, but by enabling smarter systems that can think <em>and act</em>.</p>
-
-        <hr class="section-separator">
-
-        <h2>
-            <svg class="icon-inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            What to Look For in an Orchestration Layer
-        </h2>
-        <p>To build an AI-native orchestration layer, the platform must offer:</p>
-        <ul>
-            <li>Declarative intent modeling (what to do, not just how)</li>
-            <li>Real-time policy enforcement</li>
-            <li>Multi-agent coordination frameworks</li>
-            <li>Secure execution environments</li>
-            <li>Plug-and-play connectors to APIs, data, and devices</li>
-            <li>Adaptive Workflow Management: The ability to dynamically adjust workflows based on real-time AI insights and changing conditions.</li>
-        </ul>
-
-        <hr class="section-separator">
-
-        <h2>
-            <svg class="icon-inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7.014A7.987 7.987 0 0110 3c.357 0 .707.042 1.05.124A9.01 9.01 0 0110 19c-1.053 0-2.062-.209-3-.583"></path></svg>
-            Final Thought
-        </h2>
-        <div class="final-thought">
-            <p>In the near future, every smart agent, autonomous tool, or enterprise AI assistant will depend on orchestration to get things done. Just like operating systems defined the last era of computing, orchestration layers will define the AI-native era.</p>
-            <p class="mb-0">If your platform can orchestrate, your AI doesn’t just think—it <strong>transforms the world around it.</strong></p>
+<body class="engine-page">
+  <header>
+    <div class="container">
+      <nav>
+        <a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../services/index.html">Services</a>
+            <a href="../solutions/index.html">Solutions</a>
+            <a href="../resources/index.html">Resources</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
+      </nav>
+    </div>
+  </header>
 
-        <footer class="mt-12 md:mt-16 pt-8 border-t border-gray-700 text-center">
-            <p class="text-gray-400 text-sm">&copy; <script>document.write(new Date().getFullYear())</script> YourCompanyName. All rights reserved.</p>
-            <p class="text-gray-500 text-xs mt-2">
-                Tags:
-                <span class="tag-style">AI Orchestration</span>
-                <span class="tag-style">AI-Native</span>
-                <span class="tag-style">Future of AI</span>
-                <span class="tag-style">Enterprise AI</span>
-                <span class="tag-style">AI Execution</span>
-            </p>
-        </footer>
+  <section class="engine-hero">
+    <div class="container">
+      <h1>Blog</h1>
+      <p>Insights on reasoning infrastructure, execution safety, and AI physical-world systems.</p>
+      <div class="engine-badges">
+        <span>AI-to-Physical-World Execution</span>
+        <span>Reasoning as Infrastructure</span>
+        <span>Policy-First Runtime</span>
+      </div>
+    </div>
+  </section>
 
-    </article>
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <h2>Operational Focus</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Primary Objective</h3>
+            <p>Share practical thinking about infrastructure patterns for dependable AI execution.</p>
+          </article>
+          <article class="engine-card">
+            <h3>Execution Pattern</h3>
+            <ul class="engine-list">
+              <li>Intent capture and task graph decomposition</li>
+              <li>Policy Knowledge Graph authorization</li>
+              <li>PlanExecutor runtime execution with telemetry</li>
+              <li>Feedback-driven replanning and recovery</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
+      <section class="engine-section engine-media">
+        <h2>Showcase and Source Evidence</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>Showcase Video</h3>
+            <p>Demonstrates closed-loop behavior from reasoning to real-world execution.</p>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Proof Links</h3>
+            <div class="engine-actions">
+              <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="../resources/seedcore-architecture.html">Architecture</a>
+              <a href="../resources/documentation.html">Documentation</a>
+            </div>
+            <img src="../images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
+          </aside>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <h2>Latest Docs Alignment (main/docs)</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Core References</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/README.md" target="_blank" rel="noopener">README: closed-loop model and planes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/architecture/overview/architecture.md" target="_blank" rel="noopener">Architecture overview</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task-payload-capabilities.md" target="_blank" rel="noopener">TaskPayload capabilities</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task_payload_router.md" target="_blank" rel="noopener">Task router reference</a></li>
+            </ul>
+          </article>
+          <article class="engine-card">
+            <h3>Design and Development Notes</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/design-notes.md" target="_blank" rel="noopener">Design notes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/agent_capability_skills_quick_reference.md" target="_blank" rel="noopener">Capability skills quick reference</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/vla_2026_optimizations.md" target="_blank" rel="noopener">VLA 2026 optimizations</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/tree/main/docs" target="_blank" rel="noopener">Browse all docs</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

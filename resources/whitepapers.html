@@ -3,142 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Whitepaper: Seedcore — Trusted AI Agents & Autonomous Manufacturing</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    :root { --c1:#00fff0; --c2:#0080ff; --c3:#ff00ff; }
-    * { box-sizing: border-box; }
-    body { margin:0; background:#000; color:#fff; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height:1.7; }
-    .bg { position:fixed; inset:0; z-index:-2; background:linear-gradient(45deg,#000428,#004e92); opacity:.7; }
-    .grid { position:fixed; inset:0; z-index:-1; background-image:linear-gradient(rgba(0,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.08) 1px,transparent 1px); background-size:50px 50px; animation:grid-move 20s linear infinite; }
-    @keyframes grid-move { to { transform: translate(50px,50px);} }
-    .container { max-width: 950px; margin: 0 auto; padding: 0 20px; }
-    header { position:sticky; top:0; background:rgba(0,0,0,0.55); border-bottom:1px solid rgba(0,255,240,0.2); z-index:1000; }
-    header .row { display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
-    .brand { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:800; font-size:1.3rem; }
-    .brand .dotai{ color:var(--c1);}    
-    nav a { color:#fff; text-decoration:none; margin-left:18px; }
-    nav a:hover { color:var(--c1); text-shadow:0 0 5px var(--c1); }
-    .wp-header { text-align:center; padding:60px 0 35px; border-bottom:1px solid rgba(0,255,240,.18); margin-bottom:30px; }
-    .title { font-size:2.4rem; font-weight:800; background: linear-gradient(135deg, var(--c1), var(--c2) 50%, var(--c3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 0 3px #00fff0); }
-    .subtitle { color:var(--c1); opacity:.95; margin:.4rem 0 .2rem; font-size:1.1rem; }
-    .meta { color:#b5b5b5; font-size:.95rem; }
-    .content { padding:24px 0 60px; }
-    .content h2 { color:#00c6ff; font-size:1.65rem; margin:36px 0 12px; padding-bottom:8px; border-bottom:1px solid rgba(0,198,255,.3); }
-    .content h3 { color:var(--c1); font-size:1.25rem; margin:22px 0 10px; }
-    .content p { color:#d4d4d4; margin:0 0 16px; }
-    .content ul { list-style:none; padding-left:0; margin:0 0 18px; }
-    .content li { position:relative; padding-left:22px; margin:8px 0; color:#d4d4d4; }
-    .content li:before { content:"\f105"; font-family:"Font Awesome 6 Free"; font-weight:900; color:var(--c1); position:absolute; left:0; }
-    blockquote { border-left:3px solid var(--c1); background:rgba(0,255,240,.05); padding:14px 16px; color:#9adfff; border-radius:8px; margin:18px 0; }
-    .diagram { background:rgba(255,255,255,.05); border:1px dashed rgba(0,255,240,.3); padding:18px; text-align:center; color:#aaa; border-radius:8px; }
-    footer { background:#0a0a14; border-top:1px solid rgba(0,255,240,.12); color:#adb5bd; padding:45px 0 30px; }
-    footer .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:26px; }
-    footer a { color:#adb5bd; text-decoration:none; }
-    footer a:hover { color:var(--c1); }
-    .btn { background:linear-gradient(135deg,var(--c1),var(--c3)); border:0; color:#000; padding:9px 20px; border-radius:30px; font-weight:700; text-decoration:none; display:inline-block; }
-  </style>
+  <title>Research Papers | SeedCore</title>
+  <meta name="description" content="Research index covering architecture, controls, memory, and distributed runtime topics." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/engine-site.css" />
 </head>
-<body>
-  <div class="bg"></div><div class="grid"></div>
+<body class="engine-page">
   <header>
-    <div class="container row">
-      <a class="brand" href="../index.html" aria-label="Seedcore home">
-        <img src="../assets/seedcore-logo.svg" height="28" alt="Seedcore logo"/>
-        <span>Seedcore<span class="dotai">.ai</span></span>
-      </a>
+    <div class="container">
       <nav>
-        <a href="../index.html">Home</a>
-        <a href="../about.html">About</a>
-        <a href="../resources/index.html" class="active">Resources</a>
-        <a href="https://github.com/NeilLi/seedcore">GitHub</a>
-        <a class="btn" href="../contact.html#consultation">Request Partnership</a>
+        <a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../services/index.html">Services</a>
+            <a href="../solutions/index.html">Solutions</a>
+            <a href="../resources/index.html">Resources</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
+        </div>
       </nav>
     </div>
   </header>
 
-  <main class="container content">
-    <header class="wp-header">
-      <h1 class="title">Seedcore Cognitive Organism — Orchestrating Trusted AI Agents & Autonomous Manufacturing</h1>
-      <p class="subtitle">A research‑backed blueprint for secure, scalable, and low‑latency agentic systems</p>
-      <p class="meta">Version 2.0 • Updated: 2025‑09‑05 • Open‑Source Reference: <a href="https://github.com/NeilLi/seedcore">github.com/NeilLi/seedcore</a></p>
-    </header>
+  <section class="engine-hero">
+    <div class="container">
+      <h1>Research Papers</h1>
+      <p>Research index covering architecture, controls, memory, and distributed runtime topics.</p>
+      <div class="engine-badges">
+        <span>AI-to-Physical-World Execution</span>
+        <span>Reasoning as Infrastructure</span>
+        <span>Policy-First Runtime</span>
+      </div>
+    </div>
+  </section>
 
-    <h2>Abstract</h2>
-    <p>We present a production architecture that operationalizes the Cognitive Organism design into a modern, distributed stack. The system emphasizes contractive control, fast‑path dominance, and hierarchical memory to deliver trustworthy autonomy under strict latency and freshness budgets. Seedcore’s open‑source implementation maps these ideas to Ray Serve applications and Ray Actors for horizontal scale and fault tolerance, exposing clean service boundaries for governance and observability.</p>
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <h2>Operational Focus</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Primary Objective</h3>
+            <p>Provide curated references that support the system’s design decisions and roadmap.</p>
+          </article>
+          <article class="engine-card">
+            <h3>Execution Pattern</h3>
+            <ul class="engine-list">
+              <li>Intent capture and task graph decomposition</li>
+              <li>Policy Knowledge Graph authorization</li>
+              <li>PlanExecutor runtime execution with telemetry</li>
+              <li>Feedback-driven replanning and recovery</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
-    <h2>Motivation</h2>
-    <p>Enterprises require agentic automation that is fast, safe, and inspectable. Rather than brittle monoliths or ad‑hoc pipelines, Seedcore composes contractive operators with an escalation valve so that routine requests remain on a constant‑time path while only ambiguous or novel cases escalate to deeper reasoning. This yields high throughput and predictable behavior suitable for regulated environments.</p>
+      <section class="engine-section engine-media">
+        <h2>Showcase and Source Evidence</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>Showcase Video</h3>
+            <p>Demonstrates closed-loop behavior from reasoning to real-world execution.</p>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Proof Links</h3>
+            <div class="engine-actions">
+              <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="../resources/seedcore-architecture.html">Architecture</a>
+              <a href="../resources/documentation.html">Documentation</a>
+            </div>
+            <img src="../images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
+          </aside>
+        </div>
+      </section>
 
-    <h2>Design Principles</h2>
-    <ul>
-      <li><strong>Contractive composition.</strong> Every workflow iteration is a contraction mapping; the total Lipschitz constant remains below one, providing stability and eventual convergence.</li>
-      <li><strong>Fast‑path dominance.</strong> A latency‑aware router keeps the clear majority of traffic on an 𝑂(1) path; only the hard 10% escalates to deep reasoning.</li>
-      <li><strong>Fresh memory.</strong> A hierarchical memory fabric and pattern caching bound staleness while supporting exact lookups and fuzzy recall.</li>
-      <li><strong>Safety & governance.</strong> Policy gates, evaluation harnesses, and model cards are first‑class, supporting GDPR and Hong Kong PDPO alignment.</li>
-      <li><strong>Open standards.</strong> Portable components, clean APIs, and infrastructure‑agnostic deployment.</li>
-    </ul>
-
-    <h2>System Architecture</h2>
-    <p>Seedcore deploys a set of Ray Serve applications — <em>ml_service</em>, <em>cognitive</em>, <em>orchestrator</em>, and <em>organism</em> — each backed by one or more <code>ServeReplica</code> actors and a small control plane (ServeController + Proxies). Replicas are distributed across nodes for redundancy and horizontal scaling.</p>
-    <div class="diagram">[Serve Apps → Actors mapping, control plane (ServeController, Proxies), and service interactions. See repo for the live diagram.]</div>
-
-    <h3>Key Services</h3>
-    <ul>
-      <li><strong>MLService</strong> — dedicated inference endpoints used by upstream agents.</li>
-      <li><strong>CognitiveService</strong> — parallel workers for reasoning/planning; typically 2+ replicas on separate nodes.</li>
-      <li><strong>OpsOrchestrator</strong> — system‑level workflow and external integration surface.</li>
-      <li><strong>OrganismManager</strong> — lifecycle and inter‑organ coordination.</li>
-    </ul>
-
-    <h2>Performance & Guarantees</h2>
-    <p>The Cognitive Organism proves a tri‑layer, contractive feedback loop (swarm + OCPS‑gated coordinator + memory) that achieves ~90% fast‑path routing, sub‑100ms p95 latency, and ≤3s memory freshness under load. In production this translates to high throughput with bounded risk and deterministic recovery behavior.</p>
-
-    <h2>Implementation Notes</h2>
-    <ul>
-      <li><strong>Open‑source mapping.</strong> The repo documents a recommended stack: Ray actors for organs, hierarchical memory via PGVector + Neo4j, and OpenTelemetry + OPA for observability and policy.</li>
-      <li><strong>Security.</strong> Service‑to‑service auth via gateway, credentials in a vault, and role‑based approvals for human‑in‑the‑loop steps.</li>
-      <li><strong>Observability.</strong> Track replica health, actor placement, latency histograms, and memory freshness SLIs.</li>
-      <li><strong>Scaling.</strong> Increase Cognitive replicas to match reasoning load; Organism and Orchestrator scale independently.</li>
-    </ul>
-
-    <h2>Roadmap</h2>
-    <ul>
-      <li>Auto‑scaling policies for reasoning load and memory pressure.</li>
-      <li>Multi‑region clusters with intelligent request routing.</li>
-      <li>Extended model cards and evaluation suites for new domains.</li>
-    </ul>
-
-    <blockquote>Source & Docs: <a href="https://github.com/NeilLi/seedcore">github.com/NeilLi/seedcore</a>. For the theoretical foundations and proofs, see the Cognitive Organism paper.</blockquote>
+      <section class="engine-section">
+        <h2>Latest Docs Alignment (main/docs)</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Core References</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/README.md" target="_blank" rel="noopener">README: closed-loop model and planes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/architecture/overview/architecture.md" target="_blank" rel="noopener">Architecture overview</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task-payload-capabilities.md" target="_blank" rel="noopener">TaskPayload capabilities</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/references/task_payload_router.md" target="_blank" rel="noopener">Task router reference</a></li>
+            </ul>
+          </article>
+          <article class="engine-card">
+            <h3>Design and Development Notes</h3>
+            <ul class="engine-list">
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/design-notes.md" target="_blank" rel="noopener">Design notes</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/agent_capability_skills_quick_reference.md" target="_blank" rel="noopener">Capability skills quick reference</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/blob/main/docs/development/vla_2026_optimizations.md" target="_blank" rel="noopener">VLA 2026 optimizations</a></li>
+              <li><a href="https://github.com/NeilLi/seedcore/tree/main/docs" target="_blank" rel="noopener">Browse all docs</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer>
     <div class="container">
-      <div class="grid">
-        <div>
-          <img src="../assets/seedcore-logo.svg" class="footer-logo" alt="Seedcore logo" height="40"/>
-          <p>Seed Core Limited (Hong Kong). Trusted AI agents & autonomous manufacturing.</p>
-        </div>
-        <div>
-          <h3 style="color:var(--c1);">Resources</h3>
-          <ul>
-            <li><a href="./whitepapers.html">All Whitepapers</a></li>
-            <li><a href="./documentation.html">Documentation</a></li>
-            <li><a href="https://github.com/NeilLi/seedcore">Open‑Source Repository</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 style="color:var(--c1);">Legal</h3>
-          <ul>
-            <li><a href="../privacy-policy.html">Privacy Policy (GDPR & HK PDPO)</a></li>
-            <li><a href="../terms-of-service.html">Terms of Service</a></li>
-            <li><a href="../trust-security.html">Trust, Safety & Governance</a></li>
-          </ul>
-        </div>
-      </div>
-      <p style="text-align:center; margin-top:24px; color:#9aa3ac;">© <span id="y"></span> Seed Core Limited. All rights reserved.</p>
+      <div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div>
     </div>
   </footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/main.js"></script>
 </body>
 </html>
