@@ -1,472 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - AutoMind</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        /* Animated background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
-            opacity: 0.7;
-        }
-        
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            animation: grid-move 20s linear infinite;
-        }
-        
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        .container {
-            max-width: 1200px; 
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Override header styles for dark theme */
-        .main-header {
-            background: rgba(0,0,0,0.5);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
-        }
-
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #fff;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            margin-right: 10px;
-        }
-        .logo-text {
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-        .logo-text span {
-            color: #00fff0;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: #00fff0;
-            text-shadow: 0 0 5px #00fff0;
-        }
-        
-        /* Page Header */
-        .page-header {
-            text-align: center;
-            padding: 60px 0 40px;
-            position: relative;
-        }
-        
-        .title {
-            font-size: 3.5em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            animation: glow 3s ease-in-out infinite;
-        }
-        
-        @keyframes glow {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.2); }
-        }
-
-        .page-subtitle {
-            font-size: 1.3em;
-            color: #00fff0;
-            opacity: 0.8;
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-        }
-
-        /* Contact Section Layout */
-        .contact-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns */
-            gap: 40px;
-            align-items: start; /* Align items to the top of their grid cell */
-        }
-
-        /* Contact Form */
-        .contact-form-section {
-            background: rgba(0, 128, 255, 0.05);
-            border: 1px solid rgba(0, 128, 255, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-        }
-
-        .contact-form-section h2 {
-            color: #0080ff;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            color: #00fff0;
-            margin-bottom: 8px;
-            font-size: 1.05em;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(0, 255, 240, 0.5);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 1em;
-            transition: border-color 0.3s ease;
-        }
-        .form-group input[type="text"]:focus,
-        .form-group input[type="email"]:focus,
-        .form-group textarea:focus {
-            border-color: #00fff0;
-            outline: none;
-            box-shadow: 0 0 8px rgba(0, 255, 240, 0.3);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #00fff0 0%, #ff00ff 100%);
-            border: none;
-            color: #000;
-            padding: 12px 25px;
-            font-size: 1.1em;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .submit-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 255, 240, 0.4);
-        }
-
-        /* Contact Info Section */
-        .contact-info-section {
-            background: rgba(255, 0, 255, 0.05);
-            border: 1px solid rgba(255, 0, 255, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-        }
-        .contact-info-section h2 {
-            color: #ff00ff;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-        }
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        .contact-info-item i {
-            color: #ff00ff;
-            font-size: 1.5em;
-            margin-right: 15px;
-            width: 25px; /* Fixed width for icons */
-            text-align: center;
-        }
-        .contact-info-item a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .contact-info-item a:hover {
-            color: #ff00ff;
-            text-decoration: underline;
-        }
-
-        /* Map Placeholder */
-        .map-placeholder {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-            border: 1px dashed rgba(255,0,255,0.5);
-            color: rgba(255,0,255,0.7);
-        }
-        
-        /* Footer */
-        .main-footer {
-            text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid rgba(0, 255, 240, 0.2);
-            margin-top: 40px;
-            background: rgba(0,0,0,0.3);
-        }
-        .main-footer p {
-            margin-bottom: 10px;
-            opacity: 0.8;
-        }
-        .footer-links a {
-            color: #00fff0;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover {
-            text-decoration: underline;
-            color: #ff00ff;
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .main-header .container {
-                flex-direction: column;
-            }
-            .nav-links {
-                margin-top: 15px;
-            }
-            .nav-links a {
-                margin: 0 10px;
-            }
-            .title { font-size: 2.8em; }
-            .contact-layout {
-                grid-template-columns: 1fr; /* Stack columns on smaller screens */
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .title { font-size: 2.2em; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | SeedCore Partnerships</title>
+  <meta name="description" content="Contact SeedCore for strategic review, pilot deployment, and AI-to-physical-world collaboration." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/engine-site.css" />
 </head>
-<body>
-    <div class="bg-animation"></div>
-    <div class="grid-overlay"></div>
-
-    <header class="main-header">
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo" aria-label="Seedcore Home">
-                    <img src="assets/seedcore-logo.svg" alt="Seedcore" class="logo-svg" style="height: 50px; width: auto;">
-                </a>
-                <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
-                <div class="nav-links-wrapper">
-                    <div class="nav-links">
-                        <a href="index.html">Home</a>
-                        <a href="about.html">About</a>
-                        <a href="services/index.html">Services</a>
-                        <a href="solutions/index.html">Solutions</a>
-                        <a href="resources/index.html">Resources</a>
-                        <a href="contact.html" class="active">Contact</a>
-                    </div>
-                    <a href="contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
-                    <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
-                        <img src="images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;">
-                    </a>
-                </div>
-            </nav>
-        </div>
-    </header>
-    
+<body class="engine-page">
+  <header>
     <div class="container">
-        <div class="page-header">
-            <h1 class="title">Get in Touch</h1>
-            <p class="page-subtitle">We're excited to hear about your automation challenges and strategic goals. Reach out to us to start a conversation or request a consultation.</p>
-            
-            <!-- Notification Banner -->
-            <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%); border: 1px solid #ff4757; border-radius: 15px; padding: 20px; margin: 30px auto; max-width: 600px; text-align: center; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);">
-                <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.3em;">
-                    <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
-                    Service Notice
-                </h3>
-                <p style="color: #fff; margin: 0; font-size: 1.1em; line-height: 1.5;">
-                    We're currently preparing our services and will be ready to assist you soon. 
-                    Please feel free to reach out with your inquiries, and we'll get back to you as soon as we're fully operational.
-                </p>
-            </div>
+      <nav>
+        <a href="index.html" class="logo" aria-label="SeedCore Home"><img src="assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="services/index.html">Services</a><a href="solutions/index.html">Solutions</a><a href="resources/index.html">Resources</a><a href="contact.html">Contact</a>
+          </div>
+          <a href="#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
-
-        <div class="contact-layout">
-            <section class="contact-form-section" id="consultation">
-                <h2>Send Us a Message</h2>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company (Optional)</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </section>
-
-            <section class="contact-info-section">
-                <h2>Contact Information</h2>
-                <p>Connect with our teams in the EU and Southeast Asia. We're ready to assist you with your AI and automation needs.</p>
-                
-                <div class="contact-info-item">
-                    <i class="fas fa-envelope"></i>
-                    <span><a href="mailto:hello@seedcore.ai">hello@seedcore.ai</a></span>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <span style="filter: blur(4px); user-select: none; cursor: default;">EU: +XX XXX XXX XX</span>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <span style="filter: blur(4px); user-select: none; cursor: default;">SEA: +XX XXX XXX XX</span>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span style="filter: blur(4px); user-select: none; cursor: default;">EU Office: Future Street 1, Berlin, Germany</span>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span style="filter: blur(4px); user-select: none; cursor: default;">SEA Hub: Tech Avenue 101, Singapore</span>
-                </div>
-
-                <h2>Office Hours</h2>
-                <div class="contact-info-item">
-                    <i class="fas fa-clock"></i>
-                    <span>Monday - Friday: 9:00 AM - 6:00 PM (Local Time)</span>
-                </div>
-
-                <div class="map-placeholder">
-                    <p>Interactive Map Coming Soon</p>
-                </div>
-            </section>
-        </div>
+      </nav>
     </div>
+  </header>
 
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; <span id="currentYear">2025</span> AutoMind. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms-of-service.html">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Basic form submission handler (preventDefault to stop actual submission for demo)
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                // Here you would typically send the data to a backend or n8n webhook
-                alert('Thank you for your message! We\'re currently preparing our services and will get back to you as soon as we\'re fully operational.');
-                contactForm.reset();
-            });
-        }
-    </script>
-
-    <!-- Cookie Banner -->
-    <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
-      <span>We use cookies for essential functionality and anonymous analytics. See our <a href="privacy-policy.html" style="color:#fff;text-decoration:underline">Privacy Policy</a>.</span>
-      <button id="cookieAccept" class="btn-small">OK</button>
+  <section class="engine-hero">
+    <div class="container">
+      <h1>Partnership Contact</h1>
+      <p>If your team is evaluating AI-to-physical-world execution, share your environment, constraints, and objectives. We will propose a clear technical collaboration path.</p>
+      <div class="engine-badges"><span>Pilot Programs</span><span>Architecture Review</span><span>Strategic Resource Collaboration</span></div>
     </div>
+  </section>
 
-    <script>
-      (function() {
-        const key = 'seedcore_cookie_ok';
-        const ok = localStorage.getItem(key);
-        const banner = document.getElementById('cookieBanner');
-        const btn = document.getElementById('cookieAccept');
-        if (!ok) banner.style.display = 'flex';
-        btn.addEventListener('click', function(){
-          localStorage.setItem(key, '1');
-          banner.style.display = 'none';
-        });
-      })();
-    </script>
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section engine-media">
+        <h2>Before Contacting Us</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>Watch the System Walkthrough</h3>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Preparation Links</h3>
+            <div class="engine-actions"><a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a><a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a><a href="resources/seedcore-architecture.html">Architecture</a><a href="resources/documentation.html">Documentation</a></div>
+            <p>Useful input for kickoff: operating environment, policy constraints, target KPIs, and integration boundaries.</p>
+          </aside>
+        </div>
+      </section>
 
+      <section class="engine-section" id="consultation">
+        <h2>Submit Your Inquiry</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card">
+            <h3>Contact Form</h3>
+            <form id="contactForm">
+              <p><label for="name">Full Name</label><br /><input type="text" id="name" name="name" required style="width:100%;padding:10px;border:1px solid #cfe0fc;border-radius:8px;" /></p>
+              <p><label for="email">Email</label><br /><input type="email" id="email" name="email" required style="width:100%;padding:10px;border:1px solid #cfe0fc;border-radius:8px;" /></p>
+              <p><label for="company">Company</label><br /><input type="text" id="company" name="company" style="width:100%;padding:10px;border:1px solid #cfe0fc;border-radius:8px;" /></p>
+              <p><label for="message">Project Scope</label><br /><textarea id="message" name="message" required style="width:100%;min-height:120px;padding:10px;border:1px solid #cfe0fc;border-radius:8px;"></textarea></p>
+              <button type="submit" class="btn">Send Inquiry</button>
+            </form>
+          </article>
+          <article class="engine-card">
+            <h3>Direct Contact</h3>
+            <ul class="engine-list">
+              <li>Email: <a href="mailto:hello@seedcore.ai">hello@seedcore.ai</a></li>
+              <li>Response target: within 3 business days</li>
+              <li>Best for: pilot design, architecture validation, strategic collaboration</li>
+            </ul>
+            <img src="images/globalmap.png" alt="SeedCore global collaboration reach" class="engine-image" loading="lazy" />
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="container"><div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div></div></footer>
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        alert('Thank you. We will review your scope and respond with a practical collaboration proposal.');
+        contactForm.reset();
+      });
+    }
+  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

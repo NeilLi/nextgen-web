@@ -1,140 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Industry Solutions - Seedcore</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; line-height: 1.6; }
-        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, #000428 0%, #004e92 100%); opacity: 0.7; }
-        .grid-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px); background-size: 50px 50px; z-index: -1; animation: grid-move 20s linear infinite; }
-        @keyframes grid-move { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
-
-        /* Override header styles for dark theme */
-        .main-header { background: rgba(0,0,0,0.5); padding: 15px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(0, 255, 240, 0.2); }
-        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo-container { display: flex; align-items: center; text-decoration: none; color: #fff; }
-        .logo-img { height: 40px; width: auto; margin-right: 10px; }
-        .logo-text { font-size: 1.8em; font-weight: bold; }
-        .logo-text span { color: #00fff0; }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 25px; font-size: 1.1em; transition: color 0.3s ease; }
-        .nav-links a:hover, .nav-links a.active { color: #00fff0; text-shadow: 0 0 5px #00fff0; }
-
-        .page-header { text-align: center; padding: 60px 0 40px; }
-        .title { font-size: 3.5em; font-weight: bold; background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; animation: glow 3s ease-in-out infinite; }
-        @keyframes glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.2); } }
-        .page-subtitle { font-size: 1.3em; color: #00fff0; opacity: 0.8; max-width: 800px; margin: 0 auto 40px auto; }
-
-        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 40px; }
-        .solution-card { background: linear-gradient(145deg, rgba(0, 255, 128, 0.1) 0%, rgba(0, 128, 255, 0.1) 100%); border: 1px solid rgba(0, 220, 180, 0.3); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; transition: all 0.3s ease-in-out; }
-        .solution-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(0, 220, 180, 0.2), 0 0 15px rgba(0, 128, 255, 0.2); border-color: #00dcb4; }
-        .solution-card .card-icon { font-size: 3em; color: #00dcb4; margin-bottom: 20px; text-align: center; }
-        .solution-card h3 { color: #00dcb4; font-size: 1.8em; margin-bottom: 15px; text-align: center; }
-        .solution-card p { font-size: 1.05em; opacity: 0.9; margin-bottom: 20px; flex-grow: 1; }
-        .learn-more-btn { background: linear-gradient(135deg, #00dcb4 0%, #0080ff 100%); border: none; color: #000; padding: 12px 25px; font-size: 1em; font-weight: bold; border-radius: 30px; text-decoration: none; text-align: center; transition: all 0.3s ease; }
-        .learn-more-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0, 220, 180, 0.4); }
-
-        .main-footer { text-align: center; padding: 30px 0; border-top: 1px solid rgba(0, 255, 240, 0.2); margin-top: 40px; background: rgba(0,0,0,0.3); }
-        .main-footer p { margin-bottom: 10px; opacity: 0.8; }
-        .footer-links a { color: #00fff0; text-decoration: none; margin: 0 10px; transition: color 0.3s ease; }
-        .footer-links a:hover { text-decoration: underline; color: #ff00ff; }
-
-        @media (max-width: 992px) { .main-header .container { flex-direction: column; } .nav-links { margin-top: 15px; } .title { font-size: 2.8em; } }
-        @media (max-width: 768px) { .title { font-size: 2.2em; } .solutions-grid { grid-template-columns: 1fr; } .solution-card h3 { font-size: 1.6em; } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions | SeedCore</title>
+  <meta name="description" content="SeedCore industry solutions for AI-to-physical-world execution across manufacturing, healthcare, retail, and operations." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/engine-site.css" />
 </head>
-<body>
-    <div class="bg-animation"></div>
-    <div class="grid-overlay"></div>
-
-    <header class="main-header">
-        <div class="container">
-            <nav>
-                <a href="../index.html" class="logo" aria-label="Seedcore Home">
-                    <img src="../assets/seedcore-logo.svg" alt="Seedcore" class="logo-svg" style="height: 50px; width: auto;">
-                </a>
-                <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
-                <div class="nav-links-wrapper">
-                    <div class="nav-links">
-                        <a href="../index.html">Home</a>
-                        <a href="../about.html">About</a>
-                        <a href="../services/index.html">Services</a>
-                        <a href="index.html" class="active">Solutions</a>
-                        <a href="../resources/index.html">Resources</a>
-                        <a href="../contact.html">Contact</a>
-                    </div>
-                    <a href="../contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
-                    <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
-                        <img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;">
-                    </a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
+<body class="engine-page">
+  <header>
     <div class="container">
-        <div class="page-header">
-            <h1 class="title">Industry Solutions</h1>
-            <p class="page-subtitle">How Seedcore applies AI, robotics, and automation research to unlock real-world impact across industries.</p>
+      <nav>
+        <a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a><a href="../about.html">About</a><a href="../services/index.html">Services</a><a href="index.html">Solutions</a><a href="../resources/index.html">Resources</a><a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
-
-        <div class="solutions-grid">
-            <div class="solution-card">
-                <div class="card-icon"><i class="fas fa-industry"></i></div>
-                <h3>Manufacturing & Robotics</h3>
-                <p>Seedcore integrates robotics, AI vision, and automated workflows to enhance production, reduce defects, and enable adaptive manufacturing. We build closed-loop intelligent systems that optimize quality, throughput, and resilience for light and advanced industries.</p>
-                <a href="manufacturing-qc.html" class="learn-more-btn">Explore Manufacturing</a>
-            </div>
-
-            <div class="solution-card">
-                <div class="card-icon"><i class="fas fa-hospital-user"></i></div>
-                <h3>Healthcare & Life Sciences</h3>
-                <p>We design GDPR- and PDPO-compliant AI systems for secure healthcare automation. From patient onboarding to biomedical data analysis, Seedcore platforms ensure privacy-preserving intelligence, supporting clinical research and operational efficiency.</p>
-                <a href="healthcare-automation.html" class="learn-more-btn">Discover Healthcare</a>
-            </div>
-
-            <div class="solution-card">
-                <div class="card-icon"><i class="fas fa-store"></i></div>
-                <h3>Retail & Customer Intelligence</h3>
-                <p>Our AI agents power demand forecasting, inventory optimization, and customer interaction systems. Seedcore helps retailers deliver personalized experiences, streamline operations, and increase loyalty through predictive insights and autonomous workflows.</p>
-                <a href="retail-intelligence.html" class="learn-more-btn">Explore Retail</a>
-            </div>
-        </div>
+      </nav>
     </div>
+  </header>
 
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; <span id="currentYear">2025</span> Seed Core Limited. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="../privacy-policy.html">Privacy Policy</a>
-                <a href="../terms-of-service.html">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cookie Banner -->
-    <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
-      <span>We use cookies for essential functionality and anonymous analytics. See our <a href="../privacy-policy.html" style="color:#fff;text-decoration:underline">Privacy Policy</a>.</span>
-      <button id="cookieAccept" class="btn-small">OK</button>
+  <section class="engine-hero">
+    <div class="container">
+      <h1>Industry Solutions for the AI Physical World</h1>
+      <p>SeedCore solutions are designed for environments where requests are ambiguous, execution is constrained, and failure handling is non-negotiable.</p>
     </div>
+  </section>
 
-    <script>
-      document.getElementById('currentYear').textContent = new Date().getFullYear();
-      (function() {
-        const key = 'seedcore_cookie_ok';
-        const ok = localStorage.getItem(key);
-        const banner = document.getElementById('cookieBanner');
-        const btn = document.getElementById('cookieAccept');
-        if (!ok) banner.style.display = 'flex';
-        btn.addEventListener('click', function(){
-          localStorage.setItem(key, '1');
-          banner.style.display = 'none';
-        });
-      })();
-    </script>
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <h2>Solution Domains</h2>
+        <div class="engine-grid-3">
+          <article class="engine-card"><h3>Manufacturing and Robotics</h3><p>Closed-loop planning and execution for production, quality operations, and adaptive robotics workflows.</p><p><a href="manufacturing-qc.html">View manufacturing solution</a></p></article>
+          <article class="engine-card"><h3>Healthcare and Life Sciences</h3><p>Policy-aware automation for sensitive workflows requiring privacy, traceability, and execution safety.</p><p><a href="healthcare-automation.html">View healthcare solution</a></p></article>
+          <article class="engine-card"><h3>Retail and Customer Operations</h3><p>Intent-driven orchestration for forecasting, operations, and responsive service execution layers.</p><p><a href="retail-intelligence.html">View retail solution</a></p></article>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <h2>Execution Advantages</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card"><h3>Safety and Control</h3><ul class="engine-list"><li>Policy-first authorization before physical actions</li><li>Deny-by-default runtime boundaries</li><li>Provenance and audit trail support</li></ul></article>
+          <article class="engine-card"><h3>Performance and Adaptation</h3><ul class="engine-list"><li>Fast-path routing for routine tasks</li><li>Deep reasoning escalation for high-surprise scenarios</li><li>Feedback-driven replanning after execution outcomes</li></ul></article>
+        </div>
+      </section>
+
+      <section class="engine-section engine-media">
+        <h2>Solution Demonstration and Code</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video"><h3>Showcase Video</h3><div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+          <aside class="engine-media-side"><h3>Evaluation Links</h3><div class="engine-actions"><a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a><a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a><a href="../resources/seedcore-architecture.html">Architecture</a><a href="../resources/documentation.html">Documentation</a></div><img src="../images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" /></aside>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="container"><div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div></div></footer>
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

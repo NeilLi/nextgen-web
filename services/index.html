@@ -1,138 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Core Capabilities - Seedcore</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    body { margin:0; background:#000; color:#fff; font-family:system-ui, sans-serif; line-height:1.6; }
-    .bg { position:fixed; inset:0; background:linear-gradient(45deg,#000428,#004e92); opacity:.7; z-index:-2; }
-    .grid { position:fixed; inset:0; background-image:linear-gradient(rgba(0,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.08) 1px,transparent 1px); background-size:50px 50px; animation:grid-move 20s linear infinite; z-index:-1; }
-    @keyframes grid-move { to{transform:translate(50px,50px);} }
-    header { background:rgba(0,0,0,.5); border-bottom:1px solid rgba(0,255,240,.2); position:sticky; top:0; }
-    header .container { max-width:1200px; margin:0 auto; padding:15px 20px; display:flex; align-items:center; justify-content:space-between; }
-    .logo { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:700; font-size:1.2rem; }
-    .logo span { color:#00fff0; }
-    nav a { color:#fff; text-decoration:none; margin-left:20px; }
-    nav a:hover { color:#00fff0; text-shadow:0 0 5px #00fff0; }
-    .page-header { text-align:center; padding:60px 20px 40px; }
-    .page-header h1 { font-size:2.6rem; font-weight:700; background:linear-gradient(135deg,#00fff0,#0080ff,#ff00ff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:glow 3s ease-in-out infinite; margin-bottom:15px; }
-    @keyframes glow { 50%{filter:brightness(1.2);} }
-    .page-subtitle { font-size:1.2rem; color:#00fff0; opacity:.85; max-width:800px; margin:0 auto 40px; }
-    .capabilities-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; }
-    .capability-card { background:linear-gradient(145deg,rgba(0,128,255,.1),rgba(255,0,255,.1)); border:1px solid rgba(0,255,240,.3); border-radius:16px; padding:25px; transition:.3s; display:flex; flex-direction:column; }
-    .capability-card:hover { transform:translateY(-6px); border-color:#00fff0; box-shadow:0 15px 30px rgba(0,255,240,.15); }
-    .card-icon { font-size:2.6rem; text-align:center; margin-bottom:15px; color:#00fff0; }
-    .capability-card h3 { text-align:center; font-size:1.5rem; color:#00fff0; margin-bottom:15px; }
-    .capability-card p { flex-grow:1; color:#ccc; margin-bottom:20px; }
-    .learn-more-btn { align-self:center; background:linear-gradient(135deg,#00fff0,#ff00ff); color:#000; padding:10px 22px; border-radius:24px; text-decoration:none; font-weight:600; }
-    .learn-more-btn:hover { box-shadow:0 0 10px #00fff0; }
-    footer { background:#0a0a14; border-top:1px solid rgba(0,255,240,.15); text-align:center; padding:30px 20px; margin-top:50px; color:#999; font-size:.9rem; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | SeedCore</title>
+  <meta name="description" content="SeedCore services for reasoning supervision, policy-first execution, and AI-to-physical-world deployment." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/engine-site.css" />
 </head>
-<body>
-  <div class="bg"></div><div class="grid"></div>
+<body class="engine-page">
   <header>
     <div class="container">
       <nav>
-        <a href="../index.html" class="logo" aria-label="Seedcore Home">
-          <img src="../assets/seedcore-logo.svg" alt="Seedcore" class="logo-svg" style="height: 50px; width: auto;">
-        </a>
+        <a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
         <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
         <div class="nav-links-wrapper">
           <div class="nav-links">
-            <a href="../index.html">Home</a>
-            <a href="../about.html">About</a>
-            <a href="index.html" class="active">Services</a>
-            <a href="../solutions/index.html">Solutions</a>
-            <a href="../resources/index.html">Resources</a>
-            <a href="../contact.html">Contact</a>
+            <a href="../index.html">Home</a><a href="../about.html">About</a><a href="index.html">Services</a><a href="../solutions/index.html">Solutions</a><a href="../resources/index.html">Resources</a><a href="../contact.html">Contact</a>
           </div>
-          <a href="../contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
-          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
-            <img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;">
-          </a>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <div class="page-header">
-      <h1>Our Core Capabilities</h1>
-      <p class="page-subtitle">Seedcore builds intelligent platforms for autonomous systems, AI agents, and advanced manufacturing — uniting software and hardware in secure, open-source driven ecosystems.</p>
+  <section class="engine-hero">
+    <div class="container">
+      <h1>Services Built on Reasoning Infrastructure</h1>
+      <p>SeedCore services are structured around one goal: reliable intent-to-execution behavior in real-world and enterprise operations.</p>
     </div>
+  </section>
 
-    <div class="capabilities-grid">
-      <div class="capability-card">
-        <div class="card-icon"><i class="fas fa-brain"></i></div>
-        <h3>AI Agent Workflows</h3>
-        <p>We design and deploy secure, research-driven multi-agent systems. Leveraging knowledge graphs, vector databases, and contractive orchestration, we deliver adaptive workflows aligned with enterprise goals.</p>
-        <a href="ai-agents.html" class="learn-more-btn">Explore Workflows</a>
-      </div>
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <h2>Service Portfolio</h2>
+        <div class="engine-grid-3">
+          <article class="engine-card"><h3>Reasoning and Planning Layer</h3><p>Design supervision logic that transforms open-ended requests into executable DAG plans.</p></article>
+          <article class="engine-card"><h3>Policy and Governance Layer</h3><p>Implement Policy Knowledge Graph controls, RBAC boundaries, and auditable safety rules.</p></article>
+          <article class="engine-card"><h3>Execution Orchestration Layer</h3><p>Deploy distributed runtime orchestration for low-latency routing and capability isolation.</p></article>
+          <article class="engine-card"><h3>Memory and Recovery Layer</h3><p>Introduce persistent intent memory and failure-aware replanning for long-running tasks.</p></article>
+          <article class="engine-card"><h3>Physical Environment Integration</h3><p>Connect AI reasoning outputs to robotics, IoT, fabrication workflows, and operational systems.</p></article>
+          <article class="engine-card"><h3>Pilot and Scale Program</h3><p>Run scoped pilots, define technical KPIs, and scale validated patterns across environments.</p></article>
+        </div>
+      </section>
 
-      <div class="capability-card">
-        <div class="card-icon"><i class="fas fa-industry"></i></div>
-        <h3>Robotics & Manufacturing</h3>
-        <p>From autonomous assembly to supply-chain optimization, Seedcore integrates robotics and AI for precise, efficient, and scalable manufacturing ecosystems built on open standards.</p>
-        <a href="automation-robotics.html" class="learn-more-btn">Discover Robotics</a>
-      </div>
-
-      <div class="capability-card">
-        <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
-        <h3>Strategic Consulting</h3>
-        <p>We partner with organizations to build transformation roadmaps. Our consulting aligns automation, compliance, and governance with long-term strategic impact across industries.</p>
-        <a href="strategy.html" class="learn-more-btn">Plan Your Strategy</a>
-      </div>
-
-      <div class="capability-card">
-        <div class="card-icon"><i class="fas fa-cogs"></i></div>
-        <h3>AI Services & Integration</h3>
-        <p>Comprehensive AI service delivery including custom model development, API integration, and seamless deployment of intelligent systems across your existing infrastructure.</p>
-        <a href="ai-services.html" class="learn-more-btn">Explore AI Services</a>
-      </div>
-
-      <div class="capability-card">
-        <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
-        <h3>n8n Workflow Expertise</h3>
-        <p>Specialized n8n workflow design and implementation services. We create powerful automation workflows that connect your systems and streamline business processes.</p>
-        <a href="n8n-expertise.html" class="learn-more-btn">Discover n8n Solutions</a>
-      </div>
-
-      <div class="capability-card">
-        <div class="card-icon"><i class="fas fa-search"></i></div>
-        <h3>Retrieval-Augmented Generation (RAG)</h3>
-        <p>Advanced RAG systems that combine knowledge retrieval with generative AI to provide accurate, context-aware responses from your enterprise data.</p>
-        <a href="rag.html" class="learn-more-btn">Learn About RAG</a>
-      </div>
+      <section class="engine-section engine-media">
+        <h2>Showcase and Technical Assets</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>Service Capability Walkthrough</h3>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Service Review Links</h3>
+            <div class="engine-actions">
+              <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="../resources/seedcore-architecture.html">Architecture</a>
+              <a href="../resources/documentation.html">Documentation</a>
+            </div>
+            <img src="../images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
+          </aside>
+        </div>
+      </section>
     </div>
   </main>
 
-  <footer>
-    © <span id="year"></span> Seed Core Limited. All rights reserved.
-  </footer>
-
-  <!-- Cookie Banner -->
-  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
-    <span>We use cookies for essential functionality and anonymous analytics. See our <a href="../privacy-policy.html" style="color:#fff;text-decoration:underline">Privacy Policy</a>.</span>
-    <button id="cookieAccept" class="btn-small">OK</button>
-  </div>
-
-  <script>
-    document.getElementById('year').textContent=new Date().getFullYear();
-    (function() {
-      const key = 'seedcore_cookie_ok';
-      const ok = localStorage.getItem(key);
-      const banner = document.getElementById('cookieBanner');
-      const btn = document.getElementById('cookieAccept');
-      if (!ok) banner.style.display = 'flex';
-      btn.addEventListener('click', function(){
-        localStorage.setItem(key, '1');
-        banner.style.display = 'none';
-      });
-    })();
-  </script>
+  <footer><div class="container"><div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div></div></footer>
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

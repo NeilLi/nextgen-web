@@ -1,500 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Resources - Seedcore
-  </title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
-  <style>
-   * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        /* Animated background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
-            opacity: 0.7;
-        }
-        
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            animation: grid-move 20s linear infinite;
-        }
-        
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        .container {
-            max-width: 1400px; 
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Override header styles for dark theme */
-        .main-header {
-            background: rgba(0,0,0,0.5);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 240, 0.2);
-        }
-
-        .main-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #fff;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            margin-right: 10px;
-        }
-        .logo-text {
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-        .logo-text span {
-            color: #00fff0;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: #00fff0;
-            text-shadow: 0 0 5px #00fff0;
-        }
-        
-        /* Page Header */
-        .page-header {
-            text-align: center;
-            padding: 60px 0 40px;
-            position: relative;
-        }
-        
-        .title {
-            font-size: 3.5em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #00fff0 0%, #0080ff 50%, #ff00ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            animation: glow 3s ease-in-out infinite;
-        }
-        
-        @keyframes glow {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.2); }
-        }
-
-        .page-subtitle {
-            font-size: 1.3em;
-            color: #00fff0;
-            opacity: 0.8;
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-        }
-        
-        /* Resources Grid */
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjusted minmax for potentially more items */
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .resource-card {
-            background: linear-gradient(145deg, rgba(0, 200, 255, 0.1) 0%, rgba(150, 0, 255, 0.1) 100%); /* Unique gradient for resources */
-            border: 1px solid rgba(0, 220, 255, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .resource-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 220, 255, 0.2), 0 0 15px rgba(150, 0, 255, 0.2);
-            border-color: #00c8ff;
-        }
-        
-        .resource-card .card-icon {
-            font-size: 3em;
-            color: #00c8ff; 
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .resource-card h3 {
-            color: #00c8ff;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .resource-card p {
-            font-size: 1.05em;
-            opacity: 0.9;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .view-resource-btn {
-            background: linear-gradient(135deg, #00c8ff 0%, #a000ff 100%);
-            border: none;
-            color: #fff; /* Changed to white for better contrast on this gradient */
-            padding: 12px 25px;
-            font-size: 1em;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            align-self: center;
-        }
-        
-        .view-resource-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 200, 255, 0.4);
-        }
-
-        /* Footer */
-        .main-footer {
-            text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid rgba(0, 255, 240, 0.2);
-            margin-top: 40px;
-            background: rgba(0,0,0,0.3);
-        }
-        .main-footer p {
-            margin-bottom: 10px;
-            opacity: 0.8;
-        }
-        .footer-links a {
-            color: #00fff0;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover {
-            text-decoration: underline;
-            color: #ff00ff;
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .main-header .container {
-                flex-direction: column;
-            }
-            .nav-links {
-                margin-top: 15px;
-            }
-            .nav-links a {
-                margin: 0 10px;
-            }
-            .title { font-size: 2.8em; }
-        }
-        
-        @media (max-width: 768px) {
-            .title { font-size: 2.2em; }
-            .resources-grid { grid-template-columns: 1fr; }
-            .resource-card h3 { font-size: 1.6em; }
-        }
-  </style>
- </head>
- <body>
-  <div class="bg-animation">
-  </div>
-  <div class="grid-overlay">
-  </div>
-  <header class="main-header">
-   <div class="container">
-    <nav>
-      <a href="../index.html" class="logo" aria-label="Seedcore Home">
-        <img src="../assets/seedcore-logo.svg" alt="Seedcore" class="logo-svg" style="height: 50px; width: auto;">
-      </a>
-      <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
-      <div class="nav-links-wrapper">
-        <div class="nav-links">
-          <a href="../index.html">Home</a>
-          <a href="../about.html">About</a>
-          <a href="../services/index.html">Services</a>
-          <a href="../solutions/index.html">Solutions</a>
-          <a href="index.html" class="active">Resources</a>
-          <a href="../contact.html">Contact</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources | SeedCore</title>
+  <meta name="description" content="SeedCore resources: architecture, documentation, research, and source code for AI-to-physical-world execution systems." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/engine-site.css" />
+</head>
+<body class="engine-page">
+  <header>
+    <div class="container">
+      <nav>
+        <a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="../index.html">Home</a><a href="../about.html">About</a><a href="../services/index.html">Services</a><a href="../solutions/index.html">Solutions</a><a href="index.html">Resources</a><a href="../contact.html">Contact</a>
+          </div>
+          <a href="../contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
-        <a href="../contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
-        <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
-          <img src="../images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;">
-        </a>
-      </div>
-    </nav>
-   </div>
+      </nav>
+    </div>
   </header>
-  <div class="container">
-   <div class="page-header">
-    <h1 class="title">
-     Knowledge Hub &amp; Resources
-    </h1>
-    <p class="page-subtitle">
-     Explore our insights, research, and practical guides on AI, automation, and digital transformation. Stay informed and inspired.
-    </p>
-   </div>
-   <div class="resources-grid">
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-memory">
-      </i>
-     </div>
-     <h3>
-      Building a Scalable, Semantic Memory Manager in Ray
-     </h3>
-     <p>
-      A journey through designing a cluster-wide memory layer that's robust, lightning-fast, and intelligent enough for modern AI agents. From single actor to hybrid cache architecture.
-     </p>
-     <a class="view-resource-btn" href="documentation/scalable-semantic-memory-ray.html">
-      View Resource
-     </a>
+
+  <section class="engine-hero">
+    <div class="container">
+      <h1>Technical Resources and Review Materials</h1>
+      <p>Use this section for architecture reviews, pilot planning, and technical due diligence of SeedCore's reasoning-to-execution system.</p>
     </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-tools">
-      </i>
-     </div>
-     <h3>
-      n8n Workflow Templates
-     </h3>
-     <p>
-      Get started quickly with our curated collection of n8n workflow templates designed for common B2B automation tasks. Adapt and deploy them to accelerate your automation journey.
-     </p>
-     <a class="view-resource-btn" href="n8n-templates.html">
-      Explore Templates
-     </a>
+  </section>
+
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section engine-media">
+        <h2>Primary Multimedia Evidence</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>Showcase Video</h3>
+            <p>Demonstrates closed-loop behavior from intent handling to execution feedback.</p>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Direct Access</h3>
+            <div class="engine-actions">
+              <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="seedcore-architecture.html">Architecture</a>
+              <a href="documentation.html">Documentation Hub</a>
+            </div>
+            <img src="../images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
+          </aside>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <h2>Resource Paths</h2>
+        <div class="engine-grid-3">
+          <article class="engine-card"><h3>Architecture and Whitepapers</h3><ul class="engine-list"><li><a href="seedcore-architecture.html">System architecture overview</a></li><li><a href="whitepaper.html">Whitepaper</a></li><li><a href="whitepapers.html">Research paper index</a></li></ul></article>
+          <article class="engine-card"><h3>Documentation and Implementation</h3><ul class="engine-list"><li><a href="documentation.html">Documentation hub</a></li><li><a href="documentation/scalable-semantic-memory-ray.html">Scalable memory design</a></li><li><a href="documentation/graph-vector-fusion-agent.html">Agent memory architecture</a></li></ul></article>
+          <article class="engine-card"><h3>Case and Operations Materials</h3><ul class="engine-list"><li><a href="case-studies.html">Case studies</a></li><li><a href="open-source.html">Open-source and attributions</a></li><li><a href="n8n-templates.html">Workflow templates</a></li></ul></article>
+        </div>
+      </section>
     </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-shield-alt">
-      </i>
-     </div>
-     <h3>
-      Security Best Practices
-     </h3>
-     <p>
-      Learn about our approach to secure automation, data privacy in AI, and best practices for implementing solutions like self-hosted n8n and GraphRAG for enhanced data sovereignty.
-     </p>
-     <a class="view-resource-btn" href="../trust-security.html">
-      View Security Guides
-     </a>
-    </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-brain">
-      </i>
-     </div>
-     <h3>
-      The Autonomous Schema &amp; Workflow Factory
-     </h3>
-     <p>
-      An interactive exploration of the AI-driven paradigm shifting how we manage data and automate processes.
-     </p>
-     <a class="view-resource-btn" href="schema-workflow-factory.html">
-      View Resource
-     </a>
-    </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-brain">
-      </i>
-     </div>
-     <h3>
-      AutoGen as a Universal AI Adapter for Enterprise Automation
-     </h3>
-     <p>
-      Bridging Natural Language Intentions with Complex System Integrations for Next-Generation AI Platforms
-     </p>
-     <a class="view-resource-btn" href="./documentation/autogen-research.html">
-      View Resource
-     </a>
-    </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-brain">
-      </i>
-     </div>
-     <h3>
-      Hybrid AI Workflows: Unlocking the Next Generation of Automation
-     </h3>
-     <p>
-      By AutoMind InsightsJune 5, 2025Category: AI, Automation, Workflow Design
-     </p>
-     <a class="view-resource-btn" href="./documentation/hybrid-ai-workflow.html">
-      View Resource
-     </a>
-    </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-brain">
-      </i>
-     </div>
-     <h3>
-      Architecting Intelligent Agents
-     </h3>
-     <p>
-      The Synergistic Fusion of Graph Databases and Vector Stores for Advanced Memory, Reasoning, and State Management
-     </p>
-     <a class="view-resource-btn" href="documentation/graph-vector-fusion-agent.html">
-      View Resource
-     </a>
-    </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-brain">
-      </i>
-     </div>
-     <h3>
-      🚀 Adaptive Tech Intelligence Assistant
-     </h3>
-     <p>
-      Multi-Agent AI System with Cognitive Loops &amp; Decision Making
-     </p>
-     <a class="view-resource-btn" href="documentation/adaptive-tech-assistant.html">
-      View Resource
-     </a>
-    </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-brain">
-      </i>
-     </div>
-     <h3>
-      🧠 Advanced Source Discovery Engine
-     </h3>
-     <p>
-      Beyond Human Intelligence in Information Source Discovery
-     </p>
-     <a class="view-resource-btn" href="documentation/source-discovery-engine.html">
-      View Resource
-     </a>
-    </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-brain">
-      </i>
-     </div>
-     <h3>
-      Live Tech Knowledge Graph
-     </h3>
-     <p>
-      A Dynamic Framework for Technology Intelligence. Transform your knowledge graph from a passive repository into an active "tech brain" that breathes with real-time data, learns from patterns, and predicts emerging trends.
-     </p>
-     <a class="view-resource-btn" href="live-tech-knowledge-graph.html">
-      View Resource
-     </a>
-    </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-brain">
-      </i>
-     </div>
-     <h3>
-      Engineering Emergent Reasoning in Multi-Agent Systems
-     </h3>
-     <p>
-      A Bio-Inspired Approach to Distributed Intelligence. This framework bridges the gap between swarm intelligence and cognitive reasoning by explicitly engineering higher-order thinking patterns into the collective behavior of agent swarms.
-     </p>
-     <a class="view-resource-btn" href="documentation/emergent-reasoning-multi-agent-systems.html">
-      View Resource
-     </a>
-    </div>
-    <div class="resource-card">
-     <div class="card-icon">
-      <i class="fas fa-brain">
-      </i>
-     </div>
-     <h3>
-      COA
-     </h3>
-     <p>
-      Explore our comprehensive resource on COA.
-     </p>
-     <a class="view-resource-btn" href="coa_funding_page.html">
-      View Resource
-     </a>
-    </div>
-   </div>
-  </div>
-  <footer class="main-footer">
-   <div class="container">
-    <p>
-     ©
-     <span id="currentYear">
-      2025
-     </span>
-     Seed Core Limited. All rights reserved.
-    </p>
-    <div class="footer-links">
-     <a href="../privacy-policy.html">
-      Privacy Policy
-     </a>
-     <a href="../terms-of-service.html">
-      Terms of Service
-     </a>
-    </div>
-   </div>
-  </footer>
-  <script>
-   document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
- </body>
+  </main>
+
+  <footer><div class="container"><div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div></div></footer>
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../js/main.js"></script>
+</body>
 </html>

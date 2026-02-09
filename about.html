@@ -3,166 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Seedcore — Trusted AI Agents & Autonomous Manufacturing</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    body { background:#000; color:#fff; font-family:system-ui, sans-serif; line-height:1.6; overflow-x:hidden; margin:0; }
-    .bg-animation { position:fixed; inset:0; z-index:-2; background:linear-gradient(45deg,#000428,#004e92); opacity:.7; }
-    .grid-overlay { position:fixed; inset:0; z-index:-1; background-image:linear-gradient(rgba(0,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.08) 1px,transparent 1px); background-size:50px 50px; animation:grid-move 20s linear infinite; }
-    @keyframes grid-move { from{transform:translate(0,0);} to{transform:translate(50px,50px);} }
-    .container { max-width:1200px; margin:0 auto; padding:20px; }
-    
-    /* Override header styles for dark theme */
-    header { background:rgba(0,0,0,.5); padding:15px 0; border-bottom:1px solid rgba(0,255,240,.2); position:sticky; top:0; z-index:1000; }
-    header .container { display:flex; justify-content:space-between; align-items:center; }
-    .logo-container { display:flex; align-items:center; color:#fff; text-decoration:none; }
-    .logo-img { height:40px; margin-right:10px; }
-    .logo-text { font-size:1.6em; font-weight:700; }
-    .logo-text span { color:#00fff0; }
-    nav a { color:#fff; margin-left:20px; text-decoration:none; transition:.3s; }
-    nav a:hover, nav a.active { color:#00fff0; text-shadow:0 0 5px #00fff0; }
-    .page-header { text-align:center; padding:60px 0 40px; }
-    .title { font-size:3em; font-weight:700; background:linear-gradient(135deg,#00fff0,#0080ff,#ff00ff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:glow 3s ease-in-out infinite; }
-    @keyframes glow { 0%,100%{filter:brightness(1);} 50%{filter:brightness(1.2);} }
-    .section { background:rgba(255,255,255,.05); border:1px solid rgba(0,255,240,.2); border-radius:20px; padding:30px; margin-bottom:40px; }
-    .section h2 { color:#00fff0; font-size:2em; margin-bottom:20px; text-align:center; border-bottom:1px solid rgba(0,255,240,.3); padding-bottom:10px; }
-    .section p, .section ul { font-size:1.1em; opacity:.9; }
-    .section ul { list-style:none; padding:0; }
-    .section ul li { background:rgba(0,255,240,.05); padding:10px 15px; border-radius:8px; margin-bottom:8px; border-left:3px solid #00fff0; }
-    .section ul li strong { color:#00fff0; }
-    .team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
-    .team-member-card { background:linear-gradient(135deg,#1a1a2e,#16213e); border:1px solid #0080ff; border-radius:15px; padding:20px; text-align:center; transition:.3s; }
-    .team-member-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,128,255,.3); }
-    .team-member-card h3 { color:#00fff0; margin:.5em 0; }
-    .team-member-card p.role { color:#0080ff; font-weight:bold; margin-bottom:10px; }
-    footer { text-align:center; padding:30px 0; border-top:1px solid rgba(0,255,240,.2); margin-top:40px; background:rgba(0,0,0,.3); }
-    footer a { color:#00fff0; margin:0 10px; text-decoration:none; }
-  </style>
+  <title>About SeedCore | Reasoning as Infrastructure</title>
+  <meta name="description" content="SeedCore builds AI-to-physical-world engine infrastructure to safely convert intent into real-world execution." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/engine-site.css" />
 </head>
-<body>
-  <div class="bg-animation"></div><div class="grid-overlay"></div>
+<body class="engine-page">
   <header>
     <div class="container">
       <nav>
-        <a href="index.html" class="logo" aria-label="Seedcore Home">
-          <img src="assets/seedcore-logo.svg" alt="Seedcore" class="logo-svg" style="height: 50px; width: auto;">
-        </a>
+        <a href="index.html" class="logo" aria-label="SeedCore Home"><img src="assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a>
         <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
         <div class="nav-links-wrapper">
           <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html" class="active">About</a>
-            <a href="services/index.html">Services</a>
-            <a href="solutions/index.html">Solutions</a>
-            <a href="resources/index.html">Resources</a>
-            <a href="contact.html">Contact</a>
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="services/index.html">Services</a><a href="solutions/index.html">Solutions</a><a href="resources/index.html">Resources</a><a href="contact.html">Contact</a>
           </div>
-          <a href="contact.html#consultation" class="btn btn-nav">Request a Consultation</a>
-          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="Seedcore GitHub Repository" class="github-link">
-            <img src="images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;">
-          </a>
+          <a href="contact.html#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
       </nav>
     </div>
   </header>
 
-  <div class="container">
-    <div class="page-header"><h1 class="title">About Seedcore</h1></div>
-
-    <section class="section" id="mission">
-      <h2>Our Mission</h2>
-      <p>To empower industry and enterprise with research‑backed, secure AI agents and autonomous manufacturing. We streamline complex processes, safeguard data, and enable sustainable growth with open, standards‑based systems.</p>
-    </section>
-
-    <section class="section" id="vision">
-      <h2>Our Vision</h2>
-      <p>To be the trusted global partner for safe, intelligent automation. We aim to be recognized for our open‑source leadership, scientific rigor, ethical AI practices, and our ability to deliver sovereign, privacy‑aligned solutions worldwide.</p>
-    </section>
-
-    <section class="section" id="values">
-      <h2>Our Values</h2>
-      <ul>
-        <li><strong>Innovation:</strong> Continuously exploring knowledge graphs, agent architectures, and robotics to build resilient solutions.</li>
-        <li><strong>Client‑Centricity:</strong> Keeping strategic goals and user needs at the heart of every project.</li>
-        <li><strong>Integrity & Security:</strong> Upholding the highest ethical standards and embedding compliance (GDPR & HK PDPO) into all systems.</li>
-        <li><strong>Collaboration:</strong> Working as an extension of client teams to co‑create long‑term success.</li>
-        <li><strong>Excellence:</strong> Striving for measurable outcomes, reproducible science, and scalable deployments.</li>
-      </ul>
-    </section>
-
-    <section class="section" id="team">
-      <h2>Our Team</h2>
-      <p>Seedcore unites AI researchers, automation engineers, and governance experts. We bridge research and production, translating state‑of‑the‑art methods into trusted, deployable systems.</p>
-      <div class="team-grid">
-        <div class="team-member-card">
-          <div class="member-icon">🧠</div>
-          <h3>Dr. Jane Doe</h3>
-          <p class="role">Chief AI Officer</p>
-          <p class="bio">PhD in Artificial Intelligence, 15+ years experience in ML and reasoning systems. Focused on contractive agent design and retrieval safety.</p>
-        </div>
-        <div class="team-member-card">
-          <div class="member-icon">⚙️</div>
-          <h3>John Smith</h3>
-          <p class="role">Lead Automation Architect</p>
-          <p class="bio">Expert in robotics integration and workflow orchestration. Designs safety‑critical systems for manufacturing and logistics.</p>
-        </div>
-        <div class="team-member-card">
-          <div class="member-icon">🛡️</div>
-          <h3>Alex Chen</h3>
-          <p class="role">Chief Strategy & Security Officer</p>
-          <p class="bio">20+ years in cybersecurity and digital transformation. Aligns automation with compliance and strategic governance.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="approach">
-      <h2>Our Approach</h2>
-      <p>We begin with deep understanding of your goals and risks. From there, we co‑design systems that combine fast‑path automation with safe escalation, aligning with the principles from our core research paper:</p>
-      <ul>
-        <li><strong>Discovery & Onboarding:</strong> Map objectives and compliance requirements.</li>
-        <li><strong>Custom Design:</strong> Architect multi‑agent workflows with retrieval, robotics, and governance layers.</li>
-        <li><strong>Secure Implementation:</strong> Apply privacy‑by‑design and rigorous evaluation pipelines.</li>
-        <li><strong>Measurable Results:</strong> Benchmark latency, accuracy, and ROI.</li>
-        <li><strong>Long‑term Partnership:</strong> Support scaling and adaptation as technology evolves.</li>
-      </ul>
-    </section>
-
-    <section class="section" id="security">
-      <h2>Commitment to Security & Compliance</h2>
-      <p>Seedcore is built with safety and compliance at its core. We align with <strong>GDPR</strong>, <strong>Hong Kong PDPO</strong>, and international open‑source best practices. Our architectures embed safety filters, evaluation harnesses, and transparent model documentation. Learn more on our <a href="trust-security.html" style="color:#00fff0;">Trust & Security page</a>.</p>
-    </section>
-  </div>
-
-  <footer>
+  <section class="engine-hero">
     <div class="container">
-      <p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-service.html">Terms of Service</a>
-      </div>
+      <h1>About SeedCore</h1>
+      <p>SeedCore exists to solve the gap between model reasoning and real-world execution. We treat reasoning as infrastructure so systems can act safely, recover from failure, and preserve user intent over time.</p>
+      <div class="engine-badges"><span>Infrastructure Mindset</span><span>Policy and Safety by Design</span><span>Execution with Accountability</span></div>
     </div>
-  </footer>
+  </section>
 
-  <!-- Cookie Banner -->
-  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
-    <span>We use cookies for essential functionality and anonymous analytics. See our <a href="privacy-policy.html" style="color:#fff;text-decoration:underline">Privacy Policy</a>.</span>
-    <button id="cookieAccept" class="btn-small">OK</button>
-  </div>
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <h2>Mission</h2>
+        <p>Build the foundational engine that lets AI operate in physical and enterprise environments with reliability, governance, and measurable value.</p>
+      </section>
 
-  <script>
-    document.getElementById('currentYear').textContent=new Date().getFullYear();
-    (function() {
-      const key = 'seedcore_cookie_ok';
-      const ok = localStorage.getItem(key);
-      const banner = document.getElementById('cookieBanner');
-      const btn = document.getElementById('cookieAccept');
-      if (!ok) banner.style.display = 'flex';
-      btn.addEventListener('click', function(){
-        localStorage.setItem(key, '1');
-        banner.style.display = 'none';
-      });
-    })();
-  </script>
+      <section class="engine-section">
+        <h2>Operating Principles</h2>
+        <div class="engine-grid-2">
+          <article class="engine-card"><h3>Safety Before Action</h3><p>Policy-first, deny-by-default execution for every task and capability.</p></article>
+          <article class="engine-card"><h3>Structured Execution</h3><p>Intent becomes verifiable task graphs, not opaque one-shot tool calls.</p></article>
+          <article class="engine-card"><h3>Failure-Resilient Intelligence</h3><p>Runtime feedback and memory loops preserve intent through disruptions.</p></article>
+          <article class="engine-card"><h3>Distributed by Default</h3><p>Scalable orchestration with isolation, RBAC, and provenance tracking.</p></article>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <h2>Builder</h2>
+        <p>Neil Li is a technology pioneer with experience as senior technical leader at Motorola, senior architect at Alibaba, co-founder and CTO of an IoT startup, and CTO of an AI manufacturing company. The focus is disciplined engineering that bridges imagination and reality.</p>
+      </section>
+
+      <section class="engine-section engine-media">
+        <h2>Showcase and Repository</h2>
+        <div class="engine-media-grid">
+          <article class="engine-media-video">
+            <h3>System Walkthrough</h3>
+            <p>Closed-loop reasoning, policy checks, execution, and feedback in one flow.</p>
+            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <aside class="engine-media-side">
+            <h3>Review Assets</h3>
+            <div class="engine-actions">
+              <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+              <a href="resources/seedcore-architecture.html">Architecture</a>
+              <a href="resources/documentation.html">Documentation</a>
+            </div>
+            <img src="images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
+          </aside>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="container"><div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div></div></footer>
+  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="js/main.js"></script>
 </body>
 </html>
