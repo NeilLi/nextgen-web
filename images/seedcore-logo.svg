@@ -1,59 +1,76 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" aria-labelledby="title desc" role="img">
-  <title>Seedcore Logo</title>
-  <desc>Minimal seed-with-core mark and wordmark for Seedcore</desc>
-
+<svg width="960" height="240" viewBox="0 0 960 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="seedcoreTitle seedcoreDesc">
+  <title id="seedcoreTitle">SeedCore logo</title>
+  <desc id="seedcoreDesc">SeedCore icon with circular orbit mark and bold wordmark</desc>
   <defs>
-    <linearGradient id="seedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6F3BF5"/>
-      <stop offset="100%" stop-color="#4C2BD9"/>
+    <linearGradient id="discGrad" x1="30" y1="34" x2="176" y2="178" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2F2AD8"/>
+      <stop offset="46%" stop-color="#6A42F4"/>
+      <stop offset="100%" stop-color="#2A8EFF"/>
     </linearGradient>
-    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#30D5FF"/>
-      <stop offset="100%" stop-color="#0FB3E6"/>
+    <radialGradient id="discLight" cx="0.68" cy="0.36" r="0.72">
+      <stop offset="0%" stop-color="#A566FF" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#A566FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="orbitGrad" x1="54" y1="52" x2="158" y2="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#33B9FF"/>
+      <stop offset="100%" stop-color="#8EF8FF"/>
     </linearGradient>
-    <clipPath id="seedClip">
-      <!-- Seed silhouette -->
-      <path d="M115,30
-               C65,35 30,70 30,115
-               C30,155 60,180 100,180
-               C155,180 205,135 205,95
-               C205,60 170,30 115,30Z"/>
+    <radialGradient id="coreGrad" cx="0.42" cy="0.34" r="0.78">
+      <stop offset="0%" stop-color="#D9FCFF"/>
+      <stop offset="32%" stop-color="#8FF7FF"/>
+      <stop offset="100%" stop-color="#27B7FF"/>
+    </radialGradient>
+    <radialGradient id="coreAura" cx="50%" cy="50%" r="62%">
+      <stop offset="0%" stop-color="#6EF5FF" stop-opacity="0.58"/>
+      <stop offset="100%" stop-color="#6EF5FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="orbitClip">
+      <circle cx="100" cy="100" r="56"/>
     </clipPath>
   </defs>
 
-  <!-- Seed outline -->
-  <path d="M115,30
-           C65,35 30,70 30,115
-           C30,155 60,180 100,180
-           C155,180 205,135 205,95
-           C205,60 170,30 115,30Z"
-        fill="url(#seedGrad)" stroke="#3A1FBF" stroke-width="2.5" />
+  <rect width="960" height="240" fill="transparent"/>
 
-  <!-- Inner core -->
-  <g clip-path="url(#seedClip)">
-    <circle cx="130" cy="95" r="38" fill="url(#coreGrad)" stroke="#0EA5CF" stroke-width="2"/>
-    <!-- simple circuits -->
-    <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.95">
-      <line x1="130" y1="95" x2="160" y2="80"/>
-      <line x1="130" y1="95" x2="145" y2="120"/>
-      <line x1="130" y1="95" x2="110" y2="70"/>
+  <g transform="translate(40 20)">
+    <circle cx="100" cy="100" r="72" fill="url(#discGrad)"/>
+    <circle cx="100" cy="100" r="72" fill="url(#discLight)"/>
+    <circle cx="100" cy="100" r="70.5" stroke="#2B22A7" stroke-width="4"/>
+
+    <circle cx="100" cy="100" r="54" stroke="url(#orbitGrad)" stroke-width="6" fill="none" opacity="0.96"/>
+
+    <g clip-path="url(#orbitClip)">
+      <path d="M66 94C74 70 97 58 121 60C131 61 139 66 145 74"
+        stroke="url(#orbitGrad)" stroke-width="5.2" stroke-linecap="round" fill="none"/>
+      <path d="M61 144C80 158 107 148 128 131C137 124 146 121 154 122"
+        stroke="url(#orbitGrad)" stroke-width="5.2" stroke-linecap="round" fill="none"/>
+
+      <path d="M76 103L93 108" stroke="#7EEFFF" stroke-width="4.2" stroke-linecap="round"/>
+      <path d="M138 81L122 95" stroke="#7EEFFF" stroke-width="4.2" stroke-linecap="round"/>
+      <path d="M149 126L128 118" stroke="#7EEFFF" stroke-width="4.2" stroke-linecap="round"/>
     </g>
-    <g fill="#FFFFFF">
-      <circle cx="160" cy="80" r="5"/>
-      <circle cx="145" cy="120" r="5"/>
-      <circle cx="110" cy="70" r="5"/>
-    </g>
+
+    <circle cx="68" cy="96" r="7.5" fill="#6BEAFF"/>
+    <circle cx="145" cy="75" r="7.5" fill="#B2FFFF"/>
+    <circle cx="153" cy="122" r="7.5" fill="#A4FFFF"/>
+
+    <circle cx="105" cy="104" r="24" fill="url(#coreAura)" opacity="0.55"/>
+    <circle cx="103" cy="101" r="17" fill="url(#coreGrad)" filter="url(#softGlow)"/>
+    <circle cx="108" cy="94" r="7" fill="#E9FFFF" opacity="0.72"/>
   </g>
 
-  <!-- Wordmark -->
-  <g transform="translate(240, 135)">
-    <text x="0" y="0" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
-          font-size="64" font-weight="700" letter-spacing="1.5" fill="#2B2B2B">
-      SEEDCORE
-    </text>
-    <text x="505" y="-30" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
-          font-size="40" font-weight="800" letter-spacing="0.5" fill="#6F3BF5">.AI</text>
+  <g transform="translate(250 0)">
+    <text x="0" y="134"
+      font-family="'Avenir Next', 'SF Pro Display', Inter, 'Segoe UI', Arial, sans-serif"
+      font-size="82"
+      font-weight="800"
+      letter-spacing="0.6"
+      fill="#16161F">SEEDCORE</text>
   </g>
-
 </svg>

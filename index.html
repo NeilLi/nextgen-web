@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SeedCore | AI-to-Physical-World Engine</title>
-  <meta name="description" content="SeedCore is an AI-to-physical-world engine: reasoning supervision, policy-checked execution, feedback, and replanning for real environments." />
-  <meta name="keywords" content="AI-to-physical-world engine, reasoning infrastructure, policy-first execution, task DAG orchestration, robotics AI" />
+  <title>SeedCore | AI Infrastructure for Intelligent Machines</title>
+  <meta name="description" content="SeedCore is the AI-to-Physical-World Execution Engine, connecting reasoning, safety, orchestration, and recovery across hotels, factories, and robotics fleets." />
+  <meta name="keywords" content="physical AI infrastructure, AI execution engine, robotics orchestration, industrial AI runtime, hospitality automation, machine orchestration" />
   <link rel="canonical" href="https://seedcore.ai/" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/engine-site.css" />
-  <meta property="og:title" content="SeedCore | AI-to-Physical-World Engine" />
-  <meta property="og:description" content="From intent to policy-checked execution and replanning in physical and enterprise systems." />
+  <link rel="stylesheet" href="css/style.css?v=20260306p" />
+  <link rel="stylesheet" href="css/engine-site.css?v=20260306p" />
+  <meta property="og:title" content="SeedCore | AI Infrastructure for Intelligent Machines" />
+  <meta property="og:description" content="The runtime that turns AI reasoning into reliable action across machines, robots, and operational systems." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://seedcore.ai/" />
   <meta property="og:image" content="/images/og-seedcore.jpg" />
@@ -21,88 +21,717 @@
     <div class="container">
       <nav>
         <a href="index.html" class="logo" aria-label="SeedCore Home">
-          <img src="assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" />
+          <img src="assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:58px;width:auto;" />
         </a>
         <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
         <div class="nav-links-wrapper">
           <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services/index.html">Services</a>
-            <a href="solutions/index.html">Solutions</a>
-            <a href="resources/index.html">Resources</a>
+            <a href="#platform">Platform</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#industries">Industries</a>
+            <a href="#developers">Developers</a>
+            <a href="resources/documentation.html">Docs</a>
+            <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="SeedCore GitHub Repository" class="nav-github-link">
+              <img src="images/github.svg" alt="GitHub repository" />
+            </a>
             <a href="contact.html">Contact</a>
           </div>
           <a href="contact.html#consultation" class="btn btn-nav">Request Partnership</a>
-          <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" aria-label="SeedCore GitHub Repository" class="github-link">
-            <img src="images/github.svg" alt="GitHub repository" style="height:22px;width:auto;margin-left:12px;" />
-          </a>
         </div>
       </nav>
     </div>
   </header>
 
-  <section class="engine-hero">
-    <div class="container">
-      <h1>SeedCore Is the AI-to-Physical-World Engine</h1>
-      <p>As AI systems move beyond routine automation, requests are now more creative, ambiguous, and open-ended, especially in hotels, factories, and robotics-enabled environments.</p>
-      <p>Most AI demos stop at text generation. SeedCore addresses what happens after reasoning: safe real-world execution, failure handling, and long-horizon intent preservation by treating reasoning as infrastructure.</p>
-      <a href="contact.html#consultation" class="btn">Start Strategic Collaboration</a>
-      <div class="engine-badges">
-        <span>Intent to Executable DAG</span>
-        <span>Policy-First Deny-by-Default Runtime</span>
-        <span>Closed-Loop Feedback and Replanning</span>
-        <span>Distributed Orchestration and Isolation</span>
+  <section class="engine-hero" id="top">
+    <div class="engine-hero-noise" aria-hidden="true"></div>
+    <div class="container engine-hero-grid">
+      <div class="engine-hero-copy" data-reveal>
+        <span class="engine-kicker">Physical AI Infrastructure</span>
+        <h1>SeedCore is the AI-to-Physical-World Execution Engine.</h1>
+        <p class="engine-lead">The runtime that turns AI reasoning into safe, coordinated machine execution.</p>
+        <p>Connect robots, systems, and operators in one execution control plane.</p>
+        <div class="engine-hero-intent">
+          <span>Control Plane</span>
+          <strong>Intent -> Reasoning -> Runtime -> Execution</strong>
+        </div>
+        <div class="engine-hero-actions">
+          <a href="#platform" class="btn">Explore Platform</a>
+          <a href="#architecture" class="engine-secondary-btn">View Architecture</a>
+          <a href="contact.html#consultation" class="engine-ghost-btn">Request Partnership</a>
+        </div>
+        <div class="engine-badge-group">
+          <span class="engine-badge-label">Core Primitives</span>
+          <div class="engine-badges">
+            <span>Intent Planning</span>
+            <span>Safety-Governed Execution</span>
+            <span>Recovery &amp; Observability</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="engine-hero-visual" data-reveal>
+        <div class="engine-orbit engine-orbit-a" aria-hidden="true"></div>
+        <div class="engine-orbit engine-orbit-b" aria-hidden="true"></div>
+        <div class="engine-hero-diagram">
+          <div class="engine-diagram-head">
+            <span>Execution Flow</span>
+            <p>Human intent to governed machine action</p>
+          </div>
+          <div class="engine-node engine-node-intent">
+            <span class="engine-node-label">Human Intent</span>
+            <strong>Prepare hotel floor for conference.</strong>
+          </div>
+          <div class="engine-node engine-node-reasoning">
+            <span class="engine-node-label">AI Reasoning</span>
+            <strong>Plan tasks, dependencies, and recovery paths.</strong>
+          </div>
+          <div class="engine-node engine-node-runtime engine-node-highlight">
+            <span class="engine-node-label">SeedCore Runtime</span>
+            <strong>Authorize, orchestrate, observe, replan.</strong>
+          </div>
+          <div class="engine-node-grid">
+            <div class="engine-machine-card">
+              <span>Robots</span>
+              <strong>Delivery, cleaning, inspection</strong>
+            </div>
+            <div class="engine-machine-card">
+              <span>Systems</span>
+              <strong>PMS, MES, HVAC, sensors, PLC</strong>
+            </div>
+            <div class="engine-machine-card">
+              <span>Operators</span>
+              <strong>Escalation and human approval</strong>
+            </div>
+          </div>
+          <div class="engine-diagram-line engine-line-a" aria-hidden="true"></div>
+          <div class="engine-diagram-line engine-line-b" aria-hidden="true"></div>
+          <div class="engine-diagram-line engine-line-c" aria-hidden="true"></div>
+        </div>
       </div>
     </div>
   </section>
 
   <main class="engine-main">
     <div class="container">
-      <section class="engine-section">
-        <h2>Core Execution Model</h2>
-        <p>SeedCore converts open-ended intent into verifiable, auditable, and adaptive execution.</p>
-        <div class="engine-grid-3">
+      <section class="engine-section engine-why-now" id="why-now" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Why Now</span>
+          <h2>Why physical AI infrastructure is emerging now.</h2>
+          <p>Three shifts converge: stronger model reasoning, dense machine endpoints, and a missing execution runtime.</p>
+        </div>
+        <div class="engine-why-grid">
           <article class="engine-card">
-            <h3>Reasoning Supervision</h3>
-            <p>Multimodal intent is decomposed into atomic tasks and structured plans instead of opaque tool calls.</p>
+            <h3>1. AI now reasons at operational depth</h3>
+            <p>Modern models can decompose complex goals into executable plans.</p>
           </article>
           <article class="engine-card">
-            <h3>Policy Enforcement</h3>
-            <p>Policy Knowledge Graph authorization validates feasibility, safety, and permissions before execution.</p>
+            <h3>2. Robots and sensors are everywhere</h3>
+            <p>Hotels, factories, and buildings already have machine endpoints to orchestrate.</p>
           </article>
           <article class="engine-card">
-            <h3>Adaptive Runtime</h3>
-            <p>Real-world telemetry drives runtime correction, fallback routing, and intent-preserving replanning.</p>
+            <h3>3. Infrastructure is missing</h3>
+            <p>Enterprises still lack a safe runtime connecting AI decisions to machine action.</p>
           </article>
         </div>
-        <p class="engine-flow">Intent -> Structured Plan (DAG) -> Policy Check -> Execution -> Feedback -> Replanning</p>
-      </section>
-
-      <section class="engine-section">
-        <h2>Technical Foundations</h2>
-        <div class="engine-grid-2">
-          <article class="engine-card">
-            <h3>Execution Contract and Memory</h3>
-            <ul class="engine-list">
-              <li>TaskPayload v2.5+ for stable cognition-routing-execution boundaries</li>
-              <li>Holon Memory for preserving intent through failure and time</li>
-              <li>Traceable provenance for audit and governance workflows</li>
-            </ul>
-          </article>
-          <article class="engine-card">
-            <h3>Distributed Systems Runtime</h3>
-            <ul class="engine-list">
-              <li>Ray Actors and Ray Serve for scalable orchestration</li>
-              <li>Dynamic capability and agent materialization with RBAC</li>
-              <li>Isolation boundaries for tools, devices, and side effects</li>
-            </ul>
-          </article>
+        <div class="engine-system-model">
+          <div>Human Intent</div>
+          <div>AI Reasoning</div>
+          <div>SeedCore Runtime</div>
+          <div>Machines and Systems</div>
         </div>
       </section>
 
-      <section class="engine-section engine-media">
-        <h2>Showcase and Evidence</h2>
+      <section class="engine-section" id="architecture" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Architecture</span>
+          <h2>SeedCore v2.5+ runs as a cognitive platform with four coordinated planes.</h2>
+          <p>Explore how eventized inputs, governance, neuro-symbolic reasoning, and distributed actors combine into policy-grounded execution.</p>
+        </div>
+
+        <div class="engine-architecture-shell">
+          <div class="engine-layer-list" role="tablist" aria-label="SeedCore architecture layers">
+            <button class="engine-layer-trigger is-active" type="button" role="tab" aria-selected="true" data-layer-trigger="eventization">Eventization Plane</button>
+            <button class="engine-layer-trigger" type="button" role="tab" aria-selected="false" data-layer-trigger="control">Control Plane</button>
+            <button class="engine-layer-trigger" type="button" role="tab" aria-selected="false" data-layer-trigger="intelligence">Intelligence Plane</button>
+            <button class="engine-layer-trigger" type="button" role="tab" aria-selected="false" data-layer-trigger="execution">Execution Plane</button>
+            <button class="engine-layer-trigger" type="button" role="tab" aria-selected="false" data-layer-trigger="lifecycle">Task Lifecycle</button>
+            <button class="engine-layer-trigger" type="button" role="tab" aria-selected="false" data-layer-trigger="jit">JIT Spawning</button>
+          </div>
+
+          <div class="engine-architecture-visual">
+            <div class="engine-stack">
+              <div class="engine-layer-node is-active" data-layer="eventization">Eventization Plane</div>
+              <div class="engine-layer-node" data-layer="control">Control Plane</div>
+              <div class="engine-layer-node" data-layer="intelligence">Intelligence Plane</div>
+              <div class="engine-layer-node" data-layer="execution">Execution Plane</div>
+              <div class="engine-layer-node" data-layer="lifecycle">Task Lifecycle</div>
+              <div class="engine-layer-node" data-layer="jit">JIT Spawning</div>
+            </div>
+
+            <div class="engine-layer-panels">
+              <article class="engine-layer-panel is-active" data-layer="eventization">
+                <span class="engine-panel-metric">Semantic signal ingress</span>
+                <h3>External inputs are eventized before cognition begins.</h3>
+                <p>The infrastructure plane uses an Eventizer Engine to translate UI, IoT, and sensor activity into structured semantic signals that stay decoupled from raw hardware details.</p>
+              </article>
+              <article class="engine-layer-panel" data-layer="control">
+                <span class="engine-panel-metric">Policy Knowledge Graph</span>
+                <h3>The cortex governs routing, surprise detection, and policy state.</h3>
+                <p>The Control Plane coordinates tasks through the PKG, evaluates deny-by-default RBAC, and uses the Online Change-Point Sentinel to detect shifts that require intervention.</p>
+              </article>
+              <article class="engine-layer-panel" data-layer="intelligence">
+                <span class="engine-panel-metric">Neuro-symbolic reasoning</span>
+                <h3>The intelligence plane hydrates context and plans with HGNNs.</h3>
+                <p>SeedCore's Brain-as-a-Service layer blends Hypergraph Neural Networks with symbolic reasoning to bridge vector anomalies, semantic context, and long-horizon planning.</p>
+              </article>
+              <article class="engine-layer-panel" data-layer="execution">
+                <span class="engine-panel-metric">Actor-based runtime</span>
+                <h3>The nervous system executes through Ray actors and local reflexes.</h3>
+                <p>The Execution Plane runs Organism Service actors for tool use, skill materialization, RBAC enforcement, and fast-path reflex actions without forcing every decision through deep cognition.</p>
+              </article>
+              <article class="engine-layer-panel" data-layer="lifecycle">
+                <span class="engine-panel-metric">TaskPayload v2.5+</span>
+                <h3>Every task follows a strict route from ingestion to audited execution.</h3>
+                <p>TaskPayload enters with routing and tool requirements, the coordinator scores against the Capability Registry and RoleProfiles, the PKG evaluates immutable policy snapshots, and BaseAgent returns results with provenance and telemetry.</p>
+              </article>
+              <article class="engine-layer-panel" data-layer="jit">
+                <span class="engine-panel-metric">Elastic specialization</span>
+                <h3>JIT spawning creates niche agents only when the mission needs them.</h3>
+                <p>If no active specialization exists, the coordinator triggers a JIT spawner to instantiate a new Ray actor from a Capability Registry blueprint, then hands execution to that agent with full audit continuity.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="engine-section" id="platform" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Platform</span>
+          <h2>Core Runtime Primitives</h2>
+          <p>Six core primitives for safe, distributed machine execution.</p>
+        </div>
+
+        <div class="engine-capability-grid">
+          <article class="engine-capability-card">
+            <div class="engine-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z"/><path d="M12 7l3 2v3l-3 2-3-2V9l3-2z"/></svg>
+            </div>
+            <h3>AI Reasoning Supervision</h3>
+            <p>Multimodal inputs become auditable operational plans instead of opaque tool chains.</p>
+          </article>
+          <article class="engine-capability-card">
+            <div class="engine-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9.5 12l2 2 3.5-4"/></svg>
+            </div>
+            <h3>Safety Governance</h3>
+            <p>Policy checks, permissions, and environment-aware safeguards are built into the execution path.</p>
+          </article>
+          <article class="engine-capability-card">
+            <div class="engine-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h7v4H4zM13 13h7v4h-7zM7 11v2h10v-2"/></svg>
+            </div>
+            <h3>Machine Orchestration</h3>
+            <p>Coordinate robots, sensors, APIs, and operator workflows through a unified runtime.</p>
+          </article>
+          <article class="engine-capability-card">
+            <div class="engine-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 14a7 7 0 1114 0"/><path d="M12 10v5l3 2"/><circle cx="12" cy="17" r="1"/></svg>
+            </div>
+            <h3>Realtime Observability</h3>
+            <p>Runtime state, command traces, and execution health remain visible across every operational step.</p>
+          </article>
+          <article class="engine-capability-card">
+            <div class="engine-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12a6 6 0 0110-4l2-2v6h-6l2-2a4 4 0 10.4 5.8"/><path d="M18 12a6 6 0 01-10 4l-2 2v-6h6l-2 2A4 4 0 0014 9.2"/></svg>
+            </div>
+            <h3>Failure Recovery</h3>
+            <p>Detect blocked tasks, re-evaluate constraints, and switch to fallback execution without losing intent.</p>
+          </article>
+          <article class="engine-capability-card">
+            <div class="engine-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg>
+            </div>
+            <h3>Developer Control Plane</h3>
+            <p>Expose APIs, contracts, and standards so engineering teams can extend the platform with confidence.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="engine-section" id="industries" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Industry Use Cases</span>
+          <h2>Where SeedCore drives immediate operational value.</h2>
+          <p>Operational workflows across hospitality, manufacturing, and robotics environments.</p>
+        </div>
+
+        <div class="engine-usecase-grid">
+          <article class="engine-usecase-card">
+            <div class="engine-usecase-head">
+              <div class="engine-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V5l3-2 3 2v16"/><path d="M11 9h8v12h-8z"/><path d="M7 8h2M7 12h2M14 13h2M14 17h2"/></svg>
+              </div>
+              <div>
+                <h3>Hotels and Hospitality</h3>
+                <p>Scenario: prepare conference room for a meeting.</p>
+              </div>
+            </div>
+            <div class="engine-workflow">
+              <span>Guest intent captured</span>
+              <span>SeedCore plans across HVAC, cleaning, projector, lighting</span>
+              <span>Robot dispatch with staff fallback when blocked</span>
+            </div>
+            <ul class="engine-list">
+              <li>Outcome: faster response and lower staffing pressure</li>
+              <li>Outcome: consistent service orchestration under constraints</li>
+            </ul>
+          </article>
+
+          <article class="engine-usecase-card">
+            <div class="engine-usecase-head">
+              <div class="engine-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 14l4-4 4 4 4-8 6 6"/><path d="M4 20h16"/><path d="M7 10V6h4v4"/></svg>
+              </div>
+              <div>
+                <h3>Smart Factories</h3>
+                <p>Scenario: sensor anomaly on production line.</p>
+              </div>
+            </div>
+            <div class="engine-workflow">
+              <span>Sensor anomaly</span>
+              <span>Reasoning and diagnosis</span>
+              <span>Inspection robot + repair schedule</span>
+              <span>Recovery-aware production flow</span>
+            </div>
+            <ul class="engine-list">
+              <li>Outcome: 10-20% potential downtime reduction</li>
+              <li>Outcome: predictive maintenance to execution loop</li>
+            </ul>
+          </article>
+
+          <article class="engine-usecase-card">
+            <div class="engine-usecase-head">
+              <div class="engine-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10V7a4 4 0 118 0v3"/><path d="M5 10h14v8H5z"/><path d="M9 14h.01M15 14h.01"/></svg>
+              </div>
+              <div>
+                <h3>Robotics Environments</h3>
+                <p>Scenario: multi-step mission across robot fleet.</p>
+              </div>
+            </div>
+            <div class="engine-workflow">
+              <span>High-level mission</span>
+              <span>Task graph decomposition</span>
+              <span>Fleet and system coordination</span>
+              <span>Human escalation on uncertainty</span>
+            </div>
+            <ul class="engine-list">
+              <li>Outcome: more multi-step task completion</li>
+              <li>Outcome: lower manual supervision load</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="engine-section engine-outcomes" id="outcomes" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Operational Outcomes</span>
+          <h2>Operational outcomes with SeedCore.</h2>
+          <p>Outcome profiles from runtime-driven coordination in physical environments. Actual results depend on system topology, policy constraints, and baseline process maturity.</p>
+        </div>
+
+        <div class="engine-capability-grid">
+          <article class="engine-capability-card">
+            <h3>Reduced Operational Downtime</h3>
+            <p>Recovery-aware orchestration detects blocked paths early, replans tasks, and preserves mission intent across machine and operator fallbacks.</p>
+          </article>
+          <article class="engine-capability-card">
+            <h3>Faster Service Response</h3>
+            <p>Cross-system execution graphs reduce handoff latency between intent interpretation, machine actions, and human escalation loops.</p>
+          </article>
+          <article class="engine-capability-card">
+            <h3>Observable Execution State</h3>
+            <p>Unified telemetry and <code>result.meta</code> provenance make execution traceable, replayable, and audit-ready for technical and enterprise teams.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="engine-section engine-sim" id="mission-simulation" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Live Mission Simulation</span>
+          <h2>Watch SeedCore coordinate real-world execution.</h2>
+          <p>See how SeedCore turns human intent into coordinated action across systems, robots, and operators.</p>
+        </div>
+
+        <div class="engine-sim-grid">
+          <div class="engine-sim-timeline-panel">
+            <div class="engine-sim-mission-meta">
+              <span>Mission</span>
+              <strong>Prepare hotel conference room for meeting at 18:00.</strong>
+            </div>
+
+            <div class="engine-sim-progress" aria-hidden="true">
+              <span id="missionProgress"></span>
+            </div>
+
+            <ol class="engine-sim-timeline" id="missionTimeline">
+              <li class="engine-sim-step is-active" data-step="0">
+                <button type="button" class="engine-sim-step-btn">
+                  <span class="engine-sim-step-index">01</span>
+                  <span class="engine-sim-step-copy">
+                    <strong>Intent Received</strong>
+                    <span>Location: Hotel Tower A. Deadline: 18:00. Constraints: guest-safe, low-noise.</span>
+                  </span>
+                </button>
+              </li>
+              <li class="engine-sim-step" data-step="1">
+                <button type="button" class="engine-sim-step-btn">
+                  <span class="engine-sim-step-index">02</span>
+                  <span class="engine-sim-step-copy">
+                    <strong>AI Planning</strong>
+                    <span>Decompose goal into clean room, adjust HVAC, power projector, verify seating.</span>
+                  </span>
+                </button>
+              </li>
+              <li class="engine-sim-step" data-step="2">
+                <button type="button" class="engine-sim-step-btn">
+                  <span class="engine-sim-step-index">03</span>
+                  <span class="engine-sim-step-copy">
+                    <strong>Safety Validation</strong>
+                    <span>Policy checks: building access, robot safety zone, quiet-hours compliance.</span>
+                  </span>
+                </button>
+              </li>
+              <li class="engine-sim-step" data-step="3">
+                <button type="button" class="engine-sim-step-btn">
+                  <span class="engine-sim-step-index">04</span>
+                  <span class="engine-sim-step-copy">
+                    <strong>Task Execution</strong>
+                    <span>Dispatch robot.clean, set hvac.temperature, power projector, notify staff standby.</span>
+                  </span>
+                </button>
+              </li>
+              <li class="engine-sim-step" data-step="4">
+                <button type="button" class="engine-sim-step-btn">
+                  <span class="engine-sim-step-index">05</span>
+                  <span class="engine-sim-step-copy">
+                    <strong>Failure Handling</strong>
+                    <span>Robot blocked in hallway. SeedCore replans and dispatches staff fallback.</span>
+                  </span>
+                </button>
+              </li>
+              <li class="engine-sim-step" data-step="5">
+                <button type="button" class="engine-sim-step-btn">
+                  <span class="engine-sim-step-index">06</span>
+                  <span class="engine-sim-step-copy">
+                    <strong>Mission Complete</strong>
+                    <span>Conference room ready, HVAC optimized, projector online, room cleaned.</span>
+                  </span>
+                </button>
+              </li>
+            </ol>
+
+            <article class="engine-sim-insight">
+              <h3>SeedCore Insight</h3>
+              <p id="missionInsight">Intent converted into a task graph with policy constraints.</p>
+            </article>
+          </div>
+
+          <div class="engine-sim-visual-panel">
+            <div class="engine-sim-visual-head">
+              <h3>Live System Visualization</h3>
+              <div class="engine-sim-toggle" role="tablist" aria-label="Simulation display mode">
+                <button type="button" class="engine-sim-toggle-btn is-active" data-sim-view="flow" aria-selected="true">View System Flow</button>
+                <button type="button" class="engine-sim-toggle-btn" data-sim-view="api" aria-selected="false">View API Execution</button>
+              </div>
+            </div>
+
+            <div class="engine-sim-view is-active" data-sim-view-panel="flow">
+              <div class="engine-sim-graph" aria-live="polite">
+                <svg class="engine-sim-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <line data-link="robot" x1="50" y1="22" x2="20" y2="58"></line>
+                  <line data-link="hvac" x1="50" y1="22" x2="37" y2="66"></line>
+                  <line data-link="projector" x1="50" y1="22" x2="74" y2="58"></line>
+                  <line data-link="lighting" x1="50" y1="22" x2="62" y2="79"></line>
+                  <line data-link="pms" x1="50" y1="22" x2="26" y2="81"></line>
+                  <line data-link="operator" x1="50" y1="22" x2="82" y2="79"></line>
+                  <line data-link="sensors" x1="50" y1="22" x2="50" y2="89"></line>
+                </svg>
+
+                <div class="engine-sim-node engine-sim-node-runtime is-live" data-node="runtime">SeedCore Runtime</div>
+                <div class="engine-sim-node engine-sim-node-robot" data-node="robot">Robot</div>
+                <div class="engine-sim-node engine-sim-node-hvac" data-node="hvac">HVAC</div>
+                <div class="engine-sim-node engine-sim-node-projector" data-node="projector">Projector</div>
+                <div class="engine-sim-node engine-sim-node-lighting" data-node="lighting">Lighting</div>
+                <div class="engine-sim-node engine-sim-node-pms" data-node="pms">PMS</div>
+                <div class="engine-sim-node engine-sim-node-operator" data-node="operator">Operator</div>
+                <div class="engine-sim-node engine-sim-node-sensors" data-node="sensors">Sensors</div>
+              </div>
+
+              <div class="engine-sim-runtime-feed">
+                <span class="engine-sim-state" id="missionState" data-state="planning">Planning</span>
+                <p id="missionRuntimeEvent">Intent received. Building execution graph.</p>
+              </div>
+
+              <div class="engine-sim-map">
+                <h4>Hotel Floor Map</h4>
+                <div class="engine-sim-floor">
+                  <div class="engine-sim-room room-hall">Hallway</div>
+                  <div class="engine-sim-room room-a">Room A</div>
+                  <div class="engine-sim-room room-conf">Conference Room</div>
+                  <div class="engine-sim-room room-ops">Ops Desk</div>
+                  <span class="engine-sim-robot" id="missionRobot" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="engine-sim-view" data-sim-view-panel="api" hidden>
+              <article class="engine-code-card engine-sim-api-card">
+                <div class="engine-code-header">
+                  <span id="missionApiRoute">POST /runtime/execute</span>
+                  <span>SeedCore Edge Runtime</span>
+                </div>
+                <pre><code id="missionApiCode"></code></pre>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="engine-sim-cta">
+          <p>SeedCore makes real-world AI execution reliable.</p>
+          <div class="engine-hero-actions">
+            <a href="#architecture" class="btn">Explore the Runtime</a>
+            <a href="resources/documentation.html" class="engine-secondary-btn">View Developer Docs</a>
+            <a href="contact.html#consultation" class="engine-secondary-btn">Request Partnership</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="engine-section" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Credibility</span>
+          <h2>Built on enterprise infrastructure, tuned for physical execution.</h2>
+        </div>
+
+        <div class="engine-stack-logos" aria-label="SeedCore ecosystem technologies">
+          <span>Ray</span>
+          <span>Kubernetes</span>
+          <span>Kafka</span>
+          <span>Neo4j</span>
+          <span>Qdrant</span>
+        </div>
+
+        <div class="engine-credibility-grid">
+          <article class="engine-credibility-card">
+            <h3>Technology Stack</h3>
+            <ul class="engine-list">
+              <li>Ray Actors and Ray Serve for distributed orchestration</li>
+              <li>TaskPayload contracts for stable execution semantics</li>
+              <li>Policy Knowledge Graph for controlled authorization</li>
+              <li>Holon-style memory for persistent operational context</li>
+            </ul>
+          </article>
+          <article class="engine-credibility-card">
+            <h3>Integration Model</h3>
+            <ul class="engine-list">
+              <li>Robots, PLCs, sensors, ERP, MES, PMS, and building systems</li>
+              <li>Human approval paths and operator escalation channels</li>
+              <li>Open APIs for enterprise workflows and control systems</li>
+              <li>Observable runtime telemetry and audit trails</li>
+            </ul>
+          </article>
+          <article class="engine-credibility-card">
+            <h3>Open Ecosystem</h3>
+            <ul class="engine-list">
+              <li>GitHub-first transparency for engineers and partners</li>
+              <li>Documentation-driven adoption and architecture proof</li>
+              <li>Composable capability model for domain extensions</li>
+              <li>Standards-aligned runtime for enterprise deployment</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="engine-section engine-developer" id="developers" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Developers</span>
+          <h2>Build on stable execution contracts, not black-box agents.</h2>
+          <p>SeedCore provides a structured runtime contract for routing, cognition, multimodal inputs, tool execution, and telemetry in physical-world AI systems.</p>
+        </div>
+
+        <div class="engine-dev-grid">
+          <article class="engine-code-card engine-contract-card">
+            <div class="engine-code-header">
+              <span>TaskPayload v2.5</span>
+              <span>Stable runtime contract</span>
+            </div>
+            <div class="engine-contract-tabs" role="tablist" aria-label="TaskPayload examples">
+              <button type="button" class="engine-contract-tab is-active" data-contract-tab="chat" role="tab" aria-selected="true">Chat</button>
+              <button type="button" class="engine-contract-tab" data-contract-tab="voice" role="tab" aria-selected="false">Voice</button>
+              <button type="button" class="engine-contract-tab" data-contract-tab="vision" role="tab" aria-selected="false">Vision</button>
+            </div>
+            <div class="engine-contract-panels">
+              <section class="engine-contract-panel is-active" data-contract-panel="chat" role="tabpanel">
+                <div class="engine-code-subhead">Chat task</div>
+                <pre><code>{
+  "type": "action",
+  "description": "Prepare conference room for meeting",
+  "params": {
+    "interaction": {
+      "mode": "coordinator_routed"
+    },
+    "routing": {
+      "required_specialization": "HospitalityOps",
+      "skills": {
+        "room_prep": 0.92
+      },
+      "tools": [
+        "robot.clean",
+        "hvac.set",
+        "projector.power"
+      ],
+      "routing_tags": ["hotel", "conference"],
+      "hints": {
+        "priority": 6,
+        "ttl_seconds": 300
+      }
+    },
+    "chat": {
+      "session_id": "sess_184",
+      "operator_id": "ops_lead"
+    },
+    "risk": {
+      "policy_mode": "deny_by_default"
+    }
+  }
+}</code></pre>
+              </section>
+              <section class="engine-contract-panel" data-contract-panel="voice" role="tabpanel" hidden>
+                <div class="engine-code-subhead">Voice command</div>
+                <pre><code>{
+  "type": "action",
+  "description": "Reset warehouse robots on dock three",
+  "params": {
+    "interaction": {
+      "mode": "voice_assist"
+    },
+    "routing": {
+      "required_specialization": "FleetControl",
+      "tools": [
+        "fleet.pause",
+        "fleet.reset",
+        "operators.notify"
+      ],
+      "routing_tags": ["warehouse", "voice"],
+      "hints": {
+        "priority": 8,
+        "ttl_seconds": 90
+      }
+    },
+    "multimodal": {
+      "source": "voice",
+      "audio_uri": "s3://seedcore/audio/dock3-reset.wav",
+      "transcript": "reset warehouse robots on dock three",
+      "confidence": 0.97
+    }
+  }
+}</code></pre>
+              </section>
+              <section class="engine-contract-panel" data-contract-panel="vision" role="tabpanel" hidden>
+                <div class="engine-code-subhead">Vision event</div>
+                <pre><code>{
+  "type": "action",
+  "description": "Person detected near Room 101",
+  "params": {
+    "interaction": {
+      "mode": "coordinator_routed"
+    },
+    "routing": {
+      "required_specialization": "SecurityMonitoring",
+      "skills": {
+        "threat_assessment": 0.9
+      },
+      "tools": [
+        "alerts.raise",
+        "sensors.read_all"
+      ],
+      "routing_tags": ["security", "monitoring"],
+      "hints": {
+        "priority": 7,
+        "ttl_seconds": 60
+      }
+    },
+    "multimodal": {
+      "source": "vision",
+      "media_uri": "s3://hotel-assets/video/camera_101.mp4",
+      "confidence": 0.92,
+      "location_context": "room_101_corridor"
+    },
+    "tool_calls": [
+      {
+        "name": "alerts.raise",
+        "args": {
+          "channel": "security_team",
+          "msg": "Person detected near Room 101"
+        }
+      }
+    ]
+  }
+}</code></pre>
+              </section>
+            </div>
+          </article>
+
+          <div class="engine-dev-stack">
+            <div class="engine-dev-architecture-grid">
+              <article class="engine-dev-card">
+                <h3>Stable execution contract</h3>
+                <p>A versioned JSONB payload carries routing inputs, cognitive controls, multimodal metadata, and execution requests without schema migrations.</p>
+              </article>
+              <article class="engine-dev-card">
+                <h3>Envelope isolation</h3>
+                <p><code>params.routing</code> stays distinct from router output, cognitive flags, tool calls, risk controls, and chat context so reasoning and execution do not collapse into one opaque blob.</p>
+              </article>
+              <article class="engine-dev-card">
+                <h3>Capability-aware routing</h3>
+                <p>Task-type defaults define capabilities, while task-instance routing signals express execution-time needs and constraints with deterministic provenance.</p>
+              </article>
+              <article class="engine-dev-card">
+                <h3>Multimodal without lock-in</h3>
+                <p>Voice and vision stay in <code>params.multimodal</code>, while embeddings and event memory live in dedicated retrieval surfaces for low-latency perception workflows.</p>
+              </article>
+              <article class="engine-dev-card">
+                <h3>Observable execution</h3>
+                <p><code>result.meta</code> captures routing decisions, shortlist scores, latency, retries, retrieval scope, and chosen models for replay, debugging, and audit.</p>
+              </article>
+              <article class="engine-dev-card">
+                <h3>Unified memory model</h3>
+                <p>Working memory and graph knowledge memory unify through a single runtime view so perception recall and graph-grounded reasoning stay addressable from one interface.</p>
+              </article>
+            </div>
+            <div class="engine-dev-feature-strip" aria-label="Developer runtime capabilities">
+              <span>JSONB Task Contracts</span>
+              <span>Router Input / Output Isolation</span>
+              <span>Multimodal Envelopes</span>
+              <span>RBAC Tool Enforcement</span>
+              <span>Telemetry in <code>result.meta</code></span>
+            </div>
+            <div class="engine-actions engine-dev-actions">
+              <a href="resources/documentation.html">View TaskPayload Spec</a>
+              <a href="resources/seedcore-architecture.html">Explore Routing Model</a>
+              <a href="resources/seedcore-architecture.html">Read Architecture Notes</a>
+              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="engine-section engine-media" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Evidence</span>
+          <h2>Technical evidence for architecture, implementation, and product narrative.</h2>
+        </div>
+
         <div class="engine-media-grid">
           <article class="engine-media-video">
             <h3>Showcase Video</h3>
@@ -111,28 +740,35 @@
               <iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
           </article>
+
           <aside class="engine-media-side">
-            <h3>Proof Links</h3>
+            <h3>Platform Narrative</h3>
             <ul class="engine-list">
-              <li>Execution architecture and policy strategy</li>
-              <li>Implementation-level technical documentation</li>
-              <li>Source code transparency for review</li>
+              <li>AI infrastructure for the physical world</li>
+              <li>Operational resilience through recovery-aware execution</li>
+              <li>Product-ready runtime for hotels, factories, and fleets</li>
             </ul>
             <div class="engine-actions">
               <a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a>
-              <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a>
-              <a href="resources/seedcore-architecture.html">Architecture</a>
               <a href="resources/documentation.html">Documentation</a>
+              <a href="resources/seedcore-architecture.html">Architecture</a>
             </div>
             <img src="images/seedcore-engine-map.svg" alt="SeedCore AI-to-physical-world engine map" class="engine-image" loading="lazy" />
           </aside>
         </div>
       </section>
 
-      <section class="engine-section engine-cta">
-        <h2>Why This Matters</h2>
-        <p>SeedCore demonstrates how AI evolves from assistant behavior into programmable real-world infrastructure: safe, adaptive, and operationally accountable.</p>
-        <a href="contact.html#consultation" class="btn">Open a Partnership Track</a>
+      <section class="engine-section engine-cta" data-reveal>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Next Step</span>
+          <h2>Deploy the runtime between AI reasoning and physical execution.</h2>
+          <p>Start with a pilot, architecture review, or partner integration.</p>
+        </div>
+        <div class="engine-hero-actions engine-cta-actions">
+          <a href="contact.html#consultation" class="btn">Open a Partnership Track</a>
+          <a href="#developers" class="engine-secondary-btn">See Developer Surface</a>
+          <a href="resources/whitepaper.html" class="engine-secondary-btn">Download Architecture Whitepaper</a>
+        </div>
       </section>
     </div>
   </main>
@@ -177,7 +813,6 @@
     </div>
   </footer>
 
-  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20260306p"></script>
 </body>
 </html>
