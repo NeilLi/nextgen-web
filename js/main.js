@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    setActiveContract("chat");
+    setActiveContract("operator");
   }
 
   function initMissionSimulation() {
@@ -194,27 +194,30 @@ document.addEventListener("DOMContentLoaded", function () {
       {
         stateLabel: "Planning",
         stateKind: "planning",
-        runtimeEvent: "Intent received. Building execution graph.",
-        insight: "Intent converted into a task graph with policy constraints.",
-        activeNodes: ["runtime", "operator", "pms"],
-        activeLinks: ["operator", "pms"],
+        runtimeEvent: "Telemetry received. Building governed mission graph.",
+        insight: "Telemetry becomes a governed mission graph before any physical command is issued.",
+        activeNodes: ["runtime", "sensors", "pms"],
+        activeLinks: ["sensors", "pms"],
         alertNodes: [],
         alertLinks: [],
         robot: { x: "14%", y: "18%" },
         robotBlocked: false,
-        apiRoute: "POST /runtime/execute",
+        apiRoute: "POST /runtime/eventize",
         apiPayload: {
-          intent: "Prepare conference room for meeting",
-          location: "Hotel Tower A",
-          deadline: "18:00",
-          constraints: ["guest-safe", "low-noise"]
+          source: "line4.thermal_cluster",
+          site: "Plant North / Cell 4",
+          signals: {
+            temperature_c: 92.4,
+            vibration_score: 0.81
+          },
+          classification: "critical_anomaly"
         }
       },
       {
         stateLabel: "Planning",
         stateKind: "planning",
-        runtimeEvent: "AI reasoning decomposed mission into executable tasks.",
-        insight: "Planning engine decomposes intent into sequencing, dependencies, and fallback paths.",
+        runtimeEvent: "Runtime decomposed the anomaly into safe mission steps.",
+        insight: "Planning defines sequencing, dependencies, and fallback paths before control leaves the runtime.",
         activeNodes: ["runtime", "pms", "operator"],
         activeLinks: ["pms", "operator"],
         alertNodes: [],
@@ -223,25 +226,25 @@ document.addEventListener("DOMContentLoaded", function () {
         robotBlocked: false,
         apiRoute: "POST /runtime/plan",
         apiPayload: {
-          goal: "conference-room-ready",
-          tasks: ["robot.clean", "hvac.adjust", "projector.power", "seating.verify"],
-          dependencies: [["projector.power", "seating.verify"]]
+          goal: "stabilize-line4",
+          tasks: ["conveyor.slow", "cell.isolate", "bot.inspect", "lead.notify"],
+          dependencies: [["cell.isolate", "bot.inspect"]]
         }
       },
       {
         stateLabel: "Policy Check",
         stateKind: "running",
-        runtimeEvent: "Safety governance validated access, safety zones, and quiet-hours policy.",
-        insight: "Policy governance is enforced before physical side effects are allowed.",
-        activeNodes: ["runtime", "sensors", "operator", "pms"],
-        activeLinks: ["sensors", "operator", "pms"],
+        runtimeEvent: "Policy layer validated stop-zone, relay access, and operator approval scope.",
+        insight: "Deny-by-default governance decides what can execute before any machine state changes.",
+        activeNodes: ["runtime", "sensors", "operator", "projector"],
+        activeLinks: ["sensors", "operator", "projector"],
         alertNodes: [],
         alertLinks: [],
         robot: { x: "28%", y: "40%" },
         robotBlocked: false,
         apiRoute: "POST /runtime/authorize",
         apiPayload: {
-          policies: ["building-access", "robot-safety-zone", "quiet-hours"],
+          policies: ["line4-stop-zone", "relay-control", "manual-override-window"],
           result: "approved",
           mode: "deny-by-default"
         }
@@ -249,8 +252,8 @@ document.addEventListener("DOMContentLoaded", function () {
       {
         stateLabel: "Executing",
         stateKind: "running",
-        runtimeEvent: "Dispatching robot.clean, HVAC setpoint, projector power-on, and staff standby.",
-        insight: "SeedCore orchestrates machines and operators through one runtime control plane.",
+        runtimeEvent: "Dispatching conveyor slowdown, cell isolation, inspection bot, and lead notification.",
+        insight: "SeedCore coordinates PLCs, relays, robots, and operators through one governed execution runtime.",
         activeNodes: ["runtime", "robot", "hvac", "projector", "lighting", "operator"],
         activeLinks: ["robot", "hvac", "projector", "lighting", "operator"],
         alertNodes: [],
@@ -259,46 +262,45 @@ document.addEventListener("DOMContentLoaded", function () {
         robotBlocked: false,
         apiRoute: "POST /runtime/execute",
         apiPayload: {
-          dispatch: ["robot.clean", "hvac.temperature.set", "projector.power.on"],
-          operator: "standby-notified",
+          dispatch: ["conveyor.slow_mode", "relay.isolate_cell4", "bot.inspect_route_a"],
+          operator: "cell-lead-notified",
           observability: "live"
         }
       },
       {
-        stateLabel: "Recovery",
+        stateLabel: "Exception",
         stateKind: "alert",
-        runtimeEvent: "Robot blocked in hallway. Replanning triggered. Staff fallback dispatched.",
-        insight: "Failure recovery preserves mission intent through replanning and human escalation.",
-        activeNodes: ["runtime", "robot", "operator", "sensors"],
-        activeLinks: ["robot", "operator", "sensors"],
+        runtimeEvent: "Inspection bot route blocked. Triggering fallback path and cell-lead escalation.",
+        insight: "When the physical world changes, SeedCore preserves mission intent and switches to a safe recovery path.",
+        activeNodes: ["runtime", "robot", "operator", "sensors", "lighting"],
+        activeLinks: ["robot", "operator", "sensors", "lighting"],
         alertNodes: ["robot"],
         alertLinks: ["robot"],
         robot: { x: "36%", y: "24%" },
         robotBlocked: true,
-        apiRoute: "POST /runtime/replan",
+        apiRoute: "POST /runtime/recover",
         apiPayload: {
-          failure: "robot.blocked.hallway",
-          replanning: true,
-          fallback: "staff.dispatch",
-          eta_minutes: 3
+          issue: "inspection route_a blocked by pallet movement",
+          fallback: "dispatch cell lead and switch to manual inspection",
+          strategy: "preserve mission outcome"
         }
       },
       {
-        stateLabel: "Completed",
+        stateLabel: "Recovered",
         stateKind: "success",
-        runtimeEvent: "Mission complete. Conference room ready with HVAC, projector, and cleaning verified.",
-        insight: "Observed completion state confirms reliability, not just automation attempts.",
-        activeNodes: ["runtime", "hvac", "projector", "lighting", "operator", "pms"],
-        activeLinks: ["hvac", "projector", "lighting", "operator", "pms"],
+        runtimeEvent: "Mission recovered. Cell secured and runtime recorded full playback.",
+        insight: "Playback-grade telemetry makes every mission auditable from anomaly detection to resumed production.",
+        activeNodes: ["runtime", "hvac", "projector", "lighting", "operator", "pms", "sensors"],
+        activeLinks: ["hvac", "projector", "lighting", "operator", "pms", "sensors"],
         alertNodes: [],
         alertLinks: [],
         robot: { x: "60%", y: "62%" },
         robotBlocked: false,
         apiRoute: "POST /runtime/complete",
         apiPayload: {
-          status: "success",
-          outcomes: ["room.cleaned", "hvac.optimized", "projector.online", "seating.verified"],
-          audit_trace: "sealed"
+          mission: "stabilize-line4",
+          status: "recovered",
+          playback: "available"
         }
       }
     ];

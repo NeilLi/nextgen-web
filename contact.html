@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | SeedCore Partnerships</title>
-  <meta name="description" content="Contact SeedCore for strategic review, pilot deployment, and AI-to-physical-world collaboration." />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/engine-site.css" />
+  <title>Contact SeedCore | Runtime Review</title>
+  <meta name="description" content="Contact SeedCore for architecture reviews, facility pilots, and physical AI runtime planning." />
+  <link rel="stylesheet" href="css/style.css?v=20260307a" />
+  <link rel="stylesheet" href="css/engine-site.css?v=20260307a" />
 </head>
 <body class="engine-page">
   <header>
@@ -18,7 +18,7 @@
           <div class="nav-links">
             <a href="index.html">Home</a><a href="about.html">About</a><a href="services/index.html">Services</a><a href="solutions/index.html">Solutions</a><a href="resources/index.html">Resources</a><a href="contact.html">Contact</a>
           </div>
-          <a href="#consultation" class="btn btn-nav">Request Partnership</a>
+          <a href="#consultation" class="btn btn-nav">Request a Runtime Review</a>
           <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener" class="github-link" aria-label="SeedCore GitHub Repository"><img src="images/github.svg" alt="GitHub" style="height:22px;width:auto;margin-left:12px;" /></a>
         </div>
       </nav>
@@ -26,52 +26,71 @@
   </header>
 
   <section class="engine-hero">
-    <div class="container">
-      <h1>Partnership Contact</h1>
-      <p>If your team is evaluating AI-to-physical-world execution, share your environment, constraints, and objectives. We will propose a clear technical collaboration path.</p>
-      <div class="engine-badges"><span>Pilot Programs</span><span>Architecture Review</span><span>Strategic Resource Collaboration</span></div>
+    <div class="container engine-page-hero-shell">
+      <div class="engine-page-hero-copy">
+        <span class="engine-kicker">Contact</span>
+        <h1>Open a runtime review for your facility.</h1>
+        <p>If you are evaluating physical AI, share the mission, machine stack, and policy boundary you need to protect. We will respond with a concrete collaboration path.</p>
+        <div class="engine-badges"><span>Architecture Review</span><span>Mission Simulation</span><span>Edge Pilot Design</span></div>
+      </div>
+      <aside class="engine-page-hero-panel">
+        <span>Best Fit</span>
+        <strong>Teams operating factories, labs, buildings, or distributed edge sites.</strong>
+        <p>We are most useful when AI intent can create real operational or safety consequences.</p>
+      </aside>
     </div>
   </section>
 
   <main class="engine-main">
     <div class="container">
-      <section class="engine-section engine-media">
-        <h2>Before Contacting Us</h2>
-        <div class="engine-media-grid">
-          <article class="engine-media-video">
-            <h3>Watch the System Walkthrough</h3>
-            <div class="engine-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/CKJLHPeJrrk?rel=0&modestbranding=1&playsinline=1" title="SeedCore Showcase Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-          </article>
-          <aside class="engine-media-side">
-            <h3>Preparation Links</h3>
-            <div class="engine-actions"><a href="https://youtu.be/CKJLHPeJrrk" target="_blank" rel="noopener">Open YouTube</a><a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">GitHub Repository</a><a href="resources/seedcore-architecture.html">Architecture</a><a href="resources/documentation.html">Documentation</a></div>
-            <p>Useful input for kickoff: operating environment, policy constraints, target KPIs, and integration boundaries.</p>
-          </aside>
-        </div>
-      </section>
-
       <section class="engine-section" id="consultation">
-        <h2>Submit Your Inquiry</h2>
-        <div class="engine-grid-2">
-          <article class="engine-card">
-            <h3>Contact Form</h3>
-            <form id="contactForm">
-              <p><label for="name">Full Name</label><br /><input type="text" id="name" name="name" required style="width:100%;padding:10px;border:1px solid #cfe0fc;border-radius:8px;" /></p>
-              <p><label for="email">Email</label><br /><input type="email" id="email" name="email" required style="width:100%;padding:10px;border:1px solid #cfe0fc;border-radius:8px;" /></p>
-              <p><label for="company">Company</label><br /><input type="text" id="company" name="company" style="width:100%;padding:10px;border:1px solid #cfe0fc;border-radius:8px;" /></p>
-              <p><label for="message">Project Scope</label><br /><textarea id="message" name="message" required style="width:100%;min-height:120px;padding:10px;border:1px solid #cfe0fc;border-radius:8px;"></textarea></p>
-              <button type="submit" class="btn">Send Inquiry</button>
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Intake</span>
+          <h2>Share the operational boundary you need to govern.</h2>
+        </div>
+        <div class="engine-form-grid">
+          <article class="engine-form-card">
+            <span>Runtime Intake Form</span>
+            <form id="contactForm" class="engine-form-stack">
+              <div class="engine-form-field">
+                <label for="name">Full name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="engine-form-field">
+                <label for="email">Work email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="engine-form-field">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" />
+              </div>
+              <div class="engine-form-field">
+                <label for="engagement">Primary need</label>
+                <select id="engagement" name="engagement">
+                  <option>Architecture review</option>
+                  <option>Mission simulation</option>
+                  <option>Edge pilot</option>
+                  <option>Partner technical review</option>
+                </select>
+              </div>
+              <div class="engine-form-field">
+                <label for="message">Facility, machine stack, and policy constraints</label>
+                <textarea id="message" name="message" required placeholder="Example: We operate two production cells with PLCs, machine vision, and operator overrides. We need a governed runtime for anomaly detection, conveyor isolation, and audited escalation."></textarea>
+              </div>
+              <button type="submit" class="btn">Send inquiry</button>
             </form>
           </article>
-          <article class="engine-card">
-            <h3>Direct Contact</h3>
-            <ul class="engine-list">
-              <li>Email: <a href="mailto:hello@seedcore.ai">hello@seedcore.ai</a></li>
-              <li>Response target: within 3 business days</li>
-              <li>Best for: pilot design, architecture validation, strategic collaboration</li>
+          <aside class="engine-page-link-card">
+            <span>What To Include</span>
+            <strong>The highest-value inputs for a practical first conversation.</strong>
+            <ul class="engine-compact-list">
+              <li>Which physical systems or edge devices are in scope</li>
+              <li>Which missions create real operational risk or cost</li>
+              <li>What policy boundary must be enforced before action</li>
+              <li>What telemetry or playback requirements matter internally</li>
             </ul>
-            <img src="images/globalmap.png" alt="SeedCore global collaboration reach" class="engine-image" loading="lazy" />
-          </article>
+            <p>Email also works for direct contact: <a href="mailto:hello@seedcore.ai">hello@seedcore.ai</a></p>
+          </aside>
         </div>
       </section>
     </div>
@@ -79,16 +98,15 @@
 
   <footer><div class="container"><div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div></div></footer>
   <script>
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-    const contactForm = document.getElementById('contactForm');
+    const contactForm = document.getElementById("contactForm");
     if (contactForm) {
-      contactForm.addEventListener('submit', function (event) {
+      contactForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        alert('Thank you. We will review your scope and respond with a practical collaboration proposal.');
+        alert("Thank you. We will review your environment and respond with a concrete runtime collaboration path.");
         contactForm.reset();
       });
     }
   </script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20260307a"></script>
 </body>
 </html>
