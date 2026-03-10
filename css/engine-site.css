@@ -205,7 +205,7 @@ body.engine-page .btn.btn-nav:focus {
 }
 
 .engine-hero-copy {
-  max-width: 620px;
+  max-width: 660px;
 }
 
 .engine-hero-copy h1 {
@@ -214,7 +214,7 @@ body.engine-page .btn.btn-nav:focus {
   font-size: clamp(2.1rem, 3.6vw, 3.7rem);
   line-height: 1.04;
   letter-spacing: -0.04em;
-  max-width: 13ch;
+  max-width: 16ch;
 }
 
 .engine-hero-copy p {
@@ -1872,6 +1872,31 @@ body.engine-page .btn.btn-nav:focus {
   line-height: 1.55;
 }
 
+.engine-about-hero .engine-page-hero-shell {
+  grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.96fr);
+  gap: 30px;
+  align-items: start;
+}
+
+.engine-about-hero .engine-page-hero-copy h1 {
+  max-width: 13ch;
+  font-size: clamp(1.82rem, 3.15vw, 2.8rem);
+  line-height: 1.08;
+}
+
+.engine-about-hero .engine-page-hero-copy p {
+  max-width: 60ch;
+  font-size: 1.02rem;
+}
+
+.engine-about-hero .engine-page-hero-panel {
+  max-width: 520px;
+  justify-self: end;
+  margin-top: 72px;
+  padding: 22px;
+  border-color: rgba(143, 184, 255, 0.22);
+}
+
 .engine-manifesto-grid,
 .engine-proof-grid,
 .engine-page-card-grid,
@@ -2262,6 +2287,12 @@ body.engine-page .btn.btn-nav:focus {
 
   .engine-hero-visual {
     min-height: 0;
+  }
+
+  .engine-about-hero .engine-page-hero-panel {
+    max-width: none;
+    justify-self: start;
+    margin-top: 0;
   }
 
   .engine-floating-stats {

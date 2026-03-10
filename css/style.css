@@ -592,6 +592,10 @@ footer {
 .footer-col-main h3 { margin-top: 10px; }
 
 .footer-logo-link { display: inline-block; margin-bottom: 15px;}
+.footer-col-main .footer-logo-link img {
+    display: block;
+    transform: translateY(6px);
+}
 .footer-logo-img { /* Applied to the SVG directly */
     height: 40px; /* Adjusted size */
     width: auto;
@@ -940,6 +944,7 @@ footer {
     .social-links { justify-content: center; }
     .footer-col-main { text-align: center;} /* Ensure main footer column is centered */
     .footer-logo-link { display: block; margin: 0 auto 15px; width: fit-content; }
+    .footer-col-main .footer-logo-link img { transform: none; }
 
 
     .copyright ul li {

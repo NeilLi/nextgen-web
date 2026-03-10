@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshop Syllabus | SeedCore Zero-Trust Architecture Review</title>
+  <meta name="description" content="SeedCore workshop syllabus for a zero-trust architecture review that defines deny-by-default control boundaries for high-value physical workflows." />
+  <link rel="stylesheet" href="../css/style.css?v=20260307a" />
+  <link rel="stylesheet" href="../css/engine-site.css?v=20260310a" />
+</head>
+<body class="engine-page">
+  <header><div class="container"><nav><a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a><button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button><div class="nav-links-wrapper"><div class="nav-links"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="../services/index.html">Services</a><a href="../solutions/index.html">Solutions</a><a href="index.html">Resources</a><a href="../contact.html">Contact</a></div><a href="../contact.html#consultation" class="btn btn-nav">Start Review Intake</a></div></nav></div></header>
+
+  <section class="engine-hero">
+    <div class="container engine-page-hero-shell">
+      <div class="engine-page-hero-copy">
+        <span class="engine-kicker">Workshop Syllabus</span>
+        <h1>SeedCore Zero-Trust Architecture Review</h1>
+        <p>Objective: define the deny-by-default control boundary for one high-value physical workflow, then convert the boundary into a pilot-ready implementation roadmap.</p>
+        <div class="engine-badges"><span>Policy First</span><span>One Workflow First</span><span>Pilot-Ready Outputs</span></div>
+        <div class="engine-hero-actions">
+          <a href="../contact.html#consultation" class="btn">Start Zero-Trust Review Intake</a>
+          <a href="#" class="engine-secondary-btn" onclick="window.print(); return false;">Print or Save as PDF</a>
+        </div>
+      </div>
+      <aside class="engine-page-hero-panel">
+        <span>Outcome</span>
+        <strong>From architecture discussion to concrete delivery scope.</strong>
+        <p>The review produces an actionable control boundary, PKG policy baseline, custody evidence model, and a first pilot boundary for enterprise execution.</p>
+      </aside>
+    </div>
+  </section>
+
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Module 1</span>
+          <h2>Surface Mapping and Risk Audit</h2>
+          <p>Map how movement happens today, where control is weak, and where graceful degradation creates silent release risk.</p>
+        </div>
+        <div class="engine-page-card-grid">
+          <article class="engine-page-link-card"><strong>Silent Release Mapping</strong><p>Document each movement step where asset transfer can occur without explicit, multi-factor policy verification.</p></article>
+          <article class="engine-page-link-card"><strong>Graceful Degradation Audit</strong><p>Review error-handling behavior to identify fail-open paths and permissive manual overrides.</p></article>
+          <article class="engine-page-link-card"><strong>Actor Authority Baseline</strong><p>Classify components into AI (judgment), Governed Agent (accountability), and actuator endpoint (embodiment).</p></article>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Module 2</span>
+          <h2>Policy Knowledge Graph (PKG) Design</h2>
+          <p>Define the initial closed-world policy model where anything not explicitly allowed is blocked.</p>
+        </div>
+        <div class="engine-page-card-grid">
+          <article class="engine-page-link-card"><strong>Identity and Role Profiling</strong><p>Set minimum-privilege profiles for Governed Agents, operators, and physical actuator endpoints in scope.</p></article>
+          <article class="engine-page-link-card"><strong>Zone and Window Constraints</strong><p>Map safe physical zones and release windows required for authorization.</p></article>
+          <article class="engine-page-link-card"><strong>Deny-by-Default Ruleset</strong><p>Draft initial closed-world rules so only explicitly permitted actions can pass policy.</p></article>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Module 3</span>
+          <h2>Custody and Evidence Modeling</h2>
+          <p>Define what evidence is required at every transition to support replayable compliance and partner trust.</p>
+        </div>
+        <div class="engine-page-card-grid">
+          <article class="engine-page-link-card"><strong>Handoff Contract</strong><p>Specify verifiable receipt requirements per transition, such as seal scans, endpoint signatures, and identity stamps.</p></article>
+          <article class="engine-page-link-card"><strong>Forensic Replay Requirements</strong><p>Define telemetry needed to reconstruct black-box playback for every custody state change.</p></article>
+          <article class="engine-page-link-card"><strong>Exception and Recovery Paths</strong><p>Design quarantine and rollback behavior for broken seals, blocked handlers, and unauthorized location drift.</p></article>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Module 4</span>
+          <h2>Implementation Roadmap</h2>
+          <p>Convert governance design into a pilot with a bounded scope, concrete interfaces, and measurable outcomes.</p>
+        </div>
+        <div class="engine-page-card-grid">
+          <article class="engine-page-link-card"><strong>ActionIntent Payload</strong><p>Draft the schema a Governed Agent submits to the Policy Decision Point before any movement is authorized.</p></article>
+          <article class="engine-page-link-card"><strong>Pilot Boundary Definition</strong><p>Select one isolated high-value lot or vault zone as the first runtime deployment boundary.</p></article>
+          <article class="engine-page-link-card"><strong>Execution Plan</strong><p>Sequence implementation milestones for policy rollout, telemetry activation, and live exception testing.</p></article>
+        </div>
+      </section>
+
+      <section class="engine-section engine-callout-shell">
+        <article class="engine-proof-card">
+          <span>Delivery Package</span>
+          <strong>What the lead receives after the workshop.</strong>
+          <ul class="engine-compact-list">
+            <li>Workflow risk map with silent-release points and fail-open findings</li>
+            <li>Initial PKG rule baseline with role, zone, and time constraints</li>
+            <li>Custody evidence model with replay and audit telemetry requirements</li>
+            <li>Pilot boundary and phased implementation roadmap</li>
+          </ul>
+        </article>
+        <article class="engine-page-link-card">
+          <span>Next Step</span>
+          <strong>Move from syllabus to intake.</strong>
+          <p>Start the review with one workflow that has real inventory, compliance, or operational consequences.</p>
+          <a href="../contact.html#consultation">Schedule the zero-trust review</a>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="container"><div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div></div></footer>
+  <script src="../js/main.js?v=20260310a"></script>
+</body>
+</html>
