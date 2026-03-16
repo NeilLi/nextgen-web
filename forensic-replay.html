@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SeedCore Honey Digital Twin | Forensic Replay</title>
+  <meta name="description" content="Buyer-ready forensic replay for Himalayan Honey Lot #094 with environmental telemetry, spectral and morphology screening, anomaly status, and sealed custody evidence." />
+  <link rel="canonical" href="https://seedcore.ai/forensic-replay.html" />
+  <link rel="stylesheet" href="css/style.css?v=20260311d" />
+  <link rel="stylesheet" href="css/engine-site.css?v=20260311d" />
+  <meta property="og:title" content="SeedCore Honey Digital Twin | Forensic Replay" />
+  <meta property="og:description" content="A production-grade forensic replay for Lot #094 with environmental, spectral, morphology, and custody evidence in one buyer-facing view." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seedcore.ai/forensic-replay.html" />
+  <link rel="icon" href="/assets/seedcore-logo.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --fr-bg: #06111c;
+      --fr-bg-2: #091a29;
+      --fr-surface: #0a2134;
+      --fr-surface-2: #10283f;
+      --fr-border: rgba(129, 167, 210, 0.14);
+      --fr-text: #dbe7f5;
+      --fr-muted: rgba(192, 209, 229, 0.68);
+      --fr-accent: #74d3c0;
+      --fr-accent-2: #8eaee1;
+      --fr-amber: #ffb45a;
+      --fr-danger: #ff6f6f;
+      --fr-shadow: 0 16px 38px rgba(2, 10, 20, 0.32);
+    }
+
+    body.fr-page {
+      background:
+        radial-gradient(circle at 8% 8%, rgba(76, 140, 255, 0.12), transparent 30%),
+        radial-gradient(circle at 92% 6%, rgba(100, 219, 194, 0.08), transparent 26%),
+        linear-gradient(180deg, var(--fr-bg) 0%, #07162a 100%);
+      color: var(--fr-text);
+    }
+
+    .fr-main {
+      padding: 36px 0 86px;
+    }
+
+    .fr-main h3,
+    .fr-main h4 {
+      color: rgba(224, 235, 250, 0.93);
+      letter-spacing: 0.01em;
+      font-weight: 600;
+    }
+
+    .fr-main p {
+      color: var(--fr-muted);
+    }
+
+    .fr-hero {
+      margin-top: 30px;
+      border-radius: 28px;
+      border: 1px solid var(--fr-border);
+      background:
+        linear-gradient(135deg, rgba(9, 24, 40, 0.94), rgba(8, 20, 34, 0.92)),
+        radial-gradient(circle at top right, rgba(106, 168, 255, 0.08), transparent 34%);
+      box-shadow: var(--fr-shadow);
+      overflow: hidden;
+      position: relative;
+      padding: 36px;
+    }
+
+    .fr-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(132, 172, 212, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(132, 172, 212, 0.03) 1px, transparent 1px);
+      background-size: 84px 84px;
+      pointer-events: none;
+    }
+
+    .fr-hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .fr-hero-stack {
+      width: min(100%, 1240px);
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .fr-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(116, 211, 192, 0.2);
+      color: var(--fr-accent);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      background: rgba(100, 219, 194, 0.06);
+    }
+
+    .fr-kicker::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--fr-accent);
+      box-shadow: 0 0 10px rgba(100, 219, 194, 0.42);
+    }
+
+    .fr-title {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+      width: min(100%, 1200px);
+      padding: 14px;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 177, 255, 0.17);
+      background:
+        linear-gradient(180deg, rgba(6, 19, 31, 0.74), rgba(5, 15, 26, 0.82)),
+        radial-gradient(circle at 50% 0%, rgba(100, 219, 194, 0.08), transparent 50%);
+      box-shadow:
+        0 14px 36px rgba(2, 10, 20, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+    }
+
+    .fr-title-image {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 16px;
+    }
+
+    .fr-visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .fr-lead {
+      margin: 2px 0 0;
+      color: var(--fr-muted);
+      font-size: 1.01rem;
+      max-width: 76ch;
+      line-height: 1.72;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(124, 177, 255, 0.12);
+      background: linear-gradient(180deg, rgba(11, 31, 50, 0.45), rgba(8, 22, 37, 0.56));
+    }
+
+    .fr-hero-panel {
+      display: grid;
+      gap: 10px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--fr-border);
+      background: linear-gradient(180deg, rgba(12, 34, 56, 0.88), rgba(9, 25, 42, 0.9));
+    }
+
+    .fr-label {
+      display: block;
+      color: rgba(147, 226, 214, 0.86);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .fr-hero-panel strong {
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .fr-hero-panel p {
+      margin: 0;
+      color: var(--fr-muted);
+      line-height: 1.6;
+    }
+
+    .fr-grid {
+      margin-top: 20px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .fr-snapshot {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .fr-card {
+      border-radius: 22px;
+      border: 1px solid var(--fr-border);
+      background:
+        linear-gradient(180deg, rgba(11, 30, 48, 0.9), rgba(10, 23, 38, 0.9)),
+        radial-gradient(circle at top right, rgba(100, 219, 194, 0.05), transparent 42%);
+      box-shadow: var(--fr-shadow);
+      padding: 18px;
+      transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .fr-card h3,
+    .fr-card h4 {
+      margin: 8px 0;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .fr-card p {
+      margin: 0;
+      color: var(--fr-muted);
+      line-height: 1.55;
+      font-size: 0.93rem;
+    }
+
+    .fr-card-snapshot {
+      min-height: 292px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .fr-card-snapshot .fr-label {
+      margin-bottom: 0;
+    }
+
+    .fr-card-snapshot h4 {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.35;
+      text-wrap: balance;
+    }
+
+    .fr-card-snapshot p {
+      font-size: 0.9rem;
+      line-height: 1.58;
+    }
+
+    .fr-card-focus .fr-ring-wrap {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 14px;
+    }
+
+    .fr-card-focus .fr-ring {
+      margin: 0 auto;
+    }
+
+    .fr-card-snapshot .fr-pills {
+      margin-top: 0;
+      align-self: end;
+    }
+
+    .fr-card-snapshot .fr-pills span {
+      font-size: 0.77rem;
+      padding: 5px 10px;
+      min-height: 30px;
+    }
+
+    .fr-card-snapshot .fr-policy-meter {
+      margin-top: 0;
+      align-self: end;
+    }
+
+    .fr-ring-wrap {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .fr-ring {
+      width: 92px;
+      height: 92px;
+      padding: 7px;
+      border-radius: 50%;
+      background: conic-gradient(var(--fr-accent) 0deg 359.28deg, rgba(100, 219, 194, 0.12) 359.28deg 360deg);
+      box-shadow: 0 0 18px rgba(100, 219, 194, 0.17);
+    }
+
+    .fr-ring > div {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border: 1px solid rgba(138, 182, 255, 0.16);
+      background: radial-gradient(circle at top, rgba(14, 43, 65, 0.95), rgba(8, 20, 35, 0.98));
+    }
+
+    .fr-ring strong {
+      font-size: 1.22rem;
+      line-height: 1;
+    }
+
+    .fr-ring span {
+      font-size: 0.72rem;
+      color: rgba(162, 235, 221, 0.84);
+      font-weight: 600;
+    }
+
+    .fr-pills {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .fr-pills span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(126, 174, 247, 0.15);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      color: rgba(207, 223, 244, 0.83);
+    }
+
+    .fr-policy-meter {
+      margin-top: 12px;
+      height: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(126, 174, 247, 0.16);
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .fr-policy-meter span {
+      display: block;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--fr-accent), var(--fr-accent-2));
+    }
+
+    .fr-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.44fr) minmax(320px, 0.86fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .fr-panel {
+      border-radius: 24px;
+      border: 1px solid var(--fr-border);
+      background:
+        linear-gradient(180deg, rgba(10, 27, 45, 0.88), rgba(8, 23, 38, 0.88)),
+        radial-gradient(circle at top right, rgba(138, 182, 255, 0.07), transparent 36%);
+      box-shadow: var(--fr-shadow);
+      padding: 18px;
+      transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .fr-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .fr-head h3 {
+      margin: 7px 0 0;
+      font-size: 1.18rem;
+      line-height: 1.34;
+      max-width: 34ch;
+    }
+
+    .fr-head-note {
+      min-width: 184px;
+      border-radius: 14px;
+      border: 1px solid var(--fr-border);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 10px 12px;
+      color: rgba(195, 212, 230, 0.82);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .fr-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .fr-visual-card {
+      border-radius: 20px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background:
+        linear-gradient(180deg, rgba(9, 24, 40, 0.92), rgba(7, 20, 34, 0.92)),
+        radial-gradient(circle at top right, rgba(138, 182, 255, 0.06), transparent 42%);
+      padding: 14px;
+      min-height: 304px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 10px;
+      transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .fr-visual-card > div:first-child {
+      display: grid;
+      gap: 6px;
+      align-content: start;
+    }
+
+    .fr-visual-card h4 {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.35;
+      text-wrap: balance;
+    }
+
+    .fr-visual-card p {
+      margin: 0;
+      font-size: 0.86rem;
+      color: var(--fr-muted);
+      line-height: 1.5;
+      max-width: 44ch;
+    }
+
+    .fr-stage {
+      position: relative;
+      border-radius: 16px;
+      border: 1px solid rgba(126, 174, 247, 0.15);
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(8, 23, 38, 0.94), rgba(6, 18, 31, 0.92)),
+        radial-gradient(circle at top right, rgba(100, 219, 194, 0.07), transparent 36%);
+      min-height: 230px;
+    }
+
+    .fr-stage-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(130, 168, 205, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(130, 168, 205, 0.05) 1px, transparent 1px);
+      background-size: 38px 38px;
+    }
+
+    .fr-stage-nozzle {
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      width: 126px;
+      height: 16px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(142, 174, 225, 0.85), rgba(116, 211, 192, 0.85));
+    }
+
+    .fr-stage-nozzle::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 16px;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 80px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(138, 182, 255, 0.58), rgba(100, 219, 194, 0.16));
+    }
+
+    .fr-stage-jar {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      width: 108px;
+      height: 130px;
+      border-radius: 24px 24px 18px 18px;
+      border: 1px solid rgba(255, 197, 119, 0.32);
+      background:
+        linear-gradient(180deg, rgba(255, 247, 222, 0.16), rgba(255, 214, 122, 0.08)),
+        linear-gradient(180deg, rgba(255, 192, 74, 0.1), rgba(201, 117, 13, 0.06));
+    }
+
+    .fr-stage-jar::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: -12px;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--fr-accent-2), var(--fr-accent));
+    }
+
+    .fr-stage-jar::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      height: 62%;
+      border-radius: 12px 12px 10px 10px;
+      background: linear-gradient(180deg, rgba(255, 207, 93, 0.9), rgba(209, 126, 20, 0.85));
+    }
+
+    .fr-stage-tag {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(127, 175, 245, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 12px;
+      color: rgba(236, 244, 255, 0.95);
+      font-size: 0.79rem;
+      font-weight: 700;
+      max-width: calc(100% - 32px);
+      white-space: normal;
+      line-height: 1.25;
+    }
+
+    .fr-vision-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .fr-vision-cell {
+      position: relative;
+      min-height: 150px;
+      border-radius: 16px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background:
+        radial-gradient(circle at center, rgba(255, 217, 140, 0.14), transparent 48%),
+        linear-gradient(180deg, rgba(15, 39, 64, 0.9), rgba(8, 21, 36, 0.92));
+    }
+
+    .fr-vision-cell::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 205, 107, 0.4);
+    }
+
+    .fr-vision-cell::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 18px;
+      bottom: 18px;
+      width: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, rgba(138, 182, 255, 0), rgba(138, 182, 255, 0.45), rgba(138, 182, 255, 0));
+    }
+
+    .fr-vision-cell span {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 10px;
+      color: rgba(219, 232, 247, 0.83);
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .fr-vision-proof {
+      margin-top: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background: rgba(5, 17, 30, 0.72);
+      padding: 10px 12px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+      color: rgba(224, 235, 250, 0.9);
+    }
+
+    .fr-vision-proof strong,
+    .fr-vision-proof span {
+      overflow-wrap: anywhere;
+    }
+
+    .fr-vision-proof span {
+      text-align: right;
+      justify-self: end;
+    }
+
+    .fr-timeline {
+      margin-top: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background: rgba(255, 255, 255, 0.015);
+      padding: 14px;
+    }
+
+    .fr-timeline-track {
+      margin-top: 10px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .fr-step {
+      position: relative;
+      border-radius: 14px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 11px 12px 11px 42px;
+      display: grid;
+      gap: 3px;
+    }
+
+    .fr-step::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(138, 182, 255, 0.52);
+      box-shadow: 0 0 0 6px rgba(138, 182, 255, 0.12);
+    }
+
+    .fr-step.is-active {
+      border-color: rgba(100, 219, 194, 0.3);
+      background: linear-gradient(180deg, rgba(100, 219, 194, 0.07), rgba(138, 182, 255, 0.04));
+    }
+
+    .fr-step.is-active::before {
+      background: var(--fr-accent);
+      box-shadow: 0 0 0 6px rgba(100, 219, 194, 0.1);
+    }
+
+    .fr-step.is-risk {
+      border-color: rgba(255, 180, 90, 0.35);
+      background: linear-gradient(180deg, rgba(255, 180, 90, 0.08), rgba(255, 111, 111, 0.03));
+    }
+
+    .fr-step.is-risk::before {
+      background: var(--fr-amber);
+      box-shadow: 0 0 0 6px rgba(255, 180, 90, 0.11);
+    }
+
+    .fr-step span {
+      color: rgba(146, 226, 214, 0.82);
+      font-size: 0.73rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .fr-step strong {
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+
+    .fr-step small {
+      color: var(--fr-muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .fr-sidebar {
+      display: block;
+      min-height: 100%;
+    }
+
+    .fr-cert-card {
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto auto auto auto minmax(240px, 1fr) auto;
+      align-content: stretch;
+    }
+
+    .fr-inline-widget {
+      margin-top: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background: linear-gradient(180deg, rgba(9, 24, 40, 0.92), rgba(7, 20, 34, 0.9));
+      padding: 14px;
+      transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .fr-inline-widget h4 {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.4;
+    }
+
+    .fr-telemetry-graph {
+      margin-top: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background: rgba(255, 255, 255, 0.015);
+      padding: 14px;
+      position: relative;
+      min-height: 145px;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr) 18px;
+      align-items: end;
+      gap: 8px;
+    }
+
+    .fr-telemetry-graph::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 24%;
+      border-top: 1px dashed rgba(255, 180, 90, 0.48);
+    }
+
+    .fr-bar {
+      border-radius: 999px 999px 7px 7px;
+      background: linear-gradient(180deg, var(--fr-accent-2), var(--fr-accent));
+      box-shadow: 0 0 8px rgba(100, 219, 194, 0.13);
+    }
+
+    .fr-anomaly {
+      grid-column: 9;
+      height: 82%;
+      border-radius: 999px 999px 7px 7px;
+      background: linear-gradient(180deg, var(--fr-amber), var(--fr-danger));
+      box-shadow: 0 0 10px rgba(255, 180, 90, 0.24);
+    }
+
+    .fr-readout {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .fr-readout span,
+    .fr-readout strong {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 6px 11px;
+      font-size: 0.83rem;
+    }
+
+    .fr-readout strong {
+      color: rgba(224, 235, 250, 0.92);
+    }
+
+    .fr-readout .fr-alert {
+      border-color: rgba(255, 180, 90, 0.4);
+      color: rgba(255, 207, 140, 0.98);
+      background: rgba(255, 180, 90, 0.1);
+    }
+
+    .fr-kv {
+      margin-top: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .fr-kv div {
+      border-radius: 14px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 10px 12px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .fr-kv span {
+      color: rgba(146, 226, 214, 0.82);
+      font-size: 0.71rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .fr-kv strong {
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+
+    .fr-code {
+      margin-top: 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(127, 175, 245, 0.13);
+      background: rgba(6, 17, 29, 0.72);
+      padding: 12px;
+      overflow-x: auto;
+    }
+
+    .fr-code-schema {
+      max-height: none;
+      overflow: auto;
+    }
+
+    .fr-code code {
+      color: rgba(202, 219, 240, 0.84);
+      white-space: pre-wrap;
+      word-break: break-word;
+      display: block;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .fr-code-schema code {
+      white-space: pre;
+      word-break: normal;
+      overflow-wrap: normal;
+      min-width: max-content;
+    }
+
+    .fr-code-title {
+      margin: 12px 0 0;
+      color: rgba(146, 226, 214, 0.82);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .fr-ledger {
+      display: grid;
+      gap: 12px;
+    }
+
+    .fr-ledger-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fr-ledger-head h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    .fr-ledger-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .fr-ledger-row {
+      border-radius: 14px;
+      border: 1px solid rgba(127, 175, 245, 0.14);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 11px 12px;
+      display: grid;
+      gap: 4px;
+      transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .fr-ledger-row span {
+      color: rgba(146, 226, 214, 0.82);
+      font-size: 0.71rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .fr-card:hover,
+      .fr-panel:hover,
+      .fr-visual-card:hover,
+      .fr-inline-widget:hover,
+      .fr-ledger-row:hover {
+        border-color: rgba(129, 167, 210, 0.24);
+        transform: translateY(-2px);
+        box-shadow: 0 20px 42px rgba(2, 10, 20, 0.35);
+      }
+    }
+
+    .fr-ledger-row strong {
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .fr-ledger-row code {
+      color: #ffce82;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 1180px) {
+      .fr-workspace {
+        align-items: start;
+      }
+
+      .fr-sidebar {
+        min-height: 0;
+      }
+
+      .fr-cert-card {
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        display: block;
+      }
+
+      .fr-code-schema {
+        max-height: 360px;
+      }
+
+      .fr-snapshot {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .fr-workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .fr-hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fr-title {
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+      }
+
+      .fr-title-image {
+        max-height: none;
+      }
+
+      .fr-lead {
+        max-width: 100%;
+        font-size: 1rem;
+      }
+
+      .fr-head {
+        flex-direction: column;
+      }
+
+      .fr-head-note {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .fr-ledger-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .fr-main {
+        padding: 22px 0 68px;
+      }
+
+      .fr-hero,
+      .fr-panel,
+      .fr-card {
+        border-radius: 20px;
+      }
+
+      .fr-hero {
+        padding: 24px;
+      }
+
+      .fr-title {
+        max-width: none;
+        padding: 8px;
+        border-radius: 16px;
+      }
+
+      .fr-title-image {
+        max-height: none;
+      }
+
+      .fr-lead {
+        padding: 12px 14px;
+        font-size: 0.98rem;
+        line-height: 1.62;
+      }
+
+      .fr-snapshot,
+      .fr-visual-grid,
+      .fr-ledger-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fr-vision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fr-vision-proof {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="engine-page fr-page">
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo" aria-label="SeedCore Home">
+          <img src="assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:58px;width:auto;" />
+        </a>
+        <button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
+        <div class="nav-links-wrapper">
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="forensic-replay.html">Forensic Replay</a>
+            <a href="resources/documentation.html">Docs</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <a href="contact.html#consultation" class="btn btn-nav">Verify a Lot</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="fr-main">
+    <div class="container">
+      <section class="fr-hero" data-reveal>
+        <div class="fr-hero-grid">
+          <div class="fr-hero-stack">
+            <span class="fr-kicker">Honey Digital Twin</span>
+            <h1 class="fr-title">
+              <span class="fr-visually-hidden">Honey Digital Twin forensic replay for Himalayan Honey Lot #094.</span>
+              <img class="fr-title-image" src="assets/honey_digital_twin.png" alt="" aria-hidden="true" />
+            </h1>
+            <p class="fr-lead">Explore Lot #094 in a certified digital twin view that works for both quick buyer checks and deeper forensic review, with telemetry, multimodal screening, anomaly status, and sealed custody evidence.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="fr-grid">
+        <section class="fr-snapshot" data-reveal>
+          <article class="fr-card fr-card-snapshot fr-card-focus">
+            <span class="fr-label">Twin Concordance</span>
+            <div class="fr-ring-wrap">
+              <div class="fr-ring" aria-label="99.8 percent integrity">
+                <div>
+                  <strong>99.8%</strong>
+                  <span>Match</span>
+                </div>
+              </div>
+              <div>
+                <h4>Identity, telemetry, and evidence aligned</h4>
+                <p>Registration, sensor telemetry, vision fingerprints, and custody records match the certified baseline for Lot #094.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="fr-card fr-card-snapshot">
+            <span class="fr-label">Review Authority</span>
+            <h4>Certified principal: <code>quality-twin-03</code></h4>
+            <p>Only the approved inspection authority can certify this frame and release it for buyer review.</p>
+            <div class="fr-pills">
+              <span>Role: QA + Release Review</span>
+              <span>ID: AGENT-QA-094</span>
+            </div>
+          </article>
+
+          <article class="fr-card fr-card-snapshot">
+            <span class="fr-label">Control Boundary</span>
+            <h4>14/14 controls passed</h4>
+            <p>Environmental, VOC, morphology, seal, and identity checks stayed inside the approved release envelope.</p>
+            <div class="fr-policy-meter"><span></span></div>
+          </article>
+
+          <article class="fr-card fr-card-snapshot">
+            <span class="fr-label">Evidence Timestamp</span>
+            <h4>Certified frame: 10:45:02 UTC</h4>
+            <p>Replay is pinned to one decision frame so every buyer reviews the same signed evidence set.</p>
+            <div class="fr-pills">
+              <span>Frame locked for review</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="fr-workspace">
+          <div class="fr-panel" data-reveal>
+            <div class="fr-head">
+              <div>
+                <span class="fr-label">Digital Twin Evidence</span>
+                <h3>What the inspection system observed and what the certified frame confirmed.</h3>
+              </div>
+              <div class="fr-head-note">Replay mode: certified frame<br />Telemetry and vision synchronized</div>
+            </div>
+
+            <div class="fr-visual-grid">
+              <article class="fr-visual-card">
+                <div>
+                  <span class="fr-label">Sample Geometry</span>
+                  <h4>Reference vessel profile for Lot #094</h4>
+                  <p>Jar silhouette, closure profile, and presentation geometry match the registered reference frame for this batch.</p>
+                </div>
+                <div class="fr-stage" aria-hidden="true">
+                  <div class="fr-stage-grid"></div>
+                  <div class="fr-stage-nozzle"></div>
+                  <div class="fr-stage-jar"></div>
+                </div>
+              </article>
+
+              <article class="fr-visual-card">
+                <div>
+                  <span class="fr-label">Morphology Confirmation</span>
+                  <h4>Cap, seal, and surface state verified at 99.94% confidence</h4>
+                  <p>Before/after analysis confirms closure integrity, label placement, and visible texture consistency.</p>
+                </div>
+                <div>
+                  <div class="fr-vision-grid" aria-hidden="true">
+                    <div class="fr-vision-cell"><span>Before</span></div>
+                    <div class="fr-vision-cell"><span>After</span></div>
+                  </div>
+                  <div class="fr-vision-proof">
+                    <strong>Micron-scale integrity: Clear</strong>
+                    <span>Receipt: <code>sig:9a41c7</code></span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="fr-timeline">
+              <span class="fr-label">Forensic Timeline</span>
+              <div class="fr-timeline-track">
+                <div class="fr-step">
+                  <span>10:12:11</span>
+                  <strong>Intake Registered</strong>
+                  <small>Lot identity, origin reference, and baseline sample metadata matched.</small>
+                </div>
+                <div class="fr-step">
+                  <span>10:31:44</span>
+                  <strong>Multimodal Screening Passed</strong>
+                  <small>Environmental, spectral, and morphology checks all cleared policy.</small>
+                </div>
+                <div class="fr-step is-active">
+                  <span>10:45:02</span>
+                  <strong>Evidence Package Sealed</strong>
+                  <small>Certified telemetry, signatures, and buyer proof were committed.</small>
+                </div>
+                <div class="fr-step is-risk">
+                  <span>What-if</span>
+                  <strong>Quarantine Path</strong>
+                  <small>Any VOC mismatch, micro-fissure, or thermal drift would block release automatically.</small>
+                </div>
+              </div>
+            </div>
+
+            <article class="fr-inline-widget" data-reveal>
+              <span class="fr-label">Environmental Profile</span>
+              <h4>Temperature and humidity remained inside the approved review band</h4>
+              <div class="fr-telemetry-graph" aria-hidden="true">
+                <span class="fr-bar" style="height:62%"></span>
+                <span class="fr-bar" style="height:64%"></span>
+                <span class="fr-bar" style="height:63%"></span>
+                <span class="fr-bar" style="height:65%"></span>
+                <span class="fr-bar" style="height:64%"></span>
+                <span class="fr-bar" style="height:64%"></span>
+                <span class="fr-bar" style="height:63%"></span>
+                <span class="fr-bar" style="height:64%"></span>
+                <span class="fr-anomaly"></span>
+              </div>
+              <div class="fr-readout">
+                <strong>21.4&deg;C</strong>
+                <span>Humidity 61.3% RH</span>
+                <span>Benzaldehyde 14.2 ppb</span>
+                <span class="fr-alert">Thermal review limit: 23.0&deg;C</span>
+              </div>
+            </article>
+          </div>
+
+          <aside class="fr-sidebar">
+            <article class="fr-panel fr-cert-card" data-reveal>
+              <span class="fr-label">Certification Context</span>
+              <h4>Who certified this frame and how the digital twin is structured</h4>
+              <div class="fr-kv">
+                <div>
+                  <span>Principal</span>
+                  <strong><code>quality-twin-03</code></strong>
+                </div>
+                <div>
+                  <span>Permit</span>
+                  <strong><code>QA-HONEY-FORENSIC</code></strong>
+                </div>
+                <div>
+                  <span>Twin ID</span>
+                  <strong><code>urn:seedcore:twin:honey-sample-00042</code></strong>
+                </div>
+                <div>
+                  <span>Schema Contract</span>
+                  <strong><code>seedcore:SeedCoreCustodyEvent</code></strong>
+                </div>
+                <div>
+                  <span>Validity Window</span>
+                  <strong>Until 10:45:05Z</strong>
+                </div>
+              </div>
+              <p class="fr-code-title">JSON-LD Custody Event Schema (Simplified 2/3)</p>
+              <div class="fr-code fr-code-schema"><code>{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "seedcore": "https://seedcore.ai/schema/"
+  },
+  "@type": "seedcore:SeedCoreCustodyEvent",
+  "@id": "urn:seedcore:event:honey-094-release",
+
+  "deviceIdentity": "quality-twin-03",
+  "platformState": "buyer-review-prepared",
+
+  "preContactEvidence": {
+    "environmentalTelemetry": { "temperatureC": 21.4, "humidityPct": 61.3 },
+    "vocProfile": { "signatureHash": "sha256:8f3ad6b40d81d73e..." },
+    "visionBaseline": { "fingerprintHash": "sha256:a92f64c01cbd9e..." }
+  },
+
+  "manipulationTelemetry": {
+    "commandedForces": "envelope-verified",
+    "observedForces": "within-tolerance",
+    "trajectoryHash": "sha256:traj_094_2e31..."
+  },
+
+  "policyVerification": {
+    "policyHash": "sha256:policy_honey_v3...",
+    "authorizationToken": "QA-HONEY-FORENSIC"
+  },
+
+  "custodyTransition": {
+    "from": "inspection-zone-a",
+    "to": "sealed-buyer-review",
+    "timestamp": "2026-03-13T10:45:02Z"
+  },
+
+  "signature": "sig:frame_094_5f2e"
+}</code></div>
+            </article>
+          </aside>
+        </section>
+
+        <section class="fr-panel fr-ledger" data-reveal>
+          <div class="fr-ledger-head">
+            <h3>Final evidence package committed to the custody ledger.</h3>
+          </div>
+          <div class="fr-ledger-grid">
+            <div class="fr-ledger-row">
+              <span>Frame Signature</span>
+              <strong><code>sig:frame_094_5f2e</code></strong>
+            </div>
+            <div class="fr-ledger-row">
+              <span>Evidence Bundle Ref</span>
+              <strong><code>0x84fe...d7a0e</code></strong>
+            </div>
+            <div class="fr-ledger-row">
+              <span>Compliance Outcome</span>
+              <strong>Cleared for buyer review</strong>
+            </div>
+            <div class="fr-ledger-row">
+              <span>Buyer Outcome</span>
+              <strong>Environmental, morphology, and identity evidence aligned</strong>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js?v=20260311d"></script>
+</body>
+</html>

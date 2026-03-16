@@ -90,10 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
     trigger.addEventListener("click", function () {
       setActiveLayer(trigger.dataset.layerTrigger);
     });
-
-    trigger.addEventListener("mouseenter", function () {
-      setActiveLayer(trigger.dataset.layerTrigger);
-    });
   });
 
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
