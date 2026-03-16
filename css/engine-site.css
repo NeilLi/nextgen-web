@@ -1548,11 +1548,11 @@ body.engine-page .btn.btn-nav:focus {
 
 /* Compact, delicate treatment for Growth Roadmap */
 #industries .engine-section-heading {
-  max-width: 760px;
+  max-width: none;
 }
 
 #industries .engine-section-heading h2 {
-  max-width: 20ch;
+  max-width: 34ch;
 }
 
 #industries .engine-section-heading p {
@@ -3169,19 +3169,30 @@ body.engine-page #rare-assets .engine-usecase-grid {
 /* Evidence section: let the video panel fit naturally and use space better */
 #evidence .engine-media-grid {
   grid-template-columns: minmax(0, 1.42fr) minmax(280px, 0.58fr);
-  align-items: start;
+  align-items: stretch;
 }
 
-#evidence .engine-media-video {
+#evidence .engine-media-video,
+#evidence .engine-media-side {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 #evidence .engine-video-frame {
   margin-top: 14px;
+  flex: 1 1 auto;
   padding-top: 0;
   aspect-ratio: 16 / 9;
   min-height: clamp(280px, 32vw, 520px);
+}
+
+#evidence .engine-media-side .engine-compact-list {
+  margin-bottom: 0;
+}
+
+#evidence .engine-media-side .engine-image {
+  margin-top: auto;
 }
 
 .engine-actions {
