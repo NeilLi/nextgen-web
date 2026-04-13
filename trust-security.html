@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trust and Governance | SeedCore Governed Execution Controls</title>
-  <meta name="description" content="SeedCore's trust model for autonomous systems: deterministic policy decisions, delegated authority chains, cryptographic evidence, and replayable verification." />
+  <title>Trust and Governance | SeedCore Custody-Aware Trust Controls</title>
+  <meta name="description" content="SeedCore's trust model for custody-aware digital twins: deterministic policy decisions, delegated authority chains, verifier-backed failure handling, and replayable proof." />
   <link rel="stylesheet" href="css/style.css?v=20260307a" />
   <link rel="stylesheet" href="css/engine-site.css?v=20260310a" />
 </head>
@@ -18,7 +18,7 @@
           <div class="nav-links">
             <a href="index.html">Home</a><a href="about.html">About</a><a href="resources/index.html">Resources</a><a href="trust-security.html">Trust</a><a href="contact.html">Contact</a>
           </div>
-          <a href="contact.html#consultation" class="btn btn-nav">Discuss Zero-Trust Governance</a>
+          <a href="contact.html#consultation" class="btn btn-nav">Discuss the Trust Boundary</a>
         </div>
       </nav>
     </div>
@@ -28,15 +28,15 @@
     <div class="container engine-page-hero-shell">
       <div class="engine-page-hero-copy">
         <span class="engine-kicker">Trust and Governance</span>
-        <h1>The zero-trust runtime for autonomous systems.</h1>
-        <p>SeedCore governs the transition from intent to execution — validating identity, enforcing policy, issuing short-lived execution authority, and sealing replayable evidence for every consequential action.</p>
-        <p>Built for high-trust supply chains and asset-sensitive operations where spoofing, repudiation, ambiguous authority, and unverifiable execution are unacceptable.</p>
-        <div class="engine-badges"><span>Deny by Default</span><span>Deterministic PDP</span><span>Replayable Evidence</span></div>
+        <h1>The trust boundary between AI intent and trusted physical reality.</h1>
+        <p>SeedCore's trust model is built for custody-aware workflows where policy must be frozen before action and proof must remain inspectable after action.</p>
+        <p>It assumes failure will happen and treats deny, quarantine, lockout, and replay as first-class product behaviors.</p>
+        <div class="engine-badges"><span>Deny by Default</span><span>Verifier-Backed Failure</span><span>Replayable Proof</span></div>
       </div>
       <aside class="engine-page-hero-panel">
         <span>Trust Model</span>
-        <strong>Every action should be explainable, reviewable, recoverable, and attributable.</strong>
-        <p>That principle shapes how SeedCore handles delegated authority, multi-party approvals, signer provenance, and post-action replay.</p>
+        <strong>Every action should be explainable, reviewable, recoverable, attributable, and independently checkable.</strong>
+        <p>That principle shapes how SeedCore handles delegated authority, multi-party approvals, verifier state, signer provenance, and post-action replay.</p>
       </aside>
     </div>
   </section>
@@ -46,12 +46,12 @@
       <section class="engine-section">
         <div class="engine-section-heading">
           <span class="engine-kicker">Control Model</span>
-          <h2>Core governed-execution controls.</h2>
+          <h2>Core trust-boundary controls.</h2>
         </div>
         <div class="engine-page-card-grid">
           <article class="engine-control-card"><span>Delegated Authority Chains</span><strong>Requests carry explicit principal scope and signer provenance.</strong><p>Authority is constrained, time-bounded, and revocable instead of inherited implicitly.</p></article>
           <article class="engine-control-card"><span>Deterministic Policy Gate</span><strong>Final authorization is synchronous and machine-checkable.</strong><p>Advisory intelligence can enrich risk context, but deterministic policy owns final execution decisions.</p></article>
-          <article class="engine-control-card"><span>Receipts and Replay</span><strong>Every high-value allow, deny, or quarantine outcome is evidence-backed.</strong><p>This supports internal audit, cross-party verification, and defensible incident investigation.</p></article>
+          <article class="engine-control-card"><span>Receipts, Replay, and Verifier State</span><strong>Every high-value allow, deny, or quarantine outcome is evidence-backed.</strong><p>This supports internal audit, cross-party verification, and defensible incident investigation.</p></article>
         </div>
       </section>
 
@@ -63,7 +63,7 @@
         <ul class="engine-inline-metrics">
           <li><strong>Parallel deployment</strong>SeedCore can sit beside existing operations systems without requiring immediate platform replacement.</li>
           <li><strong>Minimal blast radius</strong>Scoped delegation, short-lived execution authority, and emergency cutoff controls reduce uncontrolled execution risk.</li>
-          <li><strong>Counterparty-ready trust</strong>Operators, auditors, and partners can verify governed outcomes from the same replayable receipt chain.</li>
+          <li><strong>Counterparty-ready trust</strong>Operators, auditors, and partners can verify governed outcomes from the same replayable proof chain.</li>
         </ul>
       </section>
     </div>
