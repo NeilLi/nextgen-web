@@ -120,8 +120,59 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  initVideoModal();
   initDeveloperContracts();
   initMissionSimulation();
+
+  function initVideoModal() {
+    const videoModal = document.getElementById("productDemoModal");
+
+    if (!videoModal) {
+      return;
+    }
+
+    const openTriggers = document.querySelectorAll("[data-video-modal-open]");
+    const closeTriggers = videoModal.querySelectorAll("[data-video-modal-close]");
+    const videoFrame = videoModal.querySelector("[data-video-iframe]");
+
+    if (!openTriggers.length || !videoFrame) {
+      return;
+    }
+
+    function closeModal() {
+      videoModal.classList.remove("is-open");
+      videoModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll");
+      videoFrame.src = "";
+    }
+
+    function openModal(videoSrc) {
+      if (!videoSrc) {
+        return;
+      }
+
+      videoFrame.src = videoSrc;
+      videoModal.classList.add("is-open");
+      videoModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+    }
+
+    openTriggers.forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        openModal(trigger.dataset.videoSrc);
+      });
+    });
+
+    closeTriggers.forEach(function (trigger) {
+      trigger.addEventListener("click", closeModal);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && videoModal.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
+  }
 
   function initDeveloperContracts() {
     const developerSection = document.getElementById("developers");
