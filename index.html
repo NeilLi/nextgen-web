@@ -6,15 +6,15 @@
   <title>SeedCore | Zero-Trust Execution for AI Operations</title>
   <meta
     name="description"
-    content="SeedCore delivers enterprise-grade zero-trust execution for AI operations with policy verification, custody awareness, immutable evidence, and seamless ecosystem integration."
+    content="SeedCore delivers host-isolated zero-trust execution for AI operations with anonymous public verification, protected operator surfaces, custody-aware policy gates, and replayable evidence."
   />
   <meta
     name="keywords"
-    content="SeedCore, zero-trust execution, AI operations, policy verification, custody awareness, immutable evidence, enterprise integration"
+    content="SeedCore, zero-trust execution, AI operations, public verification, hostname isolation, IAP, policy verification, custody awareness, immutable evidence"
   />
   <link rel="canonical" href="https://seedcore.ai/" />
   <link rel="stylesheet" href="css/style.css?v=20260307a" />
-  <link rel="stylesheet" href="css/enterprise-home.css?v=20260420c" />
+  <link rel="stylesheet" href="css/enterprise-home.css?v=20260420g" />
   <meta property="og:title" content="SeedCore | Zero-Trust Execution for AI Operations" />
   <meta
     property="og:description"
@@ -24,6 +24,22 @@
   <meta property="og:url" content="https://seedcore.ai/" />
   <meta property="og:image" content="/images/enterprise/7.svg" />
   <link rel="icon" href="/assets/seedcore-logo.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "SeedCore's Anatomy of Trust",
+      "description": "A short SeedCore overview explaining how policy authority, custody awareness, and immutable evidence turn AI operations into accountable execution.",
+      "thumbnailUrl": "https://i.ytimg.com/vi/KN1tyOm1kg4/hqdefault.jpg",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/KN1tyOm1kg4",
+      "url": "https://youtu.be/KN1tyOm1kg4",
+      "publisher": {
+        "@type": "Organization",
+        "name": "SeedCore",
+        "url": "https://seedcore.ai/"
+      }
+    }
+  </script>
 </head>
 <body class="enterprise-page">
   <header>
@@ -38,9 +54,10 @@
         <div class="nav-links-wrapper">
           <div class="nav-links">
             <a href="#top">Home</a>
-            <a href="#demo">Demo</a>
+            <a href="#demo">Video</a>
+            <a href="#surfaces">Surfaces</a>
             <a href="#architecture">Architecture</a>
-            <a href="#capabilities">Capabilities</a>
+            <a href="#proof">Proof</a>
             <a href="#ecosystem">Integrations</a>
             <a href="#trust">Trust</a>
             <a href="#contact">Contact</a>
@@ -86,10 +103,20 @@
           </div>
           <h1>ZERO-TRUST EXECUTION FOR AI OPERATIONS</h1>
           <p class="hero-summary">
-            Where AI judgment meets policy authority. The custody-aware execution substrate for accountable digital twins.
+            Where AI judgment meets policy authority. A host-isolated trust runtime for anonymous verification, protected operations, and replayable physical-world execution proof.
           </p>
           <div class="hero-actions">
-            <a href="#architecture" class="capsule-link">Explore Architecture</a>
+            <a href="#surfaces" class="capsule-link">View Trust Surfaces</a>
+            <button
+              type="button"
+              class="capsule-link"
+              data-video-modal-open
+              data-video-src="https://www.youtube-nocookie.com/embed/KN1tyOm1kg4?rel=0&modestbranding=1&autoplay=1"
+              aria-haspopup="dialog"
+              aria-controls="productDemoModal"
+            >
+              Watch Anatomy
+            </button>
           </div>
           <div class="pager-dots" aria-hidden="true">...</div>
         </div>
@@ -100,23 +127,23 @@
       <div class="panel-inner demo-inner">
         <div class="demo-copy">
           <div class="panel-heading">
-            <h2>PRODUCT DEMO</h2>
+            <h2>ANATOMY OF TRUST</h2>
           </div>
           <p>
-            See how SeedCore enforces policy verification, execution custody, and immutable evidence across real enterprise AI workflows in one focused walkthrough.
+            Watch the short SeedCore story: AI can reason, but high-consequence operations need policy authority, custody awareness, and immutable evidence before action.
           </p>
           <div class="demo-actions">
             <button
               type="button"
               class="capsule-link"
               data-video-modal-open
-              data-video-src="https://www.youtube-nocookie.com/embed/feWL5bT7Q5g?rel=0&modestbranding=1&autoplay=1"
+              data-video-src="https://www.youtube-nocookie.com/embed/KN1tyOm1kg4?rel=0&modestbranding=1&autoplay=1"
               aria-haspopup="dialog"
               aria-controls="productDemoModal"
             >
-              Watch Demo
+              Watch Video
             </button>
-            <a href="https://youtu.be/feWL5bT7Q5g" target="_blank" rel="noopener noreferrer" class="demo-youtube-link">Open on YouTube</a>
+            <a href="https://youtu.be/KN1tyOm1kg4" target="_blank" rel="noopener noreferrer" class="demo-youtube-link">Open on YouTube</a>
           </div>
         </div>
         <div class="demo-video-card">
@@ -124,17 +151,60 @@
             type="button"
             class="demo-video-preview"
             data-video-modal-open
-            data-video-src="https://www.youtube-nocookie.com/embed/feWL5bT7Q5g?rel=0&modestbranding=1&autoplay=1"
+            data-video-src="https://www.youtube-nocookie.com/embed/KN1tyOm1kg4?rel=0&modestbranding=1&autoplay=1"
             aria-haspopup="dialog"
             aria-controls="productDemoModal"
-            aria-label="Play SeedCore product demo video"
+            aria-label="Play SeedCore's Anatomy of Trust video"
           >
-            <img src="https://i.ytimg.com/vi/feWL5bT7Q5g/maxresdefault.jpg" alt="SeedCore demo video preview" loading="lazy" />
+            <img src="https://i.ytimg.com/vi/KN1tyOm1kg4/hqdefault.jpg" alt="SeedCore's Anatomy of Trust video preview" loading="lazy" />
             <span class="demo-play-pill">
               <span class="demo-play-icon" aria-hidden="true">&#9658;</span>
-              Play Demo
+              Play Story
             </span>
           </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="surface-panel enterprise-panel" id="surfaces" data-reveal>
+      <div class="panel-inner surface-inner">
+        <div class="surface-copy">
+          <div class="panel-heading">
+            <h2>HOST-ISOLATED TRUST SURFACES</h2>
+            <p>
+              SeedCore is designed around hostname-level separation. Public verification reads and protected operator controls live on different hosts, with different services and different identity posture.
+            </p>
+          </div>
+          <div class="surface-warning">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.5l8.2 15H3.8z"/><path d="M12 8.4v5"/><path d="M12 16.8h.01"/></svg>
+            </span>
+            <p>No regex-heavy path exemptions on a shared hostname. No accidental route shadowing between public trust reads and private administration.</p>
+          </div>
+        </div>
+        <div class="surface-map" aria-label="SeedCore hostname isolation model">
+          <article class="surface-card is-public">
+            <span>Public verification</span>
+            <h3>trust.seedcore.ai</h3>
+            <p>Anonymous read-only portal for public proof lookup, verification receipts, and customer-facing evidence views.</p>
+            <code>IAP intentionally exempt</code>
+            <code>/api/v1/trust/{public_id}</code>
+            <code>/api/v1/verify/*</code>
+          </article>
+          <article class="surface-card is-private">
+            <span>Protected operations</span>
+            <h3>ops.seedcore.ai</h3>
+            <p>Operator workflows, proof review, custody actions, policy administration, and incident response behind first-mile identity.</p>
+            <code>Google IAP required</code>
+            <code>short-lived operator sessions</code>
+          </article>
+          <article class="surface-card is-cluster">
+            <span>Private cluster services</span>
+            <h3>admin.seedcore.internal</h3>
+            <p>Ray dashboard, Ray Serve, internal control planes, and service diagnostics remain private by default.</p>
+            <code>no direct public exposure</code>
+            <code>cluster-only ingress</code>
+          </article>
         </div>
       </div>
     </section>
@@ -180,7 +250,7 @@
           <aside class="floating-brief">
             <div class="pager-dots" aria-hidden="true">...</div>
             <p>
-              SeedCore's zero-trust execution substrate is built on a four-plane architecture that ensures every AI operation is governed, executed, evidenced, and integrated with enterprise-grade precision. Each plane works in concert to deliver custody-aware digital twins with verifiable trust.
+              SeedCore's zero-trust execution substrate is built on a four-plane architecture that ensures every AI operation is governed, executed, evidenced, and integrated with enterprise-grade precision. Public proof reads stay anonymous, while operator controls stay behind identity-gated private surfaces.
             </p>
           </aside>
         </div>
@@ -296,6 +366,58 @@
       </div>
     </section>
 
+    <section class="proof-panel enterprise-panel" id="proof" data-reveal>
+      <div class="panel-inner proof-inner">
+        <div class="proof-heading">
+          <div class="panel-heading">
+            <h2>AUDITOR-READY EXECUTION PROOF</h2>
+            <p>
+              The site should help customers and auditors inspect what happened without exposing what policy denied. SeedCore separates public evidence reads, operator proof review, and internal knowledge search.
+            </p>
+          </div>
+          <a href="trust-security.html" class="capsule-link">Open Trust Model</a>
+        </div>
+
+        <div class="proof-layout">
+          <div class="proof-chain" aria-label="SeedCore replayable evidence chain">
+            <article>
+              <span class="step-label">1</span>
+              <h3>Authorized Intent</h3>
+              <p>Signed request, principal scope, custody context, and policy decision are bound before execution.</p>
+            </article>
+            <article>
+              <span class="step-label">2</span>
+              <h3>Physical Execution</h3>
+              <p>Hardware-anchored telemetry, executor binding, and device state connect intent to physical action.</p>
+            </article>
+            <article>
+              <span class="step-label">3</span>
+              <h3>Replayable Evidence</h3>
+              <p>Verifier receipts and replay exports let auditors reconstruct the claim without trusting a dashboard screenshot.</p>
+            </article>
+          </div>
+
+          <div class="disclosure-stack">
+            <article class="disclosure-card">
+              <span>Anonymous public portal</span>
+              <h3>Show only authorized proof facts.</h3>
+              <p>Public pages can display verification state, receipt metadata, and evidence-chain status for a known public identifier.</p>
+            </article>
+            <article class="disclosure-card">
+              <span>Enterprise RAG and search</span>
+              <h3>Never reveal denied candidates.</h3>
+              <p>Denied chunks, titles, snippets, and even resource existence stay hidden unless policy explicitly permits disclosure.</p>
+            </article>
+            <article class="disclosure-card">
+              <span>Operator proof UI</span>
+              <h3>Explain denials without over-disclosure.</h3>
+              <p>Operators see policy-grounded outcomes and authorized evidence, not forbidden document previews or leaked search hits.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="trust-panel enterprise-panel" id="trust" data-reveal>
       <div class="trust-grid">
         <div class="trust-primary">
@@ -401,10 +523,10 @@
     <div class="video-modal-backdrop" data-video-modal-close></div>
     <div class="video-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="productDemoTitle">
       <button type="button" class="video-modal-close" data-video-modal-close aria-label="Close video">&times;</button>
-      <h2 id="productDemoTitle">SeedCore Product Demo</h2>
+      <h2 id="productDemoTitle">SeedCore's Anatomy of Trust</h2>
       <div class="video-modal-frame">
         <iframe
-          title="SeedCore product demo video player"
+          title="SeedCore's Anatomy of Trust video player"
           data-video-iframe
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
