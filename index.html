@@ -14,7 +14,7 @@
   />
   <link rel="canonical" href="https://seedcore.ai/" />
   <link rel="stylesheet" href="css/style.css?v=20260307a" />
-  <link rel="stylesheet" href="css/enterprise-home.css?v=20260420i" />
+  <link rel="stylesheet" href="css/enterprise-home.css?v=20260620c" />
   <meta property="og:title" content="SeedCore | Zero-Trust Execution for AI Operations" />
   <meta
     property="og:description"
@@ -211,43 +211,43 @@
         <div class="architecture-shell">
           <div class="panel-two-column">
             <div class="panel-heading">
-              <h2>FOUR-PLANE ARCHITECTURE MODEL</h2>
+              <h2>THREE-LAYER TRUST PLACEMENT</h2>
+              <p style="color: var(--enterprise-blue-soft); font-size: 0.95rem; margin-top: 0.4rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+                North Star: The Genuine Environment for Autonomous Trade
+              </p>
             </div>
             <div class="plane-list">
               <article class="plane-item">
-                <span class="plane-index">Step 1</span>
+                <span class="plane-index" style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Top</span>
                 <div>
-                  <h3>Policy Plane</h3>
-                  <p>Governance rules and constraints that define operational boundaries.</p>
+                  <h3>Brain / Intent <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.6); margin-left: 6px; font-weight: normal; vertical-align: middle;">Advisory Plane</span></h3>
+                  <p>Humans and AI agents propose actions. This layer handles task reasoning and scheduling without holding direct execution authority.</p>
                 </div>
               </article>
               <article class="plane-item">
-                <span class="plane-index">Step 2</span>
+                <span class="plane-index" style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Center</span>
                 <div>
-                  <h3>Execution Plane</h3>
-                  <p>Custody-aware runtime for secure, policy-verified operations.</p>
+                  <h3>SeedCore Runtime <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--signal-green); color: var(--signal-green); margin-left: 6px; font-weight: normal; vertical-align: middle;">PDP / Decider</span></h3>
+                  <p>The Policy Decision Point, forensic evidence integrator, and replay authority. Admits state transitions only when policy, authority lineage, and evidence converge.</p>
                 </div>
               </article>
               <article class="plane-item">
-                <span class="plane-index">Step 3</span>
+                <span class="plane-index" style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Bottom</span>
                 <div>
-                  <h3>Evidence Plane</h3>
-                  <p>Immutable audit trails for complete operational accountability.</p>
-                </div>
-              </article>
-              <article class="plane-item">
-                <span class="plane-index">Step 4</span>
-                <div>
-                  <h3>Integration Plane</h3>
-                  <p>Enterprise connectivity enabling seamless ecosystem orchestration.</p>
+                  <h3>Sandboxes / Reality <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.6); margin-left: 6px; font-weight: normal; vertical-align: middle;">Actuators / Edge</span></h3>
+                  <p>Physical devices, robotics, and economic ledgers execute transactions and emit telemetry for verification; trusted-edge targets add hardware-anchored signatures.</p>
                 </div>
               </article>
             </div>
           </div>
           <aside class="floating-brief">
-            <div class="pager-dots" aria-hidden="true">...</div>
-            <p>
-              Four planes. One rule: AI may advise, but execution authority stays policy-bound, evidenced, and host-isolated.
+            <div class="pager-dots" aria-hidden="true" style="color: var(--signal-green); text-align: center; margin-bottom: 0.8rem; font-size: 1.25rem;">&bull; &bull; &bull;</div>
+            <p style="font-weight: 700; color: #ffffff; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em;">The Core Invariant</p>
+            <p style="font-style: italic; color: var(--enterprise-blue-soft); margin-bottom: 0.8rem; font-size: 0.95rem; line-height: 1.45;">
+              "Brains may propose. Reality must attest. SeedCore decides whether the transition becomes admissible digital truth."
+            </p>
+            <p style="font-size: 0.88rem; line-height: 1.5; color: rgba(255, 255, 255, 0.7);">
+              SeedCore is evaluated in two layers: the durable <strong>North Star</strong> target architecture and the active, restricted custody transfer <strong>Execution Update</strong> slice.
             </p>
           </aside>
         </div>
@@ -258,9 +258,9 @@
       <div class="panel-inner">
         <div class="capabilities-top">
           <div class="panel-heading">
-            <h2>KEY CAPABILITIES</h2>
+            <h2>TRUTH-LABELED CAPABILITIES</h2>
             <p>
-              The operating core is small on purpose: verify policy, track custody, preserve evidence.
+              SeedCore is built as a zero-trust trust boundary. Below is the operational readiness status of our core capabilities.
             </p>
             <div class="pager-dots" aria-hidden="true">...</div>
           </div>
@@ -268,26 +268,87 @@
 
         <div class="capability-cards">
           <div class="accent-square" aria-hidden="true"></div>
-          <article class="capability-card is-blue">
-            <span class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 3.5l7 3.2v4.8c0 4.5-3 7.7-7 9.5-4-1.8-7-5-7-9.5V6.7z"/><path d="m9 12.3 2.1 2.1 4-4"/></svg>
-            </span>
-            <h3>Policy Verification</h3>
-            <p>Real-time rule enforcement ensuring every AI action complies with organizational policies.</p>
+
+          <article class="capability-card capability-card--active">
+            <div class="capability-status-row">
+              <span class="status-pill status-pill--active">Active RCT</span>
+              <span class="status-pill status-pill--preview">Preview</span>
+            </div>
+            <div class="capability-card-title">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M10.5 13.5a3.5 3.5 0 0 1 0-5l1-1a3.5 3.5 0 0 1 5 5l-1.2 1.2"/><path d="M13.5 10.5a3.5 3.5 0 0 1 0 5l-1 1a3.5 3.5 0 0 1-5-5l1.2-1.2"/></svg>
+              </span>
+              <h3>Persistent Twin &amp; Settlement</h3>
+            </div>
+            <p>Append-only twin history, strict versioning, and preview state bindings make settlement replayable without claiming a full state-root store.</p>
           </article>
-          <article class="capability-card is-charcoal">
-            <span class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M10.5 13.5a3.5 3.5 0 0 1 0-5l1-1a3.5 3.5 0 0 1 5 5l-1.2 1.2"/><path d="M13.5 10.5a3.5 3.5 0 0 1 0 5l-1 1a3.5 3.5 0 0 1-5-5l1.2-1.2"/></svg>
-            </span>
-            <h3>Custody Awareness</h3>
-            <p>Complete chain-of-custody tracking from decision to execution across all digital twins.</p>
+
+          <article class="capability-card capability-card--active">
+            <div class="capability-status-row">
+              <span class="status-pill status-pill--active">Active RCT</span>
+              <span class="status-pill status-pill--target">Target Edge</span>
+            </div>
+            <div class="capability-card-title">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3.5l7 3.2v4.8c0 4.5-3 7.7-7 9.5-4-1.8-7-5-7-9.5V6.7z"/><path d="M12 8v8M8 12h8"/></svg>
+              </span>
+              <h3>Physical-to-Digital Evidence Loop</h3>
+            </div>
+            <p>Action intents and execution tokens bind to evidence obligations. Jetson validates the lane; IGX Thor / T5000 remains the trusted-edge target.</p>
           </article>
-          <article class="capability-card is-blue">
-            <span class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M7 3.8h7l4 4V20.2H7z"/><path d="M14 3.8v4h4"/><path d="M10.4 14.2h3.2"/><rect x="10" y="12.3" width="4" height="4.8" rx="1"/><path d="M11.2 12.3v-1a.8.8 0 0 1 1.6 0v1"/></svg>
-            </span>
-            <h3>Immutable Evidence</h3>
-            <p>Cryptographic audit logs providing tamper-proof records of every operation.</p>
+
+          <article class="capability-card capability-card--next">
+            <div class="capability-status-row">
+              <span class="status-pill status-pill--active">Active RCT</span>
+              <span class="status-pill status-pill--next">Next Extension</span>
+            </div>
+            <div class="capability-card-title">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 3.8h7l4 4V20.2H7z"/><path d="M14 3.8v4h4"/><path d="M10.4 14.2h3.2"/></svg>
+              </span>
+              <h3>Autonomous M2M Verification</h3>
+            </div>
+            <p><code>RESULT_VERIFIER</code> checks replay integrity and drives fail-closed lockout markers in RCT; service split is staged for scale.</p>
+          </article>
+
+          <article class="capability-card capability-card--target">
+            <div class="capability-status-row">
+              <span class="status-pill status-pill--active">Active RCT</span>
+              <span class="status-pill status-pill--target">Target Graph</span>
+            </div>
+            <div class="capability-card-title">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M18 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3z"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+              </span>
+              <h3>Delegated Authority &amp; Graphs</h3>
+            </div>
+            <p>Explicit delegation paths stay in the decision lane; offline enrichment supports metadata and explanation without minting authority.</p>
+          </article>
+
+          <article class="capability-card capability-card--preview">
+            <div class="capability-status-row">
+              <span class="status-pill status-pill--preview">Active Preview</span>
+            </div>
+            <div class="capability-card-title">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
+              </span>
+              <h3>Governed RAG Context</h3>
+            </div>
+            <p>RAG acts as a governed evidence sidecar: retrieve candidates, run fine-grained policy checks, then expose only allowed context.</p>
+          </article>
+
+          <article class="capability-card capability-card--target">
+            <div class="capability-status-row">
+              <span class="status-pill status-pill--target">Target Scale</span>
+            </div>
+            <div class="capability-card-title">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/></svg>
+              </span>
+              <h3>Cluster Posture &amp; Caching</h3>
+            </div>
+            <p>Stateless PDP evaluation remains the core posture; target acceleration layers include RESP3 caching, Kafka streams, and internal mirrors.</p>
           </article>
         </div>
 
@@ -481,7 +542,7 @@
           <article>
             <span class="step-label">Step 3</span>
             <h3>Download Whitepaper</h3>
-            <p>Technical deep-dive into our four-plane architecture.</p>
+            <p>Technical deep-dive into our three-layer architecture.</p>
             <a href="resources/whitepaper.html" class="inline-action">Open Whitepaper</a>
           </article>
         </div>

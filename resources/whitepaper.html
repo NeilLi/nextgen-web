@@ -76,24 +76,24 @@
       <section class="engine-section">
         <div class="engine-section-heading">
           <span class="engine-kicker">Core Runtime</span>
-          <h2>Four runtime planes plus verification closure.</h2>
-          <p>SeedCore separates intelligence, control, execution, and infrastructure while preserving policy sovereignty and proof integrity.</p>
+          <h2>Three-layer architecture plus verification closure.</h2>
+          <p>SeedCore separates intelligence, control, and reality while preserving policy sovereignty and proof integrity.</p>
         </div>
         <div class="engine-page-card-grid">
           <article class="engine-control-card">
-            <span>Policy Decision Point</span>
-            <strong>A stateless synchronous gateway that returns deny or bounded authority.</strong>
-            <p>The PDP evaluates identity, requested action, scope, and context before issuing short-lived execution permission.</p>
+            <span>Brain &amp; Intent (Top)</span>
+            <strong>Advisory Reasoning Plane</strong>
+            <p>Humans and AI agents propose actions. They build candidate graphs, evaluate trade logistics, or request state changes, but hold zero authority to directly execute.</p>
           </article>
           <article class="engine-control-card">
-            <span>Policy Knowledge Graph</span>
-            <strong>A live relational model of who can do what, where, and under which conditions.</strong>
-            <p>The graph supports multi-hop authority paths, shard-aware routing, and deterministic explanation payloads.</p>
+            <span>SeedCore Decider (Center)</span>
+            <strong>Stateless Policy Decision Point</strong>
+            <p>The core trust slice. Evaluates actions against policies, verifies actor delegation chains, and decides whether a transition becomes admissible digital truth.</p>
           </article>
           <article class="engine-control-card">
-            <span>Advisory Intelligence</span>
-            <strong>Context enrichment without final authorization control.</strong>
-            <p>Anomaly signals and telemetry analysis can inform decisions, but final permission remains deterministic.</p>
+            <span>Sandboxes &amp; Reality (Bottom)</span>
+            <strong>Physical &amp; Economic Execution</strong>
+            <p>Actuator endpoints, robotics controllers, and settlement ledgers execute authorized commands and emit telemetry. Trusted-edge target profiles add TPM 2.0 or KMS-backed signatures.</p>
           </article>
         </div>
       </section>
@@ -107,23 +107,23 @@
         <div class="engine-checklist-grid">
           <article class="engine-card">
             <h3>Delegation and Identity</h3>
-            <p>Requests carry principal identity, authority scope, and signer provenance rather than inheriting broad ambient permissions.</p>
+            <p><span style="font-size:0.75rem; color:#46d98a; border:1px solid rgba(70,217,138,0.3); padding:1px 4px; border-radius:3px; font-weight:700;">[Active RCT Runtime]</span> Operator and administrative ingress uses Google IAP. <span style="font-size:0.75rem; color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.25); padding:1px 4px; border-radius:3px; font-weight:700; margin-left:4px;">[Target]</span> Programmatic APIs move toward workload-level SPIFFE/SPIRE identities and DPoP tokens.</p>
           </article>
           <article class="engine-card">
             <h3>Intent Object</h3>
-            <p>Each action declares target, purpose, and context so policy evaluation is explicit and machine-checkable.</p>
+            <p><span style="font-size:0.75rem; color:#46d98a; border:1px solid rgba(70,217,138,0.3); padding:1px 4px; border-radius:3px; font-weight:700;">[Active RCT Runtime]</span> Each action explicitly declares target, purpose, and context. <span style="font-size:0.75rem; color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.25); padding:1px 4px; border-radius:3px; font-weight:700; margin-left:4px;">[Target Sidecar]</span> Logistics backends (cuOpt) act as advisory sidecars only, never as a source of authority.</p>
           </article>
           <article class="engine-card">
             <h3>Deterministic Decision</h3>
-            <p>The PDP evaluates policy against hot-path context and returns allow, deny, or quarantine with explainable rationale.</p>
+            <p><span style="font-size:0.75rem; color:#46d98a; border:1px solid rgba(70,217,138,0.3); padding:1px 4px; border-radius:3px; font-weight:700;">[Active RCT Runtime]</span> Checks policy synchronously against bounded context. <span style="font-size:0.75rem; color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.25); padding:1px 4px; border-radius:3px; font-weight:700; margin-left:4px;">[Target Graphs]</span> In-memory Decision Graph processing remains the target hot-path shape, with offline Enrichment Graphs for metadata and explanation.</p>
           </article>
           <article class="engine-card">
-            <h3>ExecutionToken</h3>
-            <p>Approved outcomes issue short-lived authority with TTL enforcement and revocation controls.</p>
+            <h3>ExecutionToken &amp; Edge Profiles</h3>
+            <p><span style="font-size:0.75rem; color:#46d98a; border:1px solid rgba(70,217,138,0.3); padding:1px 4px; border-radius:3px; font-weight:700;">[Active RCT Runtime]</span> Mints short-lived execution authority. Jetson-class nodes serve prototype validation lanes. <span style="font-size:0.75rem; color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.25); padding:1px 4px; border-radius:3px; font-weight:700; margin-left:4px;">[Target Edge]</span> Production trusted-edge profiles target NVIDIA IGX Thor / T5000-class deployments.</p>
           </article>
           <article class="engine-card">
-            <h3>Verification and Replay</h3>
-            <p>Receipts, verifier outcomes, and evidence bundles bind identity, policy basis, transition artifacts, and signatures into replayable closure.</p>
+            <h3>Verification, Replay &amp; Cache</h3>
+            <p><span style="font-size:0.75rem; color:#86a9ff; border:1px solid rgba(134,169,255,0.4); padding:1px 4px; border-radius:3px; font-weight:700;">[Active Preview]</span> Replay contracts can carry freshness markers plus <code>prior_state_binding</code>, <code>result_state_binding</code>, and <code>causal_parent_refs</code>. <span style="font-size:0.75rem; color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.25); padding:1px 4px; border-radius:3px; font-weight:700; margin-left:4px;">[Target Scale]</span> Dragonfly client-side caching is a target acceleration layer.</p>
           </article>
         </div>
       </section>

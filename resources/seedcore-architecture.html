@@ -10,8 +10,128 @@
 </head>
 <body class="engine-page">
   <header><div class="container"><nav><a href="../index.html" class="logo" aria-label="SeedCore Home"><img src="../assets/seedcore-logo.svg" alt="SeedCore" class="logo-svg" style="height:50px;width:auto;" /></a><button class="mobile-menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="hamburger-icon"></span></button><div class="nav-links-wrapper"><div class="nav-links"><a href="../index.html">Home</a><a href="../about.html">About</a><a href="../services/index.html">Services</a><a href="../solutions/index.html">Solutions</a><a href="index.html">Resources</a><a href="../contact.html">Contact</a></div><a href="../contact.html#consultation" class="btn btn-nav">Book Design-Partner Review</a></div></nav></div></header>
-  <section class="engine-hero"><div class="container engine-page-hero-shell"><div class="engine-page-hero-copy"><span class="engine-kicker">Architecture</span><h1>The trust boundary between AI intent and trusted physical reality.</h1><p>SeedCore separates intelligence, control, execution, and infrastructure so that custody-sensitive actions are either denied, quarantined, or explicitly authorized with proof obligations.</p></div><aside class="engine-page-hero-panel"><span>Core Claim</span><strong>The runtime boundary and verification surface are the product.</strong><p>The current architecture is intentionally wedge-first: Restricted Custody Transfer, replayable proof, and governed failure before broader platform expansion.</p></aside></div></section>
-  <main class="engine-main"><div class="container"><section class="engine-section"><div class="engine-section-heading"><span class="engine-kicker">Architecture Principles</span><h2>What the current runtime boundary must do.</h2><p>The latest SeedCore plan is not to present a broad autonomy platform. It is to prove one trust story that partners can inspect end to end.</p></div><div class="engine-page-card-grid"><article class="engine-control-card"><span>Judgment vs authority</span><strong>Keep AI advisory by default and require policy-verified authorization before action.</strong><p>No direct model-to-actuator bypass, even when context is rich.</p></article><article class="engine-control-card"><span>Custody-aware control</span><strong>Evaluate principals, assets, facilities, devices, and custody state at decision time.</strong><p>Execution authority must be explicit, scoped, and replayable.</p></article><article class="engine-control-card"><span>Governed failure</span><strong>Turn mismatch, drift, or verification failure into quarantine or lockout business state.</strong><p>Failure should be visible, reviewable, and operationally safe.</p></article></div></section><section class="engine-section"><div class="engine-section-heading"><span class="engine-kicker">Current 2026 Focus</span><h2>The partner-visible architecture slice.</h2></div><div class="engine-page-card-grid"><article class="engine-control-card"><span>Workflow</span><strong>Restricted Custody Transfer is the must-win workflow.</strong><p>One happy path and one toxic path are more persuasive than a broad dashboard tour.</p></article><article class="engine-control-card"><span>Surface</span><strong>The verification API, replay view, and proof artifacts are the first product surface.</strong><p>Partners should be able to inspect the same workflow truth across each surface.</p></article><article class="engine-control-card"><span>Promotion rule</span><strong>The hot path stays in shadow until topology and degraded-edge gates are green enough.</strong><p>SeedCore widens external surfaces only after the runtime contracts stop shifting.</p></article></div></section><section class="engine-section"><div class="engine-section-heading"><span class="engine-kicker">Supporting Assets</span><h2>Continue into the technical materials.</h2></div><div class="engine-callout-shell"><article class="engine-page-link-card"><span>Repository</span><strong>Implementation evidence</strong><p>Public code, signoff work, and architecture evidence for technical review.</p><a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">Open GitHub</a></article><article class="engine-page-link-card"><span>Documentation</span><strong>Runtime references</strong><p>Contracts, verification surfaces, deployment gates, and current execution notes.</p><a href="documentation.html">Open docs</a></article></div></section></div></main>
+  <section class="engine-hero">
+    <div class="container engine-page-hero-shell">
+      <div class="engine-page-hero-copy">
+        <span class="engine-kicker">Architecture Overview</span>
+        <h1>Three-Layer Trust Placement for Autonomous Trade</h1>
+        <p>SeedCore separates advisory intelligence, runtime decision gating, and physical action. The trust boundary admits state transitions only after policy, authority lineage, and replayable evidence converge.</p>
+        <div class="engine-badges">
+          <span style="border: 1px solid rgba(70, 217, 138, 0.4); color: #46d98a; background: rgba(70, 217, 138, 0.06); font-weight: 700;">[Active RCT Runtime]</span>
+          <span style="border: 1px solid rgba(255, 255, 255, 0.25); color: rgba(255, 255, 255, 0.6); background: rgba(255, 255, 255, 0.04); font-weight: 700;">[Target North Star]</span>
+        </div>
+      </div>
+      <aside class="engine-page-hero-panel">
+        <span>The Core Invariant</span>
+        <strong>Brains may propose. Reality must attest. SeedCore decides.</strong>
+        <p>This principle keeps AI judgment advisory. Physical-to-digital state transitions are only admitted after deterministic policy and evidence checks.</p>
+      </aside>
+    </div>
+  </section>
+
+  <main class="engine-main">
+    <div class="container">
+      <section class="engine-section">
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Three-Layer Placement</span>
+          <h2>The Durably Defined Trust Boundaries</h2>
+          <p>SeedCore structures the autonomous environment into three distinct layers so custody-sensitive transitions cannot bypass policy and proof.</p>
+        </div>
+        <div class="engine-page-card-grid">
+          <article class="engine-control-card">
+            <span>1. Brain / Intent (Top)</span>
+            <strong>Advisory Reasoning Plane</strong>
+            <p>Humans and AI agents analyze and propose actions. This layer is entirely decoupled from execution authority; models cannot directly mutate state or control actuators.</p>
+          </article>
+          <article class="engine-control-card">
+            <span>2. SeedCore (Center)</span>
+            <strong>Stateless Policy Decision Point</strong>
+            <p>Evaluates proposals against authorization policy and bounded context. On allow, it mints short-lived execution tokens and preserves the replay authority path.</p>
+          </article>
+          <article class="engine-control-card">
+            <span>3. Sandboxes / Reality (Bottom)</span>
+            <strong>Actuation &amp; Evidence Emission</strong>
+            <p>Robotic controllers, industrial actuators, and ledger systems execute authorized actions. Target trusted-edge profiles emit hardware-anchored telemetry for verification.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Authority Invariant</span>
+          <h2>The Secure Lifecycle of a Governed Action</h2>
+          <p>Every transaction or physical movement follows a strict, verification-first progression path.</p>
+        </div>
+        <div class="engine-page-card-grid">
+          <article class="engine-control-card">
+            <span>Step A: PDP Check</span>
+            <strong>Synchronous Evaluation</strong>
+            <p>The Policy Decision Point checks caller scope, bounded context, and required freshness evidence before minting execution authority.</p>
+          </article>
+          <article class="engine-control-card">
+            <span>Step B: ExecutionToken</span>
+            <strong>Scoped Bounded Authority</strong>
+            <p>A cryptographically signed token is issued with explicit expiration, approved scope, and evidence obligations for the requested action.</p>
+          </article>
+          <article class="engine-control-card">
+            <span>Step C: Evidence Closure</span>
+            <strong>Physical-to-Digital Handshake</strong>
+            <p>Telemetry fingerprints and economic identifiers converge under a signed <code>EvidenceBundle</code> before the transition can be treated as admissible.</p>
+          </article>
+          <article class="engine-control-card">
+            <span>Step D: Verifier Lockout</span>
+            <strong>Autonomous Verification</strong>
+            <p>The Rust-based <code>seedcore-verify</code> path inspects the receipt. In the current RCT slice, mismatches drive fail-closed quarantine and downstream lockout markers.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <div class="engine-section-heading">
+          <span class="engine-kicker">RCT Slice vs North Star Target</span>
+          <h2>Labeling the 2026 Execution Focus</h2>
+        </div>
+        <div class="engine-page-card-grid">
+          <article class="engine-control-card">
+            <span>Implemented Now <span style="font-size: 0.65rem; color: #46d98a; border: 1px solid rgba(70,217,138,0.3); padding: 1px 4px; border-radius: 3px; margin-left: 5px;">Active RCT</span></span>
+            <strong>Restricted Custody Transfer (RCT)</strong>
+            <p>Active runtime handles twin-event journaling, verifier lockout, and surfaces prior/result state bindings and causal references on opt-in workflows.</p>
+          </article>
+          <article class="capability-card is-charcoal" style="padding: 1.25rem;">
+            <span>Next Extension <span style="font-size: 0.65rem; color: #d7a84c; border: 1px solid rgba(215,168,76,0.3); padding: 1px 4px; border-radius: 3px; margin-left: 5px;">Roadmap</span></span>
+            <strong style="font-size: 1.1rem; display: block; margin: 0.4rem 0;">Multi-Agent Handoffs</strong>
+            <p style="color: rgba(243, 244, 247, 0.72); font-size: 0.95rem;">Productizing dual-authorization release envelopes and expanding settlement classes (delivery, quarantine clearance) beyond RCT.</p>
+          </article>
+          <article class="capability-card is-charcoal" style="padding: 1.25rem;">
+            <span>Durable Target <span style="font-size: 0.65rem; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.25); padding: 1px 4px; border-radius: 3px; margin-left: 5px;">Target</span></span>
+            <strong style="font-size: 1.1rem; display: block; margin: 0.4rem 0;">Industrial Trusted Edge</strong>
+            <p style="color: rgba(243, 244, 247, 0.72); font-size: 0.95rem;">Transitioning from Jetson prototype boards toward NVIDIA IGX Thor / T5000 edge profiles once secure boot, hardware identity, and replay-visible signatures are provisioned.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="engine-section">
+        <div class="engine-section-heading">
+          <span class="engine-kicker">Supporting Assets</span>
+          <h2>Technical Reference Links</h2>
+        </div>
+        <div class="engine-callout-shell">
+          <article class="engine-page-link-card">
+            <span>Repository</span>
+            <strong>Implementation evidence</strong>
+            <p>Public code, signoff work, and architecture evidence for technical review.</p>
+            <a href="https://github.com/NeilLi/seedcore" target="_blank" rel="noopener">Open GitHub</a>
+          </article>
+          <article class="engine-page-link-card">
+            <span>Documentation</span>
+            <strong>Runtime references</strong>
+            <p>Contracts, verification surfaces, deployment gates, and current execution notes.</p>
+            <a href="documentation.html">Open docs</a>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
   <footer><div class="container"><div class="copyright"><p>&copy; <span id="currentYear"></span> Seed Core Limited. All rights reserved.</p></div></div></footer>
   <script src="../js/main.js?v=20260307a"></script>
 </body>

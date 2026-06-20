@@ -1081,26 +1081,30 @@
 
           <article class="fr-card fr-card-snapshot">
             <span class="fr-label">Review Authority</span>
-            <h4>Certified principal: <code>quality-twin-03</code></h4>
-            <p>Only the approved inspection authority can certify this frame and release it for buyer review.</p>
+            <h4>Co-Signed Release Envelope <span style="font-size: 0.65rem; border: 1px solid rgba(134, 169, 255, 0.4); color: #86a9ff; background: rgba(134, 169, 255, 0.06); padding: 1px 4px; border-radius: 3px; font-weight: normal; margin-left: 5px; text-transform: uppercase;">Active Preview</span></h4>
+            <p>Buyer-release envelope co-signed by the inspection authority and compliance verifier.</p>
             <div class="fr-pills">
-              <span>Role: QA + Release Review</span>
-              <span>ID: AGENT-QA-094</span>
+              <span>Inspector: quality-twin-03</span>
+              <span>Auditor: compliance-verifier-01</span>
             </div>
           </article>
 
           <article class="fr-card fr-card-snapshot">
             <span class="fr-label">Control Boundary</span>
             <h4>14/14 controls passed</h4>
-            <p>Environmental, VOC, morphology, seal, and identity checks stayed inside the approved release envelope.</p>
+            <p>Environmental, VOC, morphology, seal, and identity checks cleared. Context freshness marker <code>zed_token_094_fresh</code> matches the certified frame.</p>
             <div class="fr-policy-meter"><span></span></div>
           </article>
 
           <article class="fr-card fr-card-snapshot">
-            <span class="fr-label">Evidence Timestamp</span>
+            <span class="fr-label">Evidence Timestamp &amp; State Bindings</span>
             <h4>Certified frame: 10:45:02 UTC</h4>
-            <p>Replay is pinned to one decision frame so every buyer reviews the same signed evidence set.</p>
-            <div class="fr-pills">
+            <div style="font-size: 0.8rem; font-family: monospace; color: var(--fr-accent); line-height: 1.4; margin-top: 8px;">
+              <div>prior_state: <code>0x82af...88be</code></div>
+              <div>result_state: <code>0x9f4e...21ba</code></div>
+              <div>causal_parents: <code>[0x501a...770f]</code></div>
+            </div>
+            <div class="fr-pills" style="margin-top: 8px;">
               <span>Frame locked for review</span>
             </div>
           </article>
@@ -1235,6 +1239,25 @@
 
   "deviceIdentity": "quality-twin-03",
   "platformState": "buyer-review-prepared",
+
+  "state_bindings": {
+    "prior_state_binding": "sha256:prior_state_094_82af...",
+    "result_state_binding": "sha256:result_state_094_9f4e...",
+    "causal_parent_refs": ["urn:seedcore:event:honey-093-seal"]
+  },
+
+  "context_freshness": {
+    "style": "zanzibar-inspired",
+    "token": "zed_token_094_fresh"
+  },
+
+  "release_approval_envelope": {
+    "co_signers": [
+      "quality-twin-03",
+      "compliance-verifier-01"
+    ],
+    "envelope_signature": "sig:dual_envelope_honey_094_9a8c"
+  },
 
   "preContactEvidence": {
     "environmentalTelemetry": { "temperatureC": 21.4, "humidityPct": 61.3 },
