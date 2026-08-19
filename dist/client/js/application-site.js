@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Dynamic current year in footer
   document.querySelectorAll("[data-current-year]").forEach(function (node) {
     node.textContent = new Date().getFullYear();
   });
 
+  // Mobile navigation menu
   var menuButton = document.querySelector(".menu-button");
   var siteMenu = document.getElementById("site-menu");
 
@@ -22,8 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Scroll reveal observer
   var revealItems = document.querySelectorAll("[data-reveal]");
-  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if ("IntersectionObserver" in window && !prefersReducedMotion) {
     var revealObserver = new IntersectionObserver(function (entries, observer) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -37,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     revealItems.forEach(function (item) { item.classList.add("is-visible"); });
   }
 
+  // Application category filter tabs
   var filterButtons = document.querySelectorAll("[data-filter]");
   var projectCards = document.querySelectorAll("[data-category]");
 
@@ -55,14 +61,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Dynamic status ticker with playful studio messages
   var statusTicker = document.querySelector("[data-status-ticker]");
   var statusMessages = [
     "Mapping the shortest route from local coffee to happy tourist.",
     "Teaching the robot to fold souvenir shirts. Results: adorably mixed.",
     "Checking that the rare sneaker is a sneaker—not ambitious bubble wrap.",
     "Adding one more tiny adventure to the family journey.",
-    "Helping local makers become the best part of the map."
+    "Helping local makers become the most memorable part of the map.",
+    "Verifying that single-origin cocoa was harvested with love, not prompt injection."
   ];
 
   if (statusTicker && !prefersReducedMotion) {
@@ -73,34 +80,70 @@ document.addEventListener("DOMContentLoaded", function () {
         statusIndex = (statusIndex + 1) % statusMessages.length;
         statusTicker.textContent = statusMessages[statusIndex];
         statusTicker.classList.remove("is-changing");
-      }, 200);
-    }, 4300);
+      }, 220);
+    }, 4500);
   }
 
+  // Interactive 1: Tourist Design Studio Souvenir Stamp & Color Switcher
   var shirtScene = document.querySelector("[data-shirt-stamp]");
   if (shirtScene) {
-    var stamps = ["🎨", "☕", "👟", "🤖", "🏔️", "✨"];
+    var stamps = ["🎨", "☕", "👟", "🤖", "🏔️", "✨", "🧶", "🚀"];
     var stampIndex = -1;
     var stampBadge = shirtScene.querySelector(".shirt-interactive-stamp");
+    var shirtBody = shirtScene.querySelector(".shirt-body");
+
+    var shirtColors = [
+      { base: "#fffaf1", art: "linear-gradient(150deg, #ec775d 0 45%, #f4cd75 45% 70%, #1f6f68 70%)" },
+      { base: "#dcecf1", art: "linear-gradient(150deg, #1f6f68 0 40%, #ec775d 40% 75%, #f4cd75 75%)" },
+      { base: "#fceee5", art: "linear-gradient(150deg, #be523f 0 50%, #f4cd75 50% 80%, #294b47 80%)" },
+      { base: "#ede6f5", art: "linear-gradient(150deg, #6c5794 0 45%, #ec775d 45% 70%, #f4cd75 70%)" }
+    ];
+    var colorIndex = 0;
 
     shirtScene.addEventListener("click", function () {
       stampIndex = (stampIndex + 1) % stamps.length;
-      stampBadge.textContent = stamps[stampIndex];
-      stampBadge.classList.remove("stamp-pop");
-      void stampBadge.offsetWidth;
-      stampBadge.classList.add("stamp-pop");
-      shirtScene.setAttribute("aria-label", "Souvenir stamped with " + stamps[stampIndex] + ". Click for another stamp.");
+      colorIndex = (colorIndex + 1) % shirtColors.length;
+
+      if (shirtBody) {
+        shirtScene.style.setProperty("--shirt-base", shirtColors[colorIndex].base);
+        shirtScene.style.setProperty("--shirt-art-grad", shirtColors[colorIndex].art);
+      }
+
+      if (stampBadge) {
+        stampBadge.textContent = stamps[stampIndex];
+        stampBadge.classList.remove("stamp-pop");
+        void stampBadge.offsetWidth;
+        stampBadge.classList.add("stamp-pop");
+      }
+      shirtScene.setAttribute("aria-label", "Souvenir stamped with " + stamps[stampIndex] + ". Click for another design.");
     });
   }
 
+  // Interactive 2: Digital City Query Chips
+  var cityChips = document.querySelectorAll(".city-chip");
+  var cityPin = document.querySelector(".scene-pin");
+  if (cityChips.length && cityPin) {
+    cityChips.forEach(function (chip) {
+      chip.addEventListener("click", function (e) {
+        e.stopPropagation();
+        cityChips.forEach(function (c) { c.classList.remove("is-active"); });
+        chip.classList.add("is-active");
+        cityPin.style.animation = "none";
+        void cityPin.offsetWidth;
+        cityPin.style.animation = "cityPinBounce .4s cubic-bezier(.34,1.56,.64,1) 2 alternate";
+      });
+    });
+  }
+
+  // Interactive 3: 3D Parallax Tilt Physics on Desktop
   if (!prefersReducedMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     projectCards.forEach(function (card) {
       card.addEventListener("pointermove", function (event) {
         var rect = card.getBoundingClientRect();
         var xRatio = (event.clientX - rect.left) / rect.width - 0.5;
         var yRatio = (event.clientY - rect.top) / rect.height - 0.5;
-        card.style.setProperty("--tilt-x", (-yRatio * 5).toFixed(2) + "deg");
-        card.style.setProperty("--tilt-y", (xRatio * 5).toFixed(2) + "deg");
+        card.style.setProperty("--tilt-x", (-yRatio * 4.5).toFixed(2) + "deg");
+        card.style.setProperty("--tilt-y", (xRatio * 4.5).toFixed(2) + "deg");
       });
       card.addEventListener("pointerleave", function () {
         card.style.setProperty("--tilt-x", "0deg");
@@ -109,47 +152,60 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Interactive 4: Robot Moments Easter Egg & Emotions
   var robotButton = document.querySelector("[data-robot-secret]");
   if (robotButton) {
     var robotTapCount = 0;
     var robotTapTimer;
     var robotScene = robotButton.closest(".scene-robot");
-    var robotMessage = robotScene.querySelector(".robot-secret-message");
+    var robotMessage = robotScene ? robotScene.querySelector(".robot-secret-message") : null;
 
     robotButton.addEventListener("click", function () {
       robotTapCount += 1;
       window.clearTimeout(robotTapTimer);
 
+      // Trigger playful eye wink on tap
+      robotButton.classList.toggle("is-wink", robotTapCount % 2 === 1);
+
       if (robotTapCount >= 3) {
         robotTapCount = 0;
-        robotMessage.textContent = "Beep boop! Secret gear found. 🤖";
-        robotMessage.classList.add("is-visible");
-
-        for (var confettiIndex = 0; confettiIndex < 18; confettiIndex += 1) {
-          var confetti = document.createElement("span");
-          confetti.className = "robot-confetti";
-          confetti.style.setProperty("--confetti-x", (Math.random() * 180 - 90).toFixed(0) + "px");
-          confetti.style.setProperty("--confetti-y", (Math.random() * 85 + 35).toFixed(0) + "px");
-          confetti.style.animationDelay = (confettiIndex * 18) + "ms";
-          robotScene.appendChild(confetti);
-          window.setTimeout(function (piece) { piece.remove(); }, 1100, confetti);
+        if (robotMessage) {
+          robotMessage.textContent = "Beep boop! Secret gear found. 🤖✨";
+          robotMessage.classList.add("is-visible");
         }
 
-        window.setTimeout(function () { robotMessage.classList.remove("is-visible"); }, 2600);
+        for (var confettiIndex = 0; confettiIndex < 22; confettiIndex += 1) {
+          var confetti = document.createElement("span");
+          confetti.className = "robot-confetti";
+          confetti.style.setProperty("--confetti-x", (Math.random() * 200 - 100).toFixed(0) + "px");
+          confetti.style.setProperty("--confetti-y", (Math.random() * 95 + 40).toFixed(0) + "px");
+          confetti.style.animationDelay = (confettiIndex * 16) + "ms";
+          robotScene.appendChild(confetti);
+          window.setTimeout(function (piece) { piece.remove(); }, 1200, confetti);
+        }
+
+        window.setTimeout(function () {
+          if (robotMessage) robotMessage.classList.remove("is-visible");
+          robotButton.classList.remove("is-wink");
+        }, 2800);
         return;
       }
 
-      robotTapTimer = window.setTimeout(function () { robotTapCount = 0; }, 1100);
+      robotTapTimer = window.setTimeout(function () {
+        robotTapCount = 0;
+        robotButton.classList.remove("is-wink");
+      }, 1200);
     });
   }
 
+  // Privacy-friendly contact form mailto handler
   var contactForm = document.getElementById("applicationContactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", function (event) {
       event.preventDefault();
       if (!contactForm.reportValidity()) return;
       var formData = new FormData(contactForm);
-      var subject = "SeedCore application conversation — " + formData.get("interest");
+      var subject = "SeedCore application conversation — " + (formData.get("interest") || "General");
       var body = [
         "Hi SeedCore,",
         "",
@@ -157,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "",
         "Name: " + formData.get("name"),
         "Email: " + formData.get("email"),
-        "Application world: " + formData.get("interest")
+        "Application world: " + (formData.get("interest") || "Not specified")
       ].join("\n");
       window.location.href = "mailto:hello@seedcore.ai?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     });
